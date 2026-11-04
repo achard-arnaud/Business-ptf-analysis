@@ -156,6 +156,10 @@ def render(source, out, pdf=False):
                         "--report",str(out/"qa.json"),"--screenshots",str(out/"qa")],check=True)
         manifest["qa_status"]="LAYOUT_PASS_READER_PENDING"
         manifest["pdf_sha256"]=hashlib.sha256((out/(stem+".pdf")).read_bytes()).hexdigest()
+        manifest["qa_sha256"]=hashlib.sha256((out/"qa.json").read_bytes()).hexdigest()
+        manifest["png_sha256"]=[
+            hashlib.sha256((out/(stem+"_page"+str(i)+".png")).read_bytes()).hexdigest()
+            for i in range(1,4)]
     (out/"render_manifest.json").write_text(json.dumps(manifest,indent=2),encoding="utf-8")
     if pdf:
         from prepare_artifact_receipt import prepare

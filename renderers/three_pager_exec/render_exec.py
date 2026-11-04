@@ -289,6 +289,11 @@ def main():
         subprocess.run([sys.executable, str(HERE / 'render2.py'), str(out / f'{stem}.html'), str(out), stem], check=True)
         r = subprocess.run([sys.executable, str(HERE / 'qa.py'), str(out / f'{stem}.html'), '--report', str(out / 'qa.json'), '--screenshots', str(out / 'qa')])
         manifest['visual_qa'] = 'LAYOUT_PASS_MANUAL_PENDING' if r.returncode == 0 else 'FAIL'
+        manifest['pdf_sha256'] = hashlib.sha256((out / f'{stem}.pdf').read_bytes()).hexdigest()
+        manifest['qa_sha256'] = hashlib.sha256((out / 'qa.json').read_bytes()).hexdigest()
+        manifest['png_sha256'] = [
+            hashlib.sha256((out / f'{stem}_page{index}.png').read_bytes()).hexdigest()
+            for index in range(1, 4)]
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
         sys.exit(r.returncode)
 
