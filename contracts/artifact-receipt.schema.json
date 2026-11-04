@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "artifact-receipt.schema.json",
+  "title": "Artifact integrity, QA, persistence and authorization receipt v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "artifact_id",
+    "entity_id",
+    "run_id",
+    "kind",
+    "producer",
+    "artifact_ref",
+    "sha256",
+    "visibility",
+    "capture_kind",
+    "hash_scope",
+    "input_refs",
+    "publication_state",
+    "readback",
+    "qa_state",
+    "authorization_state"
+  ],
+  "properties": {
+    "version": {
+      "const": "0.1.0"
+    },
+    "artifact_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entity_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "enum": [
+        "source_capture",
+        "analysis_bundle",
+        "content_payload",
+        "render_pdf",
+        "render_png",
+        "qa_report"
+      ]
+    },
+    "producer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "restricted"
+      ]
+    },
+    "capture_kind": {
+      "enum": [
+        "selected_excerpt",
+        "full_original",
+        null
+      ]
+    },
+    "hash_scope": {
+      "enum": [
+        "excerpt_utf8",
+        "original_bytes",
+        null
+      ]
+    },
+    "input_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "publication_state": {
+      "enum": [
+        "prepared_not_published",
+        "published_unverified",
+        "published_verified",
+        "blocked"
+      ]
+    },
+    "readback": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "uri",
+            "sha256",
+            "verified_at",
+            "method"
+          ],
+          "properties": {
+            "uri": {
+              "type": "string",
+              "minLength": 5
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "verified_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "method": {
+              "enum": [
+                "independent_readback"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "qa_state": {
+      "enum": [
+        "NOT_RUN",
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "authorization_state": {
+      "enum": [
+        "UNREVIEWED",
+        "DEMO_ONLY",
+        "HITL_REFERENCED"
+      ]
+    },
+    "human_decision_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
