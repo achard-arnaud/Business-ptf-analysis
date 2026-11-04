@@ -28,3 +28,36 @@ jobs:
         with:
           name: sphere-exec-unverified-layout-qa
           path: /tmp/hivest-render-qa/
+  value-chain-preview-qa:
+    if: github.ref_name == 'build/43-value-chain-renderer-20261104' || github.head_ref == 'build/43-value-chain-renderer-20261104'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt playwright
+      - run: python -m playwright install --with-deps chromium
+      - run: python renderers/value_chain_preview/render.py tests/fixtures/value_chain_manufacturing_v01.json /tmp/value-chain-qa/manufacturing --pdf
+      - run: python renderers/value_chain_preview/render.py tests/fixtures/value_chain_asset_service_v01.json /tmp/value-chain-qa/assets --pdf
+      - name: Verify two exact three-page PDF/PNG sets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          for label in ('manufacturing', 'assets'):
+              root=Path('/tmp/value-chain-qa')/label
+              manifest=json.loads((root/'render_manifest.json').read_text())
+              assert manifest['qa_status']=='LAYOUT_PASS_READER_PENDING'
+              assert manifest['render_authorized_for_committee'] is False
+              assert len(list(root.glob('*.pdf')))==1
+              assert len(list(root.glob('*_page*.png')))==3
+              report=json.loads((root/'qa.json').read_text())
+              assert report['page_count']==3 and report['pass']
+              print(label,'PDF+3 PNG+layout checks PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: value-chain-preview-two-profiles
+          path: /tmp/value-chain-qa/
