@@ -11,3 +11,9 @@ Candidate receipt `contracts/artifact-receipt.schema.json`, validator `scripts/v
 This validator **does not fetch a remote URL**. The publisher/session is responsible for retrieving readback bytes through its authorized connector and passing them to the validator. Without that independent action, leave `published_unverified`.
 
 Negative NRT test missing readback, mismatched bytes, false original scope, QA ≠ authorization and HITL reference ≠ permission. Future producer integration and actual remote receipt acceptance remain under #47 / #29 / #10.
+
+## Producteur réel raccordé (#47 — incrément)
+
+Le renderer candidat `renderers/value_chain_preview/render.py --pdf` écrit désormais `artifact_receipt.json` **à partir des octets du PDF réellement généré**, et non d'une empreinte annoncée. Son `qa_state=PASS` exige un `qa.json` navigateur avec exactement trois pages et sans défaut détecté. Le reçu reste toujours `prepared_not_published` et `UNREVIEWED`, même après cette QA.
+
+Le helper `scripts/prepare_artifact_receipt.py` sert aussi aux autres producteurs via arguments explicites. Le transport (API GitHub, stockage autorisé) doit être fait **après**, dans la session qui possède réellement les droits ; la promotion vers `published_verified` nécessite la relecture distante octet pour octet par `validate_artifact_receipt.py --readback-file`. Aucune CI verte ne réalise à elle seule ce transport.

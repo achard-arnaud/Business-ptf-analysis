@@ -157,6 +157,14 @@ def render(source, out, pdf=False):
         manifest["qa_status"]="LAYOUT_PASS_READER_PENDING"
         manifest["pdf_sha256"]=hashlib.sha256((out/(stem+".pdf")).read_bytes()).hexdigest()
     (out/"render_manifest.json").write_text(json.dumps(manifest,indent=2),encoding="utf-8")
+    if pdf:
+        from prepare_artifact_receipt import prepare
+        receipt = prepare(out/(stem+".pdf"), entity_id=data["entity_id"],
+                          run_id="preview-"+data["profile_id"], kind="render_pdf",
+                          producer="renderers/value_chain_preview/render.py",
+                          visibility="public", qa_report=out/"qa.json",
+                          input_refs=[str(source),str(out/"render_manifest.json")])
+        (out/"artifact_receipt.json").write_text(json.dumps(receipt,indent=2),encoding="utf-8")
     return manifest
 
 if __name__=="__main__":
