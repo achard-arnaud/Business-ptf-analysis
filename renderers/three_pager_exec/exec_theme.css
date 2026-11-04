@@ -147,5 +147,5 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 .body:has(.quad){display:flex;flex-direction:column}
 
 /* Page-1 top cards conserve a small fit margin while the lower SWOT/ownership receive more height. */
-.page:first-of-type .kv{padding:.5mm 0}
+.page:first-of-type .kv{padding:.4mm 0}
 .page:first-of-type .drv{margin-bottom:1mm}
