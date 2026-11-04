@@ -12,6 +12,7 @@
 4. [STRATEGIC_NOTE_GAPS_2026-09-25.md](STRATEGIC_NOTE_GAPS_2026-09-25.md) — claims à corriger, gaps de preuve et stop conditions.
 5. [SOURCE_SUMMARIES_2026-09-25.md](SOURCE_SUMMARIES_2026-09-25.md) — scraping/synthèse canonique des sources externes ; raw hors dépôt.
 6. [CLAUDE_CODE_EXECUTION_2026-09-25.md](CLAUDE_CODE_EXECUTION_2026-09-25.md) — contrat d'exécution Claude Code pour la V2.
+7. [NOTE_STRATEGIQUE_2026-09_v2.md](NOTE_STRATEGIQUE_2026-09_v2.md) — **V2 candidate** (25/09/2026), rendue en 6 pages ; en attente de relecture humaine.
 
 ## Styles
 
@@ -26,3 +27,11 @@
 - Référence V1 et renderer stratégique promus.
 - **Aucun changement** de `program/state.json` ou `companies/hivest/manifest.json`.
 - Prochaine procédure pour ce workstream : exécuter `CLAUDE_CODE_EXECUTION_2026-09-25.md` dans Claude Code ; le diagnostic Hivest reste gouverné séparément par le workflow programme.
+
+## Checkpoint V2 — 25/09/2026
+
+- Sortie : `NOTE_STRATEGIQUE_2026-09_v2.md`. Le PDF et le `qa_report.json` restent hors dépôt (`/tmp/hivest-note-v2/`). QA auto : 6 pages, figure ≥ 0,70, corps ≥ 9 pt. QA visuelle faite sur les 6 pages.
+- Rollup portefeuille : mois d'entrée tirés de `program/roster.json`, thèses et signaux data/ML tirés des `INDEX.md`/manifests. ML en production établi publiquement : 0/10. Horizon de sortie et maturité : `unknown`, non placés.
+- Recaptures et retraits : journal en fin de `SOURCE_SUMMARIES_2026-09-25.md`.
+- Arbitrages humains ouverts : RETEX chiffré autorisé ; titre du rôle ; horizon de sortie réel par participation ; France Invest et Bpifrance à recapturer avant diffusion externe.
+- `manifest.json` et `program/state.json` inchangés ; aucun gate de diagnostic modifié.

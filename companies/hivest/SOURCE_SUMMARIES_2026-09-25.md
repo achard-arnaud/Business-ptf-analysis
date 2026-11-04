@@ -260,3 +260,17 @@
 5. **CoE : design hypothesis.** Academy + operating model + factory / FDE est une architecture candidate à adapter à Hivest, pas un état observé.
 6. **Invest 2.0 : pattern evidence.** Les outils spécialisés démontrent des briques reproductibles (document ops, retrieval, graph, lineage, portfolio analytics), mais leurs périmètres clients diffèrent et ne forment pas une shortlist.
 7. **Second Brain / Digital Twin : hypothesis.** Actif cible à construire et gouverner, jamais à présenter comme existant.
+
+---
+
+## Journal de recapture — passe V2 Claude Code (25/09/2026)
+
+L'egress de cette session bloque franceinvest.eu, bcg.com, mckinsey.com, openai.com, conseil.bpifrance.fr, kiosque.bpifrance.fr et siparex.com. Aucun nouveau fragment primaire n'a été capturé pour ces sources.
+
+| Source | Résultat | Décision V2 |
+|---|---|---|
+| SRC-ANTHROPIC-01 | Page primaire relue : date 04/05/2026, cible « community banks to mid-sized manufacturers and regional health systems », consortium General Atlantic, Leonard Green, Apollo, GIC, Sequoia ; **aucun montant publié sur la page**. | GAP-07 fermé par retrait : pas d'agrégat « 5,5 Md$ » ; diffusion décrite sans montant. |
+| SRC-FRANCEINVEST-01 | PDF bloqué ; seul un résumé d'index de recherche mentionne 76 % / confidentialité. Un index n'est pas un fragment primaire. | GAP-08 : formulation qualitative « confidentialité parmi les principaux freins ». |
+| SRC-BPI-01 | Pages et PDF bloqués ; des résumés d'index et un communiqué de presse évoquent 70 % (15–100 k€), 80 % (<6 mois) et « >1 500 entreprises », ce qui contredit « 600+ » du landing. | GAP-09 : pourcentages et volumes non affichés ; seul « 20 cas » est conservé. Contradiction 600+ / 1 500 ouverte. |
+| BCG « 73 % / 22 % » (V1) | Non présent dans SRC-BCG-01 (≈30 % en diligence, +57 % en VCP). Recapture impossible. | Retiré de la V2 ; 40 % et 15 % conservés. |
+| Claims V1 hors registre canonique (SLB, Toyota/Datadog, Michelin, Deloitte 86 %/67 %, McKinsey « outside-in » 7/10, MAIF, Vetoquinol, Blackstone offsets, PE Wire) | Pas de résumé canonique ni de recapture. | Retirés de la V2. |
