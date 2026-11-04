@@ -3,8 +3,8 @@
 Markdown + directives légères → HTML → PDF A4 portrait, rendu « cabinet de conseil » pour un lectorat C-Level (5 à 7 pages).
 
 ```bash
-pip install markdown playwright pillow        # Chromium déjà présent ou via PLAYWRIGHT_BROWSERS_PATH
-npm i -g @mermaid-js/mermaid-cli               # mmdc
+pip install markdown "playwright==1.56.0" pillow  # version alignée sur chromium-1194 préinstallé
+npm i -g @mermaid-js/mermaid-cli@11             # mmdc 12 ne connaît plus l'option -w utilisée par build.py
 python renderers/strategic_note/build.py renderers/strategic_note/sample_note.md --out /tmp/snote --pages 1-3
 ```
 
