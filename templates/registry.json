@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "template_id": "THREE_PAGER_PORTFOLIO_AI",
+      "profile": "exec",
+      "version": "0.3.0-exec",
+      "lifecycle": "candidate",
+      "capability": "demo_only",
+      "template_ref": "templates/THREE_PAGER_EXEC_v0.3.md",
+      "schema_ref": "contracts/three-pager-exec.schema.json",
+      "renderer_ref": "renderers/three_pager_exec/render_exec.py",
+      "formats": [
+        "html",
+        "pdf",
+        "png"
+      ],
+      "committee_authorized": false
+    },
+    {
+      "template_id": "THREE_PAGER_PORTFOLIO_AI",
+      "profile": "audit",
+      "version": "0.1.0",
+      "lifecycle": "candidate",
+      "capability": "schema_only",
+      "template_ref": "templates/THREE_PAGER_PORTFOLIO_AI.md",
+      "schema_ref": "contracts/three-pager.schema.json",
+      "renderer_ref": null,
+      "formats": [],
+      "committee_authorized": false
+    },
+    {
+      "template_id": "strategic-market-note",
+      "profile": "fund-note",
+      "version": "0.1.0-candidate",
+      "lifecycle": "candidate",
+      "capability": "preview",
+      "template_ref": "templates/strategic-market-note.md",
+      "schema_ref": null,
+      "renderer_ref": "renderers/strategic_note/build.py",
+      "formats": [
+        "html",
+        "pdf"
+      ],
+      "committee_authorized": false
+    }
+  ]
+}
