@@ -16,3 +16,12 @@ Cette carte décrit les capacités réellement présentes. Le [workflow de la sk
 | `.github/workflows/contracts.yml`, `tests/` | Push/PR → tests ; dispatch manuel → QA de layout de la fixture | CI n'a pas les archives externes ni la décision humaine |
 
 `contracts/decision-rules.md` porte les règles de maturité, hard gates, sourcing et fin. Les JSON sont les formes vérifiées par le code ; les Markdown sont les consignes de jugement. Une modification de schéma implique validateurs et tests proches du contrat ; une modification éditoriale implique le profil de rendu concerné et ses trois PNG. Les documents historiques de `docs/` et les notes de `companies/` ne remplacent ni manifest ni bundle.
+
+## Cartographie de responsabilité ETL (documentation, sans changement de runtime)
+
+- **Extract** : `evidence.md`, `research-graph.md`, `package.json`, `research_graph.json`, archives externes et `scripts/validate_bundle.py`.
+- **Transform** : `market-drivers.md`, `diagnostic.md`, `opportunities.md`, `review.md`, `strategic_context.json` ; `exec-writing.md` contribue à la construction narrative en composition.
+- **Publish** : `composition.md`, profils et schémas associés, `renderers/three_pager_exec/` et `renderers/strategic_note/` (workstream fonds distinct), inspection PNG/PDF et manifests de QA.
+- **Transversal** : `AGENTS.md` route, `program/state.json` et manifests fixent le gate, `context-and-resume.md` conserve les checkpoints ; `learning.md` boucle les défauts vers les contrats et les tests.
+
+Le contrat de Narrative Scaffold commun, le graph de blocs narratifs et le moteur de publication multiformat restent des évolutions suivies dans [la roadmap](../roadmap/industrialization-backlog.md). Consulter [la vue E/T/P](end-to-end-etl.md) avant de proposer de nouvelles classes de code.

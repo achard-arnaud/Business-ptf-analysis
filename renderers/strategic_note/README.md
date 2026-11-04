@@ -24,4 +24,6 @@ python renderers/strategic_note/build.py renderers/strategic_note/sample_note.md
 
 Palette et typographie : navy/blue/teal/gold hérités de `Hivest-ptf-analysis/renderers/three_pager_exec/exec_theme.css` ; titres Source Serif 4, texte Inter (repli Carlito / Liberation).
 
-Polices : Chromium (Playwright) ne passe pas par le proxy HTTP ; si Google Fonts n'est pas joignable depuis le navigateur, installer Inter et Source Serif 4 localement (`~/.fonts`, `fc-cache -f`) et vérifier avec `pdffonts`.
+## Frontière avec la recherche et la narration
+
+Ce README décrit **uniquement le renderer de la note stratégique C-Level**, pas une skill de recherche. Les sources, leurs fragments, claims, limitations et feedback sont organisés dans `companies/hivest/INDEX.md` et le contrat `templates/strategic-market-note.md` ; le parcours de diagnostic par participation suit `skills/hivest-portfolio-ai/SKILL.md` et ses propres gates. Le renderer prend le Markdown structuré comme **entrée**, sans ajouter de faits ni accorder GO_DRAFT. Voir [architecture ETL](../../docs/architecture/end-to-end-etl.md).
