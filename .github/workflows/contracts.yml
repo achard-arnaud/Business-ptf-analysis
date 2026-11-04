@@ -33,7 +33,7 @@ jobs:
 
   render-qa:
     needs: [validate, select-render]
-    if: github.event_name == 'workflow_dispatch' || needs.select-render.outputs.need_render == 'true'
+    if: (github.event_name != 'push' || github.ref_name == 'dev' || github.ref_name == 'main') && (github.event_name == 'workflow_dispatch' || needs.select-render.outputs.need_render == 'true')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
