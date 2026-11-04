@@ -11,6 +11,8 @@ from urllib.parse import unquote
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = (
     "AGENTS.md",
+    "README.md",
+    "docs/architecture/end-to-end-etl.md",
     "skills/hivest-portfolio-ai/SKILL.md",
     "skills/hivest-portfolio-ai/references/workflow.md",
     "docs/agent/quickstart-map.md",
@@ -65,6 +67,12 @@ def check(root=ROOT):
     if skill.is_file():
         errors.extend(check_frontmatter(skill))
     workflow = root / "skills/hivest-portfolio-ai/references/workflow.md"
+    etl = root / "docs/architecture/end-to-end-etl.md"
+    if etl.is_file():
+        etl_body = etl.read_text(encoding="utf-8").lower()
+        for stage_name in ("extract", "transform", "publish"):
+            if stage_name not in etl_body:
+                errors.append(f"ETL architecture missing stage: {stage_name}")
     if workflow.is_file():
         body = workflow.read_text(encoding="utf-8")
         for procedure in ROUTE_PROCEDURES:
