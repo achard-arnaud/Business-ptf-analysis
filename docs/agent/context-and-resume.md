@@ -18,3 +18,13 @@ Le checkpoint portable candidat est décrit dans `contracts/session-checkpoint.s
 La vérification exige **à la fois** le head Git attendu et les octets SHA-256 des entrées disponibles ; `CONFLICT`, `STALE` et `BLOCKED` ne constituent pas des réussites. Aucun write n'est réalisé par le validateur. Pour une source modifiée, invalider seulement ses descendants déclarés ; un changement non reconnu exige une recherche ciblée et non un effacement silencieux.
 
 Ce reçu n'est **pas** une décision HITL : même un `human_decision_ref` syntaxiquement valide n'atteste pas que son auteur a approuvé. Le contrôle humain, le hash du bundle gelé et les gates documentés restent obligatoires. Les essais cross-model réels devront compléter les NRT synthétiques avant promotion d'un dispositif entièrement autonome.
+
+## Reprise à froid par commande (itération #39)
+
+Pour une nouvelle session **disposant des mêmes fichiers effectivement vérifiables**, exécuter :
+
+```sh
+python scripts/session_checkpoint.py resume /path/to/checkpoint.json --root /path/to/bundle --repo-sha "<SHA courant lu sur GitHub>"
+```
+
+`READY_TO_RESUME` fournit uniquement le scope, les identifiants des claims contradictoires, les inconnues, les conditions d'arrêt et `next_action`. `STALE`, `CONFLICT` et `BLOCKED` retournent un code non nul. La commande n'écrit rien et ne charge jamais le corpus complet ; le SHA Git doit être fourni depuis une lecture indépendante, **pas copié aveuglément du checkpoint**. Le test CI lance une nouvelle invocation Python ; il ne constitue pas une preuve de transfert GPT↔Claude, de connectivité externe ou d'approbation humaine. L'acceptation intermodèles restera ouverte sous #39.
