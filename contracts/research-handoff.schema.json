@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "research-handoff.schema.json",
+  "title": "Inter-model research/stage handoff v0.1 (no workflow gate)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_id",
+    "version",
+    "entity_id",
+    "cutoff",
+    "stage",
+    "sender",
+    "receiver",
+    "integrator",
+    "question",
+    "run_context",
+    "inputs",
+    "expected_outputs",
+    "budget",
+    "capabilities",
+    "required_capabilities",
+    "readiness",
+    "fallback",
+    "next_action",
+    "stop_condition"
+  ],
+  "properties": {
+    "contract_id": {
+      "const": "research-handoff"
+    },
+    "version": {
+      "const": "0.1.0"
+    },
+    "entity_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cutoff": {
+      "type": "string",
+      "format": "date"
+    },
+    "stage": {
+      "enum": [
+        "INTAKE",
+        "RESEARCH",
+        "MARKET_CONTEXT",
+        "ANALYSIS",
+        "OPPORTUNITIES",
+        "RED_TEAM",
+        "HITL_PENDING",
+        "GO_DRAFT",
+        "FROZEN",
+        "RENDERED",
+        "DONE"
+      ]
+    },
+    "sender": {
+      "type": "string",
+      "minLength": 1
+    },
+    "receiver": {
+      "type": "string",
+      "minLength": 1
+    },
+    "integrator": {
+      "type": "string",
+      "minLength": 1
+    },
+    "question": {
+      "type": "string",
+      "minLength": 6
+    },
+    "run_context": {
+      "$ref": "#/$defs/pin"
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/pin"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "manifest",
+                  "source_registry",
+                  "claim_packet",
+                  "analysis",
+                  "question_graph",
+                  "template"
+                ]
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        ]
+      }
+    },
+    "expected_outputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_queries": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_sources": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        }
+      },
+      "required": [
+        "max_queries",
+        "max_sources"
+      ]
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "available",
+          "deferred",
+          "unavailable"
+        ]
+      },
+      "minProperties": 1
+    },
+    "required_capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "github_read",
+          "github_write",
+          "python",
+          "browser",
+          "archive_access"
+        ]
+      }
+    },
+    "readiness": {
+      "enum": [
+        "READY",
+        "RECOVERABLE",
+        "BLOCKED"
+      ]
+    },
+    "fallback": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "enum": [
+            "none",
+            "verified_snapshot",
+            "defer",
+            "stop"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "snapshot": {
+          "$ref": "#/$defs/pin"
+        }
+      },
+      "required": [
+        "mode",
+        "reason"
+      ]
+    },
+    "next_action": {
+      "type": "string",
+      "minLength": 4
+    },
+    "stop_condition": {
+      "type": "string",
+      "minLength": 5
+    },
+    "claim_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "counterclaim_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "pin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "kind": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

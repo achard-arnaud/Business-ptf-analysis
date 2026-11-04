@@ -15,6 +15,7 @@
 | Rédiger 3 pages exec | `composition.md` puis `exec-writing.md` | payload sourcé, QA, PNG | Faire rechercher le renderer |
 | Rédiger note fonds 5–7 pages | `companies/hivest/INDEX.md` → `templates/strategic-market-note.md` → `renderers/strategic_note/README.md` | note candidate et QA, hors programme | Changer `program/state.json` ou le manifest |
 | Modifier le code | `docs/architecture/code-map.md`, schéma/validateur/fixture/test concernés | PR avec tests et non-régression | Promettre une feature sur seule base du README |
+| Transférer vers un autre modèle | `docs/agent/handoff-and-fallback.md` et `contracts/research-handoff.schema.json` | Paquet de relais borné, capacité/fallback et reçu | Déduire un accès ou un GO_DRAFT de la seule validation JSON |
 | Préparer la prochaine étape | `docs/agent/context-and-resume.md` | checkpoint court, hashes, next, stop | Écraser archives ou états concurrents |
 
 ## Contrat de relais minimal
