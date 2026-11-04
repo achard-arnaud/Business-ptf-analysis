@@ -4,6 +4,7 @@
 
 ## Usage
 - `analysis.md` : analyse business model, drivers, chaîne de valeur, stratégies de valeur, sept opportunités IA/Data, baselines sans IA, contradictions et sources.
+- `three-pager.md` : restitution éditoriale **en trois parties/pagination cible**, à adapter au renderer sans prétendre à une validation de schéma ou de PDF.
 - La restitution attendue du format three-pager suit **trois pages** : (1) économie et drivers, (2) activités, frictions et transferts de valeur, (3) sept initiatives candidates et leurs gates.
 - Comparer le contenu à `templates/THREE_PAGER_EXEC_v0.3.md` et à `contracts/three-pager-exec.schema.json` comme **référence de lecture**, pas comme un payload v0.3 validé.
 - Les faits sont des déclarations publiques et sources datées ; les options IA sont des hypothèses, sans ROI local établi.
