@@ -43,6 +43,22 @@
         "pdf"
       ],
       "committee_authorized": false
+    },
+    {
+      "template_id": "VALUE_CHAIN_PORTFOLIO_VIEW",
+      "profile": "value-chain-preview",
+      "version": "0.1.0",
+      "lifecycle": "candidate",
+      "capability": "preview",
+      "template_ref": "templates/VALUE_CHAIN_PREVIEW_v0.1.md",
+      "schema_ref": "contracts/value-chain-view.schema.json",
+      "renderer_ref": "renderers/value_chain_preview/render.py",
+      "formats": [
+        "html",
+        "pdf",
+        "png"
+      ],
+      "committee_authorized": false
     }
   ]
 }
