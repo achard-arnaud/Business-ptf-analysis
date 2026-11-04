@@ -17,7 +17,7 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 .subtitle{font-size:12pt;line-height:1.15;color:#dbe4ee;max-width:215mm}
 .pageno{position:absolute;right:10mm;top:4mm;color:#9fdde6;font-size:9pt;font-weight:700;letter-spacing:.08em}
 
-.main{position:absolute;left:10mm;right:10mm;top:28mm;bottom:17mm;display:grid;gap:var(--gap);min-height:0}
+.main{position:absolute;left:10mm;right:10mm;top:25.8mm;bottom:15.4mm;display:grid;gap:var(--gap);min-height:0}
 .grid{display:grid;gap:var(--gap);min-height:0}
 
 .card{min-width:0;min-height:0;overflow:hidden;padding:var(--pad);border:.3mm solid var(--border);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column}
@@ -66,12 +66,12 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 .pp.gap b{color:var(--gold)}
 
 /* SWOT / TOWS */
-.swot{display:grid;grid-template-columns:1fr 1fr;gap:1.4mm}
-.sw{padding:1.4mm 1.8mm;border-radius:1.8mm;background:var(--soft)}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:1.1mm}
+.sw{padding:1.1mm 1.5mm;border-radius:1.8mm;background:var(--soft)}
 .sw h3{margin:0 0 .6mm;font-size:9.4pt;color:var(--cyan-dark);text-transform:uppercase}
 .sw ul{margin:0;padding-left:3.6mm;font-size:9.5pt;line-height:1.15}
-.sw li+li{margin-top:.4mm}
-.tows{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2mm;margin-top:1.6mm}
+.sw li+li{margin-top:.2mm}
+.tows{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1mm;margin-top:.9mm}
 .pos{padding:.8mm 1mm;border-radius:1.4mm;border:.3mm dashed var(--border);font-size:9pt;line-height:1.1;text-align:center;color:var(--muted)}
 .pos b{display:block;color:var(--navy);font-size:9.4pt}
 .pos.on{background:var(--navy);border:.3mm solid var(--navy);color:#cfe0ee}
@@ -111,7 +111,7 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 
 /* table thèmes */
 .table{width:100%;border-collapse:collapse;table-layout:fixed}
-.table th,.table td{padding:.9mm 1.3mm;vertical-align:top;border-bottom:.25mm solid var(--rule);text-align:left;font-size:9.4pt;line-height:1.15}
+.table th,.table td{padding:.75mm 1.1mm;vertical-align:top;border-bottom:.25mm solid var(--rule);text-align:left;font-size:9.4pt;line-height:1.15}
 .table th{color:var(--cyan-dark);font-weight:700;border-bottom-color:var(--border);font-size:9.2pt;text-transform:uppercase;letter-spacing:.03em}
 .table td:first-child b{color:var(--navy);font-size:10pt}
 .table .nb{display:inline-block;min-width:4.4mm;text-align:center;margin-right:1mm;border-radius:1mm;background:var(--teal);color:#fff;font-weight:700}
