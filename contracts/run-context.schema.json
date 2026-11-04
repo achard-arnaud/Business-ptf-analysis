@@ -3,7 +3,10 @@
   "type": "object",
   "properties": {
     "version": {
-      "const": "0.1.0"
+      "enum": [
+        "0.1.0",
+        "0.2.0"
+      ]
     },
     "entity_id": {
       "type": "string",
@@ -13,7 +16,9 @@
       "enum": [
         "INTAKE",
         "RESEARCH",
+        "MARKET_CONTEXT",
         "ANALYSIS",
+        "OPPORTUNITIES",
         "RED_TEAM",
         "HITL_PENDING",
         "GO_DRAFT",
@@ -192,5 +197,76 @@
     "next_action"
   ],
   "additionalProperties": false,
-  "$id": "https://github.com/achard-arnaud/Hivest-ptf-analysis/contracts/run-context.schema.json"
+  "$id": "https://github.com/achard-arnaud/Hivest-ptf-analysis/contracts/run-context.schema.json",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": "0.1.0"
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "stage": {
+            "enum": [
+              "INTAKE",
+              "RESEARCH",
+              "ANALYSIS",
+              "RED_TEAM",
+              "HITL_PENDING",
+              "GO_DRAFT",
+              "FROZEN",
+              "RENDERED",
+              "DONE"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": "0.2.0"
+          },
+          "stage": {
+            "enum": [
+              "GO_DRAFT",
+              "FROZEN",
+              "RENDERED",
+              "DONE"
+            ]
+          }
+        },
+        "required": [
+          "version",
+          "stage"
+        ]
+      },
+      "then": {
+        "properties": {
+          "hitl": {
+            "type": "object",
+            "required": [
+              "decision",
+              "actor",
+              "decided_at",
+              "decision_ref",
+              "package_sha256"
+            ],
+            "properties": {
+              "decision": {
+                "const": "GO_DRAFT"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }
