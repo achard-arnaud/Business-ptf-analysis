@@ -20,10 +20,10 @@ FORBIDDEN = [r'GO_DRAFT', r'HITL', r'render_authorized', r'\b(A|EN|DRV|UC)-\w', 
              r'aucun cas', r'non établi', r'class="tag', r'pas un business', r'panel ≠', r'hypothèse de travail']
 STRAT_LABEL = {'cost': 'coûts', 'cash': 'cash', 'differentiation': 'différenciation', 'resilience': 'résilience'}
 DEFAULT_LAYOUT = {
-    'p1_rows': '76mm 1fr', 'p1_top_cols': '1.12fr .92fr 1fr', 'p1_bot_cols': '.86fr .92fr 1.42fr',
+    'p1_rows': '73.5mm 1fr', 'p1_top_cols': '1.12fr .92fr 1fr', 'p1_bot_cols': '.86fr .92fr 1.42fr',
     'p2_rows': '1fr 36mm', 'p2_bot_cols': '1.25fr 1fr',
     'p3_rows': '1fr 40mm', 'p3_top_cols': '108mm 1fr', 'p3_bot_cols': '1.15fr 1fr 1fr',
-    'p3_table_cols': ['38mm', None, '27mm', '28mm', '32mm'],
+    'p3_table_cols': ['36mm', None, '26mm', '26mm', '37mm'],
 }
 
 
