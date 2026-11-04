@@ -21,7 +21,10 @@ class RegistryTests(unittest.TestCase):
             r.check_registry(self.registry)
 
     def test_real_registry_matches_repo(self):
-        self.assertEqual(r.check_registry(self.registry)["profiles"], 3)
+        self.assertEqual(r.check_registry(self.registry)["profiles"], 4)
+        preview = next(x for x in self.registry["templates"] if x["profile"] == "value-chain-preview")
+        self.assertEqual(preview["capability"], "preview")
+        self.assertFalse(preview["committee_authorized"])
 
     def test_audit_has_no_renderer(self):
         audit = next(x for x in self.registry["templates"] if x["profile"] == "audit")
