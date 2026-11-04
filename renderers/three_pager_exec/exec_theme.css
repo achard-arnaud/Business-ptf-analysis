@@ -111,7 +111,7 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 
 /* table thèmes */
 .table{width:100%;border-collapse:collapse;table-layout:fixed}
-.table th,.table td{padding:.75mm 1.1mm;vertical-align:top;border-bottom:.25mm solid var(--rule);text-align:left;font-size:9.4pt;line-height:1.15}
+.table th,.table td{padding:.75mm 1.1mm;overflow-wrap:anywhere;vertical-align:top;border-bottom:.25mm solid var(--rule);text-align:left;font-size:9.4pt;line-height:1.15}
 .table th{color:var(--cyan-dark);font-weight:700;border-bottom-color:var(--border);font-size:9.2pt;text-transform:uppercase;letter-spacing:.03em}
 .table td:first-child b{color:var(--navy);font-size:10pt}
 .table .nb{display:inline-block;min-width:4.4mm;text-align:center;margin-right:1mm;border-radius:1mm;background:var(--teal);color:#fff;font-weight:700}
@@ -145,3 +145,7 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 .body{overflow:hidden}
 
 .body:has(.quad){display:flex;flex-direction:column}
+
+/* Page-1 top cards conserve a small fit margin while the lower SWOT/ownership receive more height. */
+.page:first-of-type .kv{padding:.5mm 0}
+.page:first-of-type .drv{margin-bottom:1mm}
