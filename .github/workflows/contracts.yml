@@ -12,8 +12,28 @@ jobs:
       - run: python scripts/check_skill_docs.py
       - run: python scripts/check_template_registry.py
       - run: python -m unittest discover -s tests -v
+
+  select-render:
+    runs-on: ubuntu-latest
+    outputs:
+      need_render: ${{ steps.paths.outputs.need_render }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Select renderer QA from actual changed paths
+        id: paths
+        env:
+          DIFF_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          DIFF_HEAD: ${{ github.sha }}
+        run: |
+          decision=$(python scripts/ci_render_selector.py --base "$DIFF_BASE" --head "$DIFF_HEAD")
+          echo "need_render=$decision" >> "$GITHUB_OUTPUT"
+          echo "Browser QA selected: $decision"
+
   render-qa:
-    if: github.event_name == 'workflow_dispatch'
+    needs: [validate, select-render]
+    if: github.event_name == 'workflow_dispatch' || needs.select-render.outputs.need_render == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,42 +42,37 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install -r requirements.txt playwright
       - run: python -m playwright install --with-deps chromium
-      - run: python renderers/three_pager_exec/render_exec.py tests/fixtures/exec/sphere_unverified_v0.3.json /tmp/hivest-render-qa --pdf
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: sphere-exec-unverified-layout-qa
-          path: /tmp/hivest-render-qa/
-  value-chain-preview-qa:
-    if: github.ref_name == 'build/43-value-chain-renderer-20261104' || github.head_ref == 'build/43-value-chain-renderer-20261104'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - run: python -m pip install -r requirements.txt playwright
-      - run: python -m playwright install --with-deps chromium
-      - run: python renderers/value_chain_preview/render.py tests/fixtures/value_chain_manufacturing_v01.json /tmp/value-chain-qa/manufacturing --pdf
-      - run: python renderers/value_chain_preview/render.py tests/fixtures/value_chain_asset_service_v01.json /tmp/value-chain-qa/assets --pdf
-      - name: Verify two exact three-page PDF/PNG sets
+      - name: Render historical exec v0.3 candidate (unverified)
+        run: python renderers/three_pager_exec/render_exec.py tests/fixtures/exec/sphere_unverified_v0.3.json /tmp/render-qa/exec --pdf
+      - name: Render candidate manufacturing profile
+        run: python renderers/value_chain_preview/render.py tests/fixtures/value_chain_manufacturing_v01.json /tmp/render-qa/manufacturing --pdf
+      - name: Render candidate asset-service profile
+        run: python renderers/value_chain_preview/render.py tests/fixtures/value_chain_asset_service_v01.json /tmp/render-qa/assets --pdf
+      - name: Validate three PDFs, nine PNGs, QA and receipt hashes
+        run: |
+          python scripts/verify_render_evidence.py /tmp/render-qa/exec --profile exec
+          python scripts/verify_render_evidence.py /tmp/render-qa/manufacturing --profile value-chain-preview
+          python scripts/verify_render_evidence.py /tmp/render-qa/assets --profile value-chain-preview
+      - name: Negative test — browser must reject overflowing content
         run: |
           python - <<'PY'
           from pathlib import Path
+          Path('/tmp/render-qa/negative.html').write_text(
+              '<html><style>.page{width:297mm;height:210mm;overflow:hidden}.bad{width:20px;height:20px;white-space:nowrap;overflow:hidden}</style>'
+              + '<section class="page"><div data-no-overflow class="bad">content_that_does_not_fit_in_a_twenty_pixel_box</div></section>'*3
+              + '</html>',encoding='utf-8')
+          PY
+          if python renderers/three_pager_exec/qa.py /tmp/render-qa/negative.html --report /tmp/render-qa/negative-qa.json; then
+            echo "ERROR: browser incorrectly accepted overflow"
+            exit 1
+          fi
+          python - <<'PY'
           import json
-          for label in ('manufacturing', 'assets'):
-              root=Path('/tmp/value-chain-qa')/label
-              manifest=json.loads((root/'render_manifest.json').read_text())
-              assert manifest['qa_status']=='LAYOUT_PASS_READER_PENDING'
-              assert manifest['render_authorized_for_committee'] is False
-              assert len(list(root.glob('*.pdf')))==1
-              assert len(list(root.glob('*_page*.png')))==3
-              report=json.loads((root/'qa.json').read_text())
-              assert report['page_count']==3 and report['pass']
-              print(label,'PDF+3 PNG+layout checks PASS')
+          x=json.load(open('/tmp/render-qa/negative-qa.json'))
+          assert x['pass'] is False and x['summary']['overflows'] > 0
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: value-chain-preview-two-profiles
-          path: /tmp/value-chain-qa/
+          name: three-profile-layout-evidence
+          path: /tmp/render-qa/
