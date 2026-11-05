@@ -4,7 +4,7 @@
 **Source :** SRC-BOOK-01, chap. 2, « Thinking mode », pp. 30–34; chap. 6, « Use case fact sheets »; chap. 10.
 
 ## Page 1 — Comprendre : relier sans masquer les lacunes
-Dans cette série, « Raisonnement » correspond au libellé « Thinking » du livre. Il couvre l'analyse, la synthèse, la comparaison, l'interprétation et la personnalisation selon un contexte. Il ne garantit ni une démonstration logique ni une réponse vraie : le système peut omettre ou relier à tort des éléments.
+Dans cette série, « Raisonnement » correspond au libellé « Thinking » du livre. Il couvre l'analyse, la synthèse, la comparaison, l'interprétation et la personnalisation selon le contexte ou les informations mémorisées. Il ne garantit ni une démonstration logique ni une réponse vraie : le système peut omettre ou relier à tort des éléments.
 
 Le RAG (recherche augmentée) signifie que le système retrouve d'abord des sources autorisées puis prépare sa réponse à partir de celles-ci; il doit rendre ces sources vérifiables.
 
@@ -66,13 +66,13 @@ Le RAG (recherche augmentée) signifie que le système retrouve d'abord des sour
 **Takeaway → p. 6 :** choisir un cas où la preuve peut être contrôlée rapidement.
 
 ## Page 6 — Agir : un cas de recherche sourcée
-| Cas | Matrice Automatisation × Intégration | BAC résumé | Valeur | Coût | Risque | Complexité | Généricité |
+| Cas | Automatisation × Intégration | BAC (B / A / C) | Valeur | Coût | Risque | Complexité | Généricité |
 |---|---|---|---:|---:|---:|---:|---:|
-| Q/R sur procédures internes | moyenne × faible | Réduire recherche; rendre l'info accessible; réponse + source | 3 | 2 | 2 | 2 | 3 |
-| Comparaison de dossiers | faible × faible | Accélérer revue; voir écarts; tableau sourcé | 2 | 1 | 2 | 2 | 2 |
-| Synthèse de veille | moyenne × moyenne | Rassembler; dégager thèmes; note horodatée | 2 | 2 | 3 | 2 | 2 |
+| Q/R sur procédures internes | moyenne × faible | B : réduire le temps de recherche; A : rendre la règle consultable; C : réponse avec source | 3 | 2 | 2 | 2 | 3 |
+| Comparaison de dossiers | faible × faible | B : accélérer la revue; A : repérer les écarts; C : tableau comparatif sourcé | 2 | 1 | 2 | 2 | 2 |
+| Synthèse de veille | moyenne × moyenne | B : synthétiser plus vite; A : dégager les thèmes; C : note datée et sourcée | 2 | 2 | 3 | 2 | 2 |
 
-Étoiles : 1 faible, 2 moyen, 3 élevé. Risque/coût/complexité élevés demandent des contrôles et ressources supérieurs.
+Matrice : chaque paire indique automatisation puis intégration, chacune de faible à forte. Étoiles : 1 faible, 2 moyen, 3 élevé. Risque/coût/complexité élevés demandent des contrôles et ressources supérieurs.
 
 **Prompt d'essai :** « Réponds à la question à partir des extraits fournis seulement. Pour chaque affirmation importante, cite la source et le passage. Sépare faits, interprétations et inconnues; si le corpus ne permet pas de répondre, dis-le. Donne les éléments contradictoires et une question de vérification pour le métier. »
 
