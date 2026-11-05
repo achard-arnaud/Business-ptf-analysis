@@ -1,0 +1,33 @@
+/* Pedagogical projection of the imported Hivest theme. CSS stays outside bindings. */
+@page{size:A4 portrait;margin:0}
+html,body{background:#e8edf2;font-size:11pt;line-height:1.4}
+.page{width:210mm;height:297mm;background:white;padding:12mm 14mm 10mm;display:flex;flex-direction:column;margin:0 auto 8mm;position:relative;break-after:page;overflow:visible}
+.page:last-child{break-after:auto}
+.learning-header{background:var(--navy);color:white;margin:-12mm -14mm 5mm;padding:9mm 14mm 6mm;border-bottom:1.2mm solid var(--teal)}
+.learning-header .kicker{font-size:9pt;letter-spacing:.1em;text-transform:uppercase;color:#9fdde6}
+.module-title{font-size:10pt;margin:2mm 0;color:#dbe4ee}
+.learning-header h1{font-family:var(--serif);font-size:23pt;line-height:1.12;color:white;margin:0}
+.learning-content{flex:1;min-height:0}
+p{margin:0 0 3mm}ul,ol{margin-bottom:3mm}li{margin-bottom:1.5mm}
+.learning-content strong{color:var(--navy)}
+table{font-size:10.5pt;line-height:1.35}th{font-size:10pt;padding:2.5mm}td{padding:2.5mm}
+.tows-grid,.function-grid{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin:3mm 0 4mm}
+.tows-card,.function-card{padding:3.5mm;border:1px solid var(--border);background:var(--soft);border-top:1mm solid var(--teal)}
+.tows-card:nth-child(4){background:var(--gold-bg);border-top-color:var(--gold)}
+.tows-card h3,.function-card h3,.case-card h3{font-size:11pt;line-height:1.25;margin:0 0 2mm;letter-spacing:0;text-transform:none}
+.tows-card p,.function-card p{font-size:10.5pt;margin-bottom:1.5mm}
+.prompt-box{padding:3.5mm;background:var(--soft);border-left:1mm solid var(--teal);margin:2mm 0 4mm}
+.prompt-box p:last-child{margin-bottom:0}
+.framework{text-align:left;margin:3mm 0 4mm;padding:3mm 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.framework figcaption{font-size:10pt;margin:0 0 2mm;border:0;padding:0}
+.framework ol{display:flex;gap:2mm;list-style:none;padding:0;margin:0;flex-wrap:wrap}
+.framework li{flex:1 1 23mm;padding:3mm;background:var(--navy);color:white;font-size:10pt;margin:0}
+.case-card{padding:3.5mm;border:1px solid var(--border);border-left:1mm solid var(--blue);margin:0 0 3mm}
+.case-card p{font-size:10pt;margin:0 0 1.5mm;line-height:1.3}
+.scores{display:flex;gap:2mm;padding-top:2mm;border-top:1px solid var(--rule);font-size:9pt;justify-content:space-between}
+.scores span{white-space:nowrap}.scores b{color:var(--teal);font-size:11pt}
+.takeaway{background:var(--navy);color:white;padding:3.5mm;margin:3mm 0}
+.takeaway strong{color:#9fdde6}.takeaway p{margin:0;font-size:10.5pt}
+footer{display:flex;gap:4mm;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--border);padding-top:2mm;font-size:9pt;color:var(--muted)}
+footer span{max-width:162mm}footer b{white-space:nowrap}
+@media print{html,body{background:white}.page{margin:0}}

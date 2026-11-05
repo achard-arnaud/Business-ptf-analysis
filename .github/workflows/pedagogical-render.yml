@@ -1,0 +1,34 @@
+name: Pedagogical render
+on:
+  pull_request:
+    paths:
+      - 'renderers/pedagogical/**'
+      - 'learning/enterprise-ai/**'
+      - 'skills/enterprise-ai-learning/**'
+      - 'tests/test_pedagogical_renderer.py'
+      - '.github/workflows/pedagogical-render.yml'
+permissions:
+  contents: read
+jobs:
+  render-learning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r renderers/pedagogical/requirements.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: Test parser, upstream integrity, BAC preservation and overflow rejection
+        env:
+          PEDAGOGICAL_BROWSER_TEST: '1'
+        run: python -m unittest discover -s tests -p test_pedagogical_renderer.py -v
+      - name: Render the actual six Markdown sheets and verify all 36 pages
+        run: python renderers/pedagogical/render.py learning/enterprise-ai --out /tmp/pedagogical-render
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: enterprise-ai-pedagogical-render
+          path: /tmp/pedagogical-render
+          if-no-files-found: warn

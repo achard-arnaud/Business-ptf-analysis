@@ -107,4 +107,5 @@ Le principe : **capturer une fois, qualifier et relier ; raisonner pour plusieur
 
 ## Programme pédagogique IA en entreprise
 
-Le contenu candidat des six fiches modulaires « Pour aller plus loin » est isolé dans [learning/enterprise-ai](learning/enterprise-ai/README.md). Ce workstream ne change pas les gates du diagnostic Hivest et n'ajoute aucun renderer. La correspondance aux 17 piliers reste à confirmer sur le syllabus détaillé.
+Le contenu candidat des six fiches modulaires « Pour aller plus loin » est isolé dans [learning/enterprise-ai](learning/enterprise-ai/README.md). Ce workstream dispose du renderer pédagogique adapté du mécanisme Hivest (Markdown → binding → HTML → PDF/PNG → QA). La correspondance aux 17 piliers reste à confirmer sur le syllabus détaillé.
+

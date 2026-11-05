@@ -21,7 +21,7 @@ Chaque module suit la même séquence de six pages : comprendre/TOWS → transme
 
 - Le **binding** contient variables, textes, sources et use cases.
 - Le **scaffold HTML sémantique** définit les pages, sections et ancrages de contenu.
-- Le **CSS, la pagination et l'export** sont gérés par un renderer distinct et ne sont pas implémentés ici.
+- Le **CSS, la pagination et l'export** sont gérés par renderers/pedagogical, adapté du moteur Hivest.
 - La [skill du programme](../../skills/enterprise-ai-learning/SKILL.md) adapte la skill générique de fiches pédagogiques du dépôt de transit.
 - Le registre du programme retient les IDs d'un backlog importé, même lorsque seulement 3 à 5 cas sont montrés dans une fiche. Le modèle accepte un catalogue d'environ 70 cas sans le recopier dans chaque fiche.
 
@@ -32,3 +32,8 @@ Le brief décrit 17 piliers et le niveau 2, mais le syllabus détaillé et sa nu
 ## Limites d'interprétation
 
 Les fiches décrivent des capacités et des patterns d'application. Elles ne promettent pas un ROI. Les scores sont des heuristiques pédagogiques à recalibrer sur les données et risques du processus. Toute action sur des dossiers réels doit respecter les droits sur les données, la sécurité, le contrôle humain, la traçabilité et les règles métier.
+
+
+## Rendu Hivest adapté
+
+Commande : `python renderers/pedagogical/render.py learning/enterprise-ai --out build/learning`. Produit six PDF de six pages, HTML, PNG, rapports QA, bindings et manifestes. Les données et le CSS restent séparés. Voir la procédure de composition de la skill.

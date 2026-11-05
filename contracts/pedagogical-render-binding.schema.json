@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Markdown projection binding for six-page pedagogical render",
+  "type": "object",
+  "required": [
+    "version",
+    "template_class",
+    "source_file",
+    "source_sha256",
+    "title",
+    "source_note",
+    "intro_markdown",
+    "pages"
+  ],
+  "properties": {
+    "version": {
+      "const": "0.2.0"
+    },
+    "template_class": {
+      "const": "pedagogique"
+    },
+    "source_file": {
+      "type": "string"
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "source_note": {
+      "type": "string"
+    },
+    "intro_markdown": {
+      "type": "string"
+    },
+    "promise": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "page_id",
+          "headline",
+          "markdown"
+        ],
+        "properties": {
+          "page_id": {
+            "enum": [
+              "p1",
+              "p2",
+              "p3",
+              "p4",
+              "p5",
+              "p6"
+            ]
+          },
+          "headline": {
+            "type": "string"
+          },
+          "markdown": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

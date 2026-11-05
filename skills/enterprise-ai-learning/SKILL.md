@@ -11,7 +11,7 @@ template_type: ai-enterprise-learning-six-page
 
 Cette skill spécialisée produit les modules de [learning/enterprise-ai](../../learning/enterprise-ai/README.md). Elle complète la skill générique de six pages du dépôt [skills-notes-and-storytelling](https://github.com/achard-arnaud/skills-notes-and-storytelling/tree/8565f785e5a47076a56a5b65fc140d1fbf6168f0/skills/pedagogical-ai-learning), sans modifier les gates du diagnostic de portefeuille Hivest.
 
-Lire le manifest et le registre de sources, puis travailler strictement dans cet ordre : Prédiction, Perception, Création, Raisonnement, Agentique, Synthèse. Terminer une fiche avant d'entamer la suivante. Le binding, le scaffold HTML et le rendu CSS restent trois artefacts distincts.
+Lire le manifest et le registre de sources, puis travailler strictement dans cet ordre : Prédiction, Perception, Création, Raisonnement, Agentique, Synthèse. Terminer une fiche avant d'entamer la suivante. Le binding, le scaffold HTML et le rendu CSS restent trois artefacts distincts. Pour appliquer le rendu Hivest aux Markdown, suivre [composition-rendering.md](references/composition-rendering.md) : import de conversion et de thème, projection en six pages, PDF/PNG et QA liés aux vraies sorties.
 
 ## Contrat des six pages
 
@@ -35,4 +35,9 @@ Lire le manifest et le registre de sources, puis travailler strictement dans cet
 
 Valider six pages exactement, présence de chaque bloc attendu, cohérence des IDs entre binding et scaffold, traçabilité source, légende des étoiles, BAC développé, au moins trois cas distincts et un prompt testable. Faire une contre-lecture apprenant : « une personne débutante peut-elle expliquer l'idée, donner un exemple, nommer une limite et proposer une première mesure ? »
 
-La revue visuelle est une étape externe et séparée après gel du contenu.
+La revue visuelle suit le rendu des vrais Markdown; elle reste distincte du contrôle du fond.
+
+
+## Rendu appliqué aux Markdown
+
+Lire la procédure [composition-rendering.md](references/composition-rendering.md), adaptée des procédures Hivest importées. Lancer le renderer sur un module, contrôler ses six pages physiques, lire ses PNG puis appliquer aux suivants. Le moteur CSS vit dans renderers/pedagogical, hors du binding. Une QA verte ne valide pas le contenu.

@@ -84,5 +84,13 @@
   "use_case_catalog_schema_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/contracts/pedagogical-use-case-catalog.schema.json",
   "scaffold_template_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/templates/pedagogical-six-page-scaffold.json",
   "handoff_status": "ready_for_human_review",
-  "last_checkpoint": "checkpoints/07-final-review.md"
+  "last_checkpoint": "checkpoints/07-final-review.md",
+  "rendering": {
+    "profile": "pedagogical-six-page",
+    "renderer": "renderers/pedagogical/render.py",
+    "upstream_lock": "renderers/pedagogical/upstream-lock.json",
+    "skill_procedure": "skills/enterprise-ai-learning/references/composition-rendering.md",
+    "status": "preview",
+    "expected_pages_per_module": 6
+  }
 }
