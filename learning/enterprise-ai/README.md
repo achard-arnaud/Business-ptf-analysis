@@ -13,6 +13,8 @@
 5. Agentique
 6. Synthèse multicapacité
 
+Le catalogue est défini par le [contrat versionné du dépôt de transit](https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/contracts/pedagogical-use-case-catalog.schema.json); le [scaffold sémantique de six pages](https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/templates/pedagogical-six-page-scaffold.json) ne contient aucun CSS.
+
 Chaque module suit la même séquence de six pages : comprendre/TOWS → transmettre → diagnostiquer le système → se projeter → relier aux fonctions → choisir un essai. La narration avance par takeaways et transitions.
 
 ## Contrats

@@ -9,7 +9,7 @@ template_type: ai-enterprise-learning-six-page
 
 ## Rôle et frontière du programme
 
-Cette skill spécialisée produit les modules de [learning/enterprise-ai](../../learning/enterprise-ai/README.md). Elle complète la skill générique de six pages du dépôt [skills-notes-and-storytelling](https://github.com/achard-arnaud/skills-notes-and-storytelling/tree/7968fea689a7bd00bba8cda8d06c2050dcf831a6/skills/pedagogical-ai-learning), sans modifier les gates du diagnostic de portefeuille Hivest.
+Cette skill spécialisée produit les modules de [learning/enterprise-ai](../../learning/enterprise-ai/README.md). Elle complète la skill générique de six pages du dépôt [skills-notes-and-storytelling](https://github.com/achard-arnaud/skills-notes-and-storytelling/tree/8565f785e5a47076a56a5b65fc140d1fbf6168f0/skills/pedagogical-ai-learning), sans modifier les gates du diagnostic de portefeuille Hivest.
 
 Lire le manifest et le registre de sources, puis travailler strictement dans cet ordre : Prédiction, Perception, Création, Raisonnement, Agentique, Synthèse. Terminer une fiche avant d'entamer la suivante. Le binding, le scaffold HTML et le rendu CSS restent trois artefacts distincts.
 

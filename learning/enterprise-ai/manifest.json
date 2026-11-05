@@ -3,7 +3,7 @@
   "template_class": "pedagogique",
   "template_type": "ai-enterprise-learning-six-page",
   "template_source_repository": "achard-arnaud/skills-notes-and-storytelling",
-  "template_source_commit": "7968fea689a7bd00bba8cda8d06c2050dcf831a6",
+  "template_source_commit": "8565f785e5a47076a56a5b65fc140d1fbf6168f0",
   "template_path": "templates/ai-enterprise-learning-six-page.md",
   "skill_path": "skills/enterprise-ai-learning/SKILL.md",
   "binding_contract": "contracts/enterprise-ai-learning-binding.schema.json",
@@ -66,7 +66,7 @@
     "agentic.md",
     "multicapability.md"
   ],
-  "next_loop": "catalog_backlog",
+  "next_loop": "G10-final_review",
   "closed_gates": [
     "G0",
     "G1",
@@ -75,7 +75,11 @@
     "G4-creation",
     "G5-reasoning",
     "G6-agentic",
-    "G7-multicapability"
+    "G7-multicapability",
+    "G8-backlog",
+    "G9-scaffold"
   ],
-  "checkpoint_path": "checkpoints/00-g0-g1-prediction.md"
+  "checkpoint_path": "checkpoints/00-g0-g1-prediction.md",
+  "use_case_catalog_schema_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/contracts/pedagogical-use-case-catalog.schema.json",
+  "scaffold_template_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/templates/pedagogical-six-page-scaffold.json"
 }

@@ -74,7 +74,36 @@
                   "type": "string"
                 },
                 "content_ref": {
-                  "type": "string"
+                  "enum": [
+                    "p1.identity",
+                    "p1.definition",
+                    "p1.examples",
+                    "p1.tows",
+                    "p1.takeaway",
+                    "p2.takeaway",
+                    "p3.takeaway",
+                    "p4.takeaway",
+                    "p5.takeaway",
+                    "p2.pitch",
+                    "p2.postulate",
+                    "p2.framework",
+                    "p2.conviction",
+                    "p2.objections",
+                    "p3.ishikawa",
+                    "p3.factors",
+                    "p3.causal_loop",
+                    "p4.path",
+                    "p4.bets",
+                    "p4.program_link",
+                    "p5.porter_map",
+                    "p5.functions",
+                    "p5.enablers",
+                    "p6.matrix",
+                    "p6.use_cases",
+                    "p6.bac_scores",
+                    "p6.prompt",
+                    "p6.measure"
+                  ]
                 },
                 "element": {
                   "enum": [
