@@ -3,7 +3,7 @@
   "template_class": "pedagogique",
   "template_type": "ai-enterprise-learning-six-page",
   "template_source_repository": "achard-arnaud/skills-notes-and-storytelling",
-  "template_source_commit": "8565f785e5a47076a56a5b65fc140d1fbf6168f0",
+  "template_source_commit": "eecfb6f690b2ce60f39193a376f625c71d8eb0a1",
   "template_path": "templates/ai-enterprise-learning-six-page.md",
   "skill_path": "skills/enterprise-ai-learning/SKILL.md",
   "binding_contract": "contracts/enterprise-ai-learning-binding.schema.json",
@@ -91,6 +91,7 @@
     "upstream_lock": "renderers/pedagogical/upstream-lock.json",
     "skill_procedure": "skills/enterprise-ai-learning/references/composition-rendering.md",
     "status": "preview",
-    "expected_pages_per_module": 6
+    "expected_pages_per_module": 6,
+    "version": "0.3.0"
   }
 }

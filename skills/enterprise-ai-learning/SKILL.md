@@ -7,7 +7,7 @@ description: Produce and render six-page enterprise AI learning sheets from exis
 
 ## Rôle et frontière du programme
 
-Cette skill spécialisée produit les modules de [learning/enterprise-ai](../../learning/enterprise-ai/README.md). Elle complète la skill générique de six pages du dépôt [skills-notes-and-storytelling](https://github.com/achard-arnaud/skills-notes-and-storytelling/tree/8565f785e5a47076a56a5b65fc140d1fbf6168f0/skills/pedagogical-ai-learning), sans modifier les gates du diagnostic de portefeuille Hivest.
+Cette skill spécialisée produit les modules de [learning/enterprise-ai](../../learning/enterprise-ai/README.md). Elle complète la skill générique de six pages du dépôt [skills-notes-and-storytelling](https://github.com/achard-arnaud/skills-notes-and-storytelling/tree/eecfb6f690b2ce60f39193a376f625c71d8eb0a1/skills/pedagogical-ai-learning), sans modifier les gates du diagnostic de portefeuille Hivest.
 
 Lire le manifest et le registre de sources, puis travailler strictement dans cet ordre : Prédiction, Perception, Création, Raisonnement, Agentique, Synthèse. Terminer une fiche avant d'entamer la suivante. Le binding, le scaffold HTML et le rendu CSS restent trois artefacts distincts. Pour appliquer le rendu Hivest aux Markdown, suivre [composition-rendering.md](references/composition-rendering.md) : import de conversion et de thème, projection en six pages, PDF/PNG et QA liés aux vraies sorties.
 
