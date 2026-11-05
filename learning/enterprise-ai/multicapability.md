@@ -62,13 +62,13 @@ Les fonctions auxiliaires (IT, sécurité, juridique, RH) rendent possible le fl
 **Takeaway → p. 6 :** démarrer par la partie qui apporte une mesure utile avec le moins de dépendances.
 
 ## Page 6 — Agir : un premier parcours de demande
-| Cas | Automatisation × Intégration | BAC résumé | Valeur | Coût | Risque | Complexité | Généricité |
+| Cas | Automatisation × Intégration | BAC (B / A / C) | Valeur | Coût | Risque | Complexité | Généricité |
 |---|---|---|---:|---:|---:|---:|---:|
-| Extraction + checklist | faible × faible | Réduire ressaisie; repérer les manques; champs liés aux pièces | 3 | 1 | 1 | 1 | 3 |
-| Priorité avec contrôle | moyenne × moyenne | Traiter plus vite; ordonner revue; score + motif | 2 | 2 | 3 | 2 | 2 |
-| Routage agentique de cas simples | forte × forte | Réduire délai; éviter les relances; routage + journal + arrêt | 3 | 3 | 3 | 3 | 2 |
+| Extraction + checklist | faible × faible | B : réduire la ressaisie; A : repérer les manques; C : champs reliés aux pièces | 3 | 1 | 1 | 1 | 3 |
+| Priorité avec contrôle | moyenne × moyenne | B : traiter plus vite; A : ordonner la revue; C : score avec motif explicable | 2 | 2 | 3 | 2 | 2 |
+| Routage agentique de cas simples | forte × forte | B : réduire le délai; A : éviter les relances; C : routage avec journal et arrêt | 3 | 3 | 3 | 3 | 2 |
 
-BAC signifie ici Bénéfices, Avantages, Caractéristiques. Étoiles 1 faible à 3 élevé; un score élevé de risque, coût ou complexité est défavorable.
+Matrice : chaque paire indique automatisation puis intégration, chacune de faible à forte. BAC signifie ici Bénéfices, Avantages, Caractéristiques. Étoiles 1 faible à 3 élevé; un score élevé de risque, coût ou complexité est défavorable.
 
 **Prompt d'essai :** « Sur ce dossier fictif, extrais les champs demandés avec renvoi aux passages source; compare-les à la règle jointe; liste les pièces manquantes et contradictions; propose une priorité et un brouillon de réponse. Sépare constat, hypothèse et recommandation. N'approuve aucun remboursement, n'envoie rien et n'écris dans aucun système. »
 

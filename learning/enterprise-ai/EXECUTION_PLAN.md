@@ -1,7 +1,7 @@
 # Plan d'industrialisation — fiches pédagogiques « Pour aller plus loin »
 
 Version 0.1 — plan de reprise séquentielle, 5 novembre 2026  
-Statut : G0, G1 et la boucle Prédiction sont clos au niveau draft; Prédiction, Perception, Création, Raisonnement et Agentique ont fermé leur boucle; seule la Synthèse reste non relue. Aucune fusion vers dev/main avant fermeture des boucles et revue humaine.
+Statut : G0, G1 et la boucle Prédiction sont clos au niveau draft; Les six boucles de contenu sont closes au niveau candidat. Les gates backlog, scaffold et revue finale restent ouvertes. Aucune fusion vers dev/main avant fermeture des boucles et revue humaine.
 
 ## Objectif
 
