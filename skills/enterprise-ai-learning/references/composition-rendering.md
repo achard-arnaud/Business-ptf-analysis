@@ -24,3 +24,16 @@ Les gates de diagnostic entreprise, les pilotes Sphere/STG, les scores de maturi
 5. Garder les fichiers générés hors du code. La CI dédiée publie des artefacts du vrai contenu, avec test négatif de débordement.
 
 Les graphiques du corpus ne sont pas inventés par le renderer. Le TOWS et les étapes sont des projections des cellules et textes existants. Un nouvel Ishikawa, un exercice ou une source supplémentaire exige une modification explicite du contenu.
+
+## Recette reproductible — depuis la racine du dépôt
+
+```bash
+python -m pip install -r renderers/pedagogical/requirements.txt
+python -m playwright install chromium
+python renderers/pedagogical/render.py learning/enterprise-ai/perception.md --out build/learning
+python renderers/pedagogical/verify.py learning/enterprise-ai/perception.md build/learning/perception
+```
+
+Si Chrome est déjà installé, définir `NICE_CHROMIUM_PATH` sur son chemin au lieu de télécharger Chromium. Le workflow effectue ce choix automatiquement. `--html-only` sert à préparer une composition et ne vaut pas un rendu validé. Les rapports conservent le SHA de construction en CI et les empreintes de la source, des imports, du renderer, du thème et de chaque sortie, y compris binding et scaffold. Le vérificateur porte sur le binding de projection, distinct du binding métier décrit par les contrats éditoriaux.
+
+Inspecter les six PNG et le PDF après le contrôle automatisé; nommer dans le compte rendu les défauts corrigés et les limites éditoriales. Pour Perception, le registre indique que les IDs SRC-BOOK-01 à 04 désignent des sections du même ouvrage; le footer « ibid. » est une projection bibliographique, pas une nouvelle source. Ne pas généraliser cette substitution à un corpus différent.

@@ -4,7 +4,17 @@ on:
     paths:
       - 'renderers/pedagogical/**'
       - 'learning/enterprise-ai/**'
-      - 'skills/enterprise-ai-learning/**'
+      - 'skills/**'
+      - 'contracts/pedagogical-render-binding.schema.json'
+      - 'tests/test_pedagogical_renderer.py'
+      - '.github/workflows/pedagogical-render.yml'
+  push:
+    branches: [dev, main]
+    paths:
+      - 'renderers/pedagogical/**'
+      - 'learning/enterprise-ai/**'
+      - 'skills/**'
+      - 'contracts/pedagogical-render-binding.schema.json'
       - 'tests/test_pedagogical_renderer.py'
       - '.github/workflows/pedagogical-render.yml'
 permissions:
@@ -28,12 +38,22 @@ jobs:
           else
             python -m playwright install --with-deps chromium
           fi
-      - name: Test parser, upstream integrity, BAC preservation and overflow rejection
+      - name: Test content, upstream integrity, tampering and overflow rejection
         env:
           PEDAGOGICAL_BROWSER_TEST: '1'
         run: python -m unittest discover -s tests -p test_pedagogical_renderer.py -v
-      - name: Render the actual six Markdown sheets and verify all 36 pages
-        run: python renderers/pedagogical/render.py learning/enterprise-ai --out /tmp/pedagogical-render
+      - name: Render all six modules on PR and dev
+        if: github.ref != 'refs/heads/main'
+        run: |
+          python renderers/pedagogical/render.py learning/enterprise-ai --out /tmp/pedagogical-render
+          for module in prediction perception creation reasoning agentic multicapability; do
+            python renderers/pedagogical/verify.py "learning/enterprise-ai/$module.md" "/tmp/pedagogical-render/$module"
+          done
+      - name: Generate and verify Perception from main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          python renderers/pedagogical/render.py learning/enterprise-ai/perception.md --out /tmp/pedagogical-render
+          python renderers/pedagogical/verify.py learning/enterprise-ai/perception.md /tmp/pedagogical-render/perception
       - uses: actions/upload-artifact@v4
         if: always()
         with:

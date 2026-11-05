@@ -19,6 +19,32 @@ from browser import launch
 def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
+def verify_upstream():
+    lock=json.loads((HERE/'upstream-lock.json').read_text())
+    for item in lock['imports']:
+        if digest(HERE/item['local_path']) != item['sha256']:
+            raise ValueError('Upstream integrity mismatch: '+item['local_path'])
+
+def validate_binding(binding):
+    for page in binding['pages']:
+        if not page['markdown'].strip():
+            raise ValueError('Empty page: '+page['page_id'])
+    lines=binding['pages'][5]['markdown'].splitlines()
+    tables=[]; pending=[]
+    for line in [*lines,'']:
+        if line.startswith('|'): pending.append(line)
+        elif pending: tables.append(pending);pending=[]
+    score_names=['Valeur','Coût','Risque','Complexité','Généricité']
+    scored=[table_rows(t) for t in tables if all(h in table_rows(t)[0] for h in score_names)]
+    if len(scored)!=1 or not 3<=len(scored[0][2:])<=5:
+        raise ValueError('Page 6 requires one BAC table with 3 to 5 cases and five scores')
+    headers=scored[0][0]
+    for row in scored[0][2:]:
+        if len(row)!=len(headers): raise ValueError('Malformed BAC table')
+        for name in score_names:
+            if row[headers.index(name)] not in ('1','2','3'):
+                raise ValueError('Invalid ordinal score: '+name)
+
 def bind(source):
     text = source.read_text(encoding='utf-8')
     matches = list(re.finditer(r'^## Page (\d+)\s*[—–-]\s*(.+)$', text, re.M))
@@ -27,13 +53,15 @@ def bind(source):
     intro = text[:matches[0].start()]
     title = re.search(r'^# (.+)$', intro, re.M)
     source_line = re.search(r'\*\*Source\s*:\*\*(.+)', intro)
-    return {'version':'0.2.0','template_class':'pedagogique','source_file':source.name,
+    binding={'version':'0.3.0','template_class':'pedagogique','source_file':source.name,
             'source_sha256':digest(source),'title':title[1] if title else source.stem,
             'source_note':source_line[1].strip() if source_line else 'Voir le registre des sources',
             'intro_markdown':intro,'promise':(re.search(r'\*\*Promesse pédagogique\s*:\*\*(.+)', intro)[1].strip() if re.search(r'\*\*Promesse pédagogique\s*:\*\*(.+)', intro) else ''),
             'pages':[{'page_id':f'p{i+1}','headline':m[2],
                       'markdown':text[m.end():matches[i+1].start() if i+1<len(matches) else len(text)].strip()}
                      for i,m in enumerate(matches)]}
+    validate_binding(binding)
+    return binding
 
 def inline(text):
     result = composition.md(text).strip()
@@ -91,7 +119,7 @@ def project_page(page, number):
     flush()
     return ''.join(output),takeaway
 
-def compose(binding):
+def compose(binding, include_styles=True):
     css=(UPSTREAM/'theme.css').read_text()+'\n'+(HERE/'theme.css').read_text()
     pages=[]
     source_note=re.sub(r'SRC-BOOK-0[234]', 'ibid.', binding['source_note']).replace('SRC-BOOK-01', 'T. Zwingmann, The Profitable AI Advantage (2025)')
@@ -105,7 +133,7 @@ def compose(binding):
             '<main class="learning-content" data-no-overflow>'+body+'</main>'+
             ('<aside class="takeaway" data-card>'+takeaway+'</aside>' if takeaway else '')+
             '<footer><span>'+html.escape(source_note)+'</span><b>'+str(number)+' / 6</b></footer></section>')
-    return '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>'+html.escape(binding['title'])+'</title><style>'+css+'</style></head><body>'+''.join(pages)+'</body></html>'
+    return '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>'+html.escape(binding['title'])+'</title>'+('<style>'+css+'</style>' if include_styles else '')+'</head><body>'+''.join(pages)+'</body></html>'
 
 async def render_artifacts(html_path, out):
     from playwright.async_api import async_playwright
@@ -135,24 +163,28 @@ async def render_artifacts(html_path, out):
     return report,[html_path,pdf,out/'qa.json',*pngs]
 
 def build(source,out,html_only=False):
-    out.mkdir(parents=True,exist_ok=True)
+    verify_upstream()
     binding=bind(source)
+    out.mkdir(parents=True,exist_ok=True)
     (out/'binding.json').write_text(json.dumps(binding,ensure_ascii=False,indent=2))
+    (out/'scaffold.html').write_text(compose(binding,include_styles=False),encoding='utf-8')
     html_path=out/'fiche.html';html_path.write_text(compose(binding),encoding='utf-8')
     if html_only:return {'source':source.name,'html_only':True}
     qa,artifacts=asyncio.run(render_artifacts(html_path,out))
-    manifest={'version':'0.2.0','producer':'hivest-adapted-pedagogical','source_file':source.name,
+    artifacts += [out/'binding.json',out/'scaffold.html']
+    manifest={'version':'0.3.0','producer':'hivest-adapted-pedagogical','source_file':source.name,
               'source_sha256':digest(source),'template_class':'pedagogique','expected_pages':6,
-              'qa_pass':qa['pass'],'reader_review':'PENDING','upstream_lock_sha256':digest(HERE/'upstream-lock.json'),
+              'qa_pass':qa['pass'],'reader_review':'PENDING','build_revision':os.environ.get('GITHUB_SHA'),'upstream_lock_sha256':digest(HERE/'upstream-lock.json'),
               'renderer_sha256':digest(HERE/'render.py'),'theme_sha256':digest(HERE/'theme.css'),
               'outputs':[{ 'path':p.name,'sha256':digest(p)} for p in artifacts]}
-    (out/'render_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
     receipt={'version':'0.1.0','artifact_id':source.stem+'-pdf','entity_id':'enterprise-ai-learning','run_id':binding['source_sha256'][:16],
              'kind':'render_pdf','producer':'renderers/pedagogical/render.py','artifact_ref':str((out/'fiche.pdf').resolve()),
              'sha256':digest(out/'fiche.pdf'),'visibility':'public','capture_kind':None,'hash_scope':None,
              'input_refs':[source.name,binding['source_sha256']],'publication_state':'prepared_not_published','readback':None,
              'qa_state':'PASS' if qa['pass'] else 'FAIL','authorization_state':'DEMO_ONLY'}
     (out/'artifact_receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2))
+    manifest['outputs'].append({'path':'artifact_receipt.json','sha256':digest(out/'artifact_receipt.json')})
+    (out/'render_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
     return {'source':source.name,'pass':qa['pass'],'pages':qa['physical_pdf_pages'],'summary':qa['summary']}
 
 def main():

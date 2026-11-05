@@ -1,8 +1,6 @@
 ---
 name: enterprise-ai-learning
 description: Produce and render six-page enterprise AI learning sheets from existing Markdown using the imported Hivest composition, theme, browser QA and artifact-manifest mechanism. Use for pedagogical adaptation, Train-the-Trainer kits and Markdown-to-PDF/PNG generation while preserving sources and content.
-template_class: pedagogique
-template_type: ai-enterprise-learning-six-page
 ---
 
 # Skill locale — programme IA en entreprise
@@ -47,3 +45,11 @@ Lire la procédure [composition-rendering.md](references/composition-rendering.m
 L'original importé est conservé dans [upstream-hivest-skill.md](references/upstream-hivest-skill.md). Le mécanisme opératoire adapté suit : Markdown revu → binding et empreinte → scaffold → HTML → PDF et PNG → QA automatisée → inspection visuelle → retour ciblé.
 
 Le renderer consomme les Markdown actuels. Un défaut de mise en page retourne à la composition; un changement de fond retourne à la revue du Markdown, puis renouvelle l'empreinte du binding. Lire un seul module à la fois, fermer sa boucle de rendu, puis passer au suivant. Le statut de sortie est preview tant que le contenu pédagogique n'a pas été validé.
+
+## Second tour : produire et prouver
+
+Partir de la racine du dépôt contenant la skill et les Markdown. Pour un module existant, suivre le parcours de projection décrit dans la référence de composition : conserver les sources, les scores et les inconnues; ne pas prétendre reconstruire le binding éditorial ni sa chaîne de claims. Produire séparément `binding.json` (projection), `scaffold.html` (sans CSS), puis `fiche.html` (CSS appliqué), PDF et six PNG.
+
+Exécuter le vérificateur sur la source et le dossier de sortie. Il doit rejeter un fichier modifié après rendu, une source périmée, un import altéré ou une QA en échec. Inspecter ensuite les six pages; conserver `reader_review=PENDING` dans le rapport automatisé et consigner la lecture humaine séparément. Une réussite technique ne transforme ni les liens provisoires au syllabus ni le contenu candidat en contenu approuvé.
+
+Utiliser une seule convention de score : 1 faible, 2 moyen, 3 élevé; valeur/généricité élevées favorables, coût/risque/complexité élevés défavorables. Refuser notes hors 1–3, page vide et backlog hors 3–5 cas. Corriger le Markdown pour un défaut de fond, le scaffold/CSS pour un défaut visuel; ne pas réduire la typographie pour masquer un débordement.
