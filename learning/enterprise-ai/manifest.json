@@ -42,7 +42,7 @@
       "id": "agentic",
       "label": "Agentique",
       "sequence": 5,
-      "loop_status": "draft_unreviewed"
+      "loop_status": "closed_candidate"
     },
     {
       "id": "multicapability",
@@ -66,7 +66,7 @@
     "agentic.md",
     "multicapability.md"
   ],
-  "next_loop": "agentic",
+  "next_loop": "multicapability",
   "closed_gates": [
     "G0",
     "G1",

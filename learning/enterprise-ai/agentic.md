@@ -64,13 +64,13 @@ Une solution agentique peut planifier une séquence, utiliser des outils et acco
 **Takeaway → p. 6 :** évaluer le contrôle et les conséquences avant le nombre d'étapes automatisées.
 
 ## Page 6 — Agir : un workflow borné
-| Cas | Matrice Automatisation × Intégration | BAC résumé | Valeur | Coût | Risque | Complexité | Généricité |
+| Cas | Automatisation × Intégration | BAC (B / A / C) | Valeur | Coût | Risque | Complexité | Généricité |
 |---|---|---|---:|---:|---:|---:|---:|
-| Routage de demandes simples | forte × moyenne | Accélérer; diriger au bon endroit; classification + règle | 3 | 2 | 2 | 2 | 3 |
-| Préparation de dossier | moyenne × faible | Réduire relances; structurer; checklist vérifiable | 2 | 1 | 1 | 1 | 3 |
-| Enchaînement multi-outils | forte × forte | Réduire attente; coordonner; agent avec journal/arrêt | 3 | 3 | 3 | 3 | 2 |
+| Routage de demandes simples | forte × moyenne | B : réduire le délai de tri; A : orienter vers la bonne file; C : catégorie et règle visibles | 3 | 2 | 2 | 2 | 3 |
+| Préparation de dossier | moyenne × faible | B : réduire les relances; A : rendre le dossier complet; C : checklist de pièces et étapes | 2 | 1 | 1 | 1 | 3 |
+| Enchaînement multi-outils | forte × forte | B : réduire les délais; A : coordonner les étapes; C : agent avec journal et arrêt | 3 | 3 | 3 | 3 | 2 |
 
-Étoiles mesurent l'ampleur (1–3), pas la désirabilité : coût, risque et complexité élevés dégradent le cas. Droits, sécurité, contrôle humain et faisabilité sont des gates avant classement.
+Matrice : chaque paire indique automatisation puis intégration, chacune de faible à forte. Étoiles mesurent l'ampleur (1–3), pas la désirabilité : coût, risque et complexité élevés dégradent le cas. Droits, sécurité, contrôle humain et faisabilité sont des gates avant classement.
 
 **Prompt d'essai :** « Dans cet environnement fictif, prépare le routage de ces trois demandes. Pour chacune, donne la catégorie, la règle utilisée, l'action proposée et les incertitudes. N'envoie aucun message, ne modifie aucun système et arrête-toi si une demande sort des critères. »
 
