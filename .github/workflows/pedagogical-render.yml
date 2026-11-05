@@ -19,7 +19,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r renderers/pedagogical/requirements.txt
-      - run: python -m playwright install --with-deps chromium
+      - name: Reuse installed Chrome or provision Playwright Chromium
+        shell: bash
+        run: |
+          browser_path=$(command -v google-chrome || command -v chromium || true)
+          if [[ -n "$browser_path" ]]; then
+            echo "NICE_CHROMIUM_PATH=$browser_path" >> "$GITHUB_ENV"
+          else
+            python -m playwright install --with-deps chromium
+          fi
       - name: Test parser, upstream integrity, BAC preservation and overflow rejection
         env:
           PEDAGOGICAL_BROWSER_TEST: '1'
