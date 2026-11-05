@@ -65,13 +65,13 @@ La perception permet à une IA de lire, voir, entendre ou extraire des élément
 **Takeaway → p. 6 :** choisir un lot où la comparaison à la source reste facile.
 
 ## Page 6 — Agir : tester extraction et contrôle
-| Cas | Matrice Automatisation × Intégration | BAC résumé | Valeur | Coût | Risque | Complexité | Généricité |
+| Cas | Automatisation × Intégration | BAC (B / A / C) | Valeur | Coût | Risque | Complexité | Généricité |
 |---|---|---|---:|---:|---:|---:|---:|
-| Extraction de champs de facture | moyenne × moyenne | Accélérer; préremplir; champs cités | 3 | 2 | 2 | 2 | 3 |
-| Transcription de demandes vocales | faible × faible | Retrouver; rendre consultable; texte horodaté | 2 | 1 | 2 | 1 | 3 |
-| Repérage visuel de défauts | moyenne × forte | Détecter; concentrer l'inspection; alerte localisée | 3 | 3 | 3 | 3 | 2 |
+| Extraction de champs de facture | moyenne × moyenne | B : réduire la ressaisie; A : préremplir avant contrôle; C : champs extraits et reliés à la pièce | 3 | 2 | 2 | 2 | 3 |
+| Transcription de demandes vocales | faible × faible | B : rendre l'audio consultable; A : retrouver un passage; C : transcription horodatée | 2 | 1 | 2 | 1 | 3 |
+| Repérage visuel de défauts | moyenne × forte | B : repérer plus tôt; A : concentrer l'inspection; C : alerte visuelle localisée | 3 | 3 | 3 | 3 | 2 |
 
-Étoiles 1 faible à 3 élevé; valeur et généricité élevées aident, coût/risque/complexité élevés demandent plus de prudence.
+Matrice : la paire indique d'abord l'automatisation, puis l'intégration; chacune va de faible à forte. Étoiles 1 faible à 3 élevé; valeur et généricité élevées aident, coût/risque/complexité élevés demandent plus de prudence.
 
 **Prompt d'essai :** « À partir de ces trois factures fictives, relève fournisseur, date, montant et devise. Pour chaque champ, cite la zone du document, indique “illisible” si besoin, n'invente rien et laisse toute saisie dans l'ERP à un humain. »
 

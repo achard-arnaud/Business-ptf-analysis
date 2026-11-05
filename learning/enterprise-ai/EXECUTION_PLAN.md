@@ -1,7 +1,7 @@
 # Plan d'industrialisation — fiches pédagogiques « Pour aller plus loin »
 
 Version 0.1 — plan de reprise séquentielle, 5 novembre 2026  
-Statut : G0, G1 et la boucle Prédiction sont clos au niveau draft; les fiches suivantes restent non relues. Aucune fusion vers dev/main avant fermeture des boucles et revue humaine.
+Statut : G0, G1 et la boucle Prédiction sont clos au niveau draft; Perception vient de fermer sa boucle; les fiches restantes restent non relues. Aucune fusion vers dev/main avant fermeture des boucles et revue humaine.
 
 ## Objectif
 
@@ -59,4 +59,4 @@ Pour chaque unité, une même boucle est exécutée dans l'ordre. Les rôles son
 
 ## État à la reprise
 
-Les premiers drafts complets et les contrats sont déjà sur deux branches PR en mode draft. La CI a signalé puis corrigé un cas de schéma spécialisé; la PR de taxonomie a son contrôle validate vert. La CI de Business-ptf-analysis a validé contrats et tests existants; son contrôle de rendu historique est encore en cours au moment de la reprise. Ce plan remet le travail en séquence : G0–G1 et Prédiction ont été revus en séquence. Le checkpoint est dans checkpoints/00-g0-g1-prediction.md; prochaine unité : Perception. Les cinq autres fiches restent des drafts non relus.
+Les premiers drafts complets et les contrats sont déjà sur deux branches PR en mode draft. La CI a signalé puis corrigé un cas de schéma spécialisé; la PR de taxonomie a son contrôle validate vert. La CI de Business-ptf-analysis a validé contrats et tests existants; son contrôle de rendu historique est encore en cours au moment de la reprise. Ce plan remet le travail en séquence : G0–G1 et Prédiction ont été revus en séquence. Le checkpoint Prédiction est dans checkpoints/00-g0-g1-prediction.md; le checkpoint Perception suit dans checkpoints/01-perception.md. Prochaine unité : Création. Les quatre autres fiches restent des drafts non relus.
