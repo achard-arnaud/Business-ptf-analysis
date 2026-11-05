@@ -1,6 +1,6 @@
 ---
 name: enterprise-ai-learning
-description: Produce six-page beginner-friendly enterprise AI “Pour aller plus loin” sheets and Train-the-Trainer kits from a supplied course corpus, maintaining separate evidence, content binding, semantic HTML scaffold and visual rendering.
+description: Produce and render six-page enterprise AI learning sheets from existing Markdown using the imported Hivest composition, theme, browser QA and artifact-manifest mechanism. Use for pedagogical adaptation, Train-the-Trainer kits and Markdown-to-PDF/PNG generation while preserving sources and content.
 template_class: pedagogique
 template_type: ai-enterprise-learning-six-page
 ---
@@ -41,3 +41,9 @@ La revue visuelle suit le rendu des vrais Markdown; elle reste distincte du cont
 ## Rendu appliqué aux Markdown
 
 Lire la procédure [composition-rendering.md](references/composition-rendering.md), adaptée des procédures Hivest importées. Lancer le renderer sur un module, contrôler ses six pages physiques, lire ses PNG puis appliquer aux suivants. Le moteur CSS vit dans renderers/pedagogical, hors du binding. Une QA verte ne valide pas le contenu.
+
+## Cycle repris et adapté de la skill Hivest
+
+L'original importé est conservé dans [upstream-hivest-skill.md](references/upstream-hivest-skill.md). Le mécanisme opératoire adapté suit : Markdown revu → binding et empreinte → scaffold → HTML → PDF et PNG → QA automatisée → inspection visuelle → retour ciblé.
+
+Le renderer consomme les Markdown actuels. Un défaut de mise en page retourne à la composition; un changement de fond retourne à la revue du Markdown, puis renouvelle l'empreinte du binding. Lire un seul module à la fois, fermer sa boucle de rendu, puis passer au suivant. Le statut de sortie est preview tant que le contenu pédagogique n'a pas été validé.
