@@ -16,34 +16,40 @@
     {
       "id": "prediction",
       "label": "Prédiction",
-      "sequence": 1
+      "sequence": 1,
+      "loop_status": "closed_candidate"
     },
     {
       "id": "perception",
       "label": "Perception",
-      "sequence": 2
+      "sequence": 2,
+      "loop_status": "draft_unreviewed"
     },
     {
       "id": "creation",
       "label": "Création",
-      "sequence": 3
+      "sequence": 3,
+      "loop_status": "draft_unreviewed"
     },
     {
       "id": "reasoning",
       "label": "Raisonnement",
       "source_label": "Thinking",
-      "sequence": 4
+      "sequence": 4,
+      "loop_status": "draft_unreviewed"
     },
     {
       "id": "agentic",
       "label": "Agentique",
-      "sequence": 5
+      "sequence": 5,
+      "loop_status": "draft_unreviewed"
     },
     {
       "id": "multicapability",
       "label": "Synthèse multicapacité",
       "sequence": 6,
-      "minimum_capabilities": 4
+      "minimum_capabilities": 4,
+      "loop_status": "draft_unreviewed"
     }
   ],
   "sources": [
@@ -59,5 +65,12 @@
     "reasoning.md",
     "agentic.md",
     "multicapability.md"
-  ]
+  ],
+  "next_loop": "perception",
+  "closed_gates": [
+    "G0",
+    "G1",
+    "G2-prediction"
+  ],
+  "checkpoint_path": "checkpoints/00-g0-g1-prediction.md"
 }

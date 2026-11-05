@@ -69,7 +69,7 @@ Dans la chaîne de valeur, le point d'entrée n'est pas « faire de l'IA » mais
 ## Page 6 — Agir : sélectionner un premier essai
 **Matrice automatisation × intégration :** prévision de charge — faible automatisation / faible intégration; tri d'anomalies — automatisation faible à moyenne / intégration moyenne; réapprovisionnement automatique — automatisation forte / intégration forte, donc contrôle et exception renforcés.
 
-| Cas | Bénéfice | Avantage | Caractéristique | Valeur | Coût | Risque | Complexité | Généricité |
+| Cas | Bénéfices | Avantages | Caractéristiques | Valeur | Coût | Risque | Complexité | Généricité |
 |---|---|---|---|---:|---:|---:|---:|---:|
 | Prévision de charge | Anticiper | Ajuster les équipes plus tôt | Fourchette + intervalle | 3 | 1 | 1 | 1 | 3 |
 | Détection d'anomalies | Repérer tôt | Réduire le tri manuel | Alerte + cause candidate | 2 | 2 | 2 | 2 | 3 |
