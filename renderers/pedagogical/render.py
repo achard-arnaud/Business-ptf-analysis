@@ -21,7 +21,7 @@ def digest(path):
 
 def bind(source):
     text = source.read_text(encoding='utf-8')
-    matches = list(re.finditer(r'^## Page ([1-6])\s*[—–-]\s*(.+)$', text, re.M))
+    matches = list(re.finditer(r'^## Page (\d+)\s*[—–-]\s*(.+)$', text, re.M))
     if [int(m[1]) for m in matches] != list(range(1, 7)):
         raise ValueError('Exactly six ordered headings ## Page 1 … ## Page 6 are required')
     intro = text[:matches[0].start()]
@@ -61,7 +61,7 @@ def table_component(lines, page_no):
             fields=dict(zip(headers,row))
             details=''.join('<p><strong>'+inline(h)+' :</strong> '+inline(v)+'</p>'
                             for h,v in zip(headers[1:],row[1:]) if h not in score_names)
-            scores=''.join('<span><b>'+html.escape(fields[h])+'</b> '+h+'</span>' for h in score_names)
+            scores=''.join('<span><b data-score="'+html.escape(fields[h])+'" aria-label="'+html.escape(fields[h])+' sur 3">'+('★'*int(fields[h]) if fields[h] in ('1','2','3') else html.escape(fields[h]))+'</b> '+h+'</span>' for h in score_names)
             cards.append('<article class="case-card" data-card><h3>'+inline(row[0])+'</h3>'+details+'<div class="scores">'+scores+'</div></article>')
         return '<div class="case-list">'+''.join(cards)+'</div>'
     return composition.md('\n'.join(lines))
@@ -81,7 +81,7 @@ def project_page(page, number):
                 table.append(lines[i]); i+=1
             output.append(table_component(table,number)); continue
         if re.match(r'^\*\*(Takeaway|Boucle)',line):
-            flush(); takeaway=composition.md(line); i+=1; continue
+            flush(); takeaway=composition.md(line).replace('Takeaway', 'À retenir'); i+=1; continue
         if line.startswith('**Framework :**'):
             flush(); steps=line.split('**Framework :**',1)[1].strip().rstrip('.')
             output.append('<figure class="framework"><figcaption>Le parcours à expliquer</figcaption><ol>'+''.join('<li>'+inline(s.strip())+'</li>' for s in steps.split('→'))+'</ol></figure>'); i+=1; continue
@@ -94,6 +94,7 @@ def project_page(page, number):
 def compose(binding):
     css=(UPSTREAM/'theme.css').read_text()+'\n'+(HERE/'theme.css').read_text()
     pages=[]
+    source_note=re.sub(r'SRC-BOOK-0[234]', 'ibid.', binding['source_note']).replace('SRC-BOOK-01', 'T. Zwingmann, The Profitable AI Advantage (2025)')
     for number,p in enumerate(binding['pages'],1):
         body,takeaway=project_page(p,number)
         if number==1 and binding.get('promise'):
@@ -103,7 +104,7 @@ def compose(binding):
             '<div class="module-title">'+html.escape(binding['title'])+'</div><h1>'+html.escape(p['headline'])+'</h1></header>'
             '<main class="learning-content" data-no-overflow>'+body+'</main>'+
             ('<aside class="takeaway" data-card>'+takeaway+'</aside>' if takeaway else '')+
-            '<footer><span>'+html.escape(binding['source_note'])+'</span><b>'+str(number)+' / 6</b></footer></section>')
+            '<footer><span>'+html.escape(source_note)+'</span><b>'+str(number)+' / 6</b></footer></section>')
     return '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>'+html.escape(binding['title'])+'</title><style>'+css+'</style></head><body>'+''.join(pages)+'</body></html>'
 
 async def render_artifacts(html_path, out):

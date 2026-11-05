@@ -14,7 +14,7 @@ class PedagogicalRendererTests(unittest.TestCase):
     def test_reject_missing_or_duplicate_pages(self):
         with tempfile.TemporaryDirectory() as folder:
             source=Path(folder)/'input.md'
-            for numbers in ([1,2,3,4,5],[1,2,3,4,5,5]):
+            for numbers in ([1,2,3,4,5],[1,2,3,4,5,5],[1,2,3,4,5,6,7]):
                 source.write_text('\n'.join(f'## Page {n} — Test\nContenu' for n in numbers))
                 with self.assertRaises(ValueError):r.bind(source)
 
@@ -30,7 +30,8 @@ class PedagogicalRendererTests(unittest.TestCase):
         output=r.table_component(table,6)
         self.assertIn('Un cas unique',output)
         self.assertIn('texte source',output)
-        self.assertIn('<b>1</b> Coût',output)
+        self.assertIn('data-score="1"',output)
+        self.assertIn('★',output)
         self.assertNotIn('<table',output)
 
     @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','browser test enabled by render workflow')
