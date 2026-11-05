@@ -21,7 +21,11 @@ class RegistryTests(unittest.TestCase):
             r.check_registry(self.registry)
 
     def test_real_registry_matches_repo(self):
-        self.assertEqual(r.check_registry(self.registry)["profiles"], 4)
+        self.assertEqual(r.check_registry(self.registry)["profiles"], 5)
+        learning = next(x for x in self.registry["templates"] if x["profile"] == "pedagogical-six-page")
+        self.assertEqual(learning["capability"], "preview")
+        self.assertEqual(learning["formats"], ["html", "pdf", "png"])
+        self.assertFalse(learning["committee_authorized"])
         preview = next(x for x in self.registry["templates"] if x["profile"] == "value-chain-preview")
         self.assertEqual(preview["capability"], "preview")
         self.assertFalse(preview["committee_authorized"])
@@ -54,3 +58,4 @@ class RegistryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

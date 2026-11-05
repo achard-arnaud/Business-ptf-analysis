@@ -59,6 +59,22 @@
         "png"
       ],
       "committee_authorized": false
+    },
+    {
+      "template_id": "AI_CAPABILITY_LEARNING",
+      "profile": "pedagogical-six-page",
+      "version": "0.2.0",
+      "lifecycle": "candidate",
+      "capability": "preview",
+      "template_ref": "templates/PEDAGOGICAL_SIX_PAGER_v0.2.md",
+      "schema_ref": "contracts/pedagogical-render-binding.schema.json",
+      "renderer_ref": "renderers/pedagogical/render.py",
+      "formats": [
+        "html",
+        "pdf",
+        "png"
+      ],
+      "committee_authorized": false
     }
   ]
 }

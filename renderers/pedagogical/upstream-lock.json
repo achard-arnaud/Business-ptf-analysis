@@ -1,0 +1,41 @@
+{
+  "repository": "achard-arnaud/Business-ptf-analysis",
+  "commit": "973e8d2d444494c0c066a0a4dac920652e35e0b9",
+  "adaptation_version": "0.2.0",
+  "imports": [
+    {
+      "source_path": "renderers/strategic_note/build.py",
+      "local_path": "upstream/build.py",
+      "sha256": "ce9e067e57e441225bcfe5700bc6c091b019ba3cbff4f01e3c1ed17209a73a36"
+    },
+    {
+      "source_path": "renderers/strategic_note/theme.css",
+      "local_path": "upstream/theme.css",
+      "sha256": "2317cec31e94d6524e7ce7241e470aa6acd8bf85bed4b5529d463b18d993e179"
+    },
+    {
+      "source_path": "renderers/three_pager_exec/browser.py",
+      "local_path": "upstream/browser.py",
+      "sha256": "20917d3e2b8a993c1134ca7637b077d53a3c3c750372123dd36a2a41258b8198"
+    },
+    {
+      "source_path": "renderers/three_pager_exec/qa.py",
+      "local_path": "upstream/qa.py",
+      "sha256": "f2b99bb5a7be60be9252dd6fdfe21b506b5d3c2bfdb7391063bfef1923b9ad95"
+    }
+  ],
+  "skill_imports": [
+    {
+      "source_path": "skills/hivest-portfolio-ai/SKILL.md",
+      "sha256": "899fcfe7e9d09d3477ee6d73c85cc825f1ee6e54d4f41c3af45904fe938c692a"
+    },
+    {
+      "source_path": "skills/hivest-portfolio-ai/references/composition.md",
+      "sha256": "221dddf24b478d6b502502bca78b7a6fdb9dea04351b530af2a6b2abbb518358"
+    },
+    {
+      "source_path": "skills/hivest-portfolio-ai/references/exec-writing.md",
+      "sha256": "63be74eca0843d3ff766fcd88fecfc60338e8e3fdb58b58e4ab918d46ba7eb0a"
+    }
+  ]
+}

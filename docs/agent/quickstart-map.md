@@ -13,6 +13,7 @@
 | Prioriser | `opportunities.md`, `contracts/decision-rules.md` | use cases, gates, baseline non IA | Scorer avant hard gates |
 | Relire et arbitrer | `review.md`, `docs/agent/gates.md` | trois revues et décision HITL | Auto-approbation |
 | Rédiger 3 pages exec | `composition.md` puis `exec-writing.md` | payload sourcé, QA, PNG | Faire rechercher le renderer |
+| Produire les fiches pédagogiques IA | `learning/enterprise-ai/README.md` → `manifest.json` → `sources.md` → skill locale | six fiches candidat, binding/scaffold distincts, correspondance au syllabus à confirmer | modifier les gates Hivest ou prétendre qu'un renderer existe |
 | Rédiger note fonds 5–7 pages | `companies/hivest/INDEX.md` → `templates/strategic-market-note.md` → `renderers/strategic_note/README.md` | note candidate et QA, hors programme | Changer `program/state.json` ou le manifest |
 | Modifier le code | `docs/architecture/code-map.md`, schéma/validateur/fixture/test concernés | PR avec tests et non-régression | Promettre une feature sur seule base du README |
 | Transférer vers un autre modèle | `docs/agent/handoff-and-fallback.md` et `contracts/research-handoff.schema.json` | Paquet de relais borné, capacité/fallback et reçu | Déduire un accès ou un GO_DRAFT de la seule validation JSON |
