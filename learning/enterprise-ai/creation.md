@@ -38,7 +38,7 @@ La création génère un contenu nouveau — texte, image, code, audio ou mise e
 | Données | Peut-on fournir ces références et exemples ? |
 | Gouvernance | Droits, confidentialité, attribution, biais, archivage et responsabilité ? |
 
-Une règle utile transforme la correction en retour : erreur de fait, ton, format ou couverture? Qui la corrige et comment éviter qu'elle se répète?
+Une règle utile transforme la correction en retour : erreur de fait, ton, format ou couverture? Qui la corrige et comment éviter qu'elle se répète? Source périmée → brouillon trompeur → relecture lourde → perte de confiance : les références doivent donc être datées et contrôlées.
 
 **Takeaway → p. 4 :** intégrer la génération dans un flux contrôlé, pas dans une chaîne de publication aveugle.
 
@@ -64,13 +64,13 @@ Une règle utile transforme la correction en retour : erreur de fait, ton, forma
 **Takeaway → p. 6 :** choisir un contenu dont la qualité peut être revue avec des critères visibles.
 
 ## Page 6 — Agir : produire, relire, mesurer
-| Cas | Matrice Automatisation × Intégration | BAC résumé | Valeur | Coût | Risque | Complexité | Généricité |
+| Cas | Automatisation × Intégration | BAC (B / A / C) | Valeur | Coût | Risque | Complexité | Généricité |
 |---|---|---|---:|---:|---:|---:|---:|
-| Brouillon de réponse support | moyenne × faible | Accélérer; homogénéiser; texte suggéré | 3 | 1 | 2 | 1 | 3 |
-| Adaptation d'une procédure | faible × faible | Clarifier; faciliter la lecture; résumé sourcé | 2 | 1 | 2 | 1 | 3 |
-| Proposition commerciale initiale | moyenne × moyenne | Démarrer plus vite; adapter; sections générées | 3 | 2 | 3 | 2 | 2 |
+| Brouillon de réponse support | moyenne × faible | B : réduire le temps de premier jet; A : homogénéiser les réponses; C : texte proposé et modifiable | 3 | 1 | 2 | 1 | 3 |
+| Adaptation d'une procédure | faible × faible | B : faciliter l'usage; A : raccourcir l'explication; C : résumé avec référence | 2 | 1 | 2 | 1 | 3 |
+| Proposition commerciale initiale | moyenne × moyenne | B : accélérer la préparation; A : structurer la proposition; C : sections à personnaliser | 3 | 2 | 3 | 2 | 2 |
 
-Les étoiles sont des heuristiques de discussion : valeur/généricité élevées favorables; coût, risque et complexité élevés moins favorables.
+Matrice : chaque paire indique automatisation puis intégration; chacune va de faible à forte. Les étoiles sont des heuristiques : valeur/généricité élevées favorables; coût, risque et complexité élevés moins favorables.
 
 **Prompt d'essai :** « Rédige un brouillon de réponse à ce client fictif, uniquement à partir de la procédure fournie. Donne d'abord les faits repris et les points manquants; utilise un ton clair et empathique; n'invente ni engagement, délai ou remboursement; termine par une liste de vérifications pour le conseiller. »
 
