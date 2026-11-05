@@ -103,3 +103,8 @@ La fixture Sphere est `UNVERIFIED_DEMO`, pas une preuve. Sur un nouveau payload 
 - **Backlog priorisé** : [sprints et gaps](docs/roadmap/industrialization-backlog.md), suivis dans GitHub Issues. Ne pas présumer qu'une issue créée est implémentée.
 
 Le principe : **capturer une fois, qualifier et relier ; raisonner pour plusieurs décisions ; publier en plusieurs formats sans perdre la provenance.**
+
+
+## Programme pédagogique IA en entreprise
+
+Le contenu candidat des six fiches modulaires « Pour aller plus loin » est isolé dans [learning/enterprise-ai](learning/enterprise-ai/README.md). Ce workstream ne change pas les gates du diagnostic Hivest et n'ajoute aucun renderer. La correspondance aux 17 piliers reste à confirmer sur le syllabus détaillé.

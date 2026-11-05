@@ -1,0 +1,63 @@
+{
+  "version": "0.1.0",
+  "template_class": "pedagogique",
+  "template_type": "ai-enterprise-learning-six-page",
+  "template_source_repository": "achard-arnaud/skills-notes-and-storytelling",
+  "template_source_commit": "7968fea689a7bd00bba8cda8d06c2050dcf831a6",
+  "template_path": "templates/ai-enterprise-learning-six-page.md",
+  "skill_path": "skills/enterprise-ai-learning/SKILL.md",
+  "binding_contract": "contracts/enterprise-ai-learning-binding.schema.json",
+  "semantic_scaffold": "contracts/enterprise-ai-learning-scaffold.schema.json",
+  "status": "candidate",
+  "audience": "beginner",
+  "alignment_status": "proposed_pending_syllabus",
+  "backlog_catalog_capacity": 70,
+  "modules": [
+    {
+      "id": "prediction",
+      "label": "Prédiction",
+      "sequence": 1
+    },
+    {
+      "id": "perception",
+      "label": "Perception",
+      "sequence": 2
+    },
+    {
+      "id": "creation",
+      "label": "Création",
+      "sequence": 3
+    },
+    {
+      "id": "reasoning",
+      "label": "Raisonnement",
+      "source_label": "Thinking",
+      "sequence": 4
+    },
+    {
+      "id": "agentic",
+      "label": "Agentique",
+      "sequence": 5
+    },
+    {
+      "id": "multicapability",
+      "label": "Synthèse multicapacité",
+      "sequence": 6,
+      "minimum_capabilities": 4
+    }
+  ],
+  "sources": [
+    "SRC-BOOK-01",
+    "SRC-BOOK-02",
+    "SRC-BOOK-03",
+    "SRC-BOOK-04"
+  ],
+  "content_files": [
+    "prediction.md",
+    "perception.md",
+    "creation.md",
+    "reasoning.md",
+    "agentic.md",
+    "multicapability.md"
+  ]
+}

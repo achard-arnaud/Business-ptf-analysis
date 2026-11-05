@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "enterprise-ai-learning-scaffold.schema.json",
+  "title": "EnterpriseAiLearningSemanticScaffold",
+  "description": "Six-page sémantique HTML; aucun choix CSS ou de rendu.",
+  "type": "object",
+  "required": [
+    "template_class",
+    "template_type",
+    "scaffold_version",
+    "title",
+    "pages"
+  ],
+  "properties": {
+    "template_class": {
+      "const": "pedagogique"
+    },
+    "template_type": {
+      "const": "ai-enterprise-learning-six-page"
+    },
+    "scaffold_version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "page_id",
+          "semantic_role",
+          "sections"
+        ],
+        "properties": {
+          "page_id": {
+            "enum": [
+              "p1",
+              "p2",
+              "p3",
+              "p4",
+              "p5",
+              "p6"
+            ]
+          },
+          "semantic_role": {
+            "enum": [
+              "orientation",
+              "teach_back",
+              "systems_map",
+              "maturity_path",
+              "value_chain",
+              "use_case_backlog"
+            ]
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "section_id",
+                "heading",
+                "content_ref",
+                "element"
+              ],
+              "properties": {
+                "section_id": {
+                  "type": "string"
+                },
+                "heading": {
+                  "type": "string"
+                },
+                "content_ref": {
+                  "type": "string"
+                },
+                "element": {
+                  "enum": [
+                    "header",
+                    "section",
+                    "aside",
+                    "figure",
+                    "table",
+                    "ol",
+                    "ul",
+                    "blockquote"
+                  ]
+                },
+                "aria_label": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

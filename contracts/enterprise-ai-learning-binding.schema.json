@@ -1,0 +1,256 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "enterprise-ai-learning-binding.schema.json",
+  "title": "EnterpriseAiLearningBinding",
+  "type": "object",
+  "required": [
+    "template_class",
+    "template_type",
+    "program_id",
+    "module_id",
+    "audience",
+    "source_refs",
+    "pages",
+    "selected_use_cases"
+  ],
+  "properties": {
+    "template_class": {
+      "const": "pedagogique"
+    },
+    "template_type": {
+      "const": "ai-enterprise-learning-six-page"
+    },
+    "program_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "module_id": {
+      "enum": [
+        "prediction",
+        "perception",
+        "creation",
+        "reasoning",
+        "agentic",
+        "multicapability"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "source_id",
+          "locator"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "locator": {
+            "type": "string"
+          },
+          "claim_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "audience": {
+      "type": "object",
+      "required": [
+        "level",
+        "use_context"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "beginner",
+            "mixed",
+            "advanced"
+          ]
+        },
+        "use_context": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "backlog_catalog_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "backlog_catalog_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 500
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "page_id",
+          "headline",
+          "takeaway",
+          "blocks"
+        ],
+        "properties": {
+          "page_id": {
+            "enum": [
+              "p1",
+              "p2",
+              "p3",
+              "p4",
+              "p5",
+              "p6"
+            ]
+          },
+          "headline": {
+            "type": "string"
+          },
+          "takeaway": {
+            "type": "string"
+          },
+          "transition": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "block_id",
+                "content",
+                "claim_refs"
+              ],
+              "properties": {
+                "block_id": {
+                  "type": "string"
+                },
+                "content": {},
+                "claim_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "selected_use_cases": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "use_case_id",
+          "title",
+          "automation",
+          "integration",
+          "bac",
+          "stars"
+        ],
+        "properties": {
+          "use_case_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "automation": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "integration": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "bac": {
+            "type": "object",
+            "required": [
+              "benefit",
+              "advantage",
+              "characteristic"
+            ],
+            "properties": {
+              "benefit": {
+                "type": "string"
+              },
+              "advantage": {
+                "type": "string"
+              },
+              "characteristic": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "stars": {
+            "type": "object",
+            "required": [
+              "value",
+              "cost",
+              "risk",
+              "complexity",
+              "generality"
+            ],
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "cost": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "risk": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "complexity": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "generality": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
