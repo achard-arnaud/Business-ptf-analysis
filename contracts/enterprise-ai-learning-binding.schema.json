@@ -133,6 +133,7 @@
               "required": [
                 "block_id",
                 "content",
+                "content_type",
                 "claim_refs"
               ],
               "properties": {
@@ -144,7 +145,18 @@
                   "type": "array",
                   "items": {
                     "type": "string"
-                  }
+                  },
+                  "uniqueItems": true
+                },
+                "content_type": {
+                  "enum": [
+                    "fact",
+                    "inference",
+                    "hypothesis",
+                    "example",
+                    "recommendation",
+                    "unknown"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -163,10 +175,17 @@
         "required": [
           "use_case_id",
           "title",
+          "problem",
+          "process",
+          "icp",
+          "input",
+          "output",
           "automation",
           "integration",
           "bac",
-          "stars"
+          "stars",
+          "human_control",
+          "measure"
         ],
         "properties": {
           "use_case_id": {
@@ -246,6 +265,27 @@
               }
             },
             "additionalProperties": false
+          },
+          "problem": {
+            "type": "string"
+          },
+          "process": {
+            "type": "string"
+          },
+          "icp": {
+            "type": "string"
+          },
+          "input": {
+            "type": "string"
+          },
+          "output": {
+            "type": "string"
+          },
+          "human_control": {
+            "type": "string"
+          },
+          "measure": {
+            "type": "string"
           }
         },
         "additionalProperties": false
