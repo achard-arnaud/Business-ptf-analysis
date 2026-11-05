@@ -57,6 +57,12 @@ Pour chaque unité, une même boucle est exécutée dans l'ordre. Les rôles son
 - La synthèse enchaîne au moins quatre capacités et garde la décision humaine visible.
 - Toute inconnue de programme ou de source reste marquée, non comblée.
 
-## État à la reprise
+## État final — G10
 
-Les premiers drafts complets et les contrats sont déjà sur deux branches PR en mode draft. La CI a signalé puis corrigé un cas de schéma spécialisé; la PR de taxonomie a son contrôle validate vert. La CI de Business-ptf-analysis a validé contrats et tests existants; son contrôle de rendu historique est encore en cours au moment de la reprise. Ce plan remet le travail en séquence : G0–G1 et Prédiction ont été revus en séquence. Le checkpoint Prédiction est dans checkpoints/00-g0-g1-prediction.md; le checkpoint Perception suit dans checkpoints/01-perception.md. Prochaine unité : Création. Les quatre autres fiches restent des drafts non relus.
+- Les six fiches sont candidates et chacune a un checkpoint de boucle.
+- Le contrat de catalogue accepte un backlog élargi; le scaffold semantic HTML référence des block IDs stables du binding.
+- La taxonomie et le template générique sont dans la PR draft #172 du dépôt de transit.
+- Le programme et ses six contenus sont dans la PR draft #62 de Business-ptf-analysis.
+- Les CI des têtes courantes sont vertes. Le renderer des fiches n'est pas construit; le contrôle visuel des fiches est donc à faire après choix/intégration du renderer.
+- L'alignement numéroté sur les 17 piliers reste provisoire en l'absence du syllabus détaillé.
+- Prochaine action : revue humaine des deux PR et confirmation du syllabus avant toute promotion.

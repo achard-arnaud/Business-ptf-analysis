@@ -66,7 +66,7 @@
     "agentic.md",
     "multicapability.md"
   ],
-  "next_loop": "G10-final_review",
+  "next_loop": "human_review",
   "closed_gates": [
     "G0",
     "G1",
@@ -77,9 +77,12 @@
     "G6-agentic",
     "G7-multicapability",
     "G8-backlog",
-    "G9-scaffold"
+    "G9-scaffold",
+    "G10-candidate-ready"
   ],
   "checkpoint_path": "checkpoints/00-g0-g1-prediction.md",
   "use_case_catalog_schema_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/contracts/pedagogical-use-case-catalog.schema.json",
-  "scaffold_template_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/templates/pedagogical-six-page-scaffold.json"
+  "scaffold_template_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/templates/pedagogical-six-page-scaffold.json",
+  "handoff_status": "ready_for_human_review",
+  "last_checkpoint": "checkpoints/07-final-review.md"
 }
