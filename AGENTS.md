@@ -11,9 +11,14 @@ Rôles : l'orchestrateur route, vérifie les gates et intègre ; le rôle resear
 
 Carte des commandes et capacités réellement codées : [docs/architecture/code-map.md](docs/architecture/code-map.md). Ce fichier est le point d'entrée ; les règles détaillées restent à leurs chemins explicites ci-dessus.
 
+## Programme pédagogique distinct
+
+Le module optionnel `learning/enterprise-ai/` est un workstream pédagogique indépendant du diagnostic Hivest et de la note stratégique du fonds. Pour ce seul objectif, lire son README, son manifest, ses sources et `skills/enterprise-ai-learning/SKILL.md`; ne pas modifier les états de `program/state.json`, les manifests d'entreprise ou les gates Hivest. Le renderer pédagogique adapté du mécanisme Hivest est dans renderers/pedagogical; suivre la procédure de composition de la skill locale et sa QA six pages.
+
 ## Navigation rapide et frontières ETL
 
 - Vue transversale : [README.md](README.md) → [architecture Extract / Transform / Publish](docs/architecture/end-to-end-etl.md).
 - Pour un agent qui reprend : [carte rapide](docs/agent/quickstart-map.md). Pour les évolutions industrielles : [backlog](docs/roadmap/industrialization-backlog.md) et Issues.
 - **Ne pas confondre** le workflow de diagnostic du portefeuille et le workstream de note stratégique dans `companies/hivest/INDEX.md`. Rédaction, HTML ou PDF ne modifient pas les gates.
 - Ne pas inventer de capacité : le Narrative Scaffold transversal et l'export multiformat commun sont des **cibles**, pas des modules codés.
+

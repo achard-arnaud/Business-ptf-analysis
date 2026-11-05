@@ -1,0 +1,61 @@
+{
+  "version": "0.1.0",
+  "entity_id": "synthetic-company",
+  "cutoff": "2026-09-23",
+  "stage": "MARKET_CONTEXT",
+  "repo_sha": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "run_context": {
+    "path": "run-context.json",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "input_pins": [
+    {
+      "path": "evidence/claims.json",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "path": "evidence/sources.json",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "output_pins": [
+    {
+      "path": "analysis/market.md",
+      "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "depends_on": [
+        "evidence/claims.json"
+      ]
+    },
+    {
+      "path": "analysis/company.md",
+      "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "depends_on": [
+        "evidence/sources.json"
+      ]
+    }
+  ],
+  "critical_claim_refs": [
+    "C-1"
+  ],
+  "counterclaim_refs": [],
+  "decisive_unknowns": [
+    "Material segment exposure unverified"
+  ],
+  "validations": [
+    {
+      "name": "schema",
+      "status": "PASS",
+      "receipt_ref": null
+    },
+    {
+      "name": "external-archive",
+      "status": "NOT_RUN",
+      "receipt_ref": null
+    }
+  ],
+  "integrator": "fixture-integrator",
+  "gate": "HITL_PENDING",
+  "human_decision_ref": null,
+  "next_action": "Inspect missing segment exposure",
+  "stop_condition": "Stop if the decision-changing scope remains unknown"
+}

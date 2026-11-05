@@ -24,7 +24,7 @@ JS = r'''() => {
     }
     for (const e of page.querySelectorAll('[data-no-overflow]')) {
       if (visible(e) && (e.scrollHeight>e.clientHeight+1 || e.scrollWidth>e.clientWidth+1))
-        found.overflows.push({tag:e.tagName, cls:e.className});
+        found.overflows.push({tag:e.tagName, cls:e.className, card:e.closest('.card')?.querySelector('h2')?.textContent?.trim(), client_height:e.clientHeight, scroll_height:e.scrollHeight, client_width:e.clientWidth, scroll_width:e.scrollWidth});
     }
     for (const e of page.querySelectorAll('*')) {
       if (!visible(e)) continue;

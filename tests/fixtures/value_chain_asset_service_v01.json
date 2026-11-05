@@ -1,0 +1,185 @@
+{
+  "version": "0.1.0",
+  "profile_id": "infrastructure_asset_service",
+  "entity_id": "synthetic-asset-operator",
+  "cutoff": "2026-11-04",
+  "evidence_bundle_ref": null,
+  "drivers": [
+    {
+      "id": "DRV-1",
+      "label": "Project conversion",
+      "economic_mechanism": "Hypothetical improvement of Project conversion",
+      "kpi": "Baseline KPI 1"
+    },
+    {
+      "id": "DRV-2",
+      "label": "Capital productivity",
+      "economic_mechanism": "Hypothetical improvement of Capital productivity",
+      "kpi": "Baseline KPI 2"
+    },
+    {
+      "id": "DRV-3",
+      "label": "Availability",
+      "economic_mechanism": "Hypothetical improvement of Availability",
+      "kpi": "Baseline KPI 3"
+    },
+    {
+      "id": "DRV-4",
+      "label": "Contractual risk",
+      "economic_mechanism": "Hypothetical improvement of Contractual risk",
+      "kpi": "Baseline KPI 4"
+    }
+  ],
+  "activities": [
+    {
+      "id": "ACT-1",
+      "label": "Origination",
+      "role": "Core",
+      "value_mechanism": "Hypothetical process Origination",
+      "driver_refs": [
+        "DRV-1"
+      ],
+      "claim_refs": [],
+      "epistemic_status": "hypothesis"
+    },
+    {
+      "id": "ACT-2",
+      "label": "Development and engineering",
+      "role": "Core",
+      "value_mechanism": "Hypothetical process Development and engineering",
+      "driver_refs": [
+        "DRV-2"
+      ],
+      "claim_refs": [],
+      "epistemic_status": "hypothesis"
+    },
+    {
+      "id": "ACT-3",
+      "label": "Project financing",
+      "role": "Core",
+      "value_mechanism": "Hypothetical process Project financing",
+      "driver_refs": [
+        "DRV-3"
+      ],
+      "claim_refs": [],
+      "epistemic_status": "hypothesis"
+    },
+    {
+      "id": "ACT-4",
+      "label": "EPC and commissioning",
+      "role": "Core",
+      "value_mechanism": "Hypothetical process EPC and commissioning",
+      "driver_refs": [
+        "DRV-4"
+      ],
+      "claim_refs": [],
+      "epistemic_status": "hypothesis"
+    },
+    {
+      "id": "ACT-5",
+      "label": "Asset operations",
+      "role": "Core",
+      "value_mechanism": "Hypothetical process Asset operations",
+      "driver_refs": [
+        "DRV-1"
+      ],
+      "claim_refs": [],
+      "epistemic_status": "hypothesis"
+    },
+    {
+      "id": "ACT-6",
+      "label": "Measurement and verification",
+      "role": "Enabler",
+      "value_mechanism": "Hypothetical process Measurement and verification",
+      "driver_refs": [
+        "DRV-2"
+      ],
+      "claim_refs": [],
+      "epistemic_status": "hypothesis"
+    },
+    {
+      "id": "ACT-7",
+      "label": "Refinancing and recontracting",
+      "role": "Support",
+      "value_mechanism": "Hypothetical process Refinancing and recontracting",
+      "driver_refs": [
+        "DRV-3"
+      ],
+      "claim_refs": [],
+      "epistemic_status": "hypothesis"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "UC-1",
+      "activity_id": "ACT-1",
+      "driver_refs": [
+        "DRV-1"
+      ],
+      "baseline_no_ai": "Manual workflow and rules-based alternative",
+      "kpi": "Observed cycle time",
+      "stop_condition": "Stop if not outperforming the manual baseline"
+    },
+    {
+      "id": "UC-2",
+      "activity_id": "ACT-2",
+      "driver_refs": [
+        "DRV-2"
+      ],
+      "baseline_no_ai": "Manual workflow and rules-based alternative",
+      "kpi": "Observed cycle time",
+      "stop_condition": "Stop if not outperforming the manual baseline"
+    },
+    {
+      "id": "UC-3",
+      "activity_id": "ACT-3",
+      "driver_refs": [
+        "DRV-3"
+      ],
+      "baseline_no_ai": "Manual workflow and rules-based alternative",
+      "kpi": "Observed cycle time",
+      "stop_condition": "Stop if not outperforming the manual baseline"
+    },
+    {
+      "id": "UC-4",
+      "activity_id": "ACT-4",
+      "driver_refs": [
+        "DRV-4"
+      ],
+      "baseline_no_ai": "Manual workflow and rules-based alternative",
+      "kpi": "Observed cycle time",
+      "stop_condition": "Stop if not outperforming the manual baseline"
+    },
+    {
+      "id": "UC-5",
+      "activity_id": "ACT-5",
+      "driver_refs": [
+        "DRV-1"
+      ],
+      "baseline_no_ai": "Manual workflow and rules-based alternative",
+      "kpi": "Observed cycle time",
+      "stop_condition": "Stop if not outperforming the manual baseline"
+    },
+    {
+      "id": "UC-6",
+      "activity_id": "ACT-6",
+      "driver_refs": [
+        "DRV-2"
+      ],
+      "baseline_no_ai": "Manual workflow and rules-based alternative",
+      "kpi": "Observed cycle time",
+      "stop_condition": "Stop if not outperforming the manual baseline"
+    },
+    {
+      "id": "UC-7",
+      "activity_id": "ACT-7",
+      "driver_refs": [
+        "DRV-3"
+      ],
+      "baseline_no_ai": "Manual workflow and rules-based alternative",
+      "kpi": "Observed cycle time",
+      "stop_condition": "Stop if not outperforming the manual baseline"
+    }
+  ],
+  "status": "candidate_unapproved"
+}

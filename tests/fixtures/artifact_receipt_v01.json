@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "artifact_id": "fixture-report",
+  "entity_id": "synthetic-company",
+  "run_id": "fixture-run",
+  "kind": "render_pdf",
+  "producer": "renderer-fixture",
+  "artifact_ref": "artifact://synthetic/report.pdf",
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "visibility": "restricted",
+  "capture_kind": null,
+  "hash_scope": null,
+  "input_refs": [
+    "bundle://fixture"
+  ],
+  "publication_state": "prepared_not_published",
+  "readback": null,
+  "qa_state": "NOT_RUN",
+  "authorization_state": "UNREVIEWED",
+  "human_decision_ref": null
+}

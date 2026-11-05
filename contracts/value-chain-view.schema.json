@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "value-chain-view.schema.json",
+  "title": "Analytical value chain projection, renderer-independent candidate v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "profile_id",
+    "entity_id",
+    "cutoff",
+    "evidence_bundle_ref",
+    "drivers",
+    "activities",
+    "opportunities",
+    "status"
+  ],
+  "properties": {
+    "version": {
+      "const": "0.1.0"
+    },
+    "profile_id": {
+      "enum": [
+        "manufacturing_porter",
+        "infrastructure_asset_service"
+      ]
+    },
+    "entity_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cutoff": {
+      "type": "string",
+      "format": "date"
+    },
+    "evidence_bundle_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "const": "candidate_unapproved"
+    },
+    "drivers": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "economic_mechanism",
+          "kpi"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "economic_mechanism": {
+            "type": "string",
+            "minLength": 5
+          },
+          "kpi": {
+            "type": "string",
+            "minLength": 2
+          }
+        }
+      }
+    },
+    "activities": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "role",
+          "value_mechanism",
+          "driver_refs",
+          "claim_refs",
+          "epistemic_status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 2
+          },
+          "role": {
+            "enum": [
+              "Core",
+              "Enabler",
+              "Support"
+            ]
+          },
+          "value_mechanism": {
+            "type": "string",
+            "minLength": 5
+          },
+          "driver_refs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "claim_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "epistemic_status": {
+            "enum": [
+              "fact",
+              "inference",
+              "hypothesis",
+              "unknown"
+            ]
+          }
+        }
+      }
+    },
+    "opportunities": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "activity_id",
+          "driver_refs",
+          "baseline_no_ai",
+          "kpi",
+          "stop_condition"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "activity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "driver_refs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "baseline_no_ai": {
+            "type": "string",
+            "minLength": 5
+          },
+          "kpi": {
+            "type": "string",
+            "minLength": 2
+          },
+          "stop_condition": {
+            "type": "string",
+            "minLength": 5
+          }
+        }
+      }
+    }
+  }
+}

@@ -25,3 +25,10 @@ Cette carte décrit les capacités réellement présentes. Le [workflow de la sk
 - **Transversal** : `AGENTS.md` route, `program/state.json` et manifests fixent le gate, `context-and-resume.md` conserve les checkpoints ; `learning.md` boucle les défauts vers les contrats et les tests.
 
 Le contrat de Narrative Scaffold commun, le graph de blocs narratifs et le moteur de publication multiformat restent des évolutions suivies dans [la roadmap](../roadmap/industrialization-backlog.md). Consulter [la vue E/T/P](end-to-end-etl.md) avant de proposer de nouvelles classes de code.
+
+
+## Registre de capacités effectives des templates (#25)
+
+`templates/registry.json` déclare les profils **sans dériver la disponibilité depuis la seule présence d'un schéma ou d'un PDF** : `exec v0.3` = `demo_only` (renderer disponible, archives/gates de démo nécessaires), `audit v0.1` = `schema_only` (renderer absent), `strategic-market-note` = `preview` (workstream fonds distinct).
+
+La validation statique `scripts/check_template_registry.py` refuse un renderer manquant, une déclaration `ready` sans exécutable, un profil dupliqué ou une autorisation de comité issue du registre. La CI appelle ce contrôle ; un succès confirme la cohérence des **références et capacités déclarées**, jamais la qualité sémantique ou la permission humaine de publier. Les exemples externes sous `examples/` ne sont pas des templates activables.

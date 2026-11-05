@@ -10,6 +10,14 @@ Ce fichier porte les règles déportées de [`AGENTS.md`](../../AGENTS.md). Les 
 - Évaluer les hard gates avant une priorité ou un sourcing. Conserver les options sans IA et NO-ACTION. Business est la dimension principale, distincte des analyses techniques et produit ; aucun product matching ni fournisseur recommandé.
 - Les runs, captures brutes et données à droits restreints restent hors code ; seules les références, versions, connaissances contrôlées et fixtures sont versionnées. Le dépôt est public : ne promouvoir que les contenus autorisés.
 
+
+### Compatibilité des étapes et version de RunContext (#45)
+
+- `contracts/run-context.schema.json` est le contrat de reprise. La projection embarquée dans `contracts/three-pager.schema.json` doit lui rester équivalente ; les tests vérifient la synchronisation.
+- Les checkpoints `version=0.1.0` restent lisibles avec les neuf étapes historiques ; **ils ne peuvent pas être promus silencieusement** vers `MARKET_CONTEXT` ou `OPPORTUNITIES`.
+- Les checkpoints `version=0.2.0` peuvent utiliser ces deux étapes de recherche supplémentaires. Les étapes `GO_DRAFT/FROZEN/RENDERED/DONE` exigent un objet HITL `GO_DRAFT` structuré ; sa présence ne prouve pas à elle seule l'authenticité de la décision humaine ni la conformité du bundle.
+- Modifier le stade d'un checkpoint existant exige une nouvelle version/revue ; ne pas reclasser automatiquement des dossiers existants. Les transitions **temporelles** restent sous la responsabilité des gates, du manifest et de l'orchestrateur, pas du seul schéma JSON. Le profil de contenu `audit` v0.2 n'est pas activé par cette correction.
+
 ## États et autorisations
 
 Le programme suit `PROGRAM_DESIGN_READY → PILOTS → PILOT_LOOPBACK → CLUSTERS → HIVEST → PORTFOLIO_REVIEW → DONE`. Deux pilotes, Sphere et STG, et leur loopback précèdent les clusters. `program/state.json` donne l'état réel, pas cette séquence cible.

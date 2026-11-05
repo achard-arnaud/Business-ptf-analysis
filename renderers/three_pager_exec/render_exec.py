@@ -20,10 +20,10 @@ FORBIDDEN = [r'GO_DRAFT', r'HITL', r'render_authorized', r'\b(A|EN|DRV|UC)-\w', 
              r'aucun cas', r'non établi', r'class="tag', r'pas un business', r'panel ≠', r'hypothèse de travail']
 STRAT_LABEL = {'cost': 'coûts', 'cash': 'cash', 'differentiation': 'différenciation', 'resilience': 'résilience'}
 DEFAULT_LAYOUT = {
-    'p1_rows': '76mm 1fr', 'p1_top_cols': '1.12fr .92fr 1fr', 'p1_bot_cols': '.86fr .92fr 1.42fr',
+    'p1_rows': '73.5mm 1fr', 'p1_top_cols': '1.12fr .92fr 1fr', 'p1_bot_cols': '.86fr .92fr 1.42fr',
     'p2_rows': '1fr 36mm', 'p2_bot_cols': '1.25fr 1fr',
     'p3_rows': '1fr 40mm', 'p3_top_cols': '108mm 1fr', 'p3_bot_cols': '1.15fr 1fr 1fr',
-    'p3_table_cols': ['40mm', None, '27mm', '29mm', '29mm'],
+    'p3_table_cols': ['36mm', None, '26mm', '26mm', '37mm'],
 }
 
 
@@ -289,6 +289,11 @@ def main():
         subprocess.run([sys.executable, str(HERE / 'render2.py'), str(out / f'{stem}.html'), str(out), stem], check=True)
         r = subprocess.run([sys.executable, str(HERE / 'qa.py'), str(out / f'{stem}.html'), '--report', str(out / 'qa.json'), '--screenshots', str(out / 'qa')])
         manifest['visual_qa'] = 'LAYOUT_PASS_MANUAL_PENDING' if r.returncode == 0 else 'FAIL'
+        manifest['pdf_sha256'] = hashlib.sha256((out / f'{stem}.pdf').read_bytes()).hexdigest()
+        manifest['qa_sha256'] = hashlib.sha256((out / 'qa.json').read_bytes()).hexdigest()
+        manifest['png_sha256'] = [
+            hashlib.sha256((out / f'{stem}_page{index}.png').read_bytes()).hexdigest()
+            for index in range(1, 4)]
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
         sys.exit(r.returncode)
 
