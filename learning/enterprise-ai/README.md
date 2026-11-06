@@ -1,39 +1,13 @@
-# Programme pédagogique — IA en entreprise
+# IA en entreprise — fiches pédagogiques
 
-**Statut :** contenu candidat v0.1.0, à relire avec le syllabus des 17 piliers et les formateurs.  
-**Classe de template :** pedagogique. **Public :** débutants et poissons pilotes en Train the Trainer.  
-**Source de cadrage :** Tobias Zwingmann, *The Profitable AI Advantage* (Packt, 2025), locators dans [sources.md](sources.md).
+Le pilote **Perception** est repris en profondeur, en six pages A4 paysage. Le contenu canonique est [perception.sheet.json](perception.sheet.json); [perception.md](perception.md) est sa projection de lecture. Les cinq autres modules conservent leur version candidate précédente et seront repris après fermeture de cette boucle.
 
-## Ordre de production
+Le [catalogue](USE_CASE_CATALOG.md) répartit les 70 situations fournies, conserve leurs IDs et conditions, et pointe vers `use-cases.catalog.json`. Les deux pièces jointes identiques ne sont comptées qu’une fois. Une dominante est proposée; une tâche peut garder plusieurs contributions et une alternative sans IA.
 
-1. Prédiction
-2. Perception
-3. Création
-4. Raisonnement (libellé « Thinking » chez Zwingmann)
-5. Agentique
-6. Synthèse multicapacité
+Suivre [la skill](../../skills/enterprise-ai-learning/SKILL.md) et [le contrat actif unique](../../contracts/pedagogical-sheet.schema.json). Structure dans `renderers/pedagogical/landscape.py` et `landscape.html`; design dans `landscape.css`. Les anciens contrats portrait ne sont pas requis pour ce pilote.
 
-Le catalogue est défini par le [contrat versionné du dépôt de transit](https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/contracts/pedagogical-use-case-catalog.schema.json); le [scaffold sémantique de six pages](https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/templates/pedagogical-six-page-scaffold.json) ne contient aucun CSS.
+```bash
+python renderers/pedagogical/landscape.py learning/enterprise-ai/perception.sheet.json --out build/perception
+```
 
-Chaque module suit la même séquence de six pages : comprendre/TOWS → transmettre → diagnostiquer le système → se projeter → relier aux fonctions → choisir un essai. La narration avance par takeaways et transitions.
-
-## Contrats
-
-- Le **binding** contient variables, textes, sources et use cases.
-- Le **scaffold HTML sémantique** définit les pages, sections et ancrages de contenu.
-- Le **CSS, la pagination et l'export** sont gérés par renderers/pedagogical, adapté du moteur Hivest.
-- La [skill du programme](../../skills/enterprise-ai-learning/SKILL.md) adapte la skill générique de fiches pédagogiques du dépôt de transit.
-- Le registre du programme retient les IDs d'un backlog importé, même lorsque seulement 3 à 5 cas sont montrés dans une fiche. Le modèle accepte un catalogue d'environ 70 cas sans le recopier dans chaque fiche.
-
-## Statut de l'alignement pédagogique
-
-Le brief décrit 17 piliers et le niveau 2, mais le syllabus détaillé et sa numérotation ne sont pas présents dans cette base de travail. Les liens proposés dans les fiches restent donc **provisoires**. À réception du syllabus, renseigner les IDs exacts et distinguer prérequis, renforcement et approfondissement.
-
-## Limites d'interprétation
-
-Les fiches décrivent des capacités et des patterns d'application. Elles ne promettent pas un ROI. Les scores sont des heuristiques pédagogiques à recalibrer sur les données et risques du processus. Toute action sur des dossiers réels doit respecter les droits sur les données, la sécurité, le contrôle humain, la traçabilité et les règles métier.
-
-
-## Rendu Hivest adapté
-
-Commande : `python renderers/pedagogical/render.py learning/enterprise-ai --out build/learning`. Produit six PDF de six pages, HTML, PNG, rapports QA, bindings et manifestes. Les données et le CSS restent séparés. Voir la procédure de composition de la skill.
+Les passages utiles du livre et les sources primaires des histoires ont été lus pour ce tour. Les TOWS, méthodes d’animation, choix de cas et étoiles sont des adaptations pédagogiques. Aucun gain local n’est promis. Le détail des 17 piliers reste absent : l’ancrage niveau 2 est proposé sans numéro inventé. Le statut reste candidat jusqu’à validation pédagogique.

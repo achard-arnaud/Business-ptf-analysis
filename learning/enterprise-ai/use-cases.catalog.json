@@ -1,0 +1,1856 @@
+{
+  "version": "1.0.0",
+  "source": "Pièce jointe utilisateur, deux copies identiques dédupliquées",
+  "source_sha256": "3650f49a7aa979a4f888bc54b0e40e6225edf7e1bac6b4f91c77f3fdb9a68191",
+  "classification_rule": "Une dominante proposée pour le livrable; contributions conditionnelles conservées. Aucun classement officiel attribué à l’auteur. Null signifie qu’une solution classique suffit au scénario décrit.",
+  "items": [
+    {
+      "id": "UC-001",
+      "original_number": 1,
+      "title": "Rédaction de premiers jets d'appels d'offres (RFP)",
+      "situation_originale": "génération automatique d'une trame commerciale à partir du cahier des charges et des réponses aux appels d'offres passés.",
+      "primary_capability": "creation",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Thinking : analyser les exigences du cahier des charges et rapprocher les réponses passées pertinentes.\n- Creation : rédiger une trame commerciale adaptée.\n- Perception, si nécessaire : lire un cahier des charges scanné. Agentic, en extension : rechercher les pièces et organiser leur collecte avec des outils.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-002",
+      "original_number": 2,
+      "title": "Synthèse de réunions et comptes-rendus",
+      "situation_originale": "résumé structuré (décisions prises, prochaines étapes, responsables) à partir de la transcription brute d'un enregistrement audio.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "perception",
+          "condition": "si l'entrée est l'audio"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Thinking : à partir de la transcription, distinguer les décisions, les propositions et les actions explicitement attribuées.\n- Creation : rédiger le compte rendu structuré sans inventer les responsables ou échéances absents.\n- Perception, si l'entrée est l'audio : transcrire et distinguer les locuteurs. Agentic, en extension : après validation, créer les actions dans l'outil de suivi.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-003",
+      "original_number": 3,
+      "title": "Création de fiches produits e-commerce",
+      "situation_originale": "rédaction en masse de descriptions calibrées pour le référencement naturel à partir d'attributs techniques bruts.",
+      "primary_capability": "creation",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Creation : rédiger les descriptions à partir des attributs fournis.\n- Thinking, si nécessaire : arbitrer les informations à mettre en avant selon la cible et les contraintes éditoriales.\n- Agentic, en extension : publier les fiches et vérifier leur intégration au catalogue ; un import programmé peut aussi suffire.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-004",
+      "original_number": 4,
+      "title": "Génération de code et requêtes SQL",
+      "situation_originale": "production de scripts de transformation de données (ETL) ou de requêtes analytiques complexes à partir de consignes en langage naturel.",
+      "primary_capability": "creation",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Thinking : traduire le besoin en logique de traitement et tenir compte du schéma de données.\n- Creation : produire le code ou la requête SQL.\n- Agentic, en extension : exécuter dans un environnement autorisé, examiner les erreurs et adapter le script. La rédaction seule ne garantit pas sa validité.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-005",
+      "original_number": 5,
+      "title": "Traduction et localisation de documentations",
+      "situation_originale": "adaptation multilingue immédiate de manuels utilisateurs ou de procédures internes en conservant le jargon métier.",
+      "primary_capability": "creation",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        }
+      ],
+      "explanation_originale": "- Creation : traduire et reformuler la documentation dans la langue cible.\n- Thinking, si nécessaire : résoudre les ambiguïtés et adapter les références au contexte local avec le glossaire métier.\n- Perception, si nécessaire : lire des pages scannées. Une traduction ne nécessite pas systématiquement tous ces modes.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-006",
+      "original_number": 6,
+      "title": "Rédaction de réponses types au support client",
+      "situation_originale": "proposition de brouillons d'emails personnalisés et contextuels soumis à la validation d'un agent.",
+      "primary_capability": "creation",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "n'est ajouté que si une exécution est déléguée."
+        }
+      ],
+      "explanation_originale": "- Thinking : interpréter la demande et rapprocher les procédures pertinentes.\n- Creation : rédiger le brouillon personnalisé.\n- Prediction, si nécessaire : catégoriser la demande. L'envoi reste humain dans le cas décrit ; Agentic n'est ajouté que si une exécution est déléguée.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-007",
+      "original_number": 7,
+      "title": "Conception de matériel pédagogique",
+      "situation_originale": "création de modules de microlearning, d'études de cas et de quiz d'évaluation pour la formation interne.",
+      "primary_capability": "creation",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        }
+      ],
+      "explanation_originale": "- Thinking : aligner objectifs, activités, exemples et critères d'évaluation.\n- Creation : rédiger le module, l'étude de cas et les questions.\n- Perception, si nécessaire : exploiter des supports audio ou scannés. Générer un quiz ne démontre pas sa qualité pédagogique.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-008",
+      "original_number": 8,
+      "title": "Personnalisation d'emails de prospection B2B",
+      "situation_originale": "rédaction d'accroches commerciales individualisées selon le profil LinkedIn et l'actualité de l'entreprise cible.",
+      "primary_capability": "creation",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Thinking : rapprocher les informations sur le prospect d'un besoin plausible et distinguer les faits des hypothèses.\n- Creation : rédiger l'accroche et l'email.\n- Agentic, en extension : collecter les sources et orchestrer les relances autorisées ; disposer d'un profil fourni ne nécessite pas cette extension.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-009",
+      "original_number": 9,
+      "title": "Génération de données de test (mock data)",
+      "situation_originale": "création de jeux de données fictifs mais cohérents pour tester des applications sans utiliser de données personnelles réelles.",
+      "primary_capability": "creation",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Creation : générer les données fictives selon le format demandé.\n- Thinking : définir les contraintes de cohérence, les relations et les cas limites à couvrir.\n- Agentic, en extension : lancer les tests et réviser les jeux de données. Des générateurs classiques peuvent suffire pour des formats simples.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-010",
+      "original_number": 10,
+      "title": "Vulgarisation de documents techniques ou juridiques",
+      "situation_originale": "réécriture d'un avenant contractuel ou d'un rapport financier complexe sous forme d'une note de synthèse pour la direction.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        }
+      ],
+      "explanation_originale": "- Thinking : identifier les enjeux, conditions et exceptions du document.\n- Creation : reformuler dans une note accessible à la direction.\n- Perception, si nécessaire : lire un document scanné. La simplification doit conserver les nuances qui modifient le sens.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-011",
+      "original_number": 11,
+      "title": "Prévision de la demande et gestion des stocks",
+      "situation_originale": "estimation des volumes de ventes hebdomadaires par référence pour limiter les ruptures et le surstockage.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer les ventes futures à partir de l'historique et des variables disponibles.\n- Thinking, en complément : expliquer les hypothèses et examiner les effets possibles sur les stocks.\n- Agentic, en extension : adapter les commandes dans les limites autorisées. Une règle de réapprovisionnement peut exécuter cette étape sans agent.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-012",
+      "original_number": 12,
+      "title": "Anticipation de l'attrition client (churn)",
+      "situation_originale": "calcul de la probabilité de résiliation d'un abonné selon l'évolution de sa fréquence d'utilisation.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer une probabilité de résiliation à partir de comportements historiques.\n- Thinking, en complément : interpréter le score dans le contexte client et proposer une intervention.\n- Agentic, en extension : déclencher une action autorisée. Un score de risque ne prouve pas la cause d'une résiliation.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-013",
+      "original_number": 13,
+      "title": "Scoring de défaillance des fournisseurs",
+      "situation_originale": "modélisation du risque financier ou logistique d'un partenaire clé à partir de ses indicateurs de santé.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer le risque de défaillance à partir des indicateurs et de l'historique.\n- Perception, si nécessaire : extraire les informations de documents financiers.\n- Thinking : confronter le score aux éléments qualitatifs et aux dépendances opérationnelles avant de proposer une suite.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-014",
+      "original_number": 14,
+      "title": "Maintenance prédictive industrielle",
+      "situation_originale": "prévision de la date de panne d'une pièce mécanique selon les séries temporelles de capteurs de vibration et de chaleur.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer un risque de panne ou une durée de vie restante à partir des séries de capteurs.\n- Thinking, en complément : comparer les options de maintenance avec les contraintes de production.\n- Agentic, en extension : ouvrir une intervention ou coordonner sa planification. Une date exacte de panne n'est pas garantie.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-015",
+      "original_number": 15,
+      "title": "Projection des flux de trésorerie (cash-flow)",
+      "situation_originale": "estimation des retards de paiement probables et modélisation des encaissements à quatre mois.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "creation",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer les encaissements et retards de paiement futurs.\n- Thinking, en complément : analyser les scénarios et leurs effets sur les besoins de trésorerie.\n- Creation, en complément : rédiger une note expliquant hypothèses et incertitudes ; un tableau de prévision seul ne nécessite pas ce mode.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-016",
+      "original_number": 16,
+      "title": "Estimation du délai de signature commerciale",
+      "situation_originale": "prédiction de la date de closing d'une opportunité dans le CRM pour fiabiliser le prévisionnel de fin de trimestre.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer la date probable de signature à partir des opportunités passées et présentes.\n- Thinking, en complément : interpréter les facteurs du dossier et les incertitudes.\n- Agentic, en extension : actualiser le CRM et coordonner le suivi ; une synchronisation fixe peut aussi suffire.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-017",
+      "original_number": 17,
+      "title": "Anticipation des départs de collaborateurs (turnover)",
+      "situation_originale": "détection des facteurs déclencheurs de démission pour cibler les actions de rétention RH.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "creation",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer un risque de départ à partir de données pertinentes et d'un historique.\n- Thinking, en complément : examiner des hypothèses et des actions possibles sans confondre corrélation et cause.\n- Creation, en complément : préparer une synthèse agrégée pour les RH. Le score ne démontre ni une intention individuelle ni un facteur déclencheur.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-018",
+      "original_number": 18,
+      "title": "Dimensionnement des équipes de support",
+      "situation_originale": "prévision du volume de sollicitations téléphoniques par tranche horaire selon la saisonnalité.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "n'est ajouté que si un système pilote et adapte son exécution."
+        }
+      ],
+      "explanation_originale": "- Prediction : prévoir le volume de sollicitations par créneau.\n- Thinking, en complément : examiner les compromis entre délai de réponse, effectif et contraintes de service.\n- Le calcul du planning peut relever d'un outil d'optimisation classique. Agentic n'est ajouté que si un système pilote et adapte son exécution.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-019",
+      "original_number": 19,
+      "title": "Scoring d'octroi de crédit B2B",
+      "situation_originale": "évaluation de la probabilité de défaut de paiement avant d'accorder des facilités de caisse à un nouveau client.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer une probabilité de défaut à partir de données historiques.\n- Thinking, en complément : examiner le dossier et expliquer les éléments pertinents pour la décision.\n- L'octroi ne découle pas automatiquement du score : la décision et son éventuelle exécution sont des étapes distinctes.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-020",
+      "original_number": 20,
+      "title": "Prédiction de la consommation d'énergie d'un parc immobilier",
+      "situation_originale": "modélisation des besoins thermiques et électriques en croisant météo et taux d'occupation.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer les consommations selon la météo, l'occupation et les historiques.\n- Thinking, en complément : comparer les scénarios d'exploitation et expliquer les écarts.\n- Agentic, en extension : ajuster des consignes dans les limites autorisées ; une régulation classique peut suffire.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-021",
+      "original_number": 21,
+      "title": "Traitement automatisé des factures",
+      "situation_originale": "extraction sémantique des montants HT/TTC, dates d'échéance et numéros SIRET pour saisie comptable sans intervention humaine.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "si délégué"
+        }
+      ],
+      "explanation_originale": "- Perception : lire la facture et extraire montants, dates et identifiants.\n- Thinking, si nécessaire : interpréter les libellés et résoudre une incohérence entre les champs.\n- Agentic, si délégué : vérifier les conditions de traitement et saisir les données avec des outils. Un connecteur ou une règle fixe peut réaliser la saisie sans agent.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-022",
+      "original_number": 22,
+      "title": "Aiguillage automatique des tickets de support",
+      "situation_originale": "analyse du texte de la réclamation pour affecter le ticket au bon service (technique, facturation, résiliation).",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "si délégué"
+        }
+      ],
+      "explanation_originale": "- Prediction : attribuer au ticket une catégorie ou une équipe cible.\n- Thinking, si nécessaire : interpréter une demande ambiguë à partir des procédures et du contexte.\n- Agentic, si délégué : affecter le ticket et suivre le résultat. Un routage à règles peut suffire lorsque les critères sont explicites.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-023",
+      "original_number": 23,
+      "title": "Parsing de CV (recrutement)",
+      "situation_originale": "extraction systématique des années d'expérience, intitulés de postes et compétences clés pour pré-remplir l'ATS.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "intervient seulement si le système coordonne et adapte les opérations."
+        }
+      ],
+      "explanation_originale": "- Perception : lire le CV et extraire les informations présentes.\n- Thinking, si nécessaire : interpréter les intitulés et distinguer compétence déclarée et expérience attestée.\n- Le préremplissage de l'ATS peut être un import classique ; Agentic intervient seulement si le système coordonne et adapte les opérations.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-024",
+      "original_number": 24,
+      "title": "Audit de conformité des contrats",
+      "situation_originale": "extraction et catégorisation des clauses de responsabilité, de pénalité ou de résiliation dans un référentiel juridique.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Perception : lire les contrats et en extraire les clauses.\n- Prediction : attribuer une catégorie aux clauses selon un référentiel.\n- Thinking : examiner leur sens et leur cohérence avec les exigences de conformité. Extraire une clause ne constitue pas à lui seul un audit.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-025",
+      "original_number": 25,
+      "title": "Ventilation des notes de frais",
+      "situation_originale": "lecture automatique des tickets de caisse scannés et affectation automatique au bon compte de charge.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        }
+      ],
+      "explanation_originale": "- Perception : lire les justificatifs scannés.\n- Prediction : attribuer une catégorie de dépense ou un compte probable.\n- Thinking, si nécessaire : interpréter un cas ambigu selon la politique comptable. L'affectation peut aussi reposer sur des règles classiques.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-026",
+      "original_number": 26,
+      "title": "Analyse thématique des verbatims clients",
+      "situation_originale": "regroupement sémantique de milliers d'avis post-achat en grappes thématiques (qualité, prix, livraison).",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon l'approche"
+        },
+        {
+          "capability": "creation",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Thinking : interpréter les avis, rapprocher les idées et nommer les thèmes émergents.\n- Prediction, selon l'approche : affecter les avis à des thèmes prédéfinis ou les regrouper selon leur similarité.\n- Creation, en complément : rédiger une synthèse illustrée par les verbatims. Le choix des modes dépend de thèmes déjà connus ou à découvrir.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-027",
+      "original_number": 27,
+      "title": "Tri automatique des boîtes emails génériques",
+      "situation_originale": "classification des messages entrants (contact@) entre spams, candidatures, devis et urgences opérationnelles.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : attribuer une catégorie aux messages entrants.\n- Thinking, si nécessaire : interpréter une urgence ou un message mêlant plusieurs motifs.\n- Agentic, en extension : router les messages ou lancer une réponse autorisée ; les règles de messagerie peuvent réaliser une partie du tri.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-028",
+      "original_number": 28,
+      "title": "Extraction de données de bilans financiers",
+      "situation_originale": "récupération structurée des ratios financiers clés à partir de rapports annuels en format PDF non standardisés.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "creation",
+          "condition": "n'est ajouté que si une synthèse rédigée est demandée."
+        }
+      ],
+      "explanation_originale": "- Perception : extraire les chiffres, unités, périodes et tableaux des rapports.\n- Thinking, si nécessaire : rapprocher les données et interpréter leur périmètre avant de calculer les ratios.\n- Les calculs peuvent être déterministes. Creation n'est ajouté que si une synthèse rédigée est demandée.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-029",
+      "original_number": 29,
+      "title": "Indexation automatique d'une photothèque d'entreprise (DAM)",
+      "situation_originale": "attribution automatique d'étiquettes et de catégories aux médias selon leur contenu visuel.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon le dispositif"
+        },
+        {
+          "capability": "creation",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Perception : reconnaître les éléments visibles dans les images.\n- Prediction, selon le dispositif : affecter les médias aux catégories de la photothèque.\n- Creation, en complément : rédiger des légendes. La détection visuelle et la classification peuvent être assurées par un même système.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-030",
+      "original_number": 30,
+      "title": "Reconnaissance de l'intention client",
+      "situation_originale": "identification de l'objectif d'une requête formulée en langage naturel pour alimenter un arbre de décision.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : attribuer une intention parmi des catégories définies.\n- Thinking, si nécessaire : interpréter une demande ambiguë ou demander une précision.\n- Agentic, en extension : exécuter l'étape adaptée avec des outils ; alimenter un arbre de décision fixe ne suffit pas à démontrer un fonctionnement agentique.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-031",
+      "original_number": 31,
+      "title": "Vente croisée (cross-selling) sur portail B2B",
+      "situation_originale": "recommandation d'articles complémentaires dans le panier d'achat selon les commandes de clients similaires.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer la pertinence des produits à partir des commandes et comportements comparables.\n- Thinking, en complément : vérifier la compatibilité avec les contraintes du client.\n- Agentic, en extension : intervenir dans le parcours d'achat ; afficher une recommandation peut être une intégration classique.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-032",
+      "original_number": 32,
+      "title": "Matching offre-candidat",
+      "situation_originale": "ordonnancement des profils d'une CVthèque par ordre de pertinence face aux prérequis d'un poste ouvert.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "selon l'approche"
+        }
+      ],
+      "explanation_originale": "- Perception, si nécessaire : lire les CV non structurés.\n- Prediction : calculer ou attribuer une pertinence par rapport aux prérequis.\n- Thinking, selon l'approche : comparer les expériences et justifier les écarts. Le classement est une aide, pas une preuve de compétence des candidats.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-033",
+      "original_number": 33,
+      "title": "Priorisation des prospects commerciaux (lead scoring)",
+      "situation_originale": "classement quotidien des leads entrants selon leur potentiel d'achat pour orienter les appels des commerciaux.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer le potentiel d'achat des prospects et produire un score.\n- Thinking, en complément : ajuster la priorité selon le contexte commercial et les contraintes de l'équipe.\n- Agentic, en extension : mettre à jour les dossiers et organiser le suivi ; un tri automatique de scores peut suffire.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-034",
+      "original_number": 34,
+      "title": "Recommandation de parcours de formation (L&D)",
+      "situation_originale": "suggestion de modules personnalisés selon le poste, l'évaluation annuelle et les compétences cibles.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon l'approche"
+        },
+        {
+          "capability": "creation",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Thinking : comparer besoins, prérequis, compétences cibles et contraintes du salarié.\n- Prediction, selon l'approche : estimer la pertinence des modules à partir d'historiques de parcours.\n- Creation, en complément : expliquer la proposition. Agentic, en extension : coordonner une inscription validée ; tous les modes ne sont pas nécessaires à chaque solution.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-035",
+      "original_number": 35,
+      "title": "Optimisation des tournées de livraison",
+      "situation_originale": "ordonnancement dynamique des étapes d'un livreur selon les créneaux prioritaires et la circulation.",
+      "primary_capability": null,
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Le scénario de base peut être réalisé sans IA; les modes cités sont des extensions conditionnelles.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "intervient si le système adapte et coordonne les actions face aux événements."
+        }
+      ],
+      "explanation_originale": "- Prediction, si nécessaire : estimer les temps de trajet et la demande à partir de données historiques.\n- Thinking, en complément : examiner les compromis et expliquer une proposition de tournée.\n- Le calcul d'itinéraire peut relever de l'optimisation classique. Agentic intervient si le système adapte et coordonne les actions face aux événements.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-036",
+      "original_number": 36,
+      "title": "Hiérarchisation du backlog de développement",
+      "situation_originale": "classement des tickets d'anomalies logicielles selon le nombre d'utilisateurs impactés et la criticité financière.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "creation",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Thinking : comparer les impacts et proposer une priorité argumentée.\n- Prediction, si nécessaire : estimer des impacts qui ne sont pas déjà connus.\n- Un classement obtenu par une formule de criticité explicite peut se passer d'IA. Creation, en complément : rédiger la justification.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-037",
+      "original_number": 37,
+      "title": "Suggestion de réponses pour base de connaissances",
+      "situation_originale": "proposition en temps réel des trois articles de procédure les plus pertinents pour aider un opérateur.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon l'approche"
+        },
+        {
+          "capability": "creation",
+          "condition": "n'est ajouté que si le système rédige une réponse ou une explication."
+        }
+      ],
+      "explanation_originale": "- Thinking : rapprocher la demande de la connaissance disponible et comparer les réponses pertinentes.\n- Prediction, selon l'approche : classer les articles par pertinence.\n- La recherche documentaire seule n'impose pas un raisonnement. Creation n'est ajouté que si le système rédige une réponse ou une explication.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-038",
+      "original_number": 38,
+      "title": "Attribution intelligente de dossiers contentieux",
+      "situation_originale": "affectation prioritaire des dossiers juridiques complexes aux experts disposant de la meilleure disponibilité et spécialité.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon l'approche"
+        },
+        {
+          "capability": "agentic",
+          "condition": "si délégué"
+        }
+      ],
+      "explanation_originale": "- Thinking : comparer complexité, spécialité et disponibilité pour proposer une affectation.\n- Prediction, selon l'approche : estimer la charge ou la pertinence d'un expert à partir d'un historique.\n- Agentic, si délégué : attribuer le dossier et suivre sa prise en charge. Des règles d'affectation peuvent aussi suffire.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-039",
+      "original_number": 39,
+      "title": "Arbitrage d'investissements projets",
+      "situation_originale": "ordonnancement de projets internes selon un score croisant ROI estimé, alignement stratégique et risque opérationnel.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "creation",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Thinking : comparer les projets, leurs hypothèses et les compromis stratégiques.\n- Prediction, si nécessaire : estimer revenus, coûts ou risques futurs.\n- Un score pondéré sur des valeurs connues peut être calculé sans IA. Creation, en complément : rédiger la recommandation et ses limites.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-040",
+      "original_number": 40,
+      "title": "Tarification dynamique (pricing)",
+      "situation_originale": "recommandation d'ajustements de prix de vente selon le niveau des stocks, la saisonnalité et les tarifs des concurrents.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer la demande ou les ventes pour différents niveaux de prix.\n- Thinking, en complément : confronter la recommandation aux objectifs et contraintes commerciales.\n- Le prix peut être calculé par optimisation ou règles classiques. Agentic, en extension : adapter et publier les prix dans un périmètre autorisé.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-041",
+      "original_number": 41,
+      "title": "Contrôle qualité sur chaîne de production",
+      "situation_originale": "détection visuelle par caméra industrielle de défauts d'usinage, rayures ou bavures sur des pièces manufacturées.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon l'architecture"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Perception : reconnaître les défauts visibles sur les images des pièces.\n- Prediction, selon l'architecture : attribuer une classe de conformité ou un score de défaut.\n- Agentic, en extension : piloter un traitement de la pièce ; une commande fixe d'éjection peut fonctionner sans agent.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-042",
+      "original_number": 42,
+      "title": "Transcription automatique d'entretiens et réunions",
+      "situation_originale": "conversion en texte temps réel d'un flux audio avec identification distincte des différents locuteurs.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en extension"
+        },
+        {
+          "capability": "creation",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Perception : convertir l'audio en texte et distinguer les locuteurs.\n- Thinking, en extension : interpréter les échanges et en dégager les décisions.\n- Creation, en extension : rédiger un compte rendu. Ces deux extensions ne sont pas nécessaires à une simple transcription.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-043",
+      "original_number": 43,
+      "title": "Contrôle d'accès et biométrie",
+      "situation_originale": "authentification sécurisée par reconnaissance faciale à l'entrée de sites sensibles ou de centres de données.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon le dispositif"
+        }
+      ],
+      "explanation_originale": "- Perception : reconnaître les caractéristiques du visage dans l'image.\n- Prediction, selon le dispositif : estimer la correspondance avec une identité de référence.\n- L'ouverture d'accès peut être une règle classique. Reconnaître un visage ne garantit pas à lui seul une authentification sécurisée.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-044",
+      "original_number": 44,
+      "title": "Recherche visuelle de pièces détachées",
+      "situation_originale": "identification d'une référence mécanique dans le catalogue à partir d'une photo prise sur le terrain par un technicien.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon l'approche"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        }
+      ],
+      "explanation_originale": "- Perception : identifier les caractéristiques visibles de la pièce photographiée.\n- Prediction, selon l'approche : classer ou rapprocher la pièce des références du catalogue.\n- Thinking, si nécessaire : comparer les références candidates avec les contraintes techniques avant de proposer un choix.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-045",
+      "original_number": 45,
+      "title": "Inventaire automatisé en entrepôt",
+      "situation_originale": "comptage de palettes et lecture des codes-barres en hauteur par des caméras embarquées sur des chariots ou des drones.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Perception : reconnaître et compter les palettes et lire leurs identifiants.\n- Thinking, en complément : examiner les écarts entre inventaire observé et attendu.\n- Agentic, en extension : coordonner une nouvelle observation ou une mise à jour ; lire un code-barres peut aussi utiliser une technologie classique.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-046",
+      "original_number": 46,
+      "title": "Vérification du port des EPI",
+      "situation_originale": "détection automatique en temps réel du port des casques, gilets et gants de sécurité sur les chantiers.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon le système"
+        },
+        {
+          "capability": "agentic",
+          "condition": "intervient si le système coordonne et adapte une réponse opérationnelle."
+        }
+      ],
+      "explanation_originale": "- Perception : reconnaître les personnes et les équipements visibles.\n- Prediction, selon le système : attribuer une classe conforme ou non conforme.\n- L'émission d'une alerte peut être une règle fixe. Agentic intervient si le système coordonne et adapte une réponse opérationnelle.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-047",
+      "original_number": 47,
+      "title": "Numérisation d'archives manuscrites",
+      "situation_originale": "reconnaissance de caractères (OCR avancé) sur d'anciens documents d'ingénierie ou registres fonciers.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "creation",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Perception : reconnaître les caractères et restituer le texte des archives.\n- Thinking, si nécessaire : interpréter une abréviation ou rapprocher des passages pour proposer une lecture.\n- Creation, en extension : rédiger une notice ou une synthèse. Les restitutions incertaines doivent rester identifiables.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-048",
+      "original_number": 48,
+      "title": "Analyse acoustique de moteurs",
+      "situation_originale": "écoute des fréquences sonores émises par des turbines ou compresseurs pour repérer un frottement anormal.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Perception : interpréter les signaux sonores du moteur.\n- Prediction : estimer si le signal correspond à un fonctionnement habituel ou à une anomalie.\n- Thinking, en complément : rapprocher le signal d'autres observations pour proposer une vérification ; une anomalie sonore n'établit pas seule un diagnostic.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-049",
+      "original_number": 49,
+      "title": "Reconnaissance automatique de plaques d'immatriculation (LPR)",
+      "situation_originale": "gestion automatisée de l'ouverture des barrières de quais logistiques pour les transporteurs.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Perception : lire les caractères de la plaque dans l'image.\n- La comparaison avec une liste d'accès et l'ouverture de la barrière peuvent être réalisées par règles classiques.\n- Agentic, en extension : gérer une exception en consultant d'autres systèmes et en coordonnant une action autorisée.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-050",
+      "original_number": 50,
+      "title": "Compréhension vocale au standard (voicebot)",
+      "situation_originale": "capture de la voix d'un client au téléphone pour retranscrire sa demande avant de transférer l'appel.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "si délégué"
+        }
+      ],
+      "explanation_originale": "- Perception : transcrire la demande exprimée oralement.\n- Prediction : attribuer une intention ou une catégorie d'appel.\n- Thinking, si nécessaire : clarifier la demande. Agentic, si délégué : choisir et effectuer le transfert avec des outils ; un menu fixe peut aussi suffire.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-051",
+      "original_number": 51,
+      "title": "Détection de fraudes aux transactions bancaires",
+      "situation_originale": "blocage immédiat d'un paiement présentant des incohérences géographiques ou de montants.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "intervient si le système coordonne une investigation ou une réponse adaptée. Une alerte ne prouve pas une fraude."
+        }
+      ],
+      "explanation_originale": "- Prediction : estimer un risque de fraude ou repérer un comportement atypique.\n- Thinking, en complément : rapprocher les indices et expliquer une alerte.\n- Un blocage par seuil est une règle classique. Agentic intervient si le système coordonne une investigation ou une réponse adaptée. Une alerte ne prouve pas une fraude.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-052",
+      "original_number": 52,
+      "title": "Repérage de faux documents administratifs",
+      "situation_originale": "contrôle d'authenticité de pièces d'identité, faux avis d'imposition ou attestations falsifiées lors d'un onboarding.",
+      "primary_capability": "perception",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon le dispositif"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Perception : lire les documents et examiner leurs caractéristiques visuelles.\n- Prediction, selon le dispositif : estimer une probabilité de falsification ou attribuer une catégorie suspecte.\n- Thinking, en complément : croiser les incohérences avec les sources disponibles. Le résultat est un signal à vérifier, pas une preuve automatique de faux.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-053",
+      "original_number": 53,
+      "title": "Surveillance des menaces de cybersécurité (SIEM/SOC)",
+      "situation_originale": "détection de comportements anormaux sur le réseau interne (connexion suspecte de nuit, exfiltration de données).",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : repérer des événements atypiques dans les journaux et comportements réseau.\n- Thinking : rapprocher les événements pour proposer une hypothèse d'incident.\n- Agentic, en extension : coordonner une remédiation autorisée. Certaines détections reposent sur des signatures et règles sans IA.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-054",
+      "original_number": 54,
+      "title": "Contrôle des doublons et anomalies de notes de frais",
+      "situation_originale": "signalement automatique de doubles remboursements ou de week-ends déclarés par erreur.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Prédiction uniquement pour les anomalies apprises; les doublons exacts et dates interdites peuvent rester des règles.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon l'approche"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        }
+      ],
+      "explanation_originale": "- Perception, si nécessaire : lire les justificatifs.\n- Prediction, selon l'approche : repérer des dépenses atypiques.\n- Thinking, si nécessaire : interpréter le contexte. Les doublons exacts et dates interdites peuvent être détectés par règles classiques.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-055",
+      "original_number": 55,
+      "title": "Alerte précoce d'incident d'infrastructure IT",
+      "situation_originale": "identification de dérives silencieuses (saturation mémoire, temps de réponse API) avant la panne de service.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "en complément"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Prediction : repérer une dérive inhabituelle ou estimer un risque d'incident.\n- Thinking, en complément : relier plusieurs indicateurs pour rechercher une explication.\n- Agentic, en extension : coordonner une investigation ou une remédiation. Une alerte fondée sur un seuil fixe ne nécessite pas d'IA.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-056",
+      "original_number": 56,
+      "title": "Détection de signaux de rupture relationnelle client",
+      "situation_originale": "identification d'un ton d'agacement ou de menaces de contentieux dans les courriers pour intervention d'urgence.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "prediction",
+          "condition": "selon l'approche"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Thinking : interpréter le ton, les formulations et le contexte relationnel.\n- Prediction, selon l'approche : attribuer une catégorie d'insatisfaction ou un score de risque.\n- Perception, si nécessaire : lire un courrier scanné. Agentic, en extension : organiser une escalade autorisée ; un ton négatif n'établit pas une rupture future.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-057",
+      "original_number": 57,
+      "title": "Prévention des fuites de données confidentielles (DLP)",
+      "situation_originale": "blocage de pièces jointes sortantes contenant des numéros de carte bancaire ou des secrets industriels.",
+      "primary_capability": "reasoning",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Classement proposé si le besoin est de comprendre la sensibilité du contenu; une catégorisation supervisée relèverait de la prédiction et un motif fixe d’une règle.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "prediction",
+          "condition": "alternatives selon le dispositif; vérifier le contexte"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "alternatives selon le dispositif; vérifier le contexte"
+        },
+        {
+          "capability": "agentic",
+          "condition": "est une extension de coordination, pas une conséquence automatique du blocage."
+        }
+      ],
+      "explanation_originale": "- Perception, si nécessaire : lire les pièces jointes scannées.\n- Prediction ou Thinking, selon le dispositif : classer un contenu sensible ou interpréter son contexte.\n- Les numéros au format connu et le blocage par règle peuvent être traités sans IA. Agentic est une extension de coordination, pas une conséquence automatique du blocage.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-058",
+      "original_number": 58,
+      "title": "Identification de la démarque inconnue en magasin",
+      "situation_originale": "détection d'écarts anormaux entre les ventes scannées et les flux de sorties physiques.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Prediction : repérer des écarts inhabituels entre ventes et sorties.\n- Perception, si nécessaire : interpréter des images pour estimer les flux physiques.\n- Thinking : rapprocher les indices et examiner des explications alternatives. Un écart ne démontre pas un vol.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-059",
+      "original_number": 59,
+      "title": "Détection d'abus de marché ou délits d'initiés",
+      "situation_originale": "analyse des volumes d'ordres financiers atypiques précédant l'annonce d'une acquisition.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "en complément"
+        }
+      ],
+      "explanation_originale": "- Prediction : repérer des volumes ou comportements de marché atypiques.\n- Thinking : croiser la chronologie, les événements et les informations disponibles pour qualifier une alerte.\n- Creation, en complément : rédiger un dossier d'analyse. Un signal statistique ne suffit pas à établir un délit.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-060",
+      "original_number": 60,
+      "title": "Repérage d'erreurs de dosage ou d'emballage",
+      "situation_originale": "signalement immédiat d'un colis présentant un poids anormal sur une ligne de préparation de commandes.",
+      "primary_capability": "prediction",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Prédiction si une anomalie est estimée; un simple poids hors tolérance reste un seuil classique.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "n'est ajouté que si le système analyse la cause possible."
+        }
+      ],
+      "explanation_originale": "- Prediction, si nécessaire : repérer des poids atypiques par rapport à une distribution de référence.\n- Perception, si nécessaire : examiner visuellement le dosage ou l'emballage.\n- Un poids hors tolérance peut être détecté par un seuil classique. Thinking n'est ajouté que si le système analyse la cause possible.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-061",
+      "original_number": 61,
+      "title": "Agent d'intégration (onboarding) RH",
+      "situation_originale": "création des accès informatiques, commande du PC, génération du contrat et envoi des accès e-learning sans intervention manuelle.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "agentic",
+          "condition": "si le système pilote réellement le processus"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "creation",
+          "condition": "si nécessaire"
+        }
+      ],
+      "explanation_originale": "- Agentic, si le système pilote réellement le processus : coordonner les outils RH, IT et formation et gérer les exceptions dans un périmètre autorisé.\n- Thinking, si nécessaire : déterminer les étapes selon le poste et le contexte.\n- Creation, si nécessaire : préparer les documents. Un onboarding entièrement prédéfini peut être une automatisation classique ; les validations restent à définir.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-062",
+      "original_number": 62,
+      "title": "Résolution autonome de litiges e-commerce simples",
+      "situation_originale": "agent qui contrôle le statut de livraison auprès du transporteur, recrédite le client et envoie la confirmation.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Thinking : examiner livraison, demande et conditions de remboursement.\n- Agentic : consulter les outils, exécuter un remboursement autorisé et vérifier son résultat.\n- Creation : rédiger la confirmation. Si toutes les décisions sont des règles fixes, une automatisation classique peut suffire.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-063",
+      "original_number": 63,
+      "title": "Clôture comptable automatisée",
+      "situation_originale": "orchestrateur qui extrait les balances de trois filiales, lance la réconciliation inter-compagnies et génère les écritures d'ajustement.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Thinking : examiner les écarts de rapprochement et proposer leur traitement.\n- Creation : préparer les écritures et, si demandé, un commentaire de clôture.\n- Agentic : coordonner les systèmes et exécuter les étapes autorisées. L'extraction et la réconciliation standard peuvent relever de traitements comptables classiques.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-064",
+      "original_number": 64,
+      "title": "Agent de veille et mise à jour de CRM",
+      "situation_originale": "agent qui détecte la nomination d'un nouveau dirigeant sur le web et met à jour automatiquement la fiche prospect dans Salesforce.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "agentic",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "creation",
+          "condition": "si demandé"
+        }
+      ],
+      "explanation_originale": "- Agentic : rechercher des sources, vérifier la cible et mettre à jour le CRM avec des outils.\n- Thinking : rapprocher les identités, interpréter la nomination et vérifier la cohérence des sources.\n- Perception, si nécessaire : lire une annonce scannée. Creation, si demandé : rédiger une note sur la nomination.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-065",
+      "original_number": 65,
+      "title": "Remédiation automatique d'incidents informatiques",
+      "situation_originale": "agent d'exploitation qui détecte un plantage de serveur web, relance le service, purge le cache et consigne l'action dans un ticket.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "prediction",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Prediction, si nécessaire : repérer l'incident à partir de signaux atypiques.\n- Thinking : proposer une cause et choisir une remédiation adaptée.\n- Agentic : exécuter les opérations autorisées, vérifier le rétablissement et consigner l'action. Creation : rédiger le ticket ; un redémarrage fixe peut se passer d'IA.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-066",
+      "original_number": 66,
+      "title": "Planification de réunions multipartites",
+      "situation_originale": "agent conversationnel qui négocie par email avec plusieurs clients externes pour caler le créneau commun optimal dans Google Calendar.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Thinking : comparer les disponibilités et interpréter les préférences ou réponses ambiguës.\n- Creation : rédiger les messages de proposition.\n- Agentic : consulter les calendriers, échanger et créer la réunion dans le périmètre autorisé. Un calcul de créneau commun seul ne nécessite pas d'IA.",
+      "classical_alternative": false,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-067",
+      "original_number": 67,
+      "title": "Traitement automatisé des commandes d'achat",
+      "situation_originale": "validation des devis selon la politique de dépenses, création du bon de commande dans l'ERP et envoi au fournisseur.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Perception, si nécessaire : lire les devis.\n- Thinking, si nécessaire : interpréter leur adéquation à la politique de dépenses.\n- Creation : préparer le bon de commande, si sa rédaction est demandée. Agentic : coordonner les outils et l'envoi autorisé ; des règles et modèles fixes peuvent aussi suffire.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-068",
+      "original_number": 68,
+      "title": "Enrichissement et synchronisation de leads",
+      "situation_originale": "workflow qui interroge l'API de l'INSEE à l'arrivée d'un formulaire de contact, ajoute les données financières et notifie le commercial sur Slack.",
+      "primary_capability": null,
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Le scénario de base peut être réalisé sans IA; les modes cités sont des extensions conditionnelles.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "en extension"
+        },
+        {
+          "capability": "agentic",
+          "condition": "en extension"
+        }
+      ],
+      "explanation_originale": "- Le cas décrit peut être entièrement classique : appeler l'API INSEE, copier les champs et envoyer une notification selon des règles.\n- Thinking, en extension : résoudre un rapprochement d'entreprise ambigu ou interpréter les informations.\n- Agentic, en extension : choisir et coordonner des recherches complémentaires face aux données manquantes. L'API INSEE seule ne garantit pas la disponibilité des données financières attendues.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    },
+    {
+      "id": "UC-069",
+      "original_number": 69,
+      "title": "Agent de test logiciel autonome",
+      "situation_originale": "agent qui navigue sur une plateforme applicative, remplit des formulaires, détecte les anomalies d'affichage et rédige les rapports de bug.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "agentic",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "perception",
+          "condition": "présente dans la configuration décrite"
+        },
+        {
+          "capability": "creation",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Thinking : déterminer les scénarios de test et les résultats attendus.\n- Agentic : naviguer, exécuter les essais et adapter les actions aux résultats.\n- Perception : examiner les écrans pour repérer les anomalies visuelles. Creation : rédiger les rapports ; des scripts fixes peuvent suffire pour des parcours connus.",
+      "classical_alternative": false,
+      "multicapability_candidate": true
+    },
+    {
+      "id": "UC-070",
+      "original_number": 70,
+      "title": "Renouvellement automatique de dossiers de conformité (KYC)",
+      "situation_originale": "agent interrogeant automatiquement les registres légaux pour récupérer les extraits Kbis à jour et actualiser les dossiers clients.",
+      "primary_capability": "agentic",
+      "classification_status": "proposition_pedagogique",
+      "rationale": "Capacité dominante du livrable décrit; les contributions et conditions de la pièce jointe restent conservées.",
+      "contributions": [
+        {
+          "capability": "agentic",
+          "condition": "si le système adapte le traitement"
+        },
+        {
+          "capability": "perception",
+          "condition": "si nécessaire"
+        },
+        {
+          "capability": "reasoning",
+          "condition": "présente dans la configuration décrite"
+        }
+      ],
+      "explanation_originale": "- Agentic, si le système adapte le traitement : interroger les registres, résoudre les exceptions et actualiser les dossiers autorisés.\n- Perception, si nécessaire : lire les documents récupérés.\n- Thinking : vérifier leur correspondance avec l'entreprise et repérer les incohérences. Un téléchargement périodique prédéfini peut être classique ; actualiser un Kbis ne réalise pas tout le contrôle KYC.",
+      "classical_alternative": true,
+      "multicapability_candidate": false
+    }
+  ]
+}

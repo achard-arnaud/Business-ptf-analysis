@@ -1,3 +1,4 @@
 Markdown>=3.6,<4
 playwright>=1.48,<2
 pypdf>=5,<7
+jsonschema>=4.20,<5
