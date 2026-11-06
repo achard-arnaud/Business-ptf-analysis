@@ -3,11 +3,9 @@
   "template_class": "pedagogique",
   "template_type": "ai-enterprise-learning-six-page",
   "template_source_repository": "achard-arnaud/skills-notes-and-storytelling",
-  "template_source_commit": "eecfb6f690b2ce60f39193a376f625c71d8eb0a1",
+  "template_source_commit": "d24b2611eb0e6cb354fcde2e8b6754645a73e2b8",
   "template_path": "templates/ai-enterprise-learning-six-page.md",
   "skill_path": "skills/enterprise-ai-learning/SKILL.md",
-  "binding_contract": "contracts/enterprise-ai-learning-binding.schema.json",
-  "semantic_scaffold": "contracts/enterprise-ai-learning-scaffold.schema.json",
   "status": "candidate",
   "audience": "beginner",
   "alignment_status": "proposed_pending_syllabus",
@@ -81,17 +79,17 @@
     "G10-candidate-ready"
   ],
   "checkpoint_path": "checkpoints/00-g0-g1-prediction.md",
-  "use_case_catalog_schema_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/contracts/pedagogical-use-case-catalog.schema.json",
-  "scaffold_template_url": "https://github.com/achard-arnaud/skills-notes-and-storytelling/blob/8565f785e5a47076a56a5b65fc140d1fbf6168f0/templates/pedagogical-six-page-scaffold.json",
   "handoff_status": "ready_for_human_review",
   "last_checkpoint": "checkpoints/07-final-review.md",
   "rendering": {
-    "profile": "pedagogical-six-page",
-    "renderer": "renderers/pedagogical/render.py",
-    "upstream_lock": "renderers/pedagogical/upstream-lock.json",
-    "skill_procedure": "skills/enterprise-ai-learning/references/composition-rendering.md",
-    "status": "preview",
+    "renderer": "renderers/pedagogical/landscape.py",
+    "css": "renderers/pedagogical/landscape.css",
+    "scaffold": "renderers/pedagogical/landscape.html",
+    "orientation": "landscape",
     "expected_pages_per_module": 6,
-    "version": "0.3.0"
-  }
+    "status": "candidate"
+  },
+  "content_contract": "contracts/pedagogical-sheet.schema.json",
+  "canonical_perception": "perception.sheet.json",
+  "catalog": "use-cases.catalog.json"
 }

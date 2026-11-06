@@ -5,8 +5,8 @@ on:
       - 'renderers/pedagogical/**'
       - 'learning/enterprise-ai/**'
       - 'skills/**'
-      - 'contracts/pedagogical-render-binding.schema.json'
-      - 'tests/test_pedagogical_renderer.py'
+      - 'contracts/pedagogical*.schema.json'
+      - 'tests/test_pedagogical*.py'
       - '.github/workflows/pedagogical-render.yml'
   push:
     branches: [dev, main]
@@ -14,8 +14,8 @@ on:
       - 'renderers/pedagogical/**'
       - 'learning/enterprise-ai/**'
       - 'skills/**'
-      - 'contracts/pedagogical-render-binding.schema.json'
-      - 'tests/test_pedagogical_renderer.py'
+      - 'contracts/pedagogical*.schema.json'
+      - 'tests/test_pedagogical*.py'
       - '.github/workflows/pedagogical-render.yml'
 permissions:
   contents: read
@@ -38,22 +38,14 @@ jobs:
           else
             python -m playwright install --with-deps chromium
           fi
-      - name: Test content, upstream integrity, tampering and overflow rejection
+      - name: Test content, source fidelity, four quadrants and negative overflow
         env:
           PEDAGOGICAL_BROWSER_TEST: '1'
-        run: python -m unittest discover -s tests -p test_pedagogical_renderer.py -v
-      - name: Render all six modules on PR and dev
-        if: github.ref != 'refs/heads/main'
+        run: python -m unittest discover -s tests -p 'test_pedagogical*.py' -v
+      - name: Render rich Perception as six landscape pages
         run: |
-          python renderers/pedagogical/render.py learning/enterprise-ai --out /tmp/pedagogical-render
-          for module in prediction perception creation reasoning agentic multicapability; do
-            python renderers/pedagogical/verify.py "learning/enterprise-ai/$module.md" "/tmp/pedagogical-render/$module"
-          done
-      - name: Generate and verify Perception from main
-        if: github.ref == 'refs/heads/main'
-        run: |
-          python renderers/pedagogical/render.py learning/enterprise-ai/perception.md --out /tmp/pedagogical-render
-          python renderers/pedagogical/verify.py learning/enterprise-ai/perception.md /tmp/pedagogical-render/perception
+          python renderers/pedagogical/landscape.py learning/enterprise-ai/perception.sheet.json --out /tmp/pedagogical-render/perception
+          python renderers/pedagogical/landscape.py learning/enterprise-ai/perception.sheet.json --out /tmp/pedagogical-render/perception --verify
       - uses: actions/upload-artifact@v4
         if: always()
         with:
