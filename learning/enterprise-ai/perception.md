@@ -32,9 +32,9 @@ Force × Opportunité
 
 Volume documentaire récurrent + demande de traitement plus rapide.
 
-**Mr. Cooper — Pyro.** Le retour publié en 2023 annonce 932 millions de pages de prêts traitées la première année et une classification dépassant 90 % de justesse. Il s’agit d’un résultat déclaré sur ce dispositif, pas d’une garantie sur chaque champ extrait. [S3]
+**Mr. Cooper — Pyro.** Le retour de 2023 annonce 932 millions de pages de prêts traitées la première année et plus de 90 % de justesse en classification. Résultat déclaré, spécifique au dispositif; ce n’est pas l’exactitude de chaque champ extrait. [S3]
 
-Réutiliser un fonds documentaire pour changer l’échelle du service; vérifier la couverture du besoin avant de copier les chiffres.
+Changer l’échelle du service avec un fonds documentaire; vérifier la couverture avant de transposer les chiffres.
 
 ### Défensive
 
@@ -44,7 +44,7 @@ Critères qualité et images de référence + coût des défauts qui échappent 
 
 **BMW — AIQX.** Des caméras et capteurs analysent l’assemblage; les équipes reçoivent les écarts. L’entreprise décrit aussi un contrôle acoustique à Dingolfing. Le déploiement est documenté, sans gain financier chiffré retenu ici. [S4]
 
-Renforcer une barrière de contrôle existante; mesurer surtout les défauts manqués et les fausses alertes.
+Renforcer le contrôle existant; mesurer défauts manqués et fausses alertes.
 
 ### Opportuniste
 
@@ -54,7 +54,7 @@ Couverture interne insuffisante des langues + briques de lecture disponibles che
 
 **Workday Expenses.** Le partenariat avec Google Cloud étend en 2021 la lecture multilingue des reçus, notamment au français, à l’allemand et à l’espagnol. C’est une capacité intégrée au produit; aucun ROI local n’est extrapolé. [S5]
 
-Acheter une brique éprouvée pour combler une limite, puis tester ses erreurs sur les reçus réellement utilisés.
+Combler une limite avec une brique éprouvée; tester ses erreurs sur les reçus réels.
 
 ### Préservation
 
@@ -64,7 +64,7 @@ Interprétation incertaine d’un signal + préjudice possible pour une personne
 
 **Microsoft — analyse faciale.** En 2022, Microsoft annonce le retrait de l’inférence générale d’émotions, en soulignant les limites de généralisation et les risques d’usage. C’est un exemple de retrait prudent, pas un succès d’automatisation. [S6]
 
-Réduire le périmètre ou renoncer quand le signal ne permet pas de justifier la décision.
+Restreindre ou renoncer quand le signal ne justifie pas la décision.
 
 **Frontière utile :** lire une clause relève de la perception; juger sa conformité mobilise aussi le raisonnement. Un code-barres ou un formulaire structuré peut être traité sans IA. [S2]
 
