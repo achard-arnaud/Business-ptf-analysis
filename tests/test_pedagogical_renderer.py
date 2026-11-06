@@ -43,7 +43,7 @@ class PedagogicalRendererTests(unittest.TestCase):
             self.assertIn('<style',r.compose(binding))
 
     def test_reject_invalid_score_empty_page_and_case_count(self):
-        text=(ROOT/'learning/enterprise-ai/perception.md').read_text()
+        text=(ROOT/'tests/fixtures/perception-v2.md').read_text()
         invalid_score=text.replace('| 3 | 2 | 2 | 2 | 3 |','| 4 | 2 | 2 | 2 | 3 |')
         invalid_page=text[:text.index('## Page 3')]+text[text.index('## Page 4'):]
         case_rows=[line for line in text.splitlines() if line.startswith('| Extraction') or line.startswith('| Transcription')]
@@ -54,7 +54,7 @@ class PedagogicalRendererTests(unittest.TestCase):
             for content in (invalid_score,invalid_page,invalid_cases):
                 source.write_text(content)
                 with self.assertRaises(ValueError): r.bind(source)
-            binding=r.bind(ROOT/'learning/enterprise-ai/perception.md')
+            binding=r.bind(ROOT/'tests/fixtures/perception-v2.md')
             binding['pages'][2]['markdown']=' '
             with self.assertRaises(ValueError):r.validate_binding(binding)
 
@@ -74,7 +74,7 @@ class PedagogicalRendererTests(unittest.TestCase):
     def test_browser_rejects_overflow(self):
         with tempfile.TemporaryDirectory() as folder:
             folder=Path(folder);source=folder/'overflow.md'
-            text=(ROOT/'learning/enterprise-ai/perception.md').read_text()
+            text=(ROOT/'tests/fixtures/perception-v2.md').read_text()
             source.write_text(text.replace('## Page 2', ('Débordement volontaire. '*2200)+'\n\n## Page 2'))
             binding=r.bind(source);html=folder/'fiche.html';html.write_text(r.compose(binding))
             report,_=asyncio.run(r.render_artifacts(html,folder))

@@ -1,55 +1,45 @@
 ---
 name: enterprise-ai-learning
-description: Produce and render six-page enterprise AI learning sheets from existing Markdown using the imported Hivest composition, theme, browser QA and artifact-manifest mechanism. Use for pedagogical adaptation, Train-the-Trainer kits and Markdown-to-PDF/PNG generation while preserving sources and content.
+description: Concevoir des fiches pédagogiques approfondies « Pour aller plus loin » sur les cinq capacités IA en entreprise et leur combinaison, puis les rendre en six pages paysage. Utiliser pour les kits ambassadeurs Train the Trainer, l’exploitation d’un catalogue de cas et les approfondissements du programme de 17 piliers; travailler avec un seul contrat de contenu, un scaffold sémantique et un CSS séparé.
 ---
 
-# Skill locale — programme IA en entreprise
+# Fiches IA — comprendre, transmettre, intégrer
 
-## Rôle et frontière du programme
+## Lire juste ce qu’il faut
 
-Cette skill spécialisée produit les modules de [learning/enterprise-ai](../../learning/enterprise-ai/README.md). Elle complète la skill générique de six pages du dépôt [skills-notes-and-storytelling](https://github.com/achard-arnaud/skills-notes-and-storytelling/tree/eecfb6f690b2ce60f39193a376f625c71d8eb0a1/skills/pedagogical-ai-learning), sans modifier les gates du diagnostic de portefeuille Hivest.
+Lire le brief courant, le registre de sources et le catalogue fourni. Pour une fiche existante, lire son `<capacité>.sheet.json`; pour Perception, partir de `learning/enterprise-ai/perception.sheet.json`. Lire uniquement le [contrat actif](../../contracts/pedagogical-sheet.schema.json), le [template de six pages](../../templates/PEDAGOGICAL_SIX_PAGER_v0.3.md) et, au moment du rendu, la [recette de composition](references/composition-rendering.md).
 
-Lire le manifest et le registre de sources, puis travailler strictement dans cet ordre : Prédiction, Perception, Création, Raisonnement, Agentique, Synthèse. Terminer une fiche avant d'entamer la suivante. Le binding, le scaffold HTML et le rendu CSS restent trois artefacts distincts. Pour appliquer le rendu Hivest aux Markdown, suivre [composition-rendering.md](references/composition-rendering.md) : import de conversion et de thème, projection en six pages, PDF/PNG et QA liés aux vraies sorties.
+Le JSON est le seul contenu canonique. Le Markdown est sa projection de lecture. Ne pas refaire trois bindings, un manifeste de scaffold et plusieurs reçus. Les anciens contrats des versions portrait restent des archives de compatibilité. Garder HTML dans le scaffold et CSS dans le design; ne pas enfouir un choix de mise en page dans les données.
 
-## Contrat des six pages
+## Boucle 1 — lire et répartir le corpus
 
-1. **Comprendre** — définition sans jargon, pourquoi, trois exemples progressifs, matrice TOWS : offensive (forces × opportunités), défensive (forces × menaces), opportuniste (faiblesses × opportunités), préservation (faiblesses × menaces).
-2. **Transmettre** — pitch d'environ 30 secondes, postulat, diagramme, conviction par l'urgence, le soulagement d'une douleur et la facilité d'un premier essai; objections sans promesse excessive.
-3. **Diagnostiquer** — Ishikawa/mindmap : Processus, Outils, Compétences, Données et Gouvernance; expliciter leurs relations.
-4. **Se projeter** — Assistant → Copilot → Autopilot/Agent; séparer petit fruit accessible, gain rapide et pari majeur; lien niveau 2 / 17 piliers seulement si l'ID de syllabus est connu.
-5. **Relier à la valeur** — logistique, opérations, marketing/vente et services; relier douleur, rôle porteur, tâche et enablers à la chaîne de valeur. Ne pas inventer une particularité sectorielle.
-6. **Agir** — 3 à 5 cas, positionnés sur automatisation × intégration, avec BAC, étoiles et prompt concret. Conserver les IDs du backlog élargi non retenus dans le manifeste du catalogue, pas dans le texte de la fiche.
+Dédupliquer les pièces jointes par empreinte; conserver tous les numéros, situations et nuances. Attribuer une dominante selon le résultat attendu, puis garder les capacités complémentaires avec leurs conditions. Distinguer la lecture d’une entrée, son interprétation, la rédaction d’une sortie et l’action. Ne pas forcer une solution classique dans l’IA; une règle fixe ou un connecteur ne prouve pas l’agentique.
 
-## Cadre de preuve et sécurité
+Lire les passages utiles du livre et noter chapitre/pages réellement lus. Ne pas republier le livre ni son extraction dans le dépôt. Pour les histoires d’entreprise, vérifier les sources primaires, dater les faits et signaler les résultats déclarés par un fournisseur ou le client. Ne pas inventer de gain pour remplir un quadrant.
 
-- Utiliser SRC-BOOK-01 à 04 avec un locator exact. « Thinking » est le libellé source associé à « Raisonnement » dans cette série.
-- Étiqueter faits du corpus, inférences pédagogiques, hypothèses et recommandations; ne jamais attribuer au livre les cadres conçus pour ce programme.
-- Les notes sont ordinales : 1 faible, 2 moyenne, 3 élevée. Valeur et généricité élevées sont favorables; coût, risque et complexité élevés appellent davantage de prudence. Les hard gates passent avant toute notation.
-- Les prompts de démonstration utilisent des données fictives ou anonymisées et n'autorisent ni décision sensible ni action réelle.
-- Rattacher chaque page à un objectif d'apprentissage et à un takeaway qui prépare la page suivante.
-- Aucun CSS, token de marque, règle de pagination ou choix de renderer dans le binding ou dans cette skill.
+## Boucle 2 — écrire une capacité, une page à la fois
 
-## Contrôles avant transmission
+Écrire et relire les six pages avant d’en commencer une autre. Garder les titres et transitions comme un récit :
 
-Valider six pages exactement, présence de chaque bloc attendu, cohérence des IDs entre binding et scaffold, traçabilité source, légende des étoiles, BAC développé, au moins trois cas distincts et un prompt testable. Faire une contre-lecture apprenant : « une personne débutante peut-elle expliquer l'idée, donner un exemple, nommer une limite et proposer une première mesure ? »
+1. **Comprendre** : définir sans jargon, aller de l’exemple simple au flux réel. Construire chaque posture TOWS à partir d’un facteur interne et d’un facteur externe. Séparer fait de l’histoire, lecture stratégique proposée et limite de preuve.
+2. **Transmettre** : écrire un pitch oral de 30 secondes, un postulat, le parcours visuel, trois leviers honnêtes et des réponses aux objections. Donner une courte animation et un critère de compréhension.
+3. **Diagnostiquer** : faire apparaître les cinq branches, leurs effets et dépendances. Associer obstacle, levier d’adoption, responsable et mesure; ne pas remplacer le schéma par cinq mots isolés.
+4. **Intégrer** : préciser les sous-tâches, les entrées/sorties et frontières de capacité. Préserver Assistant/Copilot/Autopilot/Agent et les deux axes du livre. L’autonomie n’est ni une obligation ni une preuve de valeur. Si le syllabus manque, écrire un ancrage proposé sans numéro inventé.
+5. **Relier à la valeur** : pour Logistique, Opérations, Marketing/Vente et Services, nommer l’interlocuteur qui porte le problème, la douleur, la question à poser, les cas, les briques et le résultat à mesurer. Expliciter la simplification de Porter et le rôle des fonctions support.
+6. **Agir** : retenir 3–5 IDs stables du catalogue; relier Bénéfice, Avantage et Caractéristique. Donner une mesure, un contrôle, un positionnement intégration/automatisation et un prompt testable. Préserver le sens des scores : 1 faible, 2 moyen, 3 élevé; V/G favorables, C/R/X défavorables. Ne pas les additionner.
 
-La revue visuelle suit le rendu des vrais Markdown; elle reste distincte du contrôle du fond.
+Pour la synthèse future, choisir au moins quatre contributions distinctes dans une chaîne réellement décrite. UC-069 est un candidat du corpus fourni. Ne pas inventer un mode manquant pour satisfaire le compte.
 
+## Boucle 3 — composer, rendre, relire
 
-## Rendu appliqué aux Markdown
+Exécuter le renderer sur le fichier canonique et vérifier le vrai PDF paysage de six pages. Inspecter chaque page; corriger la structure ou le CSS pour un défaut visuel et revenir au JSON pour un défaut de fond. Garder une typographie lisible, remplir utilement la page et donner la priorité aux schémas qui expliquent. Ne pas étirer six paragraphes en six pages vides.
 
-Lire la procédure [composition-rendering.md](references/composition-rendering.md), adaptée des procédures Hivest importées. Lancer le renderer sur un module, contrôler ses six pages physiques, lire ses PNG puis appliquer aux suivants. Le moteur CSS vit dans renderers/pedagogical, hors du binding. Une QA verte ne valide pas le contenu.
+Ne pas inventer de visuel factuel ni de preuve. Un diagramme opérationnel est une construction pédagogique fondée sur les données de la fiche; les scores restent des hypothèses d’atelier. Distinguer contrôle automatique, revue visuelle et validation éditoriale. Livrer le PDF, un aperçu et le Markdown utile; conserver le catalogue complet hors du backlog resserré.
 
-## Cycle repris et adapté de la skill Hivest
+## Fermer la boucle
 
-L'original importé est conservé dans [upstream-hivest-skill.md](references/upstream-hivest-skill.md). Le mécanisme opératoire adapté suit : Markdown revu → binding et empreinte → scaffold → HTML → PDF et PNG → QA automatisée → inspection visuelle → retour ciblé.
+Vérifier : un débutant explique-t-il l’idée, une erreur plausible, un exemple métier et le prochain essai ? Le formateur peut-il reprendre l’animation ? Les quatre histoires ont-elles leurs sources et les cas leurs IDs ? Le rendu est-il paysage et dense sans réduire les polices ? Consigner seulement les améliorations réutilisables avant le tour suivant.
 
-Le renderer consomme les Markdown actuels. Un défaut de mise en page retourne à la composition; un changement de fond retourne à la revue du Markdown, puis renouvelle l'empreinte du binding. Lire un seul module à la fois, fermer sa boucle de rendu, puis passer au suivant. Le statut de sortie est preview tant que le contenu pédagogique n'a pas été validé.
+## Frontière du dépôt portefeuille
 
-## Second tour : produire et prouver
-
-Partir de la racine du dépôt contenant la skill et les Markdown. Pour un module existant, suivre le parcours de projection décrit dans la référence de composition : conserver les sources, les scores et les inconnues; ne pas prétendre reconstruire le binding éditorial ni sa chaîne de claims. Produire séparément `binding.json` (projection), `scaffold.html` (sans CSS), puis `fiche.html` (CSS appliqué), PDF et six PNG.
-
-Exécuter le vérificateur sur la source et le dossier de sortie. Il doit rejeter un fichier modifié après rendu, une source périmée, un import altéré ou une QA en échec. Inspecter ensuite les six pages; conserver `reader_review=PENDING` dans le rapport automatisé et consigner la lecture humaine séparément. Une réussite technique ne transforme ni les liens provisoires au syllabus ni le contenu candidat en contenu approuvé.
-
-Utiliser une seule convention de score : 1 faible, 2 moyen, 3 élevé; valeur/généricité élevées favorables, coût/risque/complexité élevés défavorables. Refuser notes hors 1–3, page vide et backlog hors 3–5 cas. Corriger le Markdown pour un défaut de fond, le scaffold/CSS pour un défaut visuel; ne pas réduire la typographie pour masquer un débordement.
+Travailler seulement dans le workstream pédagogique. Ne pas modifier `program/state.json`, les manifests d’entreprise ni leurs gates. La skill générique de référence est versionnée dans `achard-arnaud/skills-notes-and-storytelling`; le pilote conserve ses propres sources et sorties.
