@@ -94,72 +94,16 @@ All registered profiles have `committee_authorized=false`. The [registry checker
 
 ## Quick start
 
-### 1. Install the core dependencies
-
-Use Python 3.11+ from the repository root. Core validation and the HTML demo do not require an LLM API key or private source archive.
+Python 3.11+; run from the repository root:
 
 ```bash
-git clone https://github.com/achard-arnaud/Business-ptf-analysis.git
-cd Business-ptf-analysis
-python -m venv .venv
-source .venv/bin/activate
 python -m pip install -r requirements.txt
-python scripts/check_skill_docs.py
-python scripts/check_template_registry.py
+python renderers/three_pager_exec/render_exec.py tests/fixtures/exec/sphere_unverified_v0.3.json /tmp/business-ptf-demo
 ```
 
-On Windows, activate with `.venv\Scripts\activate`.
+Open the generated HTML. This is an `UNVERIFIED_DEMO`; its manifest records that status. The [getting-started guide](docs/getting-started.md) covers cloning, an isolated environment, optional PDF/browser dependencies, real bundle checks, resumption and troubleshooting.
 
-### 2. Generate an executive HTML demo
-
-```bash
-python renderers/three_pager_exec/render_exec.py \
-  tests/fixtures/exec/sphere_unverified_v0.3.json \
-  /tmp/business-ptf-demo
-```
-
-Open the generated `.html` file. The same directory contains `render_manifest.json`; the fixture is explicitly **`UNVERIFIED_DEMO`**. This command exercises payload validation and composition, not real-world evidence verification.
-
-For PDF and PNG output, install the browser dependencies and repeat with `--pdf`:
-
-```bash
-python -m pip install playwright
-python -m playwright install chromium
-python renderers/three_pager_exec/render_exec.py \
-  tests/fixtures/exec/sphere_unverified_v0.3.json \
-  /tmp/business-ptf-demo --pdf
-python scripts/verify_render_evidence.py /tmp/business-ptf-demo --profile exec
-```
-
-Linux environments may also require Playwright system dependencies (`python -m playwright install --with-deps chromium`). Inspect all three PNGs; automatic layout success does not replace reader review. Use a writable local path instead of `/tmp/...` on Windows.
-
-### 3. Inspect or resume a real diagnostic
-
-Read [AGENTS.md](AGENTS.md), [programme state](program/state.json), then **one** company’s manifest and index, followed by the active procedure in the [workflow](skills/hivest-portfolio-ai/references/workflow.md). [Sphere](companies/sphere/INDEX.md) is the most complete reference bundle; other companies may still be at intake.
-
-```bash
-python scripts/validate.py package companies/sphere/package.json
-python scripts/validate_bundle.py companies/sphere
-```
-
-These commands check the accessible package/bundle; without an archive they do not establish that original sources were captured. With your own authorised external archive:
-
-```bash
-python scripts/validate_bundle.py companies/sphere --archive /path/to/archive.json
-python scripts/check_prehitl.py sphere /path/to/archive.json
-```
-
-For an evidence-aligned executive render, supply **both** `--bundle companies/<id>` and `--archive /path/to/archive.json` with the matching payload. No validation command grants `GO_DRAFT`.
-
-For a session that already has a checkpoint, follow the [cold-resume instructions](docs/agent/context-and-resume.md#reprise-à-froid-par-commande-itération-39); the CLI checks the independently observed repository SHA and accessible pinned input bytes before returning `READY_TO_RESUME`.
-
-### 4. Run the checks
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-[Contract CI](.github/workflows/contracts.yml) runs navigation, registry and unit checks. Its path selector invokes browser QA for affected rendering components, with a manual-dispatch option. [Pedagogical CI](.github/workflows/pedagogical-render.yml) has its own path-filtered browser checks. Private archive capture, authenticated human decisions and actual cross-model transfer are outside those CI proofs.
+**Choose your reading route:** [FDA / data dictionary](docs/data/DATA_DICTIONARY.md) · [FDE / run and adapt](docs/getting-started.md) · [Functional architect / domain and decisions](docs/architecture/README.md). The [documentation guide](docs/README.md) connects each route to its contracts, validators and tests.
 
 ## What is still missing
 
@@ -175,6 +119,8 @@ python -m unittest discover -s tests -v
 | Publication and provenance | Byte-based receipts, render evidence verifier and conservative publication preflight. | Full frozen-bundle integration, independent remote artifact readback and authenticated human release. Preflight cannot authorise committee publication. |
 | Output coverage and QA | Exec, strategic-note, value-chain and learning renderers; layout checks and selected browser CI. | Audit renderer; common multiformat export; broader semantic/visual regression and output-specific human acceptance. |
 | Portfolio operating model | Entity boundaries, programme roster, shared wiki and loopback procedure. | Comparable portfolio rollup with complete lineage; operational tracking of questions, captures, costs and next work. |
+
+For a source-based response to the external FDA / FDE / architect review, see the [review and evidence matrix](docs/architecture/review-2026-11-16.md). Architecture decisions are grouped in the [architecture register](docs/architecture/README.md).
 
 For planning, use the [live issues](https://github.com/achard-arnaud/Business-ptf-analysis/issues) alongside the [industrialisation roadmap](docs/roadmap/industrialization-backlog.md). Older architecture notes may describe a component before its implementation; current code, schemas, registry and manifests establish the inspected state.
 
