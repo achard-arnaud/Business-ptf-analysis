@@ -1,0 +1,160 @@
+{
+  "version": "0.2.0",
+  "entity_id": "square-management",
+  "cutoff": "2026-11-17",
+  "default_budget": 12,
+  "nodes": [
+    {
+      "id": "sources",
+      "kind": "evidence",
+      "path": "package.json",
+      "depends_on": [],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "evidence",
+      "kind": "analysis",
+      "path": "evidence/coverage.md",
+      "depends_on": [
+        "sources"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "business",
+      "kind": "analysis",
+      "path": "analysis/01_business.md",
+      "depends_on": [
+        "evidence"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "market",
+      "kind": "analysis",
+      "path": "analysis/02_market.md",
+      "depends_on": [
+        "evidence",
+        "business"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "porter",
+      "kind": "analysis",
+      "path": "analysis/03_porter_value_chain.md",
+      "depends_on": [
+        "business",
+        "market"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "maturity",
+      "kind": "analysis",
+      "path": "analysis/04_ai_data_maturity.md",
+      "depends_on": [
+        "evidence",
+        "business"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "backlog",
+      "kind": "analysis",
+      "path": "analysis/05_backlog.md",
+      "depends_on": [
+        "porter",
+        "maturity"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "page1",
+      "kind": "output",
+      "path": "outputs/three-pager.md#page1",
+      "depends_on": [
+        "business",
+        "market"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "page2",
+      "kind": "output",
+      "path": "outputs/three-pager.md#page2",
+      "depends_on": [
+        "porter"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    },
+    {
+      "id": "page3",
+      "kind": "output",
+      "path": "outputs/three-pager.md#page3",
+      "depends_on": [
+        "backlog",
+        "maturity"
+      ],
+      "status": "planned",
+      "source_claim_refs": []
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-perimeter",
+      "question": "Quel est le périmètre juridique, géographique et commercial de Square Management et Circle Strategy ?",
+      "status": "open",
+      "affects": [
+        "business",
+        "market",
+        "page1"
+      ],
+      "owner": "direction financière / corporate development",
+      "trigger": "Avant de comparer les chiffres publiés",
+      "budget_queries": 4,
+      "stop_condition": "Périmètre primaire établi ou divergence laissée ouverte",
+      "next_action": "targeted_research"
+    },
+    {
+      "id": "Q-economics",
+      "question": "Quels chiffres réalisés, marges et effectifs sont comparables entre les sources ?",
+      "status": "open",
+      "affects": [
+        "business",
+        "market",
+        "backlog",
+        "page1"
+      ],
+      "owner": "direction financière",
+      "trigger": "Avant d'affirmer la croissance ou la taille économique",
+      "budget_queries": 4,
+      "stop_condition": "Comptes ou données comparables obtenus ; sinon conserver unknown",
+      "next_action": "targeted_research"
+    },
+    {
+      "id": "Q-delivery",
+      "question": "Quels résultats d'IA/Data ont été réellement déployés et mesurés ?",
+      "status": "open",
+      "affects": [
+        "maturity",
+        "backlog",
+        "page3"
+      ],
+      "owner": "Centre IA / clients concernés",
+      "trigger": "Avant toute maturité opérationnelle supérieure à exploration",
+      "budget_queries": 4,
+      "stop_condition": "Référence et KPI vérifiables ou capacité qualifiée de déclarative",
+      "next_action": "targeted_research"
+    }
+  ]
+}

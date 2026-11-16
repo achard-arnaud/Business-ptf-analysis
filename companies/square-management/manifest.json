@@ -1,0 +1,20 @@
+{
+  "entity_id": "square-management",
+  "cutoff": "2026-11-17",
+  "stage": "RESEARCH",
+  "instance_kind": "independent_company_analysis",
+  "program_ref": null,
+  "diagnostic_status": "instance_initialized_graph_created_before_research",
+  "package_ref": "companies/square-management/package.json",
+  "strategic_context_ref": "companies/square-management/strategic_context.json",
+  "graph_ref": "companies/square-management/research_graph.json",
+  "output_dir": "companies/square-management/outputs",
+  "material_source_ids": [],
+  "top_unknowns": [
+    "Quel est le périmètre économique exact de Square Management et Circle Strategy ?",
+    "Quels revenus, marges et effectifs sont réalisés, à périmètre et date comparables ?",
+    "Quels résultats IA/Data sont déployés chez Square Management et ses clients, et avec quels indicateurs ?"
+  ],
+  "capture_status": "not_started",
+  "render_status": "not_started"
+}
