@@ -1,14 +1,26 @@
-# Value-chain profiles (candidate) — separates economic reasoning from layout
+# Value-chain profiles — fixed executive output and variable preview
 
-The production-like `THREE_PAGER_PORTFOLIO_AI / exec v0.3` requires exactly 4 support + 5 primary Porter activities and 5 drivers. **Do not change this historical schema or renderer in place.** Its valid fixtures remain authoritative for this legacy profile.
+The historical `THREE_PAGER_PORTFOLIO_AI / exec v0.3` profile requires exactly 4 support + 5 primary Porter activities and 5 drivers. Preserve that version's schema and renderer for compatible fixtures.
 
-A *candidate and non-renderable* cross-sector view is defined in `contracts/value-chain-view.schema.json`; `scripts/validate_value_chain_view.py` only checks structure and references. This is the intermediate analytical projection of `company-package.value_chain`, not a second memory, claim store or template registry entry.
+The [variable-activity schema](../../contracts/value-chain-view.schema.json) describes a separate candidate analytical projection. [validate_value_chain_view.py](../../scripts/validate_value_chain_view.py) checks its shape/references; [renderers/value_chain_preview/render.py](../../renderers/value_chain_preview/render.py) already renders three-page previews. The [registry](../../templates/registry.json) declares `value-chain-preview` as `preview`.
 
-| Profile | Synthetic fixture | Useful topology |
-|---|---|---|
-| `manufacturing_porter` | `tests/fixtures/value_chain_manufacturing_v01.json` | Purchasing, manufacturing, logistics, marketing, service and supports |
-| `infrastructure_asset_service` | `tests/fixtures/value_chain_asset_service_v01.json` | Origination → engineering → financing → EPC → operations → M&V → refinancing |
+| Profile | Synthetic fixture | Business topology |
+| --- | --- | --- |
+| `manufacturing_porter` | [Manufacturing](../../tests/fixtures/value_chain_manufacturing_v01.json) | Purchasing, manufacturing, logistics, marketing, service and support |
+| `infrastructure_asset_service` | [Asset/service](../../tests/fixtures/value_chain_asset_service_v01.json) | Origination, engineering, financing, EPC, operations, M&V and refinancing |
 
-The external [GreenYellow analysis](../../examples/three-pagers/greenyellow/analysis.md) shows why a financing-and-contract asset model should not be forced into a manufacturing grid. The fixture named *synthetic-asset-operator* is **invented test data**, not an observed GreenYellow rollout, a case with GO_DRAFT, or a verified business claim.
+```bash
+python renderers/value_chain_preview/render.py tests/fixtures/value_chain_asset_service_v01.json /tmp/value-chain-demo
+```
 
-**Next before #43 can close:** define a new versioned render profile/adapter mapping `activities` (variable count) and `drivers` to three landscape pages; preserve evidence lineage and ≥9pt; render two actual PDFs; run visual QA per page, positive/negative NRT and human reader acceptance. Until then `render_authorized=false` and the template registry must not claim this candidate as ready.
+HTML-only output records `qa_status=NOT_RUN`. With browser dependencies, add `--pdf` to generate PDF, three PNGs, browser QA, manifest hashes and a prepared-only artifact receipt. Then run:
+
+```bash
+python scripts/verify_render_evidence.py /tmp/value-chain-demo --profile value-chain-preview
+```
+
+The [external GreenYellow analysis](../../examples/three-pagers/greenyellow/analysis.md) motivates a financing/contract/asset topology. The fixture *synthetic-asset-operator* contains invented test data; its outputs remain preview evidence. See [binding responsibilities](template-binding.md) and the [getting-started dependency matrix](../getting-started.md#runtime-and-configuration-boundaries).
+
+## Remaining acceptance
+
+Issue #43 still needs real-case migration, semantic/reader acceptance and the associated evidence trail. The preview renderer and selected browser CI are implemented increments. Their presence preserves `render_authorized_for_committee=false` and does not replace the legacy exec contract.

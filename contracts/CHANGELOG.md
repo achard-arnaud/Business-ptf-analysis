@@ -1,5 +1,7 @@
 # Évolution des contrats
 
+Les entrées datées ci-dessous décrivent leur version d’origine. Pour le comportement courant, suivre la [matrice règles/validateurs](../docs/architecture/rules-and-validation.md) et la [carte du code](../docs/architecture/code-map.md). `validate_freeze` fournit désormais un chemin bibliothèque pour le contenu v0.2 ; le renderer audit reste absent. Les schémas et les gates ne changent pas dans cette revue documentaire.
+
 ## 0.3.0 (profil de présentation exec candidat)
 
 Le contrat `three-pager-exec.schema.json` et son renderer ajoutent une projection C-level distincte du contenu audit v0.1. La fixture Sphere permet la non-régression de la composition ; ses sources et son bundle ne sont pas certifiés dans ce dépôt. Le manifeste marque donc `UNVERIFIED_DEMO`. Les gates de diagnostic et de diffusion restent ouverts, et le profil audit ne change pas.

@@ -2,6 +2,10 @@
 
 **Établi** : 2026-10-13. **Statut** : demandes d'évolution, **pas** fonctionnalités livrées. Les issues GitHub sont l'autorité opérationnelle ; ce fichier fournit l'ordre, les dépendances et les critères de sortie.
 
+## Lecture actuelle — revue documentaire du 16 novembre 2026
+
+Le plan ci-dessous conserve les intentions et dépendances de sa date d’origine. Plusieurs incréments sont présents dans le code : registre des cinq profils, états v0.2, checkpoint/reprise CLI, handoff, reçus, publication preflight et CI de rendu par delta. La [revue FDA/FDE/architecture](../architecture/review-2026-11-16.md) distingue ces composants de leur acceptation E2E. Les [Issues courantes](https://github.com/achard-arnaud/Business-ptf-analysis/issues) portent leur statut opérationnel. Le [registre d’architecture](../architecture/README.md) conserve les décisions et la [revue croisée historique](../architecture/CROSS_REPO_AUDIT_AND_BOOTSTRAP_2026-11-04.md).
+
 ## Principes
 
 1. Préserver les règles de diagnostic, le statut PILOTS et les approbations humaines ; refactorings sous tests avant extension fonctionnelle.
@@ -81,4 +85,4 @@ P0 = empêche une conclusion/provenance/gate défendable ; P1 = empêche la réu
 - [Sprint 3 — Issues #25–#32](https://github.com/achard-arnaud/Hivest-ptf-analysis/issues?q=is%3Aissue+%5BS3%5D) : 8 tickets publication/QA.
 - [Sprint 4 — Issues #33–#39](https://github.com/achard-arnaud/Hivest-ptf-analysis/issues?q=is%3Aissue+%5BS4%5D) : 7 tickets opérations, reprise et feedback.
 
-**35 issues ouvertes**. Les numéros représentent des tâches, non des commits, livraisons ou bugs déjà reproduits. Dépendances inter-sprints à maintenir lors de la planification ; aucun gate métier n'est modifié par cette roadmap.
+**35 issues créées lors de cet inventaire historique**. Les numéros représentent des tâches, non des commits, livraisons ou bugs déjà reproduits. Dépendances inter-sprints à maintenir lors de la planification ; aucun gate métier n'est modifié par cette roadmap.

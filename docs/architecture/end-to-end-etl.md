@@ -1,114 +1,53 @@
-# Architecture de bout en bout — Extract / Transform / Publish
+# Evidence to decision to publication
 
-**Statut** : cartographie du dépôt réel + architecture cible explicitement signalée. **Dernière revue** : 2026-10-13. **Portée** : Hivest Portfolio AI ; la note stratégique du fonds est une branche éditoriale distincte.
+**Current architecture review: 2026-11-16.** The repository separates research, analytical judgement, editorial binding and output evidence. The [domain model](domain-and-data.md) defines the objects; [workflow](../../skills/hivest-portfolio-ai/references/workflow.md) defines business stages; [code map](code-map.md) identifies executable components.
 
-## 1. Modèle conceptuel
+## Data moves through explicit contracts
 
-L'analogie ETL est un contrat de frontières, pas une promesse d'automatisation intégrale.
-
-```mermaid
-flowchart LR
- Q[Question et entité] --> E[EXTRACT<br/>Sources - snapshots - fragments - claims]
- E --> G[(Graphe de preuve<br/>source / claim / analysis / question / output)]
- G --> T[TRANSFORM<br/>drivers - diagnostic - décisions]
- T --> N[Scaffold narratif<br/>CIBLE: contrat distinct]
- N --> P[PUBLISH<br/>payload - template - renderer]
- P --> R[HTML / PDF / PNG + QA]
- R --> L[Loopback<br/>défaut - cause - règle - test]
- L -.question ciblée.-> Q
- H[GO_DRAFT / HITL] --> P
- T --> H
-```
-
-La **chaîne de preuve** reste source → fragment → claim → analyse → décision → contenu gelé. Un graphe est une indexation du raisonnement, une carte mentale est une vue, le rendu est une projection. La source primaire ne se trouve jamais dans un PDF généré.
-
-## 2. Extract : questions, captures et unités de connaissance
-
-Entrées : `program/state.json`, manifest entreprise, cutoff, décision à éclairer, trois inconnues susceptibles de modifier le verdict, anciennes preuves. La procédure canonique est `skills/hivest-portfolio-ai/references/evidence.md`, avec `research-graph.md` uniquement lorsqu'une question, un handoff ou une reprise l'exige.
-
-Pour chaque source : conserver URL, publication et consultation séparées, auteur/organisme, scope groupe/filiale/site, juridiction, type et droits ; archiver l'artefact autorisé hors Git ; calculer le SHA-256 sur les **octets réellement capturés** et déclarer `capture_kind`. Un extrait n'est pas un original complet. Les fragments ont locator et citation ; les claims atomiques sont typés, datés, attribués, contradictoires si nécessaire. Grades A–E : classes de sources, pas probabilités.
-
-**Exemple de séparation multi-entreprises :** une annonce d'éditeur prouve une capacité offerte ; elle ne prouve pas que Sphere ou STG utilise cette technologie. `wiki/` stocke le mécanisme sectoriel, `companies/<id>/` le claim strictement local. `program/roster.json` indexe les participations. Une absence de preuve correspond à `null` et à une question, jamais à un score 0.
-
-Le graphe typé contient `source/claim/analysis/question/output` et liens `supports/depends_on/contradicts/answers`. Changement d'une preuve → descendants invalidés, pas réécriture générale. Le budget de contexte initial est de 12 claims critiques + contre-preuves, extensible si les contradictions l'exigent. Exécution parallèle : même cutoff, IDs réservés, sorties séparées, **un** intégrateur autorisé à promouvoir les connaissances.
-
-Sorties : `package.json`, `evidence/`, registre, `research_graph.json` quand disponible, couverture négative et questions bloquantes. Vérifier les schémas, hashes et règles d'archive ; **ne pas** confondre un PASS structurel avec une certification de la vérité.
-
-## 3. Transform : de l'évidence à la décision
-
-Le workflow réel : `market-drivers` → `diagnostic` → `opportunities` → `review`. Les chaînes doivent rester auditables :
-
-- Marché → segments → exposition **vérifiée** de la participation → mécanisme économique → driver.
-- Activités et chaîne de valeur → diagnostic (8 dimensions + outils analytiques utiles) → opportunité → baseline non IA / NO-ACTION.
-- Hard gates → priorisation argumentée sans total automatique → trois revues contradictoires → décision HITL datée.
-
-Un **scaffold narratif transversal** est à construire : il n'existe pas encore de fichier contractuel unique utilisable pour tous les formats. Le template `strategic-market-note.md` décrit déjà lecteur, décision, thèse, drivers, objection forte, chaîne du métier, preuve et budget de pages. `exec-writing.md` fixe les trois pages du diagnostic exec. Le futur contrat doit conserver au minimum : `audience`, `decision_question`, `central_thesis`, `tension`, `argument_blocks[]`, `counterclaims[]`, `side_stories[]`, `evidence_refs[]`, `allowed_formats[]`, `review_state`.
-
-**À ne pas implémenter en douce** : le scaffold cible n'est ni un schéma JSON existant ni une nouvelle autorisation de publier. Il doit faire l'objet d'issues, de schémas, validateurs, fixtures et gates.
-
-## 4. Publish : contenu gelé et projection multiformat
-
-```mermaid
-sequenceDiagram
- participant A as Agent composeur
- participant C as Contrats / claims
- participant H as Relecteur humain
- participant R as Renderer
- participant Q as QA
- A->>C: Valider provenance + payload + profil
- C-->>A: Écarts et artefacts validables
- A->>H: Soumettre décision et inconnues
- H-->>A: GO_DRAFT ou retour ciblé
- A->>C: Freeze du payload + hash si profil final
- A->>R: Payload validé + template + paramètres
- R-->>Q: HTML / PDF / PNG + manifeste
- Q-->>A: QA automatique + inspection visuelle
- A-->>H: Livrable et limites de publication
-```
-
-**Profil diagnostic** : audit (schéma mais renderer audit absent) ou exec (`render_exec.py` réellement disponible). **Note fonds** : renderer distinct `renderers/strategic_note/build.py`, format C-level 5–7 pages, Mermaid, typographie et QA. Le renderer n'a le droit ni de renforcer un claim ni de modifier une recommandation. Une réduction de police pour cacher le débordement n'est pas une correction.
-
-Une projection HTML pivot inter-formats (PDF, DOCX, slides) est un **objectif**, non une capacité commune disponible aujourd'hui. Séparer contrat de blocs narratifs, spécification de présentation et moteur cible.
-
-## 5. Où se trouvent les autorités ?
-
-| Sujet | Autorité | Ne pas substituer |
-|---|---|---|
-| Programme et statut | `program/state.json`, manifests | README, ancienne note, existence de PDF |
-| Gates et choix | `contracts/decision-rules.md`, `docs/agent/gates.md` | Prompt agent, design du renderer |
-| Données | `contracts/*.schema.json`, packages validés | Notes librement rédigées |
-| Workflow | `skills/hivest-portfolio-ai/references/workflow.md` | Ordre alphabétique des fichiers |
-| Recherche et reprise | `evidence.md`, `research-graph.md`, `context-and-resume.md` | Chat précédent ou résumé approximatif |
-| Narration / rendu | `templates/`, `exec-writing.md`, `renderers/` | Preuve canonique et gates |
-
-## 6. Différences entre les deux branches métiers
-
-Le programme **participation** mesure maturité, chaîne de valeur et opportunités avant de composer un rapport contrôlé ; son état est dans `program/state.json`. La **note stratégique du fonds** est un workstream de discussion et de recrutement, avec journal de recherche, gap register, contrat éditorial et renderer dédiés : `companies/hivest/INDEX.md`. La PR #4 y produit une V2 candidate de 6 pages. Son succès de mise en page ne clôture aucune décision de diagnostic.
-
-## 7. Processus de reprise et cycle d'amélioration
+This is a macro data-flow view. Solid arrows represent the existing workflow's handoffs, several of which are human/agent-assisted. Dashed arrows identify the planned common narrative adapter.
 
 ```mermaid
 flowchart TD
- S[Reprise par agent] --> M[État + manifest + index]
- M --> K{Hashes et cutoff inchangés ?}
- K -- Oui --> A[Une seule étape active]
- K -- Non --> I[Invalider descendants affectés]
- I --> E[Recherche ciblée, puis intégration]
- E --> A
- A --> V[Valider schéma + preuve + décision]
- V --> H{Gate humain requis ?}
- H -- Oui --> W[Attendre autorisation explicite dans le dossier]
- H -- Non --> C[Checkpoint + prochaine procédure]
- W --> C
- C --> S
+    S["Authorised source captures"] --> K["Fragments and qualified claims"]
+    K --> A["Drivers, activities and opportunities"]
+    A --> D["Review and human decision"]
+    D --> P["Profile-specific prepared content"]
+    T["Template contract and capability registry"] --> R["Profile renderer"]
+    P --> R
+    R --> Q["HTML, PDF, PNG and output evidence"]
+    A -. "Planned common mapping" .-> N["Shared narrative block contract"]
+    N -. "Planned adapters" .-> P
 ```
 
-Le loopback documente **défaut → cause → nouvelle règle → contrat modifié → test de non-régression (NRT)**. Aucun agent n'attribue lui-même GO_DRAFT, DONE ou production_allowed.
+**Extract:** acquisition records the original source, rights, exact capture scope and bytes outside public Git. Fragments and claims retain locators, dates, company/sector scope, contradictions and unknowns. [Dictionary](../data/DATA_DICTIONARY.md) and [hash rules](../../contracts/HASHING.md) define the fields and integrity scopes.
 
-## 8. Limites vérifiées / chantiers industriels
+**Transform:** market signal → company exposure → economic driver → activity/opportunity → baseline and prerequisites → three review perspectives. The [business rule matrix](rules-and-validation.md) connects checks to tests. Company exposure can remain a hypothesis; a sector signal does not prove local deployment.
 
-- Captation et promotion impliquent encore des procédures agent et une intervention humaine ; pas de scraping universel déclenché par simple présence d'une URL.
-- L'existence de validateurs ne certifie pas la véracité d'une phrase, l'intégrité d'une source non archivée, la revue de marché ou la qualité pédagogique d'une narration.
-- Le graphe sait calculer dépendances / descendants, mais le lineage sémantique complet **narrative_block → claim → fragment → source** doit être codifié et testé.
-- Les sorties narratives multiformats, side stories structurées et contrats inter-modèles sont une proposition, pas une feature déjà livrée.
-- La série d'issues dans [le backlog](../roadmap/industrialization-backlog.md) formalise ces changements sans réécrire le workflow existant avant validation.
+**Publish:** select a supported [binding/profile](template-binding.md), prepare its content and render it. Final content requires the applicable GO_DRAFT and freeze; demonstration paths remain labelled and separate. Output evidence records actual file hashes, physical pages, automated layout and reader-review state. The [publication preflight](../agent/publication-preflight.md) leaves authenticated human release with the responsible authority.
+
+## State and context management span the workflow
+
+[Programme state](../../program/state.json), company manifests and review evidence determine which stage can proceed. The [context protocol](../agent/context-and-resume.md) bounds the next question and pins versions/bytes. The graph computes dependencies and affected descendants; integrating revised evidence and advancing states remain deliberate operations.
+
+The [handoff contract](../agent/handoff-and-fallback.md) declares the required capabilities of a receiving session. It distinguishes metadata validation from independently observed access. The resume CLI is implemented; acceptance of actual cross-model transfer remains open.
+
+## Data and build have distinct authorities
+
+| Concern | Authority | Dependency / consumer |
+| --- | --- | --- |
+| Company evidence and analytical meaning | Company package, context and their reviewed sources | Diagnostic procedure and editorial selection |
+| Company/programme phase | State, manifest and corresponding gate evidence | Router and human/integrating operator |
+| Data shape and bounded invariants | Schemas and validators | Fixtures, tests and CLI checks |
+| Template availability and input shape | Registry + profile schema/template | Profile renderer |
+| Layout and output bytes | Renderer/CSS, actual artifacts, manifest and QA | Reader review, artifact receipt and publication workflow |
+| Historical rationale | [Decision register](README.md) | Current review and successor decisions |
+
+## Workstreams and extension limits
+
+The company programme, the [fund strategic note](../../companies/hivest/INDEX.md) and the [learning pilot](../../learning/enterprise-ai/README.md) own separate inputs and acceptance loops. Their reusable helpers do not transfer company gates between workstreams.
+
+Implemented profiles have their own payload/binding rules and QA. The common narrative contract, side-story lifecycle and full block→claim→fragment→source coverage across formats remain planned work. Portfolio rollup, client parameterisation, source adapters and reproducible runtime locks have specific outstanding acceptance gaps in the [review](review-2026-11-16.md).
+
+## Learning and history
+
+A completed review feeds defect → cause → proposed rule → contract/test → human promotion. The [historical Sphere loopback](LOOPBACK_SPHERE_V03.md) records an early iteration. Programme promotion still requires both pilots and their loopback, as defined by the current state and [gates](../agent/gates.md).

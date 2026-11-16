@@ -9,6 +9,8 @@ Profil François-Pro. Objet : diagnostiquer les entreprises du portefeuille et l
 
 Rôles : l'orchestrateur route, vérifie les gates et intègre ; le rôle research collecte et qualifie. Un rôle n'impose ni un nouvel agent ni une nouvelle skill. Les procédures peuvent être exécutées séquentiellement par un seul agent. Garder le contexte limité à une entreprise, une étape, les claims décisifs et leurs contre-preuves.
 
+Documentation humaine et technique : [guide](docs/README.md), [registre d’architecture et ADR](docs/architecture/README.md), [dictionnaire des données](docs/data/DATA_DICTIONARY.md). Les documents historiques gardent leur date et leur portée ; les contrats et états courants fixent l’action applicable.
+
 Carte des commandes et capacités réellement codées : [docs/architecture/code-map.md](docs/architecture/code-map.md). Ce fichier est le point d'entrée ; les règles détaillées restent à leurs chemins explicites ci-dessus.
 
 ## Programme pédagogique distinct
