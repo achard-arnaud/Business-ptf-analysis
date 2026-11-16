@@ -40,4 +40,4 @@ The [test guide](../../tests/README.md) states exact coverage and exclusions. Pr
 
 ## History and remaining work
 
-The [architecture register](README.md) retains historical choices and current annotations. Common narrative blocks, cross-format claim retention, authenticated publication, real client/source adaptation and portfolio consolidation remain distinct work in the [review](review-2026-11-16.md) and [roadmap](../roadmap/industrialization-backlog.md).
+The [architecture register](README.md) retains historical choices and current annotations. Common narrative blocks, cross-format claim retention, authenticated publication, real client/source adaptation and portfolio consolidation remain distinct work tracked in the [roadmap](../roadmap/industrialization-backlog.md) and [live issues](https://github.com/achard-arnaud/Business-ptf-analysis/issues).

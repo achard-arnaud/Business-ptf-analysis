@@ -36,10 +36,10 @@ These are responsibilities, not new `raw/staging/marts` directories. The reposit
 
 Git versions controlled knowledge and code. External captures and receipts identify bytes at a location; the [checkpoint](../../contracts/session-checkpoint.schema.json) pins accessible inputs and output dependencies. The resume CLI compares those bytes and the independently observed Git SHA. This supports bounded replay checks; exact regeneration also depends on external archive availability and compatible runtime/browser/fonts.
 
-There is no portfolio time-series fact table or automated T-versus-T−1 variance engine. Comparing company histories requires preserving scope, reporting period, units, source versions and accepted decisions. The [review](review-2026-11-16.md) tracks that remaining gap.
+There is no portfolio time-series fact table or automated T-versus-T−1 variance engine. Comparing company histories requires preserving scope, reporting period, units, source versions and accepted decisions. That remains an open portfolio capability; see the [industrialisation roadmap](../roadmap/industrialization-backlog.md) and [live issues](https://github.com/achard-arnaud/Business-ptf-analysis/issues).
 
 ## Ownership and extension
 
 Company manifests own workflow state, schemas own shape, business rules own decision policy, and humans own approval. The registry owns declared profile capabilities. The renderer owns layout.
 
-Keep product, fund-note and learning workstreams explicit. The [external GreenYellow example](../../examples/three-pagers/greenyellow/README.md) illustrates an asset/service business model; its presence does not add a portfolio entity. A new source or sector first enters its appropriate data contract, then an analytical mapping, then a tested output profile.
+Keep product, fund-note and learning workstreams explicit. The [external asset/service case](../../examples/three-pagers/external-case/CASE_GUIDE.md) illustrates an asset/service business model; its presence does not add a portfolio entity. A new source or sector first enters its appropriate data contract, then an analytical mapping, then a tested output profile.

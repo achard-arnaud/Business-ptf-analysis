@@ -4,7 +4,7 @@
 
 ## Lecture actuelle — revue documentaire du 16 novembre 2026
 
-Le plan ci-dessous conserve les intentions et dépendances de sa date d’origine. Plusieurs incréments sont présents dans le code : registre des cinq profils, états v0.2, checkpoint/reprise CLI, handoff, reçus, publication preflight et CI de rendu par delta. La [revue FDA/FDE/architecture](../architecture/review-2026-11-16.md) distingue ces composants de leur acceptation E2E. Les [Issues courantes](https://github.com/achard-arnaud/Business-ptf-analysis/issues) portent leur statut opérationnel. Le [registre d’architecture](../architecture/README.md) conserve les décisions et la [revue croisée historique](../architecture/CROSS_REPO_AUDIT_AND_BOOTSTRAP_2026-11-04.md).
+Le plan ci-dessous conserve les intentions et dépendances de sa date d’origine. Plusieurs incréments sont présents dans le code : registre des cinq profils, états v0.2, checkpoint/reprise CLI, handoff, reçus, publication preflight et CI de rendu par delta. Les [Issues courantes](https://github.com/achard-arnaud/Business-ptf-analysis/issues) portent leur statut opérationnel. Le [registre d’architecture](../architecture/README.md) conserve les décisions et la [revue croisée historique](../architecture/CROSS_REPO_AUDIT_AND_BOOTSTRAP_2026-11-04.md).
 
 ## Principes
 

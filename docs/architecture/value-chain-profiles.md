@@ -19,7 +19,7 @@ HTML-only output records `qa_status=NOT_RUN`. With browser dependencies, add `--
 python scripts/verify_render_evidence.py /tmp/value-chain-demo --profile value-chain-preview
 ```
 
-The [external GreenYellow analysis](../../examples/three-pagers/greenyellow/analysis.md) motivates a financing/contract/asset topology. The fixture *synthetic-asset-operator* contains invented test data; its outputs remain preview evidence. See [binding responsibilities](template-binding.md) and the [getting-started dependency matrix](../getting-started.md#runtime-and-configuration-boundaries).
+The [external asset/service case analysis](../../examples/three-pagers/external-case/analysis.md) motivates a financing/contract/asset topology. The fixture *synthetic-asset-operator* contains invented test data; its outputs remain preview evidence. See [binding responsibilities](template-binding.md) and the [getting-started dependency matrix](../getting-started.md#runtime-and-configuration-boundaries).
 
 ## Remaining acceptance
 

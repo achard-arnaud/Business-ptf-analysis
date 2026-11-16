@@ -38,4 +38,4 @@ Revisit the register when an architecture record is added outside this directory
 - [Programme design](PROGRAM_DESIGN.md).
 - [Sphere loopback](LOOPBACK_SPHERE_V03.md).
 - [Cross-repository audit](CROSS_REPO_AUDIT_AND_BOOTSTRAP_2026-11-04.md).
-- [Current documentation guide](../README.md) and [review receipt](review-2026-11-16.md).
+- [Current documentation guide](../README.md) and [industrialisation roadmap](../roadmap/industrialization-backlog.md).
