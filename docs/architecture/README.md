@@ -12,7 +12,6 @@ This directory centralises the architecture views and decision records. The exis
 | Which business rules are checked, and by what? | [Rules and validation](rules-and-validation.md) | [Package validator](../../scripts/validate.py), [bundle validator](../../scripts/validate_bundle.py), tests |
 | How do analytical objects bind to outputs? | [Template binding](template-binding.md), [value-chain profiles](value-chain-profiles.md) | Profile-specific schemas and renderers |
 | Which entry points actually exist? | [Code map](code-map.md) | Scripts, tests and workflows |
-| What did the external review reveal? | [FDA / FDE / functional architect review](review-2026-11-16.md) | Evidence and gaps pinned to the reviewed baseline |
 
 ## Decision records and provenance
 

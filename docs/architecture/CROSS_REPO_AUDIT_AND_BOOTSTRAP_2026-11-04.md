@@ -33,7 +33,7 @@ Le renderer exécutif `renderers/three_pager_exec/render_exec.py` est effectif ;
 - Manifest : `template_id/version/lifecycle/profile/capability/schema/renderer/QA/permissions`, calculé sur l'existant, pas basé sur l'énumération du README.
 - Deux topologies tests : chaîne industrielle manufacturière (Sphere) et contrats/actifs/financement (GreenYellow). Aucune migration in-place du v0.3 sans compatibilité.
 
-Cas externe : `examples/three-pagers/greenyellow/{analysis,three-pager}.md` conserve mécanisme économique, alternatives sans IA, risques et inconnues. Il est **interdit** d'en déduire un `companies/greenyellow` ou un manifest de portefeuille.
+Cas externe : `examples/three-pagers/external-case/{analysis,three-pager}.md` conserve mécanisme économique, alternatives sans IA, risques et inconnues. Il est **interdit** d'en déduire un `companies/<company-id>` ou un manifest de portefeuille.
 
 Owner [#25](https://github.com/achard-arnaud/Hivest-ptf-analysis/issues/25), [#30](https://github.com/achard-arnaud/Hivest-ptf-analysis/issues/30), nouveau [#43](https://github.com/achard-arnaud/Hivest-ptf-analysis/issues/43).
 
