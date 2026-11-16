@@ -4,7 +4,8 @@ Markdown + directives légères → HTML → PDF A4 portrait, rendu « cabinet d
 
 ```bash
 pip install markdown "playwright==1.56.0" pillow  # version alignée sur chromium-1194 préinstallé
-npm i -g @mermaid-js/mermaid-cli@11             # mmdc 12 ne connaît plus l'option -w utilisée par build.py
+npm install --prefix /tmp/business-ptf-tools @mermaid-js/mermaid-cli@11
+export PATH="/tmp/business-ptf-tools/node_modules/.bin:$PATH"
 python renderers/strategic_note/build.py renderers/strategic_note/sample_note.md --out /tmp/snote --pages 1-3
 ```
 
@@ -23,6 +24,17 @@ python renderers/strategic_note/build.py renderers/strategic_note/sample_note.md
 **QA (`qa_report.json`, code retour 2 si échec)** : nombre de pages dans `--pages`, échelle de chaque figure ≥ 0,70 (sinon transposition LR↔TB automatique, source Mermaid conservée à côté du PNG), corps ≥ 9 pt, texte secondaire ≥ 8 pt. La relecture visuelle page par page reste obligatoire.
 
 Palette et typographie : navy/blue/teal/gold hérités de `Hivest-ptf-analysis/renderers/three_pager_exec/exec_theme.css` ; titres Source Serif 4, texte Inter (repli Carlito / Liberation).
+
+## Runtime et reproductibilité
+
+Les versions du bloc ci-dessus correspondent à un exemple historique de runtime. Le projet conserve des plages de dépendances ; documenter les versions réellement installées, le navigateur et les polices pour un rejeu précis.
+
+- `CHROME_PATH` choisit le binaire utilisé par Mermaid/Puppeteer pour les figures. Le défaut codé est `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` ; définir cette variable vers le binaire réellement disponible sur un autre hôte.
+- `mmdc` doit être présent dans `PATH` avec une CLI compatible avec les options de `build.py`, dont `-w`.
+- Le PDF utilise le navigateur Playwright, à installer séparément avec `python -m playwright install chromium`.
+- `--no-fonts` évite la requête de polices Google ; les polices locales restent à contrôler pour la fidélité visuelle.
+
+Voir le [guide de démarrage](../../docs/getting-started.md), la [carte du code](../../docs/architecture/code-map.md) et le [binding des profils](../../docs/architecture/template-binding.md).
 
 ## Frontière avec la recherche et la narration
 
