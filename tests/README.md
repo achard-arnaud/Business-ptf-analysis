@@ -33,6 +33,6 @@ External capture archives are not part of public CI. `validate_bundle.py --archi
 
 Pilot acceptance still requires source review, three review lenses, actual human HITL, the applicable frozen-content check, physical PDF generation, reader inspection and cross-pilot loopback. A passing structural or layout test covers its stated boundary.
 
-## Recursive documentation review
+## Documentation dependency coverage
 
-The built-in route checker currently inspects a fixed list, not every Markdown file. The [2026-11-16 review](../docs/architecture/review-2026-11-16.md) records an additional full local-link and documentation-dependency audit, with eleven original-relative links in three pinned source copies explicitly mapped in the [reference guide](../skills/enterprise-ai-learning/references/README.md). Extending permanent CI coverage is a separate implementation choice.
+The built-in route checker inspects a fixed navigation list rather than every Markdown file or transitive dependency. The [reference guide](../skills/enterprise-ai-learning/references/README.md) maps original-relative links in pinned source copies. Extending repository-wide documentation-link coverage in CI remains a separate implementation choice.

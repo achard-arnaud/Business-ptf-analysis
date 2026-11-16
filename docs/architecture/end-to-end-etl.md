@@ -1,6 +1,6 @@
 # Evidence to decision to publication
 
-**Current architecture review: 2026-11-16.** The repository separates research, analytical judgement, editorial binding and output evidence. The [domain model](domain-and-data.md) defines the objects; [workflow](../../skills/hivest-portfolio-ai/references/workflow.md) defines business stages; [code map](code-map.md) identifies executable components.
+The repository separates research, analytical judgement, editorial binding and output evidence. The [domain model](domain-and-data.md) defines the objects; [workflow](../../skills/hivest-portfolio-ai/references/workflow.md) defines business stages; [code map](code-map.md) identifies executable components.
 
 ## Data moves through explicit contracts
 
@@ -40,13 +40,13 @@ The [handoff contract](../agent/handoff-and-fallback.md) declares the required c
 | Data shape and bounded invariants | Schemas and validators | Fixtures, tests and CLI checks |
 | Template availability and input shape | Registry + profile schema/template | Profile renderer |
 | Layout and output bytes | Renderer/CSS, actual artifacts, manifest and QA | Reader review, artifact receipt and publication workflow |
-| Historical rationale | [Decision register](README.md) | Current review and successor decisions |
+| Historical rationale | [Decision register](README.md) | Current architecture and successor decisions |
 
 ## Workstreams and extension limits
 
 The company programme, the [fund strategic note](../../companies/hivest/INDEX.md) and the [learning pilot](../../learning/enterprise-ai/README.md) own separate inputs and acceptance loops. Their reusable helpers do not transfer company gates between workstreams.
 
-Implemented profiles have their own payload/binding rules and QA. The common narrative contract, side-story lifecycle and full block→claim→fragment→source coverage across formats remain planned work. Portfolio rollup, client parameterisation, source adapters and reproducible runtime locks have specific outstanding acceptance gaps in the [review](review-2026-11-16.md).
+Implemented profiles have their own payload/binding rules and QA. The common narrative contract, side-story lifecycle and full block→claim→fragment→source coverage across formats remain planned work. Portfolio rollup, client parameterisation, source adapters and reproducible runtime locks have outstanding acceptance gaps tracked in the [industrialisation roadmap](../roadmap/industrialization-backlog.md) and [live issues](https://github.com/achard-arnaud/Business-ptf-analysis/issues).
 
 ## Learning and history
 

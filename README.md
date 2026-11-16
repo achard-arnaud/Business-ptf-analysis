@@ -120,13 +120,13 @@ Open the generated HTML. This is an `UNVERIFIED_DEMO`; its manifest records that
 | Output coverage and QA | Exec, strategic-note, value-chain and learning renderers; layout checks and selected browser CI. | Audit renderer; common multiformat export; broader semantic/visual regression and output-specific human acceptance. |
 | Portfolio operating model | Entity boundaries, programme roster, shared wiki and loopback procedure. | Comparable portfolio rollup with complete lineage; operational tracking of questions, captures, costs and next work. |
 
-For a source-based response to the external FDA / FDE / architect review, see the [review and evidence matrix](docs/architecture/review-2026-11-16.md). Architecture decisions are grouped in the [architecture register](docs/architecture/README.md).
+For the current capability boundaries and open acceptance gaps, see [What is still missing](#what-is-still-missing), the [industrialisation roadmap](docs/roadmap/industrialization-backlog.md) and the [architecture register](docs/architecture/README.md).
 
 For planning, use the [live issues](https://github.com/achard-arnaud/Business-ptf-analysis/issues) alongside the [industrialisation roadmap](docs/roadmap/industrialization-backlog.md). Older architecture notes may describe a component before its implementation; current code, schemas, registry and manifests establish the inspected state.
 
 ## Navigate and extend
 
-- **Business reader:** [Sphere diagnostic index](companies/sphere/INDEX.md), [Hivest strategic note workstream](companies/hivest/INDEX.md), [external GreenYellow example](examples/three-pagers/greenyellow/README.md).
+- **Business reader:** [Sphere diagnostic index](companies/sphere/INDEX.md), [Hivest strategic note workstream](companies/hivest/INDEX.md), [external asset/service case](examples/three-pagers/external-case/CASE_GUIDE.md).
 - **Agent/operator:** [quickstart map](docs/agent/quickstart-map.md), [workflow](skills/hivest-portfolio-ai/references/workflow.md), [context protocol](docs/agent/context-and-resume.md).
 - **Engineer:** [code map](docs/architecture/code-map.md), [Extract / Transform / Publish architecture](docs/architecture/end-to-end-etl.md), [contract changes](contracts/CHANGELOG.md), [tests](tests/README.md).
 - **Separate learning workstream:** [Enterprise AI modules](learning/enterprise-ai/README.md) and their [dedicated skill](skills/enterprise-ai-learning/SKILL.md). Their outputs do not advance investment-diagnostic gates.
