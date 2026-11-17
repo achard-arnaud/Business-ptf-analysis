@@ -15,7 +15,9 @@
         "C-size",
         "C-revenue",
         "C-offer",
-        "C-delivery"
+        "C-delivery",
+        "C-insurance-case",
+        "C-legal-perimeter"
       ]
     },
     {
@@ -31,7 +33,9 @@
         "C-size",
         "C-revenue",
         "C-offer",
-        "C-delivery"
+        "C-delivery",
+        "C-insurance-case",
+        "C-legal-perimeter"
       ]
     },
     {
@@ -45,7 +49,8 @@
       "source_claim_refs": [
         "C-identity",
         "C-size",
-        "C-revenue"
+        "C-revenue",
+        "C-legal-perimeter"
       ]
     },
     {
@@ -73,7 +78,8 @@
       "status": "complete",
       "source_claim_refs": [
         "C-offer",
-        "C-delivery"
+        "C-delivery",
+        "C-insurance-case"
       ]
     },
     {
@@ -88,6 +94,7 @@
       "source_claim_refs": [
         "C-offer",
         "C-delivery",
+        "C-insurance-case",
         "C-internal-maturity"
       ]
     },
@@ -117,7 +124,8 @@
         "C-identity",
         "C-size",
         "C-revenue",
-        "C-offer"
+        "C-offer",
+        "C-legal-perimeter"
       ]
     },
     {
@@ -130,7 +138,8 @@
       "status": "complete",
       "source_claim_refs": [
         "C-offer",
-        "C-delivery"
+        "C-delivery",
+        "C-insurance-case"
       ]
     },
     {
