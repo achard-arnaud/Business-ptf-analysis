@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-17",
+  "questions_count": 20,
+  "questions": [
+    "site:square-management.com Square Management 2026 acquisition capital actionnaire",
+    "site:square-management.com \"Square Management\" \"2025\" \"2026\" stratégie",
+    "site:square-management.com \"Square Institute\" formation offre prix",
+    "site:square-management.com \"AI & Data\" offres clients",
+    "Actionnariat de Square Management et rôle d’Abenex",
+    "Actualités 2025–2026 et croissance externe",
+    "Deux offres Square Management et Circle Strategy",
+    "Financement des acquisitions et historique d’Abenex",
+    "site:square-management.com \"rapport\" \"2025\" \"consultants\"",
+    "site:square-management.com tarifs prix forfait régie conseil",
+    "site:square-management.com \"Supper\" \"P-Val\" acquisition 2024",
+    "site:abenex.com Square Management portefeuille",
+    "site:sia-partners.com AI consulting banking insurance agents",
+    "site.wavestone.com France conseil intelligence artificielle banque assurance",
+    "site:square-management.com \"Full Value\" \"résultats\"",
+    "\"Square Management\" \"2026\" chiffre affaires baisse",
+    "site:sia-partners.com \"Agent Store\" \"2026\"",
+    "site:square-management.com \"satisfaction\" \"clients\" \"2025\"",
+    "site:square-management.com \"Circle Strategy\" \"2026\" stratégie",
+    "site:square-management.com \"Centre IA\" \"DORA\" \"SLM\""
+  ],
+  "question_labels": "Questions 5–8 normalisées ; autres libellés de recherche conservés.",
+  "sitemap_attempts": [
+    "/sitemap_index.xml",
+    "/wp-sitemap.xml",
+    "/robots.txt",
+    "/sitemap.xml"
+  ],
+  "sitemap_result": "Tous inaccessibles via le service de recherche ; dénominateur canonical HTML non énumérable.",
+  "html_denominator": null,
+  "sitemap_coverage_percent": null,
+  "coverage_threshold_met": false,
+  "coverage_exception": "Accès XML/robots bloqué ; couverture exhaustive >50 % non démontrable. Lecture ciblée des pages corporate et des résultats indexés.",
+  "excluded": [
+    "Paramètres de tracking et langues dupliquées",
+    "Offres d’emploi, non utilisées comme preuves business",
+    "Actifs non HTML exclus du dénominateur mais rapports PDF utilisés comme preuves"
+  ],
+  "source_classes": [
+    "entreprise",
+    "investisseur",
+    "concurrents",
+    "presse spécialisée"
+  ],
+  "contradictions": [
+    "RSE 2025 : 800 collaborateurs et mix 55/13/18/13/1 ; rapport 2024 : 900 consultants et mix 61/12/15/7/5. Dates et libellés différents ; aucune baisse à périmètre constant calculée.",
+    "Abenex : 670 collaborateurs et 100+ M€, sans millésime ; impossible de les rapprocher du rapport 2025.",
+    "Site : 140 M€ prévisionnels sans exercice ; ne vaut pas revenu réalisé."
+  ],
+  "unresolved": [
+    "Prix, forfait/régie et revenus récurrents",
+    "Résultats économiques consolidés et rentabilité",
+    "KPIs clients comparables",
+    "Articles de presse 2026 signalant des tensions ; texte payant non instruit, assertions non reprises comme faits."
+  ],
+  "stop_reason": "Analyse descriptive en deux pages ; hiérarchie de sources réconciliée, principales inconnues identifiées. Limite de sitemap et d’accès à la presse payante consignée."
+}

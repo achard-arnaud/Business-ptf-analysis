@@ -1,0 +1,269 @@
+{
+  "document": {
+    "title": "SQUARE MANAGEMENT",
+    "language": "fr",
+    "theme": "renderers/executive_two_pager/themes/executive-corporate.json"
+  },
+  "pages": [
+    {
+      "kicker": "Analyse business · Données publiques au 17 novembre 2026",
+      "subtitle": "1 · Modèle économique, marchés et dynamique stratégique",
+      "gate": {
+        "label": "Lecture stratégique",
+        "main": "Expertise sectorielle × exécution",
+        "sub": "La recherche enrichit les missions ; sa valeur se matérialise chez le client."
+      },
+      "top_cards": [
+        {
+          "title": "Deux portes d’entrée",
+          "body": "<b>Circle Strategy</b> : stratégie. <b>Square Management</b> : organisation et transformation, avec dix domaines dont AI & Data, risques, conformité et supply chain. [S1, S3]"
+        },
+        {
+          "title": "Mix du chiffre d’affaires",
+          "body": "Assurance 13 % · distribution/luxe/consommation 18 % · industrie/énergie 13 % · autres 1 %. [S1]",
+          "metric": {
+            "value": "55 %",
+            "meta": "banque · exercice 2025<br>chiffres déclarés par le cabinet"
+          }
+        },
+        {
+          "title": "Vente et capture de valeur",
+          "body": "<b>Missions de conseil et transformation.</b> Les tarifs, forfaits, part de régie et revenus récurrents ne sont pas détaillés dans le corpus ; le revenu par mission reste à qualifier."
+        }
+      ],
+      "flow": {
+        "title": "Du besoin dirigeant à la valeur livrée",
+        "note": "Lecture analytique de la création de valeur",
+        "columns": "five",
+        "steps": [
+          {
+            "num": "01",
+            "name": "Besoin client",
+            "sub": "Stratégie, performance, risque"
+          },
+          {
+            "num": "02",
+            "name": "Expertise",
+            "sub": "Métiers × dix domaines"
+          },
+          {
+            "num": "03",
+            "name": "Méthodes",
+            "sub": "Recherche appliquée"
+          },
+          {
+            "num": "04",
+            "name": "Mission",
+            "sub": "Conception et réalisation"
+          },
+          {
+            "num": "05",
+            "name": "Résultat",
+            "sub": "Adoption, qualité, maîtrise du risque"
+          }
+        ]
+      },
+      "layout": "three_columns",
+      "columns": [
+        {
+          "title": "Échelle et économie",
+          "type": "bullets",
+          "items": [
+            {
+              "status": "orange",
+              "text": "<b>800 collaborateurs</b>, trois pays : France, Belgique, Luxembourg, dans le rapport 2025. [S1]"
+            },
+            {
+              "status": "orange",
+              "text": "<b>25 programmes de recherche</b> ; 1,2 % du CA consacré à la R&D et 2,5 % à la formation. [S1]"
+            },
+            {
+              "status": "orange",
+              "text": "<b>Leviers économiques — inférence :</b> convertir les comptes, mobiliser les compétences et réutiliser les méthodes."
+            },
+            {
+              "status": "red",
+              "text": "CA réalisé consolidé, marge et taux d’activité non chiffrés dans les sources retenues : rentabilité non mesurable."
+            }
+          ]
+        },
+        {
+          "title": "Signaux des 24 derniers mois",
+          "type": "bullets",
+          "items": [
+            {
+              "status": "green",
+              "text": "<b>Février 2025 :</b> annonce de la certification B Corp ; signal de positionnement responsable. [S7]"
+            },
+            {
+              "status": "orange",
+              "text": "<b>2025 → janvier 2026 :</b> formation IA rendue obligatoire, puis intégrée à l’onboarding. [S1]"
+            },
+            {
+              "status": "green",
+              "text": "<b>Octobre 2025 :</b> partenariat Club Banque annoncé pour 2026 ; accès à un écosystème de décideurs. [S8]"
+            },
+            {
+              "status": "orange",
+              "text": "<b>Offre actuelle :</b> Centre IA et approche Full Value ; date de lancement non documentée. [S4]"
+            }
+          ]
+        },
+        {
+          "title": "Capital et qualité des données",
+          "type": "bullets",
+          "items": [
+            {
+              "status": "green",
+              "text": "Abenex affiche Square dans son portefeuille ; entrée minoritaire annoncée en novembre 2017. [S3, S9]"
+            },
+            {
+              "status": "red",
+              "text": "La fiche Abenex affiche 670 collaborateurs sans millésime ; elle diffère du rapport 2025. Les périmètres restent à rapprocher."
+            },
+            {
+              "status": "orange",
+              "text": "Le site affiche 140 M€ <b>prévisionnels</b> sans exercice. Cette valeur ne constitue pas un CA réalisé récent. [S2]"
+            },
+            {
+              "status": "orange",
+              "text": "Le rapport 2025 prime ici sur le site corporate pour l’effectif et le mix ; aucune baisse à périmètre constant n’est calculée."
+            }
+          ]
+        }
+      ],
+      "footer": {
+        "title": "Sources · page 1",
+        "body": "S1 : RSE 2025, pp. 4–5 et 32–33 · S2 : identité · S3/S9 : Abenex · S4 : Centre IA · S7/S8 : annonces corporate."
+      }
+    },
+    {
+      "kicker": "Analyse business · Exécution et position concurrentielle",
+      "subtitle": "2 · Usages, contraintes de delivery et différenciation",
+      "gate": {
+        "label": "Tension stratégique",
+        "main": "Rendre la différence vérifiable",
+        "sub": "Relier science, expertise métier et impact mesuré sur chaque mission."
+      },
+      "top_cards": [
+        {
+          "title": "Paiements · fraude SEPA",
+          "body": "<b>Détection d’anomalies</b>, indicateurs comportementaux et alertes explicables ; les analystes ajustent les seuils. Valeur visée : concentrer l’examen sur les cas atypiques. [S5]"
+        },
+        {
+          "title": "Assurance · efficacité",
+          "body": "<b>Process mining + NLP + règles de fraude</b>, avec retour des gestionnaires. Valeur visée : comprendre les irritants et accélérer les parcours adaptés. Gains chiffrés non fournis. [S6]"
+        },
+        {
+          "title": "Capacités IA observables",
+          "body": "Centre IA, petits modèles et déploiements chez le client sont annoncés. La formation interne est documentée ; adoption effective, ROI interne et exploitation en production restent à mesurer. [S1, S4]"
+        }
+      ],
+      "flow": {
+        "title": "Porter adapté aux services de conseil",
+        "note": "Lecture analytique de la création de valeur",
+        "columns": "five",
+        "steps": [
+          {
+            "num": "01",
+            "name": "Amont",
+            "sub": "Données, mandat et droits"
+          },
+          {
+            "num": "02",
+            "name": "Production",
+            "sub": "Analyse et delivery"
+          },
+          {
+            "num": "03",
+            "name": "Aval",
+            "sub": "Transfert et passage de relais"
+          },
+          {
+            "num": "04",
+            "name": "Ventes",
+            "sub": "Références et comptes"
+          },
+          {
+            "num": "05",
+            "name": "Services",
+            "sub": "Adoption et retour d’expérience"
+          }
+        ]
+      },
+      "layout": "three_columns",
+      "columns": [
+        {
+          "title": "Ce qui soutient l’exécution",
+          "type": "bullets",
+          "items": [
+            {
+              "status": "orange",
+              "text": "<b>RH :</b> former et affecter les expertises aux missions ; capacité et disponibilité conditionnent les délais."
+            },
+            {
+              "status": "orange",
+              "text": "<b>Technologie :</b> transférer les travaux du Research Center vers des méthodes utilisables. [S10]"
+            },
+            {
+              "status": "orange",
+              "text": "<b>Infrastructure et achats :</b> coordonner les équipes, contrôler qualité et risques, cadrer les dépendances externes."
+            },
+            {
+              "status": "red",
+              "text": "Les promesses de sécurité et de conformité du Centre IA demandent des preuves propres au déploiement ; le lieu d’hébergement ne suffit pas."
+            }
+          ]
+        },
+        {
+          "title": "Concurrence et avantage durable",
+          "type": "bullets",
+          "items": [
+            {
+              "status": "orange",
+              "text": "<b>Sia</b> annonce plus de 1 000 agents en avril 2026 : un positionnement fondé sur un catalogue réutilisable. [S11]"
+            },
+            {
+              "status": "orange",
+              "text": "<b>Wavestone</b> couvre stratégie Data/IA, gouvernance et déploiement : recouvrement d’offre en transformation. [S12]"
+            },
+            {
+              "status": "orange",
+              "text": "<b>Lecture comparative :</b> citer l’IA ou la recherche ne démontre pas à soi seul un avantage ; comparer des missions de même périmètre."
+            },
+            {
+              "status": "orange",
+              "text": "Pour Square, l’atout plausible est l’articulation métiers réglementés × recherche × accompagnement. Prime de prix et fidélisation restent non mesurées."
+            }
+          ]
+        },
+        {
+          "title": "Quatre enseignements business",
+          "type": "bullets",
+          "items": [
+            {
+              "status": "orange",
+              "text": "<b>1. La finance reste l’ancrage.</b> Banque et assurance structurent le mix ; la diversification élargit les débouchés."
+            },
+            {
+              "status": "orange",
+              "text": "<b>2. La recherche doit devenir un actif de mission.</b> Son intérêt économique dépend du transfert et du réemploi."
+            },
+            {
+              "status": "orange",
+              "text": "<b>3. Le conseil est complété par l’IA.</b> Les cas décrivent une coopération avec les équipes métier ; aucun remplacement global n’est prouvé."
+            },
+            {
+              "status": "red",
+              "text": "<b>4. La preuve client reste décisive.</b> Coûts complets, délais, résultats, satisfaction et renouvellement sont nécessaires pour apprécier la valeur captée."
+            }
+          ]
+        }
+      ],
+      "footer": {
+        "title": "Sources · page 2",
+        "body": "S4 : Centre IA · S5 : cas SEPA · S6 : cas assurance · S10 : Research Center · S11 : Sia, 09/04/2026 · S12 : Wavestone."
+      }
+    }
+  ]
+}

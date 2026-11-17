@@ -1,0 +1,392 @@
+{
+  "case_id": "square-management-20261117-two-pager",
+  "derived_from": "square-management-20261117-r2",
+  "kind": "format-rerun-with-research-delta",
+  "nodes": [
+    {
+      "id": "S1",
+      "type": "source",
+      "url": "https://www.square-management.com/wp-content/uploads/2026/07/Rapport_RSE_Square_Management_2025.pdf",
+      "locator": "Rapport RSE 2025, pages imprimées 4–5 et 32–33",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F1",
+      "type": "fragment",
+      "text": "800 collaborateurs ; mix de CA 55/13/18/13/1 ; trois pays, 25 programmes. Formation IA obligatoire en 2025, onboarding janvier 2026. Déclaratif.",
+      "status": "attributed"
+    },
+    {
+      "id": "S2",
+      "type": "source",
+      "url": "https://www.square-management.com/identite/",
+      "locator": "Identité et chiffres",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F2",
+      "type": "fragment",
+      "text": "Ancien mix 61/12/15/7/5 et 140 M€ prévisionnels sans exercice. Le rapport 2025 prime pour effectif/mix.",
+      "status": "attributed"
+    },
+    {
+      "id": "S3",
+      "type": "source",
+      "url": "https://www.abenex.com/fr/portefeuille/square-management",
+      "locator": "Portefeuille et infos clés",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F3",
+      "type": "fragment",
+      "text": "En portefeuille, entrée novembre 2017 ; deux marques ; 670 collaborateurs, 100+ M€, sans millésime. Périmètre/date non rapprochés.",
+      "status": "attributed"
+    },
+    {
+      "id": "S4",
+      "type": "source",
+      "url": "https://www.square-management.com/centre-ia/",
+      "locator": "Full Value et Centre agentique",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F4",
+      "type": "fragment",
+      "text": "Valeur et coûts complets ; petits modèles, infrastructure client et prototypage annoncés. Garanties commerciales non auditées.",
+      "status": "attributed"
+    },
+    {
+      "id": "S5",
+      "type": "source",
+      "url": "https://www.square-management.com/cas-client/detection-des-comportements-atypiques-application-a-la-lutte-contre-la-fraude-aux-prelevements-sepa/",
+      "locator": "Solution, analystes et seuils",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F5",
+      "type": "fragment",
+      "text": "Détection d’anomalies, explication et seuils réglables ; résultats chiffrés comparables non fournis.",
+      "status": "attributed"
+    },
+    {
+      "id": "S6",
+      "type": "source",
+      "url": "https://www.square-management.com/cas-client/optimisation-de-lefficacite-operationnelle-et-de-la-satisfaction-client-grace-a-lintelligence-artificielle/",
+      "locator": "Process mining, verbatims et fraude",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F6",
+      "type": "fragment",
+      "text": "NLP, règles et feedback des gestionnaires ; parcours clients. Résultats non indépendamment audités.",
+      "status": "attributed"
+    },
+    {
+      "id": "S7",
+      "type": "source",
+      "url": "https://www.square-management.com/engagement/",
+      "locator": "Rapport, B Corp et engagements",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F7",
+      "type": "fragment",
+      "text": "B Corp et efforts de formation déclarés ; annonce du 19 février 2025 repérée sur accueil/actualités.",
+      "status": "attributed"
+    },
+    {
+      "id": "S8",
+      "type": "source",
+      "url": "https://www.square-management.com/actualites-square/square-management-partenaire-officiel-du-club-banque-2026/",
+      "locator": "Annonce du 20 octobre 2025",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F8",
+      "type": "fragment",
+      "text": "Partenariat Club Banque 2026 ; ne prouve pas conversion commerciale.",
+      "status": "attributed"
+    },
+    {
+      "id": "S9",
+      "type": "source",
+      "url": "https://www.abenex.com/fr/publications/abenex-entre-au-capital-de-square-groupe-de-conseil-international-en-forte-croissance",
+      "locator": "Novembre 2017",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F9",
+      "type": "fragment",
+      "text": "Entrée minoritaire aux côtés des fondateurs, capital majoritairement conservé par eux à la date de l’opération.",
+      "status": "attributed"
+    },
+    {
+      "id": "S10",
+      "type": "source",
+      "url": "https://www.square-management.com/square-research-center/",
+      "locator": "Présentation",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F10",
+      "type": "fragment",
+      "text": "Chercheurs et consultants, recherche appliquée, transfert d’outils et méthodes.",
+      "status": "attributed"
+    },
+    {
+      "id": "S11",
+      "type": "source",
+      "url": "https://www.sia-partners.com/fr/a-propos/actualites/passer-dune-ambition-ia-au-deploiement-a-lechelle-de-lintelligence-appliquee",
+      "locator": "9 avril 2026",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F11",
+      "type": "fragment",
+      "text": "Plus de mille agents annoncés dans Agent Store ; métrique déclarative qui ne mesure ni adoption ni rentabilité.",
+      "status": "attributed"
+    },
+    {
+      "id": "S12",
+      "type": "source",
+      "url": "https://www.wavestone.com/fr/nos-expertises/data-intelligence-artificielle/",
+      "locator": "Offre de conseil Data/IA",
+      "consulted": "2026-11-17"
+    },
+    {
+      "id": "F12",
+      "type": "fragment",
+      "text": "Stratégie, données fiables et gouvernées, déploiement et intégration métier. Positionnement déclaré. Aucun classement comparatif produit.",
+      "status": "attributed"
+    },
+    {
+      "id": "C1",
+      "type": "claim",
+      "statement": "Deux marques, conseil sectoriel et transformation.",
+      "status": "attributed_claim",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "id": "C2",
+      "type": "claim",
+      "statement": "Rapport 2025 : 800 collaborateurs, mix CA 55/13/18/13/1, trois pays et 25 programmes.",
+      "status": "attributed_claim",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "id": "C3",
+      "type": "claim",
+      "statement": "Effectif et CA des pages corporate/investisseur diffèrent ; dates et périmètres à rapprocher.",
+      "status": "contradiction",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "id": "C4",
+      "type": "claim",
+      "statement": "Tarifs, part des modèles de facturation et récurrence non documentés dans le corpus.",
+      "status": "unknown",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "id": "C5",
+      "type": "claim",
+      "statement": "Recherche et formation peuvent soutenir réemploi, staffing et qualité de mission.",
+      "status": "inference",
+      "pages": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "C6",
+      "type": "claim",
+      "statement": "Partenariat Club Banque 2026 et formation IA obligatoire documentés.",
+      "status": "attributed_claim",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "id": "C7",
+      "type": "claim",
+      "statement": "Cas SEPA et assurance décrivent usages et supervision métier, sans gains comparables chiffrés.",
+      "status": "attributed_claim",
+      "pages": [
+        2
+      ]
+    },
+    {
+      "id": "C8",
+      "type": "claim",
+      "statement": "Centre IA : modèle valeur, petits modèles et hébergement client annoncés ; garanties à prouver.",
+      "status": "attributed_claim",
+      "pages": [
+        2
+      ]
+    },
+    {
+      "id": "C9",
+      "type": "claim",
+      "statement": "Sia et Wavestone présentent des offres adjacentes ; comparer missions, résultats et coûts de même périmètre.",
+      "status": "inference",
+      "pages": [
+        2
+      ]
+    },
+    {
+      "id": "C10",
+      "type": "claim",
+      "statement": "Maturité globale, marges, utilisation et fidélisation ne sont pas mesurables avec ce corpus.",
+      "status": "unknown",
+      "pages": [
+        2
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "F1",
+      "to": "S1",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F2",
+      "to": "S2",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F3",
+      "to": "S3",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F4",
+      "to": "S4",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F5",
+      "to": "S5",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F6",
+      "to": "S6",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F7",
+      "to": "S7",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F8",
+      "to": "S8",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F9",
+      "to": "S9",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F10",
+      "to": "S10",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F11",
+      "to": "S11",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F12",
+      "to": "S12",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F1",
+      "to": "C1",
+      "type": "supports"
+    },
+    {
+      "from": "F3",
+      "to": "C1",
+      "type": "supports"
+    },
+    {
+      "from": "F1",
+      "to": "C2",
+      "type": "supports"
+    },
+    {
+      "from": "F1",
+      "to": "C3",
+      "type": "supports"
+    },
+    {
+      "from": "F2",
+      "to": "C3",
+      "type": "supports"
+    },
+    {
+      "from": "F3",
+      "to": "C3",
+      "type": "supports"
+    },
+    {
+      "from": "F1",
+      "to": "C5",
+      "type": "supports"
+    },
+    {
+      "from": "F10",
+      "to": "C5",
+      "type": "supports"
+    },
+    {
+      "from": "F1",
+      "to": "C6",
+      "type": "supports"
+    },
+    {
+      "from": "F8",
+      "to": "C6",
+      "type": "supports"
+    },
+    {
+      "from": "F5",
+      "to": "C7",
+      "type": "supports"
+    },
+    {
+      "from": "F6",
+      "to": "C7",
+      "type": "supports"
+    },
+    {
+      "from": "F4",
+      "to": "C8",
+      "type": "supports"
+    },
+    {
+      "from": "F11",
+      "to": "C9",
+      "type": "supports"
+    },
+    {
+      "from": "F12",
+      "to": "C9",
+      "type": "supports"
+    }
+  ],
+  "historical_run_unchanged": true
+}

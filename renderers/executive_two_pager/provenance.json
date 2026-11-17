@@ -1,0 +1,16 @@
+{
+  "source": "executive-one-two-pager",
+  "version": "2.0.0",
+  "snapshot": "2026-11-17",
+  "files": {
+    "scripts/cli.py": "2c43ad2ead62e9135a7fa87b6ebf8f68846e0d75a7734b17da36e8c4a4074373",
+    "scripts/render.py": "ecaf4ba194167c92eeda02bf132cccdda4059069c75a00b9c711653b488bdb6e",
+    "scripts/qa.py": "11ab9ce947af403ab769f1ffe1cdd5244559e8f3fba3278d4a36b44492be1f1d",
+    "templates/document.html.j2": "6f07e94b79b29191c411a2eee1f413316b49150b5b0ca0a627daeed459e3c633",
+    "assets/theme.css.j2": "a80384cc294932ffcf3fa593290f576c96b1a03599641c48cd3d2e860156709c",
+    "themes/executive-corporate.json": "871845a2df3bd6fd6d6990b2c4ede022d332316c093245da8fa727e5562136a9",
+    "palettes/executive-corporate.json": "4826be8ed698068e02689be697d160758a0832345fd597ca85b515ca771aa192",
+    "requirements.txt": "292e18e134c0ef87b7c863fe9f51dacf46c391b68bb6dc12ddfd2c85f6554bd3"
+  },
+  "modifications": []
+}

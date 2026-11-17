@@ -1,0 +1,44 @@
+name: Executive business brief render
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'companies/**/instances/*two-pager/content.json'
+      - 'renderers/executive_two_pager/**'
+      - '.github/workflows/executive-brief-render.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r renderers/executive_two_pager/requirements.txt pypdf
+      - run: python -m playwright install --with-deps chromium
+      - name: Bind canonical package Chromium path
+        run: |
+          browser=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')
+          sudo ln -sf "$browser" /usr/bin/chromium
+      - name: Build and QA two-page company briefs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess,sys,json,hashlib
+          from pypdf import PdfReader
+          for config in sorted(Path('companies').glob('*/instances/*two-pager/content.json')):
+              source=json.loads(config.read_text());assert len(source['pages'])==2
+              out=Path('/tmp/executive-briefs')/config.parent.name
+              subprocess.run([sys.executable,'renderers/executive_two_pager/scripts/cli.py','all',str(config),'--output',str(out),'--name','Square_Management_Business_2pager'],check=True)
+              pdf=out/'Square_Management_Business_2pager.pdf';assert len(PdfReader(pdf).pages)==2
+              qa=json.loads((out/'Square_Management_Business_2pager_qa.json').read_text());assert qa['pass']
+              (out/'receipt.json').write_text(json.dumps({'content_sha256':hashlib.sha256(config.read_bytes()).hexdigest(),'pdf_sha256':hashlib.sha256(pdf.read_bytes()).hexdigest(),'pages':2,'qa_pass':True,'renderer':'executive-one-two-pager 2.0.0 canonical package','files':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in out.iterdir() if p.is_file()}},indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: executive-business-briefs
+          path: /tmp/executive-briefs/

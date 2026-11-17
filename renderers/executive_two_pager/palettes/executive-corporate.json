@@ -1,0 +1,37 @@
+{
+  "name": "Executive Corporate",
+  "version": "1.0.0",
+  "purpose": "Reusable corporate palette for one-pagers, two-pagers, slides and wider artifacts.",
+  "colors": {
+    "navy": "#13213A",
+    "navy_2": "#1B2E4D",
+    "teal": "#0C7185",
+    "cyan": "#2DC4D6",
+    "cyan_dark": "#0E5A79",
+    "background": "#F3F6FA",
+    "surface": "#FFFFFF",
+    "text": "#26364A",
+    "muted": "#62738B",
+    "border": "#CBD6E4",
+    "green": "#17A673",
+    "orange": "#F29B21",
+    "red": "#DE4D57",
+    "pale_cyan": "#E5F5F8",
+    "pale_blue": "#EDF0FA",
+    "pale_green": "#E4F5EE",
+    "pale_red": "#FCECEF",
+    "pale_orange": "#FFF2DF"
+  },
+  "semantic_roles": {
+    "verified": "green",
+    "claim_or_inference": "orange",
+    "unknown_or_contradiction": "red",
+    "primary_background": "navy",
+    "secondary_background": "background",
+    "primary_accent": "teal",
+    "secondary_accent": "cyan",
+    "surface": "surface",
+    "body_text": "text",
+    "secondary_text": "muted"
+  }
+}

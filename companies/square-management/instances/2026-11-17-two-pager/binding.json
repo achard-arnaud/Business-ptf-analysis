@@ -1,0 +1,23 @@
+{
+  "case_id": "square-management-20261117-two-pager",
+  "source_case": "square-management-20261117-r2",
+  "format": "executive-one-two-pager",
+  "skill_version": "2.0.0",
+  "pages": 2,
+  "content_ref": "content.json",
+  "graph_ref": "research-graph.json",
+  "sources_ref": "sources.md",
+  "renderer_snapshot": "renderers/executive_two_pager/provenance.json",
+  "process": [
+    "research delta",
+    "evidence reconciliation",
+    "business composition",
+    "Chromium render",
+    "DOM QA",
+    "physical PDF page check",
+    "visual review",
+    "editorial repetition review"
+  ],
+  "status": "prepared",
+  "business_approval": false
+}

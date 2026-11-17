@@ -1,0 +1,29 @@
+{
+  "name": "Executive Corporate",
+  "version": "1.0.0",
+  "typography": {
+    "font_family": "Arial, Helvetica, sans-serif",
+    "font_body_pt": 10.5,
+    "font_preferred_pt": 11,
+    "font_min_pt": 9,
+    "font_caption_pt": 9,
+    "font_h1_pt": 24,
+    "font_h2_pt": 13,
+    "font_h3_pt": 10.5,
+    "line_height": 1.22
+  },
+  "spacing": {
+    "page_margin_mm": 10,
+    "card_padding_pt": 11,
+    "card_padding_min_pt": 9,
+    "gap_mm": 3.2,
+    "radius_pt": 9
+  },
+  "print": {
+    "page_size": "A4",
+    "orientation": "landscape",
+    "width_mm": 297,
+    "height_mm": 210
+  },
+  "palette_ref": "../palettes/executive-corporate.json"
+}
