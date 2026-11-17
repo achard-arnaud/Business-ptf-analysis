@@ -1,0 +1,44 @@
+{
+  "pages": [
+    {
+      "index": 1,
+      "width": 1122.515625,
+      "height": 793.6875,
+      "overlaps": [],
+      "overflows": [],
+      "out_of_bounds": [],
+      "small_fonts": [],
+      "low_padding": []
+    },
+    {
+      "index": 2,
+      "width": 1122.515625,
+      "height": 793.6875,
+      "overlaps": [],
+      "overflows": [
+        {
+          "tag": "ARTICLE",
+          "cls": "card",
+          "scrollHeight": 274,
+          "clientHeight": 266,
+          "scrollWidth": 339,
+          "clientWidth": 339
+        }
+      ],
+      "out_of_bounds": [],
+      "small_fonts": [],
+      "low_padding": []
+    }
+  ],
+  "violations": [],
+  "page_count": 2,
+  "summary": {
+    "page_count": 2,
+    "overlaps": 0,
+    "overflows": 1,
+    "out_of_bounds": 0,
+    "small_fonts": 0,
+    "low_padding": 0
+  },
+  "pass": false
+}
