@@ -12,3 +12,8 @@ The graph records dependencies, claims and questions. `scripts/research_graph.py
 Independent three-page output: page 1 company profile and thesis; page 2 Porter value chain; page 3 AI/Data maturity and prioritized workstreams.
 
 The optional learning module remains separate from both company routes. See `docs/agent/quickstart-map.md`, `docs/architecture/code-map.md` and `docs/architecture/README.md`.
+
+
+## Binding et revue avant PDF
+
+Pour toute nouvelle instance indépendante, le graphe propre à l’entreprise est créé avant la collecte. Pour les restitutions en trois pages, utiliser le contrat `THREE_PAGER_PORTFOLIO_AI` et créer un payload et un manifeste de binding distincts à partir de cette instance. Rendre les trois pages depuis le payload avec le renderer du contrat ; ne pas reprendre les noms, conclusions ni exemples d’une autre instance. Avant dépôt, exécuter la validation du contrat et de cohérence, relire les trois pages rendues, puis consigner les revues preuves/contre-hypothèse/décision. Le statut reste brouillon tant qu’une approbation métier distincte n’a pas été donnée.
