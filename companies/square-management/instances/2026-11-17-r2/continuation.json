@@ -1,0 +1,6 @@
+{
+  "run_id": 44104058026,
+  "artifact_name": "isolated-company-cases",
+  "action": "revise",
+  "reason": "Browser QA rejected transformation card overflow; shorten prose and align theme numbering to P0/P1/P2."
+}

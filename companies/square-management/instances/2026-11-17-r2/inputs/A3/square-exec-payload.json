@@ -85,6 +85,22 @@
   "themes": [
     {
       "n": 1,
+      "name": "P0 · Valeur des missions",
+      "stars": 3,
+      "drivers": [
+        "D4"
+      ],
+      "activity": "Services",
+      "strategy": "qualité et récurrence",
+      "strategy_family": "resilience",
+      "horizon": "J0–J30",
+      "change": "Centre IA : deux missions, baseline, adoption, coûts complets et contrôles.",
+      "benefit": "Valeur nette et adoption suivies.",
+      "advantage": "Full Value démontré en situation.",
+      "feature": "Gain net requis ; arrêt si risque ou droits KO."
+    },
+    {
+      "n": 2,
       "name": "P1 · Références autorisées",
       "stars": 3,
       "drivers": [
@@ -101,7 +117,7 @@
       "feature": "Continuer si gain net ; sinon recherche simple."
     },
     {
-      "n": 2,
+      "n": 3,
       "name": "P2 · Compétences fiables",
       "stars": 3,
       "drivers": [
@@ -115,31 +131,15 @@
       "benefit": "Cibles : couverture >95 % ; délai −15 %.",
       "advantage": "Mobiliser les expertises pertinentes.",
       "feature": "Données fiables avant matching ; mesurer l’équité."
-    },
-    {
-      "n": 3,
-      "name": "P0 · Valeur des missions",
-      "stars": 3,
-      "drivers": [
-        "D4"
-      ],
-      "activity": "Services",
-      "strategy": "qualité et récurrence",
-      "strategy_family": "resilience",
-      "horizon": "J0–J30",
-      "change": "Centre IA : deux missions, baseline, adoption, coûts complets et contrôles.",
-      "benefit": "Valeur nette et adoption suivies.",
-      "advantage": "Full Value démontré en situation.",
-      "feature": "Gain net requis ; arrêt si risque ou droits KO."
     }
   ],
   "transformation": {
     "covers": [
       "D5"
     ],
-    "mt": "Si pilotes probants : relier preuves, références et capacité.",
-    "lt": "Étendre aux practices avec valeur nette et contrôles suivis.",
-    "take": "Trajectoire conditionnelle ; adapter les démarches au client."
+    "mt": "Relier preuves et références si pilotes probants.",
+    "lt": "Étendre aux practices après preuve de valeur.",
+    "take": "Extension conditionnée à la valeur et aux contrôles."
   },
   "posture": {
     "current": "S-O",
@@ -299,7 +299,7 @@
         "desc": "25 programmes annoncés (S01) ; le cas SEPA relie recherche et détection (S04). Réemploi à mesurer.",
         "benefit": "méthodes et actifs différenciants",
         "themes": [
-          1
+          2
         ]
       },
       {
@@ -314,7 +314,7 @@
         "desc": "900 consultants déclarés en 2024 (S02). Compétences, capacité et staffing actuels à documenter.",
         "benefit": "staffing, développement et adoption",
         "themes": [
-          2
+          3
         ]
       }
     ],
@@ -331,7 +331,7 @@
         "desc": "Concevoir et délivrer : anomalies SEPA, NLP et process mining en assurance (S04–S05).",
         "benefit": "qualité et résultats client",
         "themes": [
-          3
+          1
         ]
       },
       {
@@ -346,7 +346,7 @@
         "desc": "Origination, propositions, références sectorielles et développement des comptes.",
         "benefit": "conversion et extension",
         "themes": [
-          1
+          2
         ]
       },
       {
@@ -355,7 +355,7 @@
         "desc": "Accompagner l’adoption, examiner les alertes et mesurer les résultats ; retour des gestionnaires (S04–S05).",
         "benefit": "valeur prouvée et récurrence",
         "themes": [
-          3
+          1
         ]
       }
     ],
@@ -396,19 +396,19 @@
           "row": "Core",
           "col": "Differentiating",
           "label": "Références réutilisables",
-          "theme": 1
+          "theme": 2
         },
         {
           "row": "Enabler",
           "col": "Parity",
           "label": "Staffing et compétences",
-          "theme": 2
+          "theme": 3
         },
         {
           "row": "Core",
           "col": "Parity",
           "label": "Delivery et adoption mesurés",
-          "theme": 3
+          "theme": 1
         },
         {
           "row": "Support",
@@ -419,7 +419,7 @@
           "row": "Enabler",
           "col": "Differentiating",
           "label": "Recherche appliquée",
-          "theme": 1
+          "theme": 2
         },
         {
           "row": "Core",
@@ -442,16 +442,16 @@
     "dominant": {
       "rows": [
         [
+          "Valeur client",
+          "resilience"
+        ],
+        [
           "Réemploi",
           "differentiation"
         ],
         [
           "Staffing",
           "cost"
-        ],
-        [
-          "Valeur client",
-          "resilience"
         ]
       ],
       "take": "Décision à J30 sur preuves ; réutiliser l’existant s’il atteint déjà les critères."
