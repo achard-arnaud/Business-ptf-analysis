@@ -1,0 +1,6 @@
+{
+  "run_id": 44186621304,
+  "artifact_name": "company-case-execution",
+  "action": "revise",
+  "reason": "Browser QA rejected a 12px overflow in Signal\u00e9tique; shorten three labels without changing the evidence or shrinking fonts."
+}
