@@ -9,8 +9,14 @@
       "kind": "evidence",
       "path": "package.json",
       "depends_on": [],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-identity",
+        "C-size",
+        "C-revenue",
+        "C-offer",
+        "C-delivery"
+      ]
     },
     {
       "id": "evidence",
@@ -19,8 +25,14 @@
       "depends_on": [
         "sources"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-identity",
+        "C-size",
+        "C-revenue",
+        "C-offer",
+        "C-delivery"
+      ]
     },
     {
       "id": "business",
@@ -29,8 +41,12 @@
       "depends_on": [
         "evidence"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-identity",
+        "C-size",
+        "C-revenue"
+      ]
     },
     {
       "id": "market",
@@ -40,8 +56,11 @@
         "evidence",
         "business"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-revenue",
+        "C-offer"
+      ]
     },
     {
       "id": "porter",
@@ -51,8 +70,11 @@
         "business",
         "market"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-offer",
+        "C-delivery"
+      ]
     },
     {
       "id": "maturity",
@@ -62,8 +84,12 @@
         "evidence",
         "business"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-offer",
+        "C-delivery",
+        "C-internal-maturity"
+      ]
     },
     {
       "id": "backlog",
@@ -73,8 +99,10 @@
         "porter",
         "maturity"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-internal-maturity"
+      ]
     },
     {
       "id": "page1",
@@ -84,8 +112,13 @@
         "business",
         "market"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-identity",
+        "C-size",
+        "C-revenue",
+        "C-offer"
+      ]
     },
     {
       "id": "page2",
@@ -94,8 +127,11 @@
       "depends_on": [
         "porter"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-offer",
+        "C-delivery"
+      ]
     },
     {
       "id": "page3",
@@ -105,8 +141,12 @@
         "backlog",
         "maturity"
       ],
-      "status": "planned",
-      "source_claim_refs": []
+      "status": "complete",
+      "source_claim_refs": [
+        "C-offer",
+        "C-delivery",
+        "C-internal-maturity"
+      ]
     }
   ],
   "questions": [
