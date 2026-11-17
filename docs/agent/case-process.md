@@ -113,3 +113,12 @@ A2 exige alors `decision_memo_ref` dans sa tentative. Le moteur appelle le valid
 technique, vérifie le type choisi et le verdict du scaffold, puis épingle mémo et
 preuves (dans la tentative ou parmi ses entrées déjà épinglées). Le validateur reste
 utilisable seul pour une revue BUILD, sans prétendre qu'un run A0–A4 a été exécuté.
+
+
+## Contrat du manifeste lui-même
+
+`contracts/case-process.schema.json` est consommé avant l'initialisation. Il décrit
+les étapes, profils de template, adapters, références stables et axes de loopback.
+Le moteur vérifie en plus que renderer et schéma de payload font partie des références
+épinglées du profil et que ce schéma est valide. Une demande de rendu sans adapter
+est refusée avant de créer le dossier du cas. La release commune couvre ce contrat.

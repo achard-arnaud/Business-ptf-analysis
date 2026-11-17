@@ -39,3 +39,14 @@ Bloquants : saut d'étape, capture modifiée, contexte altéré, référence hor
 Hypothèse falsifiable : un moteur de frontières manuelles suffit pour garantir la traçabilité technique des étapes. Réexaminer si un run contourne ces frontières, si une lecture nécessaire n'est pas dans le paquet ou si plusieurs écrivains perdent un état. Responsable : mainteneur du processus. Toute évolution des pins impose un nouveau cas ou une migration BUILD explicite ; aucun rebind automatique n'est livré.
 
 Une CI verte ne prouve ni l'exactitude des claims, ni l'exécution de recherches non enregistrées, ni une approbation métier. Les compteurs de tokens fournisseur restent inconnus si non exposés.
+
+
+## Renforcement exécutable du 17 novembre 2026
+
+La reproduction d'un renderer.args de type string accepté par check_contracts réfute
+la couverture supposée du manifeste, sans invalider la décision de séparer RUN/BUILD.
+Le schéma case-process.schema.json devient prescriptif et consommé avant init.
+Les liens adapter/payload-schema/refs épinglées sont contrôlés ; les profils sans
+adapter ne créent aucun cas lorsqu'un rendu est demandé. Régressions négatives
+et chaîne valide : tests/test_case_runtime.py. Détails et limites dans
+[le diagnostic](manifest-contract-hardening-2026-11-17.md).

@@ -25,6 +25,7 @@ from jsonschema.exceptions import ValidationError
 
 ROOT = Path(__file__).resolve().parents[1]
 PROCESS = 'workflow/case-process.json'
+PROCESS_SCHEMA = 'contracts/case-process.schema.json'
 SCHEMA = 'contracts/case-artifacts.schema.json'
 ENGINE_VERSION = '1.0.0'
 
@@ -96,6 +97,9 @@ def schema_check(data, definition, root=ROOT):
 
 def process(root=ROOT):
     spec = load(local(root, PROCESS))
+    manifest_schema = load(local(root, PROCESS_SCHEMA))
+    Draft202012Validator.check_schema(manifest_schema)
+    Draft202012Validator(manifest_schema).validate(spec)
     if spec['version'] != ENGINE_VERSION or spec['executor'] != 'manual_agent':
         raise ValueError('Unsupported process version/executor')
     stages = spec['stages']
@@ -134,8 +138,13 @@ def check_contracts(root=ROOT):
     for profile in spec['templates'].values():
         for ref in profile['refs']:
             local(root, ref)
+        if profile.get('renderer'):
+            owned = set(profile['refs'])
+            if not {profile['renderer']['entrypoint'], profile['payload_schema']} <= owned:
+                raise ValueError('Render adapter and payload schema must be selected pinned refs')
+            Draft202012Validator.check_schema(load(local(root, profile['payload_schema'])))
     release = load(local(root, 'workflow/engine-release.json'))
-    required_files = {'scripts/case_runtime.py', 'scripts/technical_decision.py', SCHEMA,
+    required_files = {'scripts/case_runtime.py', 'scripts/technical_decision.py', SCHEMA, PROCESS_SCHEMA,
                       'contracts/technical-decision.schema.json', 'config/technical-decisions.json'}
     if release.get('version') != ENGINE_VERSION or set(release['files']) != required_files:
         raise ValueError('Incomplete engine release inventory')
@@ -171,11 +180,13 @@ def init(case_id, intake, root=ROOT):
     if template not in spec['templates']:
         raise ValueError('Unknown template; no silent fallback')
     profile = spec['templates'][template]
+    if intake['render_requested'] and not profile.get('renderer'):
+        raise ValueError('Selected template has no executable render adapter; case not created')
     if intake.get('decision_type'):
         registry = load(local(root, 'config/technical-decisions.json'))['profiles']
         if intake['decision_type'] not in registry:
             raise ValueError('Unknown technical decision profile')
-    refs = [PROCESS, SCHEMA, 'scripts/case_runtime.py', *spec['stable_refs'], *profile['refs']]
+    refs = [PROCESS, PROCESS_SCHEMA, SCHEMA, 'scripts/case_runtime.py', *spec['stable_refs'], *profile['refs']]
     pins = {p: digest(local(root, p)) for p in sorted(set(refs))}
     case = case_path(case_id, root)
     case.parent.mkdir(parents=True, exist_ok=True)

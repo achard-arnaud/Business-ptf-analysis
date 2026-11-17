@@ -21,7 +21,7 @@ class CaseRuntimeTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         for path in ('scripts/case_runtime.py', 'scripts/technical_decision.py',
-                     'contracts/case-artifacts.schema.json', 'contracts/technical-decision.schema.json',
+                     'contracts/case-artifacts.schema.json', 'contracts/case-process.schema.json', 'contracts/technical-decision.schema.json',
                      'config/technical-decisions.json', 'workflow/case-process.json'):
             target = self.root / path
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -35,7 +35,7 @@ class CaseRuntimeTests(unittest.TestCase):
         (self.root / 'AGENTS.md').write_text('Synthetic instructions')
         engine.atomic(self.root / 'workflow/engine-release.json', {'version': engine.ENGINE_VERSION,
             'files': {p: engine.digest(self.root / p) for p in ['scripts/case_runtime.py', 'scripts/technical_decision.py',
-              'contracts/case-artifacts.schema.json', 'contracts/technical-decision.schema.json', 'config/technical-decisions.json']}})
+              'contracts/case-artifacts.schema.json', 'contracts/case-process.schema.json', 'contracts/technical-decision.schema.json', 'config/technical-decisions.json']}})
         self.intake = {'entity_id': 'alpha', 'objective': 'Decide a pilot', 'constraints': ['No approval inferred'],
                        'cutoff': '2026-11-17', 'template_id': 'synthetic', 'render_requested': False}
         engine.init('alpha-run', self.intake, self.root)
@@ -79,6 +79,47 @@ class CaseRuntimeTests(unittest.TestCase):
     def test_stage_cannot_skip_dependencies(self):
         with self.assertRaisesRegex(ValueError, 'dependency'):
             engine.begin('alpha-run', 'A3', 'test', self.root)
+
+    def configure_adapter(self, args):
+        manifest = engine.load(self.root / 'workflow/case-process.json')
+        profile = manifest['templates']['synthetic']
+        profile.update(renderer={'entrypoint': 'scripts/case_runtime.py', 'args': args},
+                       payload_schema='payload.schema.json')
+        profile['refs'] += ['scripts/case_runtime.py', 'payload.schema.json']
+        engine.atomic(self.root / 'payload.schema.json', {'type': 'object'})
+        engine.atomic(self.root / 'workflow/case-process.json', manifest)
+        return manifest
+
+    def test_manifest_rejects_string_renderer_argv(self):
+        self.configure_adapter('--pdf')
+        with self.assertRaisesRegex(engine.ValidationError, 'array'):
+            engine.check_contracts(self.root)
+
+    def test_adapter_and_payload_schema_must_both_be_pinned(self):
+        manifest = self.configure_adapter([])
+        manifest['templates']['synthetic']['refs'].remove('payload.schema.json')
+        engine.atomic(self.root / 'workflow/case-process.json', manifest)
+        with self.assertRaisesRegex(ValueError, 'selected pinned refs'):
+            engine.check_contracts(self.root)
+
+    def test_manifest_rejects_invalid_payload_schema(self):
+        self.configure_adapter([])
+        engine.atomic(self.root / 'payload.schema.json', {'type': 'invented-type'})
+        with self.assertRaises(Exception) as caught:
+            engine.check_contracts(self.root)
+        self.assertIn('invented-type', str(caught.exception))
+
+    def test_render_request_without_adapter_creates_no_case(self):
+        with self.assertRaisesRegex(ValueError, 'case not created'):
+            engine.init('unsupported-render', {**self.intake, 'render_requested': True}, self.root)
+        self.assertFalse((self.root / 'data/cases/unsupported-render').exists())
+
+    def test_manifest_rejects_unknown_loopback_axis(self):
+        manifest = engine.load(self.root / 'workflow/case-process.json')
+        manifest['loopback_axes']['made-up'] = {'question': 'Unknown', 'checks': ['unknown']}
+        engine.atomic(self.root / 'workflow/case-process.json', manifest)
+        with self.assertRaisesRegex(engine.ValidationError, 'Additional properties'):
+            engine.check_contracts(self.root)
 
     def test_manifest_cannot_weaken_stage_chain(self):
         manifest = engine.load(self.root / 'workflow/case-process.json')

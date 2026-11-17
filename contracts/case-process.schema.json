@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "version": {
+      "const": "1.0.0"
+    },
+    "executor": {
+      "const": "manual_agent"
+    },
+    "stable_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "templates": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "pages": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "payload_schema": {
+            "type": "string",
+            "minLength": 1
+          },
+          "renderer": {
+            "type": "object",
+            "properties": {
+              "entrypoint": {
+                "type": "string",
+                "pattern": "\\.py$"
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "entrypoint",
+              "args"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "refs",
+          "pages"
+        ],
+        "additionalProperties": false,
+        "dependentRequired": {
+          "renderer": [
+            "payload_schema"
+          ],
+          "payload_schema": [
+            "renderer"
+          ]
+        }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "enum": [
+              "A0",
+              "A1",
+              "A2",
+              "A3",
+              "A4"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "evidence",
+              "graph",
+              "scaffold",
+              "composition",
+              "review"
+            ]
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "A0",
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ]
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "instructions": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "depends_on",
+          "instructions"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "loopback_axes": {
+      "type": "object",
+      "properties": {
+        "architecture": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "question",
+            "checks"
+          ],
+          "additionalProperties": false
+        },
+        "bugfix": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "question",
+            "checks"
+          ],
+          "additionalProperties": false
+        },
+        "ci": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "question",
+            "checks"
+          ],
+          "additionalProperties": false
+        },
+        "runtime": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "question",
+            "checks"
+          ],
+          "additionalProperties": false
+        },
+        "skill": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "question",
+            "checks"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "architecture",
+        "bugfix",
+        "ci",
+        "runtime",
+        "skill"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "executor",
+    "stable_refs",
+    "templates",
+    "stages",
+    "loopback_axes"
+  ],
+  "additionalProperties": false
+}
