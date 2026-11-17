@@ -1,0 +1,62 @@
+{
+  "case_id": "square-management-20261117-r3",
+  "entity_id": "square-management",
+  "program_ref": null,
+  "case_root": "data/cases/square-management-20261117-r3",
+  "graph": "stages/A1/attempt-1/result.json",
+  "payload": "stages/A3/attempt-1/square-exec-payload.json",
+  "template_id": "three-pager-exec",
+  "renderer": "renderers/three_pager_exec/render_exec.py",
+  "graph_sha256": "7039d54d0970baab540f48fc9b2819f1cd0e51478c43b1fd4c8a6081ef7f2c53",
+  "payload_sha256": "296e4d660fc4023e5885940234e27d9a127acfc203bc76541af671f9b32d44b4",
+  "pages": {
+    "P1": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C10",
+      "C12",
+      "C17",
+      "C19",
+      "C20",
+      "C21",
+      "C22"
+    ],
+    "P2": [
+      "C02",
+      "C05",
+      "C06",
+      "C08",
+      "C09",
+      "C10",
+      "C11",
+      "C12",
+      "C13",
+      "C14",
+      "C15",
+      "C18",
+      "C20"
+    ],
+    "P3": [
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C13",
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18",
+      "C19",
+      "C20"
+    ]
+  },
+  "status": "prepared; actual render and review required",
+  "business_approval": false
+}

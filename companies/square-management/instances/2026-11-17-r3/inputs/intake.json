@@ -1,0 +1,13 @@
+{
+  "entity_id": "square-management",
+  "objective": "Analyse indépendante en trois pages : profil business actualisé au rapport 2025, chaîne de valeur de Porter, maturité IA/Data documentée et backlog priorisé.",
+  "constraints": [
+    "Nouvelle instance et graphe isolé avant vérification des sources",
+    "Chiffres et périmètres datés ; formation IA documentée séparée de l’adoption",
+    "PDF Chromium trois pages, binding et revues preuves/contre-perspective/décision",
+    "Aucune lecture recrutement ni dépendance à un programme portefeuille"
+  ],
+  "cutoff": "2026-11-17",
+  "template_id": "three-pager-exec",
+  "render_requested": true
+}

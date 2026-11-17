@@ -1,0 +1,6 @@
+S04
+URL : https://www.square-management.com/cas-client/detection-des-comportements-atypiques-application-a-la-lutte-contre-la-fraude-aux-prelevements-sepa/
+Vérifié le 17 novembre 2026
+Portion lue : Contexte et solution, lignes 220–249
+Note de lecture paraphrasée : Cas bancaire SEPA : recherche sur rareté, indicateurs comportementaux, anomalies, seuils réglables et alertes expliquées aux analystes. Résultats chiffrés comparables sur précision/rappel et coût de traitement absents des sections retenues.
+Source publique, droits conservés par son auteur ; pas de copie intégrale.

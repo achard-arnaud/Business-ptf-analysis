@@ -1,0 +1,65 @@
+{
+  "case_id": "square-management-20261117-r3",
+  "kind": "composition",
+  "sections": [
+    {
+      "id": "P1",
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C10",
+        "C12",
+        "C17",
+        "C19",
+        "C20",
+        "C21",
+        "C22"
+      ],
+      "prose": "Deux offres de conseil, taille et mix du rapport 2025, recherche et formation IA documentées. Les métriques plus anciennes du site et celles de l’investisseur ne sont pas fusionnées. Les revenus restent des missions dont les prix et la récurrence ne sont pas détaillés."
+    },
+    {
+      "id": "P2",
+      "claim_ids": [
+        "C02",
+        "C05",
+        "C06",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C18",
+        "C20"
+      ],
+      "prose": "Porter adapté au conseil ; recherche et compétences soutiennent qualification, delivery, transfert, vente et adoption. Les cas SEPA et assurance illustrent les mécanismes ; marge et ROI ne sont pas chiffrés."
+    },
+    {
+      "id": "P3",
+      "claim_ids": [
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20"
+      ],
+      "prose": "La formation constitue un acquis documenté ; adoption et ROI internes restent inconnus. Trois chantiers proposés : valeur sur deux missions, références autorisées, compétences mobilisables. Comparer à l’existant ; pas de nouvelle plateforme imposée."
+    }
+  ],
+  "payload_ref": "stages/A3/attempt-1/square-exec-payload.json"
+}
