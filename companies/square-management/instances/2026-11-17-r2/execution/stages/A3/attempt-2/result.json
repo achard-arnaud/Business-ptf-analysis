@@ -1,0 +1,60 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "kind": "composition",
+  "sections": [
+    {
+      "id": "P1",
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C10",
+        "C12",
+        "C17",
+        "C19"
+      ],
+      "prose": "Cabinet européen de conseil, dix expertises, recherche et offre IA. Les chiffres sont datés ou déclaratifs. La thèse propose de prouver la valeur et de conserver le sur-mesure ; l’alternative est de renforcer l’existant."
+    },
+    {
+      "id": "P2",
+      "claim_ids": [
+        "C02",
+        "C05",
+        "C06",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C18"
+      ],
+      "prose": "Porter est adapté au conseil comme lecture analytique. Les cas SEPA et assurance montrent des usages publiés, sans preuve de marge ni ROI consolidé. Relier vente, staffing, delivery et adoption."
+    },
+    {
+      "id": "P3",
+      "claim_ids": [
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19"
+      ],
+      "prose": "Maturité interne inconnue. P0 : mesurer deux missions ; P1 : 20 références autorisées ; P2 : une practice de staffing. Responsables et cibles proposés, arrêt en absence de gain net ou de droits."
+    }
+  ],
+  "payload_ref": "stages/A3/attempt-2/square-exec-payload.json"
+}

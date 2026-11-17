@@ -1,0 +1,2 @@
+{"page_count": 3, "overlaps": 0, "overflows": 1, "out_of_bounds": 0, "small_fonts": 0, "low_padding": 0, "pass": false}
+{"html": "/home/runner/work/Business-ptf-analysis/Business-ptf-analysis/data/cases/square-management-20261117-r2/stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.html", "coherence": "PASS", "checks": ["G-S6", "G-S9", "G-C1", "G-C2", "G-C3", "G-C4", "G-C5", "G-C6", "G-C7", "G-P1", "G-P2..P5"]}

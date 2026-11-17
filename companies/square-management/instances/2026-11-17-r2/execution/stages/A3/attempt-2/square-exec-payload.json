@@ -1,0 +1,465 @@
+{
+  "template": "THREE_PAGER_PORTFOLIO_AI",
+  "template_version": "0.3.0-exec",
+  "render_profile": "exec",
+  "program": "Analyse business indépendante · 17 novembre 2026",
+  "entity": "SQUARE MANAGEMENT",
+  "entity_id": "square-management",
+  "language": "fr",
+  "cutoff": "2026-11-17",
+  "lineage": {
+    "repo": "achard-arnaud/Business-ptf-analysis",
+    "repo_commit": "6542b5f55ebf5f249c4c0e5afbd351629f99bcbd",
+    "bundle": "data/cases/square-management-20261117-r2",
+    "evidence_delta": [
+      "data/cases/square-management-20261117-r2/stages/A0/attempt-1/result.json",
+      "data/cases/square-management-20261117-r2/stages/A1/attempt-1/result.json"
+    ],
+    "status_in_repo": "Brouillon public relu · sans approbation métier",
+    "bundle_sha256": "9a66a9bf61c5a262db79395869c6db2cabaf63b045be330a1ae7457840b57204"
+  },
+  "figures": {
+    "consultants": {
+      "value": "900",
+      "src": "S02",
+      "kind": "fact"
+    },
+    "domains": {
+      "value": "10",
+      "src": "S02",
+      "kind": "fact"
+    },
+    "countries": {
+      "value": "3",
+      "src": "S02",
+      "kind": "fact"
+    },
+    "rd_programs": {
+      "value": "25",
+      "src": "S01",
+      "kind": "fact"
+    },
+    "revenue_forecast": {
+      "value": "140 M€",
+      "src": "S01",
+      "kind": "fact"
+    },
+    "bank_mix": {
+      "value": "61 %",
+      "src": "S01",
+      "kind": "fact"
+    },
+    "insurance_mix": {
+      "value": "12 %",
+      "src": "S01",
+      "kind": "fact"
+    }
+  },
+  "drivers": [
+    {
+      "id": "D1",
+      "label": "Conversion",
+      "text": "Gagner des missions à partir des références du cabinet."
+    },
+    {
+      "id": "D2",
+      "label": "Staffing",
+      "text": "Relier compétences, disponibilités et demande de mission."
+    },
+    {
+      "id": "D3",
+      "label": "Réemploi",
+      "text": "Rendre les méthodes accessibles dans le respect des droits."
+    },
+    {
+      "id": "D4",
+      "label": "Valeur client",
+      "text": "Suivre adoption et résultats des missions IA/Data."
+    },
+    {
+      "id": "D5",
+      "label": "Confiance",
+      "text": "Documenter sécurité, conformité et contrôle humain."
+    }
+  ],
+  "themes": [
+    {
+      "n": 1,
+      "name": "P0 · Valeur des missions",
+      "stars": 3,
+      "drivers": [
+        "D4"
+      ],
+      "activity": "Services",
+      "strategy": "qualité et récurrence",
+      "strategy_family": "resilience",
+      "horizon": "J0–J30",
+      "change": "Centre IA : deux missions, baseline, adoption, coûts complets et contrôles.",
+      "benefit": "Valeur nette et adoption suivies.",
+      "advantage": "Full Value démontré en situation.",
+      "feature": "Gain net requis ; arrêt si risque ou droits KO."
+    },
+    {
+      "n": 2,
+      "name": "P1 · Références autorisées",
+      "stars": 3,
+      "drivers": [
+        "D1",
+        "D3"
+      ],
+      "activity": "Marketing et ventes",
+      "strategy": "différenciation",
+      "strategy_family": "differentiation",
+      "horizon": "J30–J60",
+      "change": "Commercial : qualifier 20 dossiers, droits et citations ; tester la recherche assistée.",
+      "benefit": "Cible : délai −20 % ; zéro fuite.",
+      "advantage": "Preuves sectorielles réutilisées.",
+      "feature": "Continuer si gain net ; sinon recherche simple."
+    },
+    {
+      "n": 3,
+      "name": "P2 · Compétences fiables",
+      "stars": 3,
+      "drivers": [
+        "D2"
+      ],
+      "activity": "Ressources humaines",
+      "strategy": "utilisation",
+      "strategy_family": "cost",
+      "horizon": "J60–J90",
+      "change": "Staffing : une practice, compétences et disponibilités ; arbitrage humain.",
+      "benefit": "Cibles : couverture >95 % ; délai −15 %.",
+      "advantage": "Mobiliser les expertises pertinentes.",
+      "feature": "Données fiables avant matching ; mesurer l’équité."
+    }
+  ],
+  "transformation": {
+    "covers": [
+      "D5"
+    ],
+    "mt": "Relier preuves et références si pilotes probants.",
+    "lt": "Étendre aux practices après preuve de valeur.",
+    "take": "Extension conditionnée à la valeur et aux contrôles."
+  },
+  "posture": {
+    "current": "S-O",
+    "label": "offensive",
+    "option": "S-O"
+  },
+  "page1": {
+    "subtitle": "Conseil, recherche et IA : démontrer la valeur au-delà des promesses technologiques",
+    "signaletique": {
+      "rows": [
+        [
+          "Activité",
+          "Stratégie et organisation · dix expertises dont AI & Data (S01)"
+        ],
+        [
+          "Fondation",
+          "2008 ; cabinet européen (S01)"
+        ],
+        [
+          "Échelle",
+          "{consultants} consultants dans le rapport 2024 ; {countries} pays (S02)"
+        ],
+        [
+          "Recherche",
+          "{rd_programs} programmes annoncés sur le site (S01)"
+        ],
+        [
+          "CA publié",
+          "{revenue_forecast} prévisionnels ; exercice non précisé (S01)"
+        ],
+        [
+          "Offre IA",
+          "Full Value + Centre agentique ; capacités déclarées (S03)"
+        ]
+      ],
+      "take": "Chiffres déclaratifs : ni effectif 2026, ni CA réalisé consolidé vérifiés."
+    },
+    "thesis": {
+      "paras": [
+        "Square associe conseil sectoriel, recherche et transformation IA. Les références SEPA et assurance illustrent le passage des méthodes aux usages (S04–S05).",
+        "Thèse proposée : standardiser les preuves de valeur et les contrôles, tout en adaptant chaque démarche au client. Priorité : mesurer avant de généraliser."
+      ],
+      "take": "Alternative crédible : renforcer les dispositifs existants avant de construire de nouveaux outils."
+    },
+    "drivers_take": "Leviers proposés ; aucune performance interne n’est déduite du site.",
+    "breakdown": {
+      "title": "Exposition sectorielle publiée",
+      "series_title": "Répartition affichée",
+      "series": [
+        [
+          "Banque",
+          61
+        ],
+        [
+          "Distribution / luxe / consommation",
+          15
+        ],
+        [
+          "Assurance",
+          12
+        ],
+        [
+          "Industrie / énergie",
+          7
+        ],
+        [
+          "Autres",
+          5
+        ]
+      ],
+      "stack_title": "Part relative du mix déclaré",
+      "stack": [
+        [
+          "Banque",
+          61
+        ],
+        [
+          "Distribution / luxe / consommation",
+          15
+        ],
+        [
+          "Assurance",
+          12
+        ],
+        [
+          "Industrie / énergie",
+          7
+        ],
+        [
+          "Autres",
+          5
+        ]
+      ],
+      "footnote": "Pourcentage corporate ; date et dénominateur détaillé à confirmer.",
+      "take": "La banque pèse 61 % du mix affiché ; ce chiffre ne mesure pas la concentration par client."
+    },
+    "board": {
+      "intro": "Responsabilités proposées, à confirmer.",
+      "rows": [
+        {
+          "who": "Direction",
+          "what": "priorités et arbitrages"
+        },
+        {
+          "who": "Centre IA",
+          "what": "valeur des missions"
+        },
+        {
+          "who": "Commercial",
+          "what": "droits des références"
+        },
+        {
+          "who": "Staffing / Data",
+          "what": "qualité et capacité",
+          "gap": true
+        }
+      ],
+      "take": "Un sponsor et un propriétaire de données par chantier ; organisation interne à vérifier."
+    },
+    "swot": {
+      "s": [
+        "Dix expertises et recherche identifiées (S01–S02)",
+        "Références SEPA et assurance publiées (S04–S05)"
+      ],
+      "w": [
+        "Marge et adoption internes inconnues",
+        "KPI clients comparables absents du corpus"
+      ],
+      "o": [
+        "Relier preuves de mission et propositions",
+        "Rendre le réemploi compatible avec le sur-mesure"
+      ],
+      "t": [
+        "Promesses de souveraineté à éprouver (S03)",
+        "Droits clients limitant le réemploi : risque à vérifier"
+      ],
+      "take": "Posture offensive (S-O) proposée : étayer la différence par les résultats, sans présumer de lacunes internes."
+    },
+    "footer": {
+      "label": "Lecture des activités",
+      "body": "Modèle de revenus : missions de conseil et transformation ; valeur liée à la conversion, aux compétences mobilisées et au résultat livré (inférence)."
+    },
+    "sources": "Sources relues le 17/11/2026 : S01 identité · S02 rapport 2024 · S03 Centre IA · S04 SEPA · S05 assurance. Registre et graphe dans le dossier du run."
+  },
+  "page2": {
+    "subtitle": "Porter adapté au conseil : la connaissance client devient une mission, puis une adoption durable",
+    "support": [
+      {
+        "name": "Approvisionnement",
+        "stars": 1,
+        "desc": "Partenaires, plateformes, expertises externes et achats de mission ; périmètre opérationnel à qualifier.",
+        "benefit": "capacité complémentaire, coût maîtrisé"
+      },
+      {
+        "name": "Développement technologique",
+        "stars": 3,
+        "desc": "25 programmes annoncés (S01) ; le cas SEPA relie recherche et détection (S04). Réemploi à mesurer.",
+        "benefit": "méthodes et actifs différenciants",
+        "themes": [
+          2
+        ]
+      },
+      {
+        "name": "Infrastructure",
+        "stars": 2,
+        "desc": "Gouvernance multi-entités, pilotage financier, risque et coordination des domaines.",
+        "benefit": "cohérence et qualité de delivery"
+      },
+      {
+        "name": "Ressources humaines",
+        "stars": 3,
+        "desc": "900 consultants déclarés en 2024 (S02). Compétences, capacité et staffing actuels à documenter.",
+        "benefit": "staffing, développement et adoption",
+        "themes": [
+          3
+        ]
+      }
+    ],
+    "primary": [
+      {
+        "name": "Logistique amont",
+        "stars": 2,
+        "desc": "Collecter et qualifier enjeux métier, contraintes, données et droits du client avant cadrage.",
+        "benefit": "mandat mieux défini"
+      },
+      {
+        "name": "Production",
+        "stars": 3,
+        "desc": "Concevoir et délivrer : anomalies SEPA, NLP et process mining en assurance (S04–S05).",
+        "benefit": "qualité et résultats client",
+        "themes": [
+          1
+        ]
+      },
+      {
+        "name": "Logistique aval",
+        "stars": 1,
+        "desc": "Transférer livrables, méthodes et responsabilités au client selon le mandat.",
+        "benefit": "continuité d’exécution"
+      },
+      {
+        "name": "Marketing et ventes",
+        "stars": 3,
+        "desc": "Origination, propositions, références sectorielles et développement des comptes.",
+        "benefit": "conversion et extension",
+        "themes": [
+          2
+        ]
+      },
+      {
+        "name": "Services",
+        "stars": 3,
+        "desc": "Accompagner l’adoption, examiner les alertes et mesurer les résultats ; retour des gestionnaires (S04–S05).",
+        "benefit": "valeur prouvée et récurrence",
+        "themes": [
+          1
+        ]
+      }
+    ],
+    "margin_sub": "la valeur et l’économie des missions restent à mesurer",
+    "metrics": {
+      "items": [
+        [
+          "{consultants}",
+          "consultants annoncés dans le rapport RSE 2024"
+        ],
+        [
+          "{domains}",
+          "domaines d’excellence déclarés"
+        ],
+        [
+          "{rd_programs}",
+          "programmes R&D annoncés sur le site (S01)"
+        ]
+      ],
+      "take": "Échelle publiée ; ni marge ni impact mesuré."
+    },
+    "lecture": {
+      "text": "Lecture analytique, pas organigramme observé : le conseil vend une expertise mobilisable ; le réemploi et le staffing peuvent améliorer son économie.",
+      "take": "Marge, taux d’activité, conversion et récurrence : demander les baselines avant de chiffrer un ROI."
+    },
+    "footer": {
+      "label": "Impact sur la valeur",
+      "body": "Core crée la valeur de mission ; recherche et staffing étendent la réutilisation ; support sécurise l’exécution."
+    },
+    "sources": "S01 chiffres · S02 échelle 2024 · S03 offre · S04–S05 références. Maillons et ★ = interprétation stratégique ; pas une note de maturité.",
+    "top_count": 5
+  },
+  "page3": {
+    "subtitle": "Offre IA documentée, maturité interne inconnue : trois chantiers avec critères de poursuite",
+    "quadrant": {
+      "cells": [
+        {
+          "row": "Core",
+          "col": "Differentiating",
+          "label": "Références réutilisables",
+          "theme": 2
+        },
+        {
+          "row": "Enabler",
+          "col": "Parity",
+          "label": "Staffing et compétences",
+          "theme": 3
+        },
+        {
+          "row": "Core",
+          "col": "Parity",
+          "label": "Delivery et adoption mesurés",
+          "theme": 1
+        },
+        {
+          "row": "Support",
+          "col": "Commodity",
+          "label": "Fonctions de support"
+        },
+        {
+          "row": "Enabler",
+          "col": "Differentiating",
+          "label": "Recherche appliquée",
+          "theme": 2
+        },
+        {
+          "row": "Core",
+          "col": "Commodity",
+          "label": "Transfert de livrables"
+        }
+      ],
+      "take": "Positionnements analytiques à valider avec des données internes et des retours clients."
+    },
+    "themes_title": "Backlog proposé · responsables et tests",
+    "themes_take": "Ordre P0 → P1 → P2. Cibles proposées, pas résultats acquis ; comparer à la pratique existante avant tout build.",
+    "ai_diag": {
+      "level": "Inconnue",
+      "facts": [
+        "Offre et cas publiés (S03–S05).",
+        "Data, usage et contrôle internes : inconnus."
+      ],
+      "take": "Évaluer gouvernance, données, outils, usage, valeur, compétences, sécurité et exploitation."
+    },
+    "dominant": {
+      "rows": [
+        [
+          "Valeur client",
+          "resilience"
+        ],
+        [
+          "Réemploi",
+          "differentiation"
+        ],
+        [
+          "Staffing",
+          "cost"
+        ]
+      ],
+      "take": "Décision à J30 sur preuves ; réutiliser l’existant s’il atteint déjà les critères."
+    },
+    "footer": {
+      "label": "Conclusion",
+      "body": "Posture offensive (S-O) proposée : mesurer deux missions, puis décider. Brouillon public relu ; validation et baselines internes requises."
+    },
+    "sources": "S03 méthode et promesses · S04–S05 usages déclarés. Gouvernance et métriques internes inconnues. J0–J90 = séquence proposée après lancement."
+  }
+}

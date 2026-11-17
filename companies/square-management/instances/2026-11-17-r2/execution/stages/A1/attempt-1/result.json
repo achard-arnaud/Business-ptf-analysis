@@ -1,0 +1,328 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "kind": "graph",
+  "nodes": [
+    {
+      "id": "NS01",
+      "type": "source",
+      "source_id": "S01"
+    },
+    {
+      "id": "FS01",
+      "type": "fragment",
+      "locator": "Identité, valeurs, chiffres et secteurs, lignes 218–301",
+      "text": "Cabinet européen fondé en 2008 ; dix domaines. Site : 140 M€ prévisionnels sans exercice ; trois pays ; 25 programmes R&D. Mix affiché : banque 61 %, distribution/luxe/consommation 15 %, assurance 12 %, industrie/énergie 7 %, autres 5 %. La valeur pragmatisme insiste sur l’adaptation des démarches au client. Données déclaratives, sans marge ni concentration par compte.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "NS02",
+      "type": "source",
+      "source_id": "S02"
+    },
+    {
+      "id": "FS02",
+      "type": "fragment",
+      "locator": "Rapport RSE 2024, page physique 4 (présentation)",
+      "text": "Rapport 2024 : 900 consultants, dix domaines ; présence en France, Belgique et Luxembourg. Activité de conseil en stratégie et organisation ; centre de recherche et diversification sectorielle. Mesure historique déclarative ; ne décrit pas l’effectif de novembre 2026.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "NS03",
+      "type": "source",
+      "source_id": "S03"
+    },
+    {
+      "id": "FS03",
+      "type": "fragment",
+      "locator": "Notre philosophie et Centre agentique, lignes 219–241",
+      "text": "Offre Full Value : gains directs/indirects, coûts techniques et de transformation ; score valeur, adhésion, scalabilité, risque. Centre agentique annoncé avec petits modèles et déploiement sur infrastructure client ; démonstrateurs annoncés en moins d’un mois. Les garanties absolues de sécurité et de conformité sont des assertions commerciales, pas des résultats audités.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "NS04",
+      "type": "source",
+      "source_id": "S04"
+    },
+    {
+      "id": "FS04",
+      "type": "fragment",
+      "locator": "Contexte et solution, lignes 220–249",
+      "text": "Cas publié : fraude aux prélèvements SEPA, recherche sur rareté, indicateurs comportementaux, détection d’anomalies et seuils réglables par les analystes. Explication des alertes. La publication ne fournit pas de résultat chiffré comparable sur précision, rappel et coût de traitement.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "NS05",
+      "type": "source",
+      "source_id": "S05"
+    },
+    {
+      "id": "FS05",
+      "type": "fragment",
+      "locator": "Solutions analytiques et fraude, lignes 222–245",
+      "text": "Cas assurance publié : process mining, flux Kafka, classification NLP des verbatims ; règles de fraude et boucle de retour des gestionnaires, puis priorisation par apprentissage. Parcours accéléré proposé pour clients de confiance. Pas de baseline chiffrée ni audit indépendant dans les sections lues.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "C01",
+      "type": "claim",
+      "statement": "Cabinet de conseil européen fondé en 2008, structuré en dix domaines.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C02",
+      "type": "claim",
+      "statement": "Le rapport 2024 déclare 900 consultants dans trois pays ; ce n’est pas un effectif 2026.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C03",
+      "type": "claim",
+      "statement": "Le site affiche 140 M€ prévisionnels sans exercice identifié.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C04",
+      "type": "claim",
+      "statement": "Le mix affiché répartit banque 61 %, distribution/luxe/consommation 15 %, assurance 12 %, industrie/énergie 7 %, autres 5 %.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C05",
+      "type": "claim",
+      "statement": "Le site annonce 25 programmes R&D.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C06",
+      "type": "claim",
+      "statement": "L’offre Full Value articule gains, coûts, adoption, scalabilité et risques.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C07",
+      "type": "claim",
+      "statement": "Le Centre agentique annonce petits modèles, infrastructure client et prototypage en moins d’un mois.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C08",
+      "type": "claim",
+      "statement": "Le cas SEPA décrit détection d’anomalies, explication et contrôle des seuils par les analystes.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C09",
+      "type": "claim",
+      "statement": "Le cas assurance décrit NLP, process mining et boucle de retour des gestionnaires.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C10",
+      "type": "claim",
+      "statement": "La maturité IA/Data interne, les marges et les résultats chiffrés restent inconnus dans ce corpus.",
+      "status": "unknown"
+    },
+    {
+      "id": "C11",
+      "type": "claim",
+      "statement": "La chaîne de valeur analytique du conseil relie qualification, conception/delivery, transfert, vente et adoption.",
+      "status": "inference"
+    },
+    {
+      "id": "C12",
+      "type": "claim",
+      "statement": "La spécialisation sectorielle et la recherche constituent des leviers possibles de différenciation, sans preuve de prime tarifaire.",
+      "status": "inference"
+    },
+    {
+      "id": "C13",
+      "type": "claim",
+      "statement": "P0 : instrumenter deux missions IA ; sponsor Centre IA, baseline et coût complet ; poursuivre si le bénéfice net et l’adoption sont démontrés.",
+      "status": "recommendation"
+    },
+    {
+      "id": "C14",
+      "type": "claim",
+      "statement": "P1 : tester la recherche de références autorisées sur 20 dossiers ; direction commerciale ; cible proposée : délai de préparation réduit de 20 %, aucune fuite.",
+      "status": "recommendation"
+    },
+    {
+      "id": "C15",
+      "type": "claim",
+      "statement": "P2 : fiabiliser compétences/disponibilités dans une practice avant matching assisté ; staffing ; cible proposée : couverture supérieure à 95 %, délai réduit de 15 %.",
+      "status": "recommendation"
+    },
+    {
+      "id": "C16",
+      "type": "claim",
+      "statement": "Standardiser la preuve et les contrôles, tout en conservant une démarche client adaptable.",
+      "status": "recommendation"
+    },
+    {
+      "id": "C17",
+      "type": "claim",
+      "statement": "Alternative : les outils, données et processus existent déjà ; un diagnostic de l’existant peut éviter un nouveau build.",
+      "status": "hypothesis"
+    },
+    {
+      "id": "C18",
+      "type": "claim",
+      "statement": "Les promesses de conformité native et de protection absolue demandent une évaluation propre à chaque système.",
+      "status": "inference"
+    },
+    {
+      "id": "C19",
+      "type": "claim",
+      "statement": "Le réemploi de méthodes doit respecter le pragmatisme et l’adaptation des démarches revendiqués par Square.",
+      "status": "inference"
+    }
+  ],
+  "edges": [
+    {
+      "from": "FS01",
+      "to": "NS01",
+      "type": "extracted_from"
+    },
+    {
+      "from": "FS02",
+      "to": "NS02",
+      "type": "extracted_from"
+    },
+    {
+      "from": "FS03",
+      "to": "NS03",
+      "type": "extracted_from"
+    },
+    {
+      "from": "FS04",
+      "to": "NS04",
+      "type": "extracted_from"
+    },
+    {
+      "from": "FS05",
+      "to": "NS05",
+      "type": "extracted_from"
+    },
+    {
+      "from": "FS01",
+      "to": "C01",
+      "type": "supports"
+    },
+    {
+      "from": "FS02",
+      "to": "C02",
+      "type": "supports"
+    },
+    {
+      "from": "FS01",
+      "to": "C03",
+      "type": "supports"
+    },
+    {
+      "from": "FS01",
+      "to": "C04",
+      "type": "supports"
+    },
+    {
+      "from": "FS01",
+      "to": "C05",
+      "type": "supports"
+    },
+    {
+      "from": "FS03",
+      "to": "C06",
+      "type": "supports"
+    },
+    {
+      "from": "FS03",
+      "to": "C07",
+      "type": "supports"
+    },
+    {
+      "from": "FS04",
+      "to": "C08",
+      "type": "supports"
+    },
+    {
+      "from": "FS05",
+      "to": "C09",
+      "type": "supports"
+    },
+    {
+      "from": "FS02",
+      "to": "C11",
+      "type": "supports"
+    },
+    {
+      "from": "FS03",
+      "to": "C11",
+      "type": "supports"
+    },
+    {
+      "from": "FS04",
+      "to": "C11",
+      "type": "supports"
+    },
+    {
+      "from": "FS05",
+      "to": "C11",
+      "type": "supports"
+    },
+    {
+      "from": "FS01",
+      "to": "C12",
+      "type": "supports"
+    },
+    {
+      "from": "FS02",
+      "to": "C12",
+      "type": "supports"
+    },
+    {
+      "from": "FS04",
+      "to": "C12",
+      "type": "supports"
+    },
+    {
+      "from": "FS03",
+      "to": "C18",
+      "type": "supports"
+    },
+    {
+      "from": "FS01",
+      "to": "C19",
+      "type": "supports"
+    },
+    {
+      "from": "C13",
+      "to": "C06",
+      "type": "depends_on"
+    },
+    {
+      "from": "C14",
+      "to": "C12",
+      "type": "depends_on"
+    },
+    {
+      "from": "C15",
+      "to": "C02",
+      "type": "depends_on"
+    },
+    {
+      "from": "C16",
+      "to": "C19",
+      "type": "depends_on"
+    },
+    {
+      "from": "C13",
+      "to": "C10",
+      "type": "depends_on"
+    }
+  ],
+  "unknowns": [
+    "Chiffre d’affaires réalisé consolidé et date du mix sectoriel",
+    "Effectif actuel, marge par mission, taux d’activité, concentration par client",
+    "Architecture et adoption IA internes, qualité des données, owners, coûts complets",
+    "Résultats clients chiffrés, sécurité et conformité effectivement démontrées"
+  ]
+}

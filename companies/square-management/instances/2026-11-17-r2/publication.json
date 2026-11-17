@@ -1,0 +1,18 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "status": "reviewed_public_draft",
+  "stage_status": {
+    "A0": "passed",
+    "A1": "passed",
+    "A2": "passed",
+    "A3": "passed",
+    "A4": "passed"
+  },
+  "pdf_ref": "Square_Management_3pager.pdf",
+  "pdf_sha256": "a67a0f42c1aa6838d4fb64f57376d3e77aad70738b1ac5fd6d20055ccc455255",
+  "qa_pass": true,
+  "page_count": 3,
+  "business_approval": false,
+  "execution_run": "https://github.com/achard-arnaud/Business-ptf-analysis/actions/runs/44105424285",
+  "export_policy": "Immutable curated execution snapshot; failed render QA/logs retained, failed PDF/PNG excluded."
+}

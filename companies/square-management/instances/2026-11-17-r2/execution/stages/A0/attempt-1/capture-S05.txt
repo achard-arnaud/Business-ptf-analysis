@@ -1,0 +1,7 @@
+S05
+URL: https://www.square-management.com/cas-client/optimisation-de-lefficacite-operationnelle-et-de-la-satisfaction-client-grace-a-lintelligence-artificielle/
+Consulté le 17 novembre 2026
+Périmètre lu: Solutions analytiques et fraude, lignes 222–245
+Note de lecture paraphrasée (pas une copie intégrale):
+Cas assurance publié : process mining, flux Kafka, classification NLP des verbatims ; règles de fraude et boucle de retour des gestionnaires, puis priorisation par apprentissage. Parcours accéléré proposé pour clients de confiance. Pas de baseline chiffrée ni audit indépendant dans les sections lues.
+Droits: source publique, auteur Square Management ; extraits non redistribués.

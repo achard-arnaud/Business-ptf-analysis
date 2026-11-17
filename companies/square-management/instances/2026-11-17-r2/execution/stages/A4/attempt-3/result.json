@@ -1,0 +1,39 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "kind": "review",
+  "reviews": [
+    {
+      "lens": "evidence",
+      "verdict": "pass",
+      "evidence_ref": "stages/A4/attempt-3/01-evidence.md",
+      "reviewer": "manual_agent"
+    },
+    {
+      "lens": "counter-perspective",
+      "verdict": "pass",
+      "evidence_ref": "stages/A4/attempt-3/02-counter-perspective.md",
+      "reviewer": "manual_agent"
+    },
+    {
+      "lens": "decision",
+      "verdict": "pass",
+      "evidence_ref": "stages/A4/attempt-3/03-decision.md",
+      "reviewer": "manual_agent"
+    }
+  ],
+  "render": {
+    "qa_status": "pass",
+    "page_count": 3,
+    "files": {
+      "stages/A4/attempt-3/render-1/render_manifest.json": "093903216e5e3f45c856e6f1c99cb8a9e8aff33ec9d02ea68191649a991f0a0a",
+      "stages/A4/attempt-3/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page1.png": "de93fd99ef0f1ee8a307189f344d9de7cd5cc66330cbfa763b1026ecfb2c96c5",
+      "stages/A4/attempt-3/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page3.png": "fcb6d976a98068fa90d9615238850c7308fed938cedffc1580821a4b70acc262",
+      "stages/A4/attempt-3/render-1/qa.json": "c0ca1f7e8b0e866246ac4077a9dfffb8bc94cda75dc3d735c4e7881b728330d2",
+      "stages/A4/attempt-3/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.html": "35ac993fa4c42e36345a3a736ce98088f65b491aa351c81aef4699c4a07ada57",
+      "stages/A4/attempt-3/render-1/renderer.log": "21fbc2c11cc2a6fdee6f2150c149a857bebab2a5a56d2cf802b102d22de36367",
+      "stages/A4/attempt-3/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page2.png": "0034f2cb477416d3f1b1066bd7bda85aa96f38921aea5da0c2a572d34e06ce06",
+      "stages/A4/attempt-3/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf": "a67a0f42c1aa6838d4fb64f57376d3e77aad70738b1ac5fd6d20055ccc455255"
+    },
+    "reviewer": "render_adapter"
+  }
+}

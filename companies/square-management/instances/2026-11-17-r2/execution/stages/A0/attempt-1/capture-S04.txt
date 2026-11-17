@@ -1,0 +1,7 @@
+S04
+URL: https://www.square-management.com/cas-client/detection-des-comportements-atypiques-application-a-la-lutte-contre-la-fraude-aux-prelevements-sepa/
+Consulté le 17 novembre 2026
+Périmètre lu: Contexte et solution, lignes 220–249
+Note de lecture paraphrasée (pas une copie intégrale):
+Cas publié : fraude aux prélèvements SEPA, recherche sur rareté, indicateurs comportementaux, détection d’anomalies et seuils réglables par les analystes. Explication des alertes. La publication ne fournit pas de résultat chiffré comparable sur précision, rappel et coût de traitement.
+Droits: source publique, auteur Square Management ; extraits non redistribués.
