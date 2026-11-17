@@ -53,3 +53,7 @@ Le rapport millésimé 2025 prime pour l’effectif et le mix. Les 670 collabora
 - Adoption IA interne, coûts complets, gouvernance des données et exploitation ; la formation obligatoire est documentée
 - Résultats clients comparables chiffrés et garanties de sécurité/conformité démontrées
 - Dates, périmètres et populations des chiffres 670/800/900 non rapprochés ; aucune variation comparable calculée
+
+## Référence historique conservée
+
+Le libellé « 900 consultants » du rapport RSE 2024 appartient au [corpus du run r2](../2026-11-17-r2/source-register.md). Il sert à signaler un écart de date et de population ; il n’est pas repris comme chiffre actuel dans le nouveau PDF.

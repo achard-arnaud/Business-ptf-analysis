@@ -1,0 +1,21 @@
+{
+  "case_id": "square-management-20261117-r3",
+  "pdf_ref": "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf",
+  "pdf_sha256": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e",
+  "page_count": 3,
+  "visual_review": {
+    "reviewer": "manual_agent",
+    "pages": [
+      1,
+      2,
+      3
+    ],
+    "verdict": "pass",
+    "findings": [
+      "P1 : signalétique corrigée et formation lisible ; mix 2025 55/18/13/13/1.",
+      "P2 : Porter 4+5, échelle 2025, renvois vers les trois chantiers.",
+      "P3 : formation connue distinguée de la maturité globale ; owners, cibles proposées et gates lisibles."
+    ]
+  },
+  "business_approval": false
+}
