@@ -45,7 +45,73 @@
     "D4",
     "D5"
   ],
-  "opportunity_links": [],
+  "opportunity_links": [
+    {
+      "use_case_id": "B1",
+      "driver_id": "D1",
+      "value_strategy": "better",
+      "method": "Recherche dans les références approuvées avec génération assistée et revue humaine",
+      "kpi": "Temps de préparation; taux de réemploi; conversion",
+      "baseline": "À mesurer avant pilote",
+      "activity_id": "proposal",
+      "page": 3,
+      "ml_required": false,
+      "decision_status": "hypothesis",
+      "driver_label": "Conversion commerciale"
+    },
+    {
+      "use_case_id": "B2",
+      "driver_id": "D2",
+      "value_strategy": "faster",
+      "method": "Vue compétences/disponibilités et recommandation explicable",
+      "kpi": "Délai staffing; taux activité; intercontrat",
+      "baseline": "À obtenir par practice",
+      "activity_id": "staffing",
+      "page": 3,
+      "ml_required": false,
+      "decision_status": "hypothesis",
+      "driver_label": "Staffing"
+    },
+    {
+      "use_case_id": "B3",
+      "driver_id": "D3",
+      "value_strategy": "better",
+      "method": "Graphe de connaissance des missions et assets autorisés",
+      "kpi": "Temps de recherche; réutilisation; qualité",
+      "baseline": "À mesurer",
+      "activity_id": "knowledge",
+      "page": 3,
+      "ml_required": false,
+      "decision_status": "hypothesis",
+      "driver_label": "Réemploi des savoirs"
+    },
+    {
+      "use_case_id": "B4",
+      "driver_id": "D4",
+      "value_strategy": "more",
+      "method": "Pilotage de la valeur de mission de bout en bout",
+      "kpi": "Adoption; délai POC-production; valeur vérifiée",
+      "baseline": "À convenir avec les clients",
+      "activity_id": "delivery",
+      "page": 3,
+      "ml_required": false,
+      "decision_status": "hypothesis",
+      "driver_label": "Preuve de valeur"
+    },
+    {
+      "use_case_id": "B5",
+      "driver_id": "D5",
+      "value_strategy": "better",
+      "method": "Assurance documentaire et traçabilité assistées",
+      "kpi": "Complétude; délai de revue; écarts",
+      "baseline": "À échantillonner",
+      "activity_id": "governance",
+      "page": 3,
+      "ml_required": false,
+      "decision_status": "hypothesis",
+      "driver_label": "Confiance IA/Data"
+    }
+  ],
   "prerequisites": [
     "Confirmer périmètre économique",
     "Obtenir baseline et owners",
