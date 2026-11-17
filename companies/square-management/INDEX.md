@@ -1,14 +1,16 @@
-# Square Management — instance d’analyse
+# Square Management — instance d’analyse indépendante
 
-**Périmètre :** pitch d’entreprise en trois pages, chaîne de valeur, maturité IA/Data et chantiers.  
+**Périmètre :** pitch public en trois pages, chaîne de valeur de Porter, maturité IA/Data et chantiers proposés.  
 **Cutoff :** 2026-11-17.  
-**Étape :** RESEARCH — instance initialisée ; collecte et qualification en cours.
+**Statut :** PDF de travail relu sur sources publiques ; pas d’approbation métier ni d’évaluation interne de maturité.
 
 ## Carte du run
 
-- Preuves, extraits et claims : `package.json` et `evidence/`
-- Graphe de dépendances : `research_graph.json`
-- Diagnostic et synthèses : `analysis/`
-- Restitution : `outputs/three-pager.md`
+- Sources, fragments, claims et contexte : `package.json`, `strategic_context.json`, `evidence/`
+- Graphe propre à Square : `research_graph.json`
+- Analyse et narration : `analysis/`
+- Payload, binding et manifeste de rendu : `outputs/`
+- PDF trois pages : `outputs/Square_Management_3pager.pdf`
+- Revue des preuves, de l’hypothèse alternative et de l’utilité décisionnelle : `reviews/`
 
-Le graphe est initialisé avant la collecte. Les analyses et la restitution suivront ses dépendances. Les inconnues restent ouvertes et aucun chiffre de maturité ne sera déduit des seules déclarations commerciales.
+Le graphe a été créé pour cette instance et précède la collecte. Le PDF suit le profil exec du contrat `THREE_PAGER_PORTFOLIO_AI`. La maturité IA interne reste « inconnue » faute de preuves internes. Les conclusions et chantiers sont des hypothèses à valider, pas des faits publiés.
