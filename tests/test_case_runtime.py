@@ -87,6 +87,18 @@ class CaseRuntimeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'dependency contract weakened'):
             engine.process(self.root)
 
+    def test_selected_technical_profile_requires_stage_memo(self):
+        intake = {**self.intake, 'decision_type': 'poc-verdict'}
+        shutil.rmtree(self.case)  # Unused synthetic fixture only.
+        engine.init('alpha-run', intake, self.root)
+        self.evidence()
+        self.result('A1', self.graph())
+        engine.complete('alpha-run', 'A1', self.root)
+        self.result('A2', {'decision': 'Trial', 'strongest_objection': 'Unknown value', 'falsifier': 'No gain',
+                          'sections': [{'id': 'SEC1', 'action_title': 'Trial', 'claim_ids': ['C1']}]})
+        with self.assertRaisesRegex(ValueError, 'Unsafe local reference'):
+            engine.complete('alpha-run', 'A2', self.root)
+
     def test_capture_tampering_blocks_resume(self):
         self.evidence()
         (self.case / 'stages/A0/attempt-1/capture.txt').write_text('Changed')

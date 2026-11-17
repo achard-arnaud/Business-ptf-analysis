@@ -12,6 +12,9 @@ spec.loader.exec_module(technical)
 
 
 class TechnicalDecisionTests(unittest.TestCase):
+    result = case_tests.CaseRuntimeTests.result
+    evidence = case_tests.CaseRuntimeTests.evidence
+    graph = case_tests.CaseRuntimeTests.graph
     def setUp(self):
         case_tests.CaseRuntimeTests.setUp(self)
         for path in ('config/technical-decisions.json', 'contracts/technical-decision.schema.json'):
@@ -85,6 +88,24 @@ class TechnicalDecisionTests(unittest.TestCase):
         (self.case / 'proof.txt').write_text('changed')
         with self.assertRaisesRegex(ValueError, 'evidence changed'):
             self.call(memo)
+
+    def test_a2_consumes_selected_profile_and_pins_memo_proof(self):
+        shutil.rmtree(self.case)  # Replace unused synthetic fixture only.
+        engine.init('alpha-run', {**self.intake, 'decision_type': 'poc-verdict'}, self.root)
+        self.evidence()
+        self.result('A1', self.graph())
+        engine.complete('alpha-run', 'A1', self.root)
+        self.result('A2', {'decision': 'Trial', 'strongest_objection': 'Unknown value', 'falsifier': 'No gain',
+             'sections': [{'id': 'SEC1', 'action_title': 'Trial', 'claim_ids': ['C1']}],
+             'decision_memo_ref': 'stages/A2/attempt-1/memo.json'})
+        memo = self.memo()
+        proof = 'stages/A2/attempt-1/proof.json'
+        (self.case / 'proof.txt').rename(self.case / proof)
+        memo['evidence'][0]['ref'] = proof
+        engine.atomic(self.case / 'stages/A2/attempt-1/memo.json', memo)
+        engine.complete('alpha-run', 'A2', self.root)
+        state = engine.inspect('alpha-run', self.root)
+        self.assertIn(proof, state['stages']['A2']['output_pins'])
 
 
 if __name__ == '__main__':

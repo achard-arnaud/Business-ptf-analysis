@@ -8,6 +8,7 @@ import argparse
 import copy
 import fcntl
 import hashlib
+import importlib.util
 import json
 import os
 import re
@@ -170,6 +171,10 @@ def init(case_id, intake, root=ROOT):
     if template not in spec['templates']:
         raise ValueError('Unknown template; no silent fallback')
     profile = spec['templates'][template]
+    if intake.get('decision_type'):
+        registry = load(local(root, 'config/technical-decisions.json'))['profiles']
+        if intake['decision_type'] not in registry:
+            raise ValueError('Unknown technical decision profile')
     refs = [PROCESS, SCHEMA, 'scripts/case_runtime.py', *spec['stable_refs'], *profile['refs']]
     pins = {p: digest(local(root, p)) for p in sorted(set(refs))}
     case = case_path(case_id, root)
@@ -344,6 +349,18 @@ def semantic(artifact, state, case, root=ROOT):
                 if payload.get('entity_id') != state['intake']['entity_id']:
                     raise ValueError('Render payload entity does not match intake')
                 return [payload_ref]
+        elif state['intake'].get('decision_type'):
+            memo_ref = artifact.get('decision_memo_ref')
+            memo = load(local(case, memo_ref))
+            if memo['decision_type'] != state['intake']['decision_type']:
+                raise ValueError('Technical memo differs from selected intake decision profile')
+            module_spec = importlib.util.spec_from_file_location('stage_decision_io', local(root, 'scripts/technical_decision.py'))
+            module = importlib.util.module_from_spec(module_spec)
+            module_spec.loader.exec_module(module)
+            module.validate(memo, case, root)
+            if artifact['decision'] != memo['decision']['verdict']:
+                raise ValueError('Scaffold decision differs from validated technical verdict')
+            return [memo_ref, *[item['ref'] for item in memo['evidence']]]
     elif kind == 'review':
         if any(r['verdict'] != 'pass' for r in artifact['reviews']):
             raise ValueError('Review has unresolved findings')
@@ -396,7 +413,8 @@ def complete(case_id, stage, root=ROOT):
             refs = semantic(artifact, state, case, root)
             # References must be owned by this attempt; inputs are already pinned separately.
             for path in refs:
-                if not local(case, path).is_relative_to(local(case, record['directory'], exists=False)):
+                if (not local(case, path).is_relative_to(local(case, record['directory'], exists=False))
+                        and path not in record['context_pins']):
                     raise ValueError('Output evidence belongs to another attempt')
             pins = {p: digest(local(case, p)) for p in [ref, *refs]}
             record.update(status='passed', output_pins=pins)

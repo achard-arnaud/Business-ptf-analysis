@@ -77,3 +77,39 @@ ce reçu exact dans le champ render du résultat A4, avec les trois notes de rev
 Une déclaration manuelle de render non produite par cet appel est refusée.
 Le contrôle des pages physiques et de qa.json reste distinct de la lecture visuelle.
 Le renderer n'est pas automatiquement disponible pour tous les templates de notes.
+
+
+## Appel réel du renderer
+
+Si `render_requested=true`, A3 soumet aussi `payload_ref` dans sa tentative. Le moteur
+valide ce payload contre le schéma du profil et vérifie son entity_id. Après `begin A4`,
+exécuter `python scripts/case_runtime.py render --case <case-id>`. Le profil doit
+fournir un adapter et toutes ses références épinglées ; son absence bloque sans fallback.
+Le moteur invoque le renderer par arguments structurés, conserve renderer.log, vérifie
+le PDF physique et qa.json puis émet le reçu réel. Recopier exactement ce reçu dans
+le champ `render` du result.json A4, avec les trois revues et leurs fichiers propres.
+Un reçu déclaré sans cet appel est refusé. Une tentative de rendu échouée reste dans
+le journal ; corriger et relancer sans réécrire ses fichiers.
+
+Le profil three-pager-exec du dépôt d'analyse possède l'adapter Chromium canonique.
+Les formats du dépôt storytelling qui n'ont pas d'adapter déclaré restent bloqués
+pour ce chemin de rendu ; leurs guides historiques ne deviennent pas des adapters
+par simple déclaration. Un cas sans demande de rendu conserve la chaîne rédactionnelle.
+
+
+## Appel du renderer et mémo de décision
+
+Si `render_requested=true`, A3 exige `payload_ref` vers le JSON du renderer dans sa
+propre tentative. Il valide le schéma du profil et l'entity_id. Après `begin A4`,
+appeler `python scripts/case_runtime.py render --case <id>` ; copier le reçu renvoyé
+dans la clé `render` du result.json A4, avec les trois revues. Le moteur enregistre
+commande, log, empreinte d'entrée, renderer et sorties. A4 refuse un reçu fabriqué,
+un PDF dont les pages physiques diffèrent et une QA en échec. Un profil sans adapter
+est bloqué pour le rendu ; aucun fallback implicite. Le binding des paraphrases au
+sens des claims reste l'objet de la revue, même si les références sont valides.
+
+Pour une décision technique, ajouter `decision_type` à l'intake (type du registre).
+A2 exige alors `decision_memo_ref` dans sa tentative. Le moteur appelle le validateur
+technique, vérifie le type choisi et le verdict du scaffold, puis épingle mémo et
+preuves (dans la tentative ou parmi ses entrées déjà épinglées). Le validateur reste
+utilisable seul pour une revue BUILD, sans prétendre qu'un run A0–A4 a été exécuté.

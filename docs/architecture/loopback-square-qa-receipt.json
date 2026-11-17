@@ -1,8 +1,8 @@
 {
   "status": "proposal_validated_not_applied",
-  "case_id": "square-layout-diagnosis-2026-11-17",
-  "proposal_sha256": "f2121ae9c488d579f515b309b29523f8e24e1b4fcf1429f80355ee28f6d35ac0",
-  "state_sha256": "c3bce5e044a0fdb81dde3530aaf24b47984f262806873249a25d7daadf0de44a",
+  "case_id": "square-layout-diagnosis-2026-11-17-r2",
+  "proposal_sha256": "ae32bacf8cbb224c23037c3262995cdf37349962beda80918341cd23be2b68b6",
+  "state_sha256": "e71ef030899335d8d34eb4f214edf685bc5649d9c425b302765d095f7d0b4cfd",
   "stale_refs": [],
   "investigation": {
     "question": "Why did selection, oracle or artifact verification miss this failure?",
@@ -23,7 +23,7 @@
       "pypdf": "6.21.4"
     }
   },
-  "input_proposal_sha256": "f2121ae9c488d579f515b309b29523f8e24e1b4fcf1429f80355ee28f6d35ac0",
+  "input_proposal_sha256": "ae32bacf8cbb224c23037c3262995cdf37349962beda80918341cd23be2b68b6",
   "observed_metrics": [
     {
       "name": "Square DOM overflows",
