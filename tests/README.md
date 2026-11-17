@@ -19,6 +19,7 @@ The [getting-started guide](../docs/getting-started.md) separates HTML/core chec
 | Session resumption | `test_session_checkpoint.py`, `test_cold_resume_cli.py` | Pinned input bytes, conflicting revision, stale/missing file and bounded subprocess resume |
 | Skill discovery and registry | `test_skill_docs.py`, `test_template_registry.py` | Fixed navigation set/frontmatter, declared template paths and capabilities |
 | Executive / value-chain output | `test_three_pager_exec.py`, `test_value_chain_views.py`, `test_value_chain_preview.py` | Profile-specific composition, synthetic sector topologies and negative cases |
+| Independent company run chain | `test_independent_company_run.py` | Company isolation, graph/source paths, payload-to-render coherence, PDF/review/hash linkage, and CI discovery of bound runs |
 | Artifact/QA/publication | `test_artifact_receipts.py`, `test_prepare_artifact_receipt.py`, `test_verify_render_evidence.py`, `test_publication_preflight.py` | Actual-byte integrity rules, render metadata/evidence checks and conservative release prerequisites |
 | Renderer CI selection | `test_ci_render_selector.py` | Changed-path selection, including relevant removals/renames |
 | Learning pilot | `test_pedagogical_renderer.py`, `test_pedagogical_landscape.py` | Binding/content fidelity, locked imports and learning-specific rendering contracts |
@@ -27,7 +28,7 @@ Some tests use synthetic fixtures; `test_sphere_bundle.py` also checks the commi
 
 ## Browser and archive acceptance
 
-[Contract CI](../.github/workflows/contracts.yml) selects browser checks by actual path changes or manual dispatch. Selected runs render the executive fixture and two value-chain profiles, verify actual PDFs/PNGs/QA hashes and reject a deliberate overflow. [Pedagogical CI](../.github/workflows/pedagogical-render.yml) separately sets `PEDAGOGICAL_BROWSER_TEST=1` and renders the six-page Perception sheet. Core local discovery may skip browser-dependent tests; report that scope explicitly.
+[Contract CI](../.github/workflows/contracts.yml) selects browser checks by actual path changes or manual dispatch. Selected runs render the executive fixture, every independent-company run bound to an executive payload, and two value-chain profiles; they verify actual PDFs/PNGs/QA hashes and reject a deliberate overflow. [Pedagogical CI](../.github/workflows/pedagogical-render.yml) separately sets `PEDAGOGICAL_BROWSER_TEST=1` and renders the six-page Perception sheet. Core local discovery may skip browser-dependent tests; report that scope explicitly. `scripts/render_independent_company_runs.py` checks each bound run’s manifest, graph, payload, PDF and review references before rendering it.
 
 External capture archives are not part of public CI. `validate_bundle.py --archive` adds the available declared-capture checks; `check_prehitl.py` adds material-original policy. Live transfer between model sessions, original-source truth, causal ROI and authenticated human release require their own evidence.
 

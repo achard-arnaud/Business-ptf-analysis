@@ -5,29 +5,33 @@
   "render_profile": "exec",
   "status": "DRAFT_PUBLIC_SOURCES_REVIEWED",
   "page_count": 3,
-  "pdf_sha256": "ae31f7d700bc44a236bce7e9c86629f4aaa122aff117816288099e315547f406",
-  "payload_sha256": "6fc290b164f156161ca8a18c87f09418894364178188a4d0541746773880197d",
+  "pdf_sha256": "c28472d75c5d0114dc1e7851cca53c9d227d9fd6ce74e5a3046e31d944d4525d",
+  "payload_sha256": "64b5b94e1563ec53192d306fcd377f8647e3017fe876daac2e3bbf1e3b3019cf",
   "renderer_commit": "de4b4ba3047f0ac2befd14ab3970f1e187b6821c",
   "schema_validation": "PASS",
   "layout_render": "PASS",
-  "visual_review": "PASS — all three PDF pages inspected; no clipping or overflow observed",
+  "visual_review": "PASS — all three final pages inspected; last payload wording correction keeps the same geometry",
   "content_review": "PASS_WITH_SCOPE_LIMITS — see three review notes",
   "business_approval": "NOT_CLAIMED",
   "file_sha256": {
-    "Square_Management_3pager.pdf": "ae31f7d700bc44a236bce7e9c86629f4aaa122aff117816288099e315547f406",
-    "square-management-exec-payload.json": "6fc290b164f156161ca8a18c87f09418894364178188a4d0541746773880197d",
-    "Square_Management_3pager_page-1.png": "c0aa1313da71a0a861654b4ed8292cd34376801e523a7ef72ec785c51f2165ca",
+    "Square_Management_3pager.pdf": "c28472d75c5d0114dc1e7851cca53c9d227d9fd6ce74e5a3046e31d944d4525d",
+    "square-management-exec-payload.json": "64b5b94e1563ec53192d306fcd377f8647e3017fe876daac2e3bbf1e3b3019cf",
+    "Square_Management_3pager_page-1.png": "8bf42fdc477fc543de80334fe7298ab5c464b18e152882fad61bcd6fa322b67e",
     "Square_Management_3pager_page-2.png": "8de2cdf49b14732e79e008c2c608d19b274a009a082c092eb2fe2b29f24fd18e",
     "Square_Management_3pager_page-3.png": "cc71f646fcf71358a17eaa6b3a2276c2cd75759d2943328315ccff5a3f8ccb3d",
     "reviews/01-contract-and-evidence.md": "41a92bc25ccbf7ce5adefbc36308d504ff74305edd65d38efc70e90b7b7f9b4a",
     "reviews/02-alternative-hypothesis.md": "f31bfc7d8cf4bde79ee3feecded89489a69f828be8798947d7b4c7b799c9d48f",
     "reviews/03-decision-usefulness.md": "455389055923c0120fa3f02cfd306e351ca7ebc7e75ee72c3ca5222568b4b645",
-    "binding.json": "11a14185d4a9d4f4a6f49c87e7e9cfe86f9eeae66b07d98902b82fa3319d2456"
+    "binding.json": "b543e5149a1b3f6683701abced8ebe0ab07e490a4ccedc5c9584bd400dbea3a5"
   },
   "limitations": [
     "Public-source analysis only",
     "Internal AI/Data maturity remains unknown",
     "Porter activities interpreted for consulting services",
     "No business approval or internal KPI validation"
-  ]
+  ],
+  "graph_sha256": "350a5eb8dc7a522b0d1aa66174eb71b4b03b0f83984c22791030a28f43a5bb9a",
+  "package_sha256": "901dab208b25b528279f1c281226e2c286c4d8c2b1bb2149e72c039bc5c27959",
+  "context_sha256": "3ef63c934aa1a977fb3a685d138d5dd9bcb676702990d8e8f2840ae0b9792554",
+  "bundle_sha256": "1269d4ab6939f527b215ec83460a3e9613dc8e761b4d061e5b17887883571a42"
 }

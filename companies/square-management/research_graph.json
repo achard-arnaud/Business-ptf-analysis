@@ -23,7 +23,7 @@
     {
       "id": "evidence",
       "kind": "analysis",
-      "path": "evidence/coverage.md",
+      "path": "evidence/source-register.md",
       "depends_on": [
         "sources"
       ],

@@ -35,5 +35,6 @@
     "companies/square-management/outputs/reviews/01-contract-and-evidence.md",
     "companies/square-management/outputs/reviews/02-alternative-hypothesis.md",
     "companies/square-management/outputs/reviews/03-decision-usefulness.md"
-  ]
+  ],
+  "evidence_bundle_sha256": "1269d4ab6939f527b215ec83460a3e9613dc8e761b4d061e5b17887883571a42"
 }

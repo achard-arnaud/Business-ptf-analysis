@@ -10,12 +10,13 @@
   "lineage": {
     "repo": "achard-arnaud/Business-ptf-analysis",
     "repo_commit": "de4b4ba3047f0ac2befd14ab3970f1e187b6821c",
-    "bundle": "companies/square-management/package.json + strategic_context.json",
+    "bundle": "companies/square-management/package.json + strategic_context.json + research_graph.json",
     "evidence_delta": [
       "companies/square-management/research_graph.json",
       "companies/square-management/package.json (8 sources, 8 fragments, 8 claims)"
     ],
-    "status_in_repo": "COMPOSITION — public-source draft; reviews complete; no human business approval"
+    "status_in_repo": "COMPOSITION — public-source draft; reviews complete; no human business approval",
+    "bundle_sha256": "1269d4ab6939f527b215ec83460a3e9613dc8e761b4d061e5b17887883571a42"
   },
   "figures": {
     "consultants": {
@@ -265,7 +266,7 @@
         },
         {
           "who": "Responsables staffing / Data",
-          "what": "périmètre et responsables non établis dans le corpus",
+          "what": "les sources publiques consultées ne précisent ni le périmètre ni les responsables",
           "role": null,
           "gap": true
         }

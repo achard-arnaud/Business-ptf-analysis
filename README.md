@@ -124,6 +124,10 @@ For the current capability boundaries and open acceptance gaps, see [What is sti
 
 For planning, use the [live issues](https://github.com/achard-arnaud/Business-ptf-analysis/issues) alongside the [industrialisation roadmap](docs/roadmap/industrialization-backlog.md). Older architecture notes may describe a component before its implementation; current code, schemas, registry and manifests establish the inspected state.
 
+## TDD and CI
+
+For behavior changes, add a failing contract or regression test before implementation, then run `python -m unittest discover -s tests -v`. GitHub Actions runs the suite on pushes and pull requests; relevant renderer, contract, fixture **and company-run** changes also trigger browser PDF/PNG QA and overflow checks. Passing checks cover only their tested boundaries, not source truth or business approval; see the [test guide](tests/README.md).
+
 ## Navigate and extend
 
 - **Business reader:** [Sphere diagnostic index](companies/sphere/INDEX.md), [Hivest strategic note workstream](companies/hivest/INDEX.md), [external asset/service case](examples/three-pagers/external-case/CASE_GUIDE.md).

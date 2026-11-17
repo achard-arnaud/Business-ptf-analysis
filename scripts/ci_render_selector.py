@@ -11,6 +11,10 @@ def should_render(paths):
         return False
     for path in paths:
         p=path.replace("\\","/")
+        # Company data, graph and bound outputs all feed the executive render.
+        # A case change must validate the actual case payload, not only fixtures.
+        if p.startswith("companies/") and not p.endswith("/INDEX.md") and "/artifacts/" not in p:
+            return True
         if p.startswith(".github/workflows/"):
             return True
         if p.startswith("renderers/") and not p.endswith((".md",".txt")):

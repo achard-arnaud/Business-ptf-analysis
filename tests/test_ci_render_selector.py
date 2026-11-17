@@ -29,6 +29,14 @@ class SelectRender(unittest.TestCase):
     def test_mix_prefer_safety(self):
         self.assertTrue(m.should_render(["docs/README.md","renderers/three_pager_exec/render2.py"]))
 
+    def test_independent_company_payload_selects_browser_qa(self):
+        self.assertTrue(m.should_render([
+            "companies/square-management/outputs/square-management-exec-payload.json"
+        ]))
+
+    def test_independent_company_graph_selects_browser_qa(self):
+        self.assertTrue(m.should_render(["companies/square-management/research_graph.json"]))
+
 
 if __name__=="__main__":
     unittest.main()

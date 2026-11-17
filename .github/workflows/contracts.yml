@@ -44,11 +44,13 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - name: Render historical exec v0.3 candidate (unverified)
         run: python renderers/three_pager_exec/render_exec.py tests/fixtures/exec/sphere_unverified_v0.3.json /tmp/render-qa/exec --pdf
+      - name: Render and verify every bound independent company run
+        run: python scripts/render_independent_company_runs.py --out /tmp/render-qa/companies
       - name: Render candidate manufacturing profile
         run: python renderers/value_chain_preview/render.py tests/fixtures/value_chain_manufacturing_v01.json /tmp/render-qa/manufacturing --pdf
       - name: Render candidate asset-service profile
         run: python renderers/value_chain_preview/render.py tests/fixtures/value_chain_asset_service_v01.json /tmp/render-qa/assets --pdf
-      - name: Validate three PDFs, nine PNGs, QA and receipt hashes
+      - name: Validate renderer PDFs, PNGs, QA and receipt hashes
         run: |
           python scripts/verify_render_evidence.py /tmp/render-qa/exec --profile exec
           python scripts/verify_render_evidence.py /tmp/render-qa/manufacturing --profile value-chain-preview
