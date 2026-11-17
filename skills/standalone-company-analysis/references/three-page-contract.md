@@ -1,0 +1,3 @@
+# Contrat trois pages
+
+Page 1 : pitch, profil, modèle d’affaires, chiffres avec périmètre/date et thèse. Page 2 : activités principales et de soutien de Porter, mécanismes de valeur et leviers IA/Data sourcés ou qualifiés comme hypothèses. Page 3 : maturité IA/Data par dimensions, chantiers, première tranche, KPI de baseline, droits et critères d’arrêt. Pour les capacités internes sans preuve, écrire « non documenté » ; aucun zéro ou score inventé. Une source corporate établit une déclaration, pas une validation indépendante. Un cas client ne démontre pas l’impact causal ou l’échelle sans KPI. Markdown ne signifie ni PDF ni approbation humaine.
