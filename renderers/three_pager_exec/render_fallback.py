@@ -61,7 +61,7 @@ y=65;h=220
 card(28,y,w,h,'Mix produit 2024',[f'{a} : {v} %' for a,v in P['page1']['breakdown']['series']]+['Canaux : ventilation non comparable au mix produit.'],'Mix produit et canaux sont deux découpages distincts.',fs=9.7)
 card(28+w+gap,y,w,h,'Direction & données',[f'{r["who"]} — {r["what"]}' for r in P['page1']['board']['rows']],'Mandats COO/DSI et équipe IA à confirmer.',fs=9.2)
 s=P['page1']['swot'];card(28+2*(w+gap),y,w,h,'SWOT → décision',['Forces : '+', '.join(s['s'][:2]),'Faiblesses : '+', '.join(s['w'][:2]),'Opportunités : '+', '.join(s['o'][:2]),'Menaces : '+', '.join(s['t'][:2])],'W-O provisoire : intégration et pouvoir de prix à mesurer.',fs=8.8)
-footer(1,'Marge matière · qualité usine · stock/service : trois hypothèses à départager.',P['page1']['sources']);c.showPage()
+footer(1,P['page1']['footer']['body'],P['page1']['sources']);c.showPage()
 # PAGE 2
 header(2,'Chaîne de valeur — enjeux par maillon, effets non quantifiés')
 y=337;h=182;gap=7;w=(W-56-3*gap)/4
@@ -70,8 +70,8 @@ for i,a in enumerate(P['page2']['support']):
 y=130;h=197;w=(W-56-4*gap)/5
 for i,a in enumerate(P['page2']['primary']):
  card(28+i*(w+gap),y,w,h,a['name'],[a['desc'],'Bénéfice recherché : '+a['benefit']],None,fs=9.2)
-card(28,55,W-56,65,'Lecture économique',[P['page2']['metrics']['take']+' Trois expériences : indexation/marge, rendement/qualité, S&OP/cash.'],None,fs=10)
-footer(2,'La mesure du rendement, du prix net et du stock moyen précède le choix du pilote.',P['page2']['sources']);c.showPage()
+card(28,55,W-56,65,'Lecture économique',[P['page2']['metrics']['take']+' '+P['page2']['lecture']['text']],None,fs=10)
+footer(2,P['page2']['footer']['body'],P['page2']['sources']);c.showPage()
 # PAGE 3
 header(3,'Diagnostic public — pilotes, prérequis et questions d’investissement')
 y=174;h=345;gap=9;left=260;right=W-56-left-gap
@@ -81,5 +81,5 @@ y=55;h=109;w=(W-56-2*gap)/3
 card(28,y,w,h,'Transformation',['Cartographier ERP, qualité des données, owners et séries par site.'],None,fs=9.7)
 D=P['page3']['ai_diag'];card(28+w+gap,y,w,h,'Maturité IA : '+D['level'],D['facts'],None,fs=9.4)
 card(28+2*(w+gap),y,w,h,'Décision à prendre',['Comparer chaque pilote à la pratique actuelle sans IA.','GO si baseline, owner, données et contrôle validés.'],None,fs=9.5)
-footer(3,'Posture W-O provisoire : choisir le pilote après preuve de valeur et de faisabilité.',P['page3']['sources']);c.save()
+footer(3,P['page3']['footer']['body'],P['page3']['sources']);c.save()
 print(out)
