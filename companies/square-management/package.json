@@ -82,6 +82,86 @@
       "capture_kind": "selected_excerpt",
       "capture_policy": "excerpt_by_rights",
       "hash_scope": "excerpt_utf8"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.square-management.com/cas-client/optimisation-de-lefficacite-operationnelle-et-de-la-satisfaction-client-grace-a-lintelligence-artificielle/",
+      "scope": "company",
+      "entity_ids": [
+        "square-management"
+      ],
+      "published_at": "2023-01-01",
+      "accessed_at": "2026-11-17",
+      "grade": "B",
+      "origin_id": "https://www.square-management.com/cas-client/optimisation-de-lefficacite-operationnelle-et-de-la-satisfaction-client-grace-a-lintelligence-artificielle/",
+      "source_type": "customer_case",
+      "access_status": "read",
+      "snapshot_uri": "companies/square-management/evidence/source-register.md#S05",
+      "sha256": "651db9753196581f692ab1dcd637c602d5e73181d8cb85856a631ad512080460",
+      "rights": "Référence publique ; extrait bref de qualification uniquement ; aucune copie intégrale",
+      "capture_kind": "selected_excerpt",
+      "capture_policy": "excerpt_by_rights",
+      "hash_scope": "excerpt_utf8"
+    },
+    {
+      "id": "S06",
+      "url": "https://www.maitredata.com/app/accords-entreprise/square/334469",
+      "scope": "company",
+      "entity_ids": [
+        "square-management"
+      ],
+      "published_at": "2024-12-01",
+      "accessed_at": "2026-11-17",
+      "grade": "B",
+      "origin_id": "https://www.maitredata.com/app/accords-entreprise/square/334469",
+      "source_type": "legal_register",
+      "access_status": "read",
+      "snapshot_uri": "companies/square-management/evidence/source-register.md#S06",
+      "sha256": "bcde762be56d612c097ddbe15a07d02fe4cc6fba741285480891c3cb7e8751c0",
+      "rights": "Référence publique ; extrait bref de qualification uniquement ; aucune copie intégrale",
+      "capture_kind": "selected_excerpt",
+      "capture_policy": "excerpt_by_rights",
+      "hash_scope": "excerpt_utf8"
+    },
+    {
+      "id": "S07",
+      "url": "https://www.pappers.fr/entreprise/square-507567493",
+      "scope": "company",
+      "entity_ids": [
+        "square-management"
+      ],
+      "published_at": "2026-11-17",
+      "accessed_at": "2026-11-17",
+      "grade": "B",
+      "origin_id": "https://www.pappers.fr/entreprise/square-507567493",
+      "source_type": "legal_register",
+      "access_status": "read",
+      "snapshot_uri": "companies/square-management/evidence/source-register.md#S07",
+      "sha256": "d4200e4ca89320d7362cd174352c87576e5cb8fb65506fef6b2a8a9692aa177a",
+      "rights": "Référence publique ; extrait bref de qualification uniquement ; aucune copie intégrale",
+      "capture_kind": "selected_excerpt",
+      "capture_policy": "excerpt_by_rights",
+      "hash_scope": "excerpt_utf8"
+    },
+    {
+      "id": "S08",
+      "url": "https://www.editionsdumanagement.com/58-square-management",
+      "scope": "company",
+      "entity_ids": [
+        "square-management"
+      ],
+      "published_at": "2025-01-01",
+      "accessed_at": "2026-11-17",
+      "grade": "C",
+      "origin_id": "https://www.editionsdumanagement.com/58-square-management",
+      "source_type": "research",
+      "access_status": "read",
+      "snapshot_uri": "companies/square-management/evidence/source-register.md#S08",
+      "sha256": "76bae597821a06023e921a720a9e7fab728ab8e83710273ca365e7dfab358d72",
+      "rights": "Référence publique ; extrait bref de qualification uniquement ; aucune copie intégrale",
+      "capture_kind": "selected_excerpt",
+      "capture_policy": "excerpt_by_rights",
+      "hash_scope": "excerpt_utf8"
     }
   ],
   "fragments": [
@@ -112,6 +192,34 @@
       "locator": "Cas SEPA, 09-07-2024",
       "excerpt": "Le cas décrit une détection de comportements atypiques pour la fraude SEPA, avec validation et retour d’analystes ; aucun KPI chiffré n’est publié.",
       "sha256": "7e9da67f05a354efc6c829630766b4fad8844378d563662b258a1b73b0423529"
+    },
+    {
+      "id": "F-S05",
+      "source_id": "S05",
+      "locator": "Cas client assurance, 2023",
+      "excerpt": "Le cas décrit l’usage du NLP et de l’analytique pour soutenir l’efficacité opérationnelle et la satisfaction client ; les résultats publiés ne donnent pas de mesure causale indépendante.",
+      "sha256": "651db9753196581f692ab1dcd637c602d5e73181d8cb85856a631ad512080460"
+    },
+    {
+      "id": "F-S06",
+      "source_id": "S06",
+      "locator": "Accord UES Square, applicable au 1er janvier 2025",
+      "excerpt": "L’accord UES recense plusieurs entités juridiques et confirme un périmètre collectif distinct d’une société juridique unique.",
+      "sha256": "bcde762be56d612c097ddbe15a07d02fe4cc6fba741285480891c3cb7e8751c0"
+    },
+    {
+      "id": "F-S07",
+      "source_id": "S07",
+      "locator": "Fiche entreprise SQUARE, SIREN 507 567 493",
+      "excerpt": "La fiche porte sur une entité juridique française, SQUARE SASU ; ses effectifs publiés ne représentent pas à eux seuls le groupe de conseil.",
+      "sha256": "d4200e4ca89320d7362cd174352c87576e5cb8fb65506fef6b2a8a9692aa177a"
+    },
+    {
+      "id": "F-S08",
+      "source_id": "S08",
+      "locator": "Guide 2025 des cabinets de conseil",
+      "excerpt": "La source secondaire avance environ 800 consultants en France, 100 à l’international et 140 M€ de chiffre d’affaires, selon un périmètre non détaillé.",
+      "sha256": "76bae597821a06023e921a720a9e7fab728ab8e83710273ca365e7dfab358d72"
     }
   ],
   "claims": [
@@ -138,11 +246,12 @@
       "id": "C-size",
       "entity_id": "square-management",
       "scope": "company",
-      "statement": "Le rapport RSE 2024 annonce 900 consultants.",
+      "statement": "Le rapport RSE 2024 annonce 900 consultants ; un guide secondaire répartit 800 en France et 100 à l’international, sans date/périmètre comparable.",
       "status": "fact",
       "confidence": "high",
       "fragment_refs": [
-        "F-S02"
+        "F-S02",
+        "F-S08"
       ],
       "basis_claim_refs": [],
       "contradiction_refs": [],
@@ -156,11 +265,12 @@
       "id": "C-revenue",
       "entity_id": "square-management",
       "scope": "company",
-      "statement": "Le site affiche 140 M€ prévisionnels sans exercice associé.",
+      "statement": "Le site affiche 140 M€ prévisionnels sans exercice ; une source secondaire avance aussi 140 M€ avec un périmètre non détaillé.",
       "status": "fact",
       "confidence": "medium",
       "fragment_refs": [
-        "F-S01"
+        "F-S01",
+        "F-S08"
       ],
       "basis_claim_refs": [],
       "contradiction_refs": [],
@@ -224,6 +334,43 @@
       "owner": "Analyste",
       "validation_question": "Évaluer avec données internes, owners et contrôles.",
       "deployment_stage": "unknown"
+    },
+    {
+      "id": "C-legal-perimeter",
+      "entity_id": "square-management",
+      "scope": "company",
+      "statement": "Les sources établissent plusieurs entités juridiques ; elles ne suffisent pas à établir le périmètre économique consolidé.",
+      "status": "fact",
+      "confidence": "high",
+      "fragment_refs": [
+        "F-S06",
+        "F-S07"
+      ],
+      "basis_claim_refs": [],
+      "contradiction_refs": [],
+      "observed_at": "2026-11-17",
+      "valid_until": null,
+      "owner": "Analyste",
+      "validation_question": "Obtenir l’organigramme capitalistique et le périmètre de consolidation.",
+      "deployment_stage": "not_applicable"
+    },
+    {
+      "id": "C-insurance-case",
+      "entity_id": "square-management",
+      "scope": "company",
+      "statement": "Un cas client publié décrit NLP et analytique en assurance ; la mesure d’impact causal indépendante n’est pas fournie.",
+      "status": "fact",
+      "confidence": "medium",
+      "fragment_refs": [
+        "F-S05"
+      ],
+      "basis_claim_refs": [],
+      "contradiction_refs": [],
+      "observed_at": "2026-11-17",
+      "valid_until": null,
+      "owner": "Analyste",
+      "validation_question": "Obtenir baseline, résultats comparés, adoption et statut de production.",
+      "deployment_stage": "not_applicable"
     }
   ]
 }
