@@ -1,0 +1,229 @@
+{
+  "version": "0.2.0",
+  "entity_id": "square-management",
+  "cutoff": "2026-11-17",
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://www.square-management.com/identite/",
+      "scope": "company",
+      "entity_ids": [
+        "square-management"
+      ],
+      "published_at": "2026-11-17",
+      "accessed_at": "2026-11-17",
+      "grade": "A",
+      "origin_id": "https://www.square-management.com/identite/",
+      "source_type": "corporate",
+      "access_status": "read",
+      "snapshot_uri": "companies/square-management/evidence/source-register.md#S01",
+      "sha256": "bb528716f9f2306fc8310629f13da88ec270fd13db197dd50ef2a31d1e20dd03",
+      "rights": "Référence publique ; extrait court uniquement ; aucune copie intégrale",
+      "capture_kind": "selected_excerpt",
+      "capture_policy": "excerpt_by_rights",
+      "hash_scope": "excerpt_utf8"
+    },
+    {
+      "id": "S02",
+      "url": "https://www.square-management.com/wp-content/uploads/2025/06/Rapport-RSE-2024-Square-Management.pdf",
+      "scope": "company",
+      "entity_ids": [
+        "square-management"
+      ],
+      "published_at": "2025-06-01",
+      "accessed_at": "2026-11-17",
+      "grade": "A",
+      "origin_id": "https://www.square-management.com/wp-content/uploads/2025/06/Rapport-RSE-2024-Square-Management.pdf",
+      "source_type": "corporate",
+      "access_status": "read",
+      "snapshot_uri": "companies/square-management/evidence/source-register.md#S02",
+      "sha256": "552c9fbcea64ebb9d580f7c2daf1263c39bc6fdb970e0461db49bbfd7bb7e2b0",
+      "rights": "Référence publique ; extrait court uniquement ; aucune copie intégrale",
+      "capture_kind": "selected_excerpt",
+      "capture_policy": "excerpt_by_rights",
+      "hash_scope": "excerpt_utf8"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.square-management.com/centre-ia/",
+      "scope": "company",
+      "entity_ids": [
+        "square-management"
+      ],
+      "published_at": "2026-11-17",
+      "accessed_at": "2026-11-17",
+      "grade": "A",
+      "origin_id": "https://www.square-management.com/centre-ia/",
+      "source_type": "corporate",
+      "access_status": "read",
+      "snapshot_uri": "companies/square-management/evidence/source-register.md#S03",
+      "sha256": "cea81431cfef252ccdb9a4374a7ee194c40da922bb61ce3b69b9258f5895df24",
+      "rights": "Référence publique ; extrait court uniquement ; aucune copie intégrale",
+      "capture_kind": "selected_excerpt",
+      "capture_policy": "excerpt_by_rights",
+      "hash_scope": "excerpt_utf8"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.square-management.com/cas-client/detection-des-comportements-atypiques-application-a-la-lutte-contre-la-fraude-aux-prelevements-sepa/",
+      "scope": "company",
+      "entity_ids": [
+        "square-management"
+      ],
+      "published_at": "2024-07-09",
+      "accessed_at": "2026-11-17",
+      "grade": "B",
+      "origin_id": "https://www.square-management.com/cas-client/detection-des-comportements-atypiques-application-a-la-lutte-contre-la-fraude-aux-prelevements-sepa/",
+      "source_type": "customer_case",
+      "access_status": "read",
+      "snapshot_uri": "companies/square-management/evidence/source-register.md#S04",
+      "sha256": "7e9da67f05a354efc6c829630766b4fad8844378d563662b258a1b73b0423529",
+      "rights": "Référence publique ; extrait court uniquement ; aucune copie intégrale",
+      "capture_kind": "selected_excerpt",
+      "capture_policy": "excerpt_by_rights",
+      "hash_scope": "excerpt_utf8"
+    }
+  ],
+  "fragments": [
+    {
+      "id": "F-S01",
+      "source_id": "S01",
+      "locator": "Site officiel, consulté le 17-11-2026",
+      "excerpt": "Square Management annonce 10 domaines, 3 pays, 25 programmes R&D et 140 M€ de chiffre d’affaires prévisionnel sans exercice précisé.",
+      "sha256": "bb528716f9f2306fc8310629f13da88ec270fd13db197dd50ef2a31d1e20dd03"
+    },
+    {
+      "id": "F-S02",
+      "source_id": "S02",
+      "locator": "Rapport RSE 2024",
+      "excerpt": "Le rapport 2024 présente 900 consultants, 10 domaines, 3 pays, 25 programmes R&D, 2,5 % du CA en formation et 1,2 % en R&D.",
+      "sha256": "552c9fbcea64ebb9d580f7c2daf1263c39bc6fdb970e0461db49bbfd7bb7e2b0"
+    },
+    {
+      "id": "F-S03",
+      "source_id": "S03",
+      "locator": "Centre IA, consulté le 17-11-2026",
+      "excerpt": "Le Centre IA décrit une approche Full Value et cinq phases couvrant stratégie, technologie, organisation, adoption et gouvernance.",
+      "sha256": "cea81431cfef252ccdb9a4374a7ee194c40da922bb61ce3b69b9258f5895df24"
+    },
+    {
+      "id": "F-S04",
+      "source_id": "S04",
+      "locator": "Cas SEPA, 09-07-2024",
+      "excerpt": "Le cas décrit une détection d’anomalies SEPA avec validation et retour d’analystes ; aucun KPI chiffré n’est publié.",
+      "sha256": "7e9da67f05a354efc6c829630766b4fad8844378d563662b258a1b73b0423529"
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-identity",
+      "entity_id": "square-management",
+      "scope": "company",
+      "statement": "Square présente dix domaines, trois pays et 25 programmes R&D.",
+      "status": "fact",
+      "confidence": "high",
+      "fragment_refs": [
+        "F-S01",
+        "F-S02"
+      ],
+      "basis_claim_refs": [],
+      "contradiction_refs": [],
+      "observed_at": "2026-11-17",
+      "valid_until": null,
+      "owner": "Analyste",
+      "validation_question": "Confirmer le périmètre et la définition des programmes.",
+      "deployment_stage": "not_applicable"
+    },
+    {
+      "id": "C-size",
+      "entity_id": "square-management",
+      "scope": "company",
+      "statement": "Le rapport RSE 2024 annonce 900 consultants.",
+      "status": "fact",
+      "confidence": "high",
+      "fragment_refs": [
+        "F-S02"
+      ],
+      "basis_claim_refs": [],
+      "contradiction_refs": [],
+      "observed_at": "2026-11-17",
+      "valid_until": null,
+      "owner": "Analyste",
+      "validation_question": "Obtenir effectifs par entité, pays et date.",
+      "deployment_stage": "not_applicable"
+    },
+    {
+      "id": "C-revenue",
+      "entity_id": "square-management",
+      "scope": "company",
+      "statement": "Le site affiche 140 M€ prévisionnels sans exercice associé.",
+      "status": "fact",
+      "confidence": "medium",
+      "fragment_refs": [
+        "F-S01"
+      ],
+      "basis_claim_refs": [],
+      "contradiction_refs": [],
+      "observed_at": "2026-11-17",
+      "valid_until": null,
+      "owner": "Analyste",
+      "validation_question": "Obtenir chiffre réalisé, exercice et périmètre consolidé.",
+      "deployment_stage": "not_applicable"
+    },
+    {
+      "id": "C-offer",
+      "entity_id": "square-management",
+      "scope": "company",
+      "statement": "Le Centre IA décrit une approche Full Value en cinq phases.",
+      "status": "fact",
+      "confidence": "high",
+      "fragment_refs": [
+        "F-S03"
+      ],
+      "basis_claim_refs": [],
+      "contradiction_refs": [],
+      "observed_at": "2026-11-17",
+      "valid_until": null,
+      "owner": "Analyste",
+      "validation_question": "Vérifier offres, ressources et résultats mesurés.",
+      "deployment_stage": "not_applicable"
+    },
+    {
+      "id": "C-delivery",
+      "entity_id": "square-management",
+      "scope": "company",
+      "statement": "Un cas SEPA publié décrit détection d’anomalies et retour d’analystes sans KPI chiffré.",
+      "status": "fact",
+      "confidence": "high",
+      "fragment_refs": [
+        "F-S04"
+      ],
+      "basis_claim_refs": [],
+      "contradiction_refs": [],
+      "observed_at": "2026-11-17",
+      "valid_until": null,
+      "owner": "Analyste",
+      "validation_question": "Demander baseline, KPI, adoption et statut de production.",
+      "deployment_stage": "not_applicable"
+    },
+    {
+      "id": "C-internal-maturity",
+      "entity_id": "square-management",
+      "scope": "company",
+      "statement": "La maturité interne IA/Data n’est pas déterminable à partir des sources publiques consultées.",
+      "status": "unknown",
+      "confidence": "high",
+      "fragment_refs": [
+        "F-S03",
+        "F-S04"
+      ],
+      "basis_claim_refs": [],
+      "contradiction_refs": [],
+      "observed_at": "2026-11-17",
+      "valid_until": null,
+      "owner": "Analyste",
+      "validation_question": "Évaluer avec données internes, owners et contrôles.",
+      "deployment_stage": "unknown"
+    }
+  ]
+}
