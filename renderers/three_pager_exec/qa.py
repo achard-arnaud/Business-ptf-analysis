@@ -14,6 +14,12 @@ JS = r'''() => {
   for (const page of pages) {
     const pr=page.getBoundingClientRect();
     const found={overlaps:[], overflows:[], out_of_bounds:[], small_fonts:[], low_padding:[]};
+    const main=page.querySelector('.main'), footer=page.querySelector('.footer-strip');
+    if (main && footer && visible(main) && visible(footer)) {
+      const a=main.getBoundingClientRect(), b=footer.getBoundingClientRect();
+      if (Math.min(a.right,b.right)-Math.max(a.left,b.left)>1 &&
+          Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1) found.overlaps.push('main/footer');
+    }
     for (const c of page.querySelectorAll('[data-overlap-check]')) {
       const children=[...c.children].filter(e => e.hasAttribute('data-layout-box') && visible(e));
       for (let i=0;i<children.length;i++) for (let j=i+1;j<children.length;j++) {

@@ -17,7 +17,7 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 .subtitle{font-size:12pt;line-height:1.15;color:#dbe4ee;max-width:215mm}
 .pageno{position:absolute;right:10mm;top:4mm;color:#9fdde6;font-size:9pt;font-weight:700;letter-spacing:.08em}
 
-.main{position:absolute;left:10mm;right:10mm;top:25.8mm;bottom:15.4mm;display:grid;gap:var(--gap);min-height:0}
+.main{position:absolute;left:10mm;right:10mm;top:25.8mm;bottom:19mm;display:grid;gap:var(--gap);min-height:0}
 .grid{display:grid;gap:var(--gap);min-height:0}
 
 .card{min-width:0;min-height:0;overflow:hidden;padding:var(--pad);border:.3mm solid var(--border);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column}

@@ -73,6 +73,22 @@ jobs:
           x=json.load(open('/tmp/render-qa/negative-qa.json'))
           assert x['pass'] is False and x['summary']['overflows'] > 0
           PY
+          python - <<'PY'
+          from pathlib import Path
+          Path('/tmp/render-qa/footer-overlap.html').write_text(
+              '<html><style>.page{position:relative;width:297mm;height:210mm}.main{position:absolute;left:0;top:0;width:100mm;height:90mm}.footer-strip{position:absolute;left:0;top:80mm;width:100mm;height:10mm}</style>'
+              + '<section class="page"><main class="main"></main><div class="footer-strip"></div></section>'*3
+              + '</html>',encoding='utf-8')
+          PY
+          if python renderers/three_pager_exec/qa.py /tmp/render-qa/footer-overlap.html --report /tmp/render-qa/footer-overlap-qa.json; then
+            echo "ERROR: browser incorrectly accepted a main/footer overlap"
+            exit 1
+          fi
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/render-qa/footer-overlap-qa.json'))
+          assert x['pass'] is False and x['summary']['overlaps'] > 0
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
