@@ -147,8 +147,8 @@
     "covers": [
       "D5"
     ],
-    "mt": "Relier les preuves de mission, les actifs réutilisables et les décisions de staffing dans un processus contrôlé.",
-    "lt": "Installer un pilotage intégré de l’origination, de la capacité et des résultats client, sous droits d’accès par client.",
+    "mt": "Relier résultats, actifs réutilisables et staffing.",
+    "lt": "Piloter origination, capacité et valeur client.",
     "take": "Structurer une boucle de valeur mesurable et réutilisable."
   },
   "posture": {
@@ -266,7 +266,7 @@
         },
         {
           "who": "Responsables staffing / Data",
-          "what": "les sources publiques consultées ne précisent ni le périmètre ni les responsables",
+          "what": "Périmètre et owners non précisés.",
           "role": null,
           "gap": true
         }
@@ -449,23 +449,23 @@
     "ai_diag": {
       "level": "Inconnue",
       "facts": [
-        "Centre IA : méthode Full Value en cinq dimensions (S03).",
-        "Cas IA clients publiés ; KPI et usages internes inconnus (S04–S05)."
+        "Offre Centre IA : méthode Full Value (S03).",
+        "Cas IA clients publiés ; usage interne inconnu."
       ],
       "take": "Évaluer les huit dimensions avec owners, inventaire, métriques d’usage, valeur et contrôles."
     },
     "dominant": {
       "rows": [
         [
-          "Réemploi et conversion",
+          "Réemploi / conversion",
           "differentiation"
         ],
         [
-          "Activité et staffing",
+          "Activité / staffing",
           "cost"
         ],
         [
-          "Récurrence et valeur client",
+          "Valeur / récurrence",
           "resilience"
         ]
       ],
