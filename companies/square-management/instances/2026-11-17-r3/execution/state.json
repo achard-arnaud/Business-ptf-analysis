@@ -1,0 +1,429 @@
+{
+  "version": "1.0.0",
+  "case_id": "square-management-20261117-r3",
+  "revision": 19,
+  "intake": {
+    "entity_id": "square-management",
+    "objective": "Analyse indépendante en trois pages : profil business actualisé au rapport 2025, chaîne de valeur de Porter, maturité IA/Data documentée et backlog priorisé.",
+    "constraints": [
+      "Nouvelle instance et graphe isolé avant vérification des sources",
+      "Chiffres et périmètres datés ; formation IA documentée séparée de l’adoption",
+      "PDF Chromium trois pages, binding et revues preuves/contre-perspective/décision",
+      "Aucune lecture recrutement ni dépendance à un programme portefeuille"
+    ],
+    "cutoff": "2026-11-17",
+    "template_id": "three-pager-exec",
+    "render_requested": true
+  },
+  "build_pins": {
+    "AGENTS.md": "b94f05d199349703dd5b7cddcee6896684375fc98bdfcc1f1e5631f9b7432a60",
+    "config/technical-decisions.json": "8a52350da42748d87bc02546898f01f494263ed7dbdf34880be96d46fa325d2c",
+    "contracts/case-artifacts.schema.json": "bd140608b5588e5983f810afdea783d5dbfdca9e6c48ff2b294e24943d5bdd18",
+    "contracts/case-process.schema.json": "a960e2efe6d7892d2a1c228bde2206e4963862b6e67b3d89c1629d2d37285099",
+    "contracts/technical-decision.schema.json": "68a9fbbd2a75ea302142566b5827c27537a0cd0b7da1ef65f7431313001ae74f",
+    "contracts/three-pager-exec.schema.json": "9ddc83546ced60d632b28f12c859547c4a40e918d1d4c4406a9dca08b5923d05",
+    "renderers/three_pager_exec/browser.py": "859420c3fa3308440a73e1e792cd7fba8d47c42d24fac9b02ec1a086a7d831a6",
+    "renderers/three_pager_exec/exec_theme.css": "302bba8fd45c25ef30ba1b741c3b618ca7bfef85e7d194c166dfb9d6258bdab2",
+    "renderers/three_pager_exec/qa.py": "62428a5d9f3a4c04a867d39710512268e2ea0c7ad01762cd9954daaa617d7594",
+    "renderers/three_pager_exec/render2.py": "e1e9e79b32c637da339a895f2f1f6ebfa79fc350682cfd791cbc74ab395834eb",
+    "renderers/three_pager_exec/render_exec.py": "7a435d47d621210b617fc2bd27b063f2234e098f69e524a754399ee5e66a9f3b",
+    "scripts/case_runtime.py": "78e290eeb0dbd9ad9b4efcc52e2340a7ef5aba168104922173627bdb0899c028",
+    "scripts/technical_decision.py": "8a01014dcbab5e31f14da4c2bf5dec22d0a1b0ecd7fc149eedbaef35bb7bbab3",
+    "skills/standalone-company-analysis/SKILL.md": "075ea425f2678acdff8aaadf0c7318a94bc72cbf78b110bc21f3c37f103aef3a",
+    "templates/THREE_PAGER_EXEC_v0.3.md": "5b9cd8a6d4572280fbaa75d5d503d1af5aed5c7cedcc86f97550ed1e2c3159af",
+    "templates/registry.json": "fad370d6b3a4fe0a4b820d91ac93c7e50315523fedd97b58c3c1d8165798a3a1",
+    "workflow/case-process.json": "d0d22a84fe79f73e1aaebd3958163e19d0b75b63588ec23f19f52715d47087be"
+  },
+  "profile": {
+    "refs": [
+      "templates/registry.json",
+      "templates/THREE_PAGER_EXEC_v0.3.md",
+      "contracts/three-pager-exec.schema.json",
+      "renderers/three_pager_exec/render_exec.py",
+      "renderers/three_pager_exec/exec_theme.css",
+      "renderers/three_pager_exec/render2.py",
+      "renderers/three_pager_exec/qa.py",
+      "renderers/three_pager_exec/browser.py"
+    ],
+    "pages": 3,
+    "payload_schema": "contracts/three-pager-exec.schema.json",
+    "renderer": {
+      "entrypoint": "renderers/three_pager_exec/render_exec.py",
+      "args": [
+        "--pdf"
+      ]
+    }
+  },
+  "stages": {
+    "A0": {
+      "status": "passed",
+      "attempt": 1,
+      "directory": "stages/A0/attempt-1",
+      "actor": "manual_agent",
+      "context_pins": {
+        "intake.json": "5d234e66636e8d2add7fa6765150f898dd8c3dbee73ebf6ee1858b1dfcb2573e",
+        "stages/A0/attempt-1/context.json": "fe68676285b04dd11802219889cb1420b2e56defece8857d4c9434741b7eeee4"
+      },
+      "output_pins": {
+        "stages/A0/attempt-1/result.json": "44be2ed3896fe5cff67e8676e1166efabf69ac5b8036e10f17d56b5944552f2a",
+        "stages/A0/attempt-1/capture-S01.txt": "df6a5180f9965a06c4f764159fa6c25054611301b7f46e632c6c655b1d8c36a2",
+        "stages/A0/attempt-1/capture-S02.txt": "2574ace9bf583651cc1b12b52d04aafb2c0fff1eb46fd449d4b63863ceaf5f3e",
+        "stages/A0/attempt-1/capture-S03.txt": "e0ed09dc1591daf8594af626ded6f51982327594ba39ea3ce32a1604406eb2fb",
+        "stages/A0/attempt-1/capture-S04.txt": "d3f7a321796855ec72d8e171a81cb10dd55198207cf7ba7c1b5bfae3bc901cd5",
+        "stages/A0/attempt-1/capture-S05.txt": "4fce2c6ba123d489b7ec7bc1d6979bdfc2bc43ae6faac1ad3fb990ed79f16521",
+        "stages/A0/attempt-1/capture-S06.txt": "b1e22563ce8fee042b17911ee295e37ebe734e1066c9aaf460f3075878483adb",
+        "stages/A0/attempt-1/capture-S07.txt": "6ef78a906cea57cb894ad0f2031ff77cb746e2863b4751b6180a3c850598115d"
+      }
+    },
+    "A1": {
+      "status": "passed",
+      "attempt": 1,
+      "directory": "stages/A1/attempt-1",
+      "actor": "manual_agent",
+      "context_pins": {
+        "stages/A0/attempt-1/result.json": "44be2ed3896fe5cff67e8676e1166efabf69ac5b8036e10f17d56b5944552f2a",
+        "stages/A0/attempt-1/capture-S01.txt": "df6a5180f9965a06c4f764159fa6c25054611301b7f46e632c6c655b1d8c36a2",
+        "stages/A0/attempt-1/capture-S02.txt": "2574ace9bf583651cc1b12b52d04aafb2c0fff1eb46fd449d4b63863ceaf5f3e",
+        "stages/A0/attempt-1/capture-S03.txt": "e0ed09dc1591daf8594af626ded6f51982327594ba39ea3ce32a1604406eb2fb",
+        "stages/A0/attempt-1/capture-S04.txt": "d3f7a321796855ec72d8e171a81cb10dd55198207cf7ba7c1b5bfae3bc901cd5",
+        "stages/A0/attempt-1/capture-S05.txt": "4fce2c6ba123d489b7ec7bc1d6979bdfc2bc43ae6faac1ad3fb990ed79f16521",
+        "stages/A0/attempt-1/capture-S06.txt": "b1e22563ce8fee042b17911ee295e37ebe734e1066c9aaf460f3075878483adb",
+        "stages/A0/attempt-1/capture-S07.txt": "6ef78a906cea57cb894ad0f2031ff77cb746e2863b4751b6180a3c850598115d",
+        "intake.json": "5d234e66636e8d2add7fa6765150f898dd8c3dbee73ebf6ee1858b1dfcb2573e",
+        "stages/A1/attempt-1/context.json": "c347f157999166eaf4c0495b1781b6e063e1fe51ba1d85c1b414a7af91f9209b"
+      },
+      "output_pins": {
+        "stages/A1/attempt-1/result.json": "7039d54d0970baab540f48fc9b2819f1cd0e51478c43b1fd4c8a6081ef7f2c53"
+      }
+    },
+    "A2": {
+      "status": "passed",
+      "attempt": 1,
+      "directory": "stages/A2/attempt-1",
+      "actor": "manual_agent",
+      "context_pins": {
+        "stages/A0/attempt-1/result.json": "44be2ed3896fe5cff67e8676e1166efabf69ac5b8036e10f17d56b5944552f2a",
+        "stages/A0/attempt-1/capture-S01.txt": "df6a5180f9965a06c4f764159fa6c25054611301b7f46e632c6c655b1d8c36a2",
+        "stages/A0/attempt-1/capture-S02.txt": "2574ace9bf583651cc1b12b52d04aafb2c0fff1eb46fd449d4b63863ceaf5f3e",
+        "stages/A0/attempt-1/capture-S03.txt": "e0ed09dc1591daf8594af626ded6f51982327594ba39ea3ce32a1604406eb2fb",
+        "stages/A0/attempt-1/capture-S04.txt": "d3f7a321796855ec72d8e171a81cb10dd55198207cf7ba7c1b5bfae3bc901cd5",
+        "stages/A0/attempt-1/capture-S05.txt": "4fce2c6ba123d489b7ec7bc1d6979bdfc2bc43ae6faac1ad3fb990ed79f16521",
+        "stages/A0/attempt-1/capture-S06.txt": "b1e22563ce8fee042b17911ee295e37ebe734e1066c9aaf460f3075878483adb",
+        "stages/A0/attempt-1/capture-S07.txt": "6ef78a906cea57cb894ad0f2031ff77cb746e2863b4751b6180a3c850598115d",
+        "stages/A1/attempt-1/result.json": "7039d54d0970baab540f48fc9b2819f1cd0e51478c43b1fd4c8a6081ef7f2c53",
+        "intake.json": "5d234e66636e8d2add7fa6765150f898dd8c3dbee73ebf6ee1858b1dfcb2573e",
+        "stages/A2/attempt-1/context.json": "33518a5e984afd48823dbc6543d235c876615bd947d6cc5f9ba0392ac5391a08"
+      },
+      "output_pins": {
+        "stages/A2/attempt-1/result.json": "1e25cfc09385a0edb56619a092fc316774bb2d2fde45383ac789a4ce8492c7ba"
+      }
+    },
+    "A3": {
+      "status": "passed",
+      "attempt": 2,
+      "directory": "stages/A3/attempt-2",
+      "actor": "manual_agent",
+      "context_pins": {
+        "stages/A1/attempt-1/result.json": "7039d54d0970baab540f48fc9b2819f1cd0e51478c43b1fd4c8a6081ef7f2c53",
+        "stages/A2/attempt-1/result.json": "1e25cfc09385a0edb56619a092fc316774bb2d2fde45383ac789a4ce8492c7ba",
+        "intake.json": "5d234e66636e8d2add7fa6765150f898dd8c3dbee73ebf6ee1858b1dfcb2573e",
+        "stages/A3/attempt-2/context.json": "386ba6349b61d93351a997d6f52348456171320d537369fccc285b87b8dbed89"
+      },
+      "output_pins": {
+        "stages/A3/attempt-2/result.json": "5bbfb6dcd8b6a8b19ac853aba3c91c546f0f0167ad0740d69714ee49908c301c",
+        "stages/A3/attempt-2/square-exec-payload.json": "c2de9fb3c02ea1069940618c7e42d64cb2f5ee50221a833b026259b8a1d395fb"
+      }
+    },
+    "A4": {
+      "status": "passed",
+      "attempt": 2,
+      "directory": "stages/A4/attempt-2",
+      "actor": "manual_agent",
+      "context_pins": {
+        "stages/A0/attempt-1/result.json": "44be2ed3896fe5cff67e8676e1166efabf69ac5b8036e10f17d56b5944552f2a",
+        "stages/A0/attempt-1/capture-S01.txt": "df6a5180f9965a06c4f764159fa6c25054611301b7f46e632c6c655b1d8c36a2",
+        "stages/A0/attempt-1/capture-S02.txt": "2574ace9bf583651cc1b12b52d04aafb2c0fff1eb46fd449d4b63863ceaf5f3e",
+        "stages/A0/attempt-1/capture-S03.txt": "e0ed09dc1591daf8594af626ded6f51982327594ba39ea3ce32a1604406eb2fb",
+        "stages/A0/attempt-1/capture-S04.txt": "d3f7a321796855ec72d8e171a81cb10dd55198207cf7ba7c1b5bfae3bc901cd5",
+        "stages/A0/attempt-1/capture-S05.txt": "4fce2c6ba123d489b7ec7bc1d6979bdfc2bc43ae6faac1ad3fb990ed79f16521",
+        "stages/A0/attempt-1/capture-S06.txt": "b1e22563ce8fee042b17911ee295e37ebe734e1066c9aaf460f3075878483adb",
+        "stages/A0/attempt-1/capture-S07.txt": "6ef78a906cea57cb894ad0f2031ff77cb746e2863b4751b6180a3c850598115d",
+        "stages/A1/attempt-1/result.json": "7039d54d0970baab540f48fc9b2819f1cd0e51478c43b1fd4c8a6081ef7f2c53",
+        "stages/A2/attempt-1/result.json": "1e25cfc09385a0edb56619a092fc316774bb2d2fde45383ac789a4ce8492c7ba",
+        "stages/A3/attempt-2/result.json": "5bbfb6dcd8b6a8b19ac853aba3c91c546f0f0167ad0740d69714ee49908c301c",
+        "stages/A3/attempt-2/square-exec-payload.json": "c2de9fb3c02ea1069940618c7e42d64cb2f5ee50221a833b026259b8a1d395fb",
+        "intake.json": "5d234e66636e8d2add7fa6765150f898dd8c3dbee73ebf6ee1858b1dfcb2573e",
+        "stages/A4/attempt-2/context.json": "8b2403511cb2b4119723eee42c82bb5cbe982bc0c6b07007c7ce85858e2d4f97",
+        "stages/A4/attempt-2/render-1/render_manifest.json": "92e80e0e541e64dcd15fb86675cd6b99288433c03e8fc2985962738810f714c0",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page1.png": "010ac4bcda5c81333e7db1a8803bf9400ea9faab6c30e01ae5e411f0170eed64",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page3.png": "e56bad4868b069f4cd825204f522dc9d7c5a2c9d5ff35be324e702dc3bcc600d",
+        "stages/A4/attempt-2/render-1/qa.json": "c0ca1f7e8b0e866246ac4077a9dfffb8bc94cda75dc3d735c4e7881b728330d2",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.html": "e3bb7f924ca12a9aec4fa309e6a38bb56cfc9f16bce746ec6a8db8bf7cfa3470",
+        "stages/A4/attempt-2/render-1/renderer.log": "fff3815bb9da32fe1b26ea86a42e1e95fb160f1882fa4f133daea192f369d7cc",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page2.png": "01d4ae4497033c907cd05dca8b23981efa6035d1d98ae49f91143a2325bf94bd",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e"
+      },
+      "render_attempt": 1,
+      "render_receipt": {
+        "qa_status": "pass",
+        "page_count": 3,
+        "files": {
+          "stages/A4/attempt-2/render-1/render_manifest.json": "92e80e0e541e64dcd15fb86675cd6b99288433c03e8fc2985962738810f714c0",
+          "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page1.png": "010ac4bcda5c81333e7db1a8803bf9400ea9faab6c30e01ae5e411f0170eed64",
+          "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page3.png": "e56bad4868b069f4cd825204f522dc9d7c5a2c9d5ff35be324e702dc3bcc600d",
+          "stages/A4/attempt-2/render-1/qa.json": "c0ca1f7e8b0e866246ac4077a9dfffb8bc94cda75dc3d735c4e7881b728330d2",
+          "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.html": "e3bb7f924ca12a9aec4fa309e6a38bb56cfc9f16bce746ec6a8db8bf7cfa3470",
+          "stages/A4/attempt-2/render-1/renderer.log": "fff3815bb9da32fe1b26ea86a42e1e95fb160f1882fa4f133daea192f369d7cc",
+          "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page2.png": "01d4ae4497033c907cd05dca8b23981efa6035d1d98ae49f91143a2325bf94bd",
+          "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e"
+        },
+        "reviewer": "render_adapter"
+      },
+      "output_pins": {
+        "stages/A4/attempt-2/result.json": "0e65c7c6ff8f2a3b3900c5d5328e301309a9b9d56788e7f53a8c03cc7b7b70fe",
+        "stages/A4/attempt-2/01-evidence.md": "c94b489c36150c025f6f6e9d2518fe0fa9daaf492a1078ec7b580a01def16f37",
+        "stages/A4/attempt-2/02-counter-perspective.md": "f2d217b75278eb775f1cdc74eddde6ce4c6ed4cff8dfc075176a919c974b0f5e",
+        "stages/A4/attempt-2/03-decision.md": "e96b9cd0d05b3e4a403c397824085ca3d654f6db3c04cbfb2eeb494ff8cb597d",
+        "stages/A4/attempt-2/render-1/render_manifest.json": "92e80e0e541e64dcd15fb86675cd6b99288433c03e8fc2985962738810f714c0",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page1.png": "010ac4bcda5c81333e7db1a8803bf9400ea9faab6c30e01ae5e411f0170eed64",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page3.png": "e56bad4868b069f4cd825204f522dc9d7c5a2c9d5ff35be324e702dc3bcc600d",
+        "stages/A4/attempt-2/render-1/qa.json": "c0ca1f7e8b0e866246ac4077a9dfffb8bc94cda75dc3d735c4e7881b728330d2",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.html": "e3bb7f924ca12a9aec4fa309e6a38bb56cfc9f16bce746ec6a8db8bf7cfa3470",
+        "stages/A4/attempt-2/render-1/renderer.log": "fff3815bb9da32fe1b26ea86a42e1e95fb160f1882fa4f133daea192f369d7cc",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page2.png": "01d4ae4497033c907cd05dca8b23981efa6035d1d98ae49f91143a2325bf94bd",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e"
+      }
+    }
+  },
+  "events": [
+    {
+      "sequence": 1,
+      "at": "2026-11-17T22:06:55.160786+00:00",
+      "action": "initialized",
+      "graph_created_before_collection": true
+    },
+    {
+      "sequence": 2,
+      "at": "2026-11-17T22:06:55.176302+00:00",
+      "action": "stage_started",
+      "stage": "A0",
+      "attempt": 1,
+      "actor": "manual_agent"
+    },
+    {
+      "sequence": 3,
+      "at": "2026-11-17T22:06:55.193273+00:00",
+      "action": "stage_completed",
+      "stage": "A0",
+      "attempt": 1,
+      "output_pins": {
+        "stages/A0/attempt-1/result.json": "44be2ed3896fe5cff67e8676e1166efabf69ac5b8036e10f17d56b5944552f2a",
+        "stages/A0/attempt-1/capture-S01.txt": "df6a5180f9965a06c4f764159fa6c25054611301b7f46e632c6c655b1d8c36a2",
+        "stages/A0/attempt-1/capture-S02.txt": "2574ace9bf583651cc1b12b52d04aafb2c0fff1eb46fd449d4b63863ceaf5f3e",
+        "stages/A0/attempt-1/capture-S03.txt": "e0ed09dc1591daf8594af626ded6f51982327594ba39ea3ce32a1604406eb2fb",
+        "stages/A0/attempt-1/capture-S04.txt": "d3f7a321796855ec72d8e171a81cb10dd55198207cf7ba7c1b5bfae3bc901cd5",
+        "stages/A0/attempt-1/capture-S05.txt": "4fce2c6ba123d489b7ec7bc1d6979bdfc2bc43ae6faac1ad3fb990ed79f16521",
+        "stages/A0/attempt-1/capture-S06.txt": "b1e22563ce8fee042b17911ee295e37ebe734e1066c9aaf460f3075878483adb",
+        "stages/A0/attempt-1/capture-S07.txt": "6ef78a906cea57cb894ad0f2031ff77cb746e2863b4751b6180a3c850598115d"
+      },
+      "check": "structural_and_reference_integrity",
+      "semantic_truth_verified": false
+    },
+    {
+      "sequence": 4,
+      "at": "2026-11-17T22:06:55.208870+00:00",
+      "action": "stage_started",
+      "stage": "A1",
+      "attempt": 1,
+      "actor": "manual_agent"
+    },
+    {
+      "sequence": 5,
+      "at": "2026-11-17T22:06:55.228775+00:00",
+      "action": "stage_completed",
+      "stage": "A1",
+      "attempt": 1,
+      "output_pins": {
+        "stages/A1/attempt-1/result.json": "7039d54d0970baab540f48fc9b2819f1cd0e51478c43b1fd4c8a6081ef7f2c53"
+      },
+      "check": "structural_and_reference_integrity",
+      "semantic_truth_verified": false
+    },
+    {
+      "sequence": 6,
+      "at": "2026-11-17T22:06:55.245745+00:00",
+      "action": "stage_started",
+      "stage": "A2",
+      "attempt": 1,
+      "actor": "manual_agent"
+    },
+    {
+      "sequence": 7,
+      "at": "2026-11-17T22:06:55.263348+00:00",
+      "action": "stage_completed",
+      "stage": "A2",
+      "attempt": 1,
+      "output_pins": {
+        "stages/A2/attempt-1/result.json": "1e25cfc09385a0edb56619a092fc316774bb2d2fde45383ac789a4ce8492c7ba"
+      },
+      "check": "structural_and_reference_integrity",
+      "semantic_truth_verified": false
+    },
+    {
+      "sequence": 8,
+      "at": "2026-11-17T22:06:55.281466+00:00",
+      "action": "stage_started",
+      "stage": "A3",
+      "attempt": 1,
+      "actor": "manual_agent"
+    },
+    {
+      "sequence": 9,
+      "at": "2026-11-17T22:06:55.302697+00:00",
+      "action": "stage_completed",
+      "stage": "A3",
+      "attempt": 1,
+      "output_pins": {
+        "stages/A3/attempt-1/result.json": "074473cb1cf5c8ed62fcdb5109570706c8cc7d3a109dd6429aa905c924067559",
+        "stages/A3/attempt-1/square-exec-payload.json": "296e4d660fc4023e5885940234e27d9a127acfc203bc76541af671f9b32d44b4"
+      },
+      "check": "structural_and_reference_integrity",
+      "semantic_truth_verified": false
+    },
+    {
+      "sequence": 10,
+      "at": "2026-11-17T22:06:55.320966+00:00",
+      "action": "stage_started",
+      "stage": "A4",
+      "attempt": 1,
+      "actor": "manual_agent"
+    },
+    {
+      "sequence": 11,
+      "at": "2026-11-17T22:06:55.706375+00:00",
+      "action": "render_started",
+      "stage": "A4",
+      "render_attempt": 1,
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+        "/home/runner/work/Business-ptf-analysis/Business-ptf-analysis/renderers/three_pager_exec/render_exec.py",
+        "/home/runner/work/Business-ptf-analysis/Business-ptf-analysis/data/cases/square-management-20261117-r3/stages/A3/attempt-1/square-exec-payload.json",
+        "/home/runner/work/Business-ptf-analysis/Business-ptf-analysis/data/cases/square-management-20261117-r3/stages/A4/attempt-1/render-1",
+        "--pdf"
+      ]
+    },
+    {
+      "sequence": 12,
+      "at": "2026-11-17T22:07:03.024267+00:00",
+      "action": "render_rejected",
+      "stage": "A4",
+      "render_attempt": 1,
+      "reason": "Renderer failed; see stages/A4/attempt-1/render-1/renderer.log"
+    },
+    {
+      "sequence": 13,
+      "at": "2026-11-17T22:08:53.418338+00:00",
+      "action": "invalidated",
+      "stages": [
+        "A3",
+        "A4"
+      ],
+      "reason": "Browser QA rejected a 12px overflow in Signalétique; shorten three labels without changing the evidence or shrinking fonts."
+    },
+    {
+      "sequence": 14,
+      "at": "2026-11-17T22:08:53.436636+00:00",
+      "action": "stage_started",
+      "stage": "A3",
+      "attempt": 2,
+      "actor": "manual_agent"
+    },
+    {
+      "sequence": 15,
+      "at": "2026-11-17T22:08:53.456042+00:00",
+      "action": "stage_completed",
+      "stage": "A3",
+      "attempt": 2,
+      "output_pins": {
+        "stages/A3/attempt-2/result.json": "5bbfb6dcd8b6a8b19ac853aba3c91c546f0f0167ad0740d69714ee49908c301c",
+        "stages/A3/attempt-2/square-exec-payload.json": "c2de9fb3c02ea1069940618c7e42d64cb2f5ee50221a833b026259b8a1d395fb"
+      },
+      "check": "structural_and_reference_integrity",
+      "semantic_truth_verified": false
+    },
+    {
+      "sequence": 16,
+      "at": "2026-11-17T22:08:53.486639+00:00",
+      "action": "stage_started",
+      "stage": "A4",
+      "attempt": 2,
+      "actor": "manual_agent"
+    },
+    {
+      "sequence": 17,
+      "at": "2026-11-17T22:08:53.552378+00:00",
+      "action": "render_started",
+      "stage": "A4",
+      "render_attempt": 1,
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+        "/home/runner/work/Business-ptf-analysis/Business-ptf-analysis/renderers/three_pager_exec/render_exec.py",
+        "/home/runner/work/Business-ptf-analysis/Business-ptf-analysis/data/cases/square-management-20261117-r3/stages/A3/attempt-2/square-exec-payload.json",
+        "/home/runner/work/Business-ptf-analysis/Business-ptf-analysis/data/cases/square-management-20261117-r3/stages/A4/attempt-2/render-1",
+        "--pdf"
+      ]
+    },
+    {
+      "sequence": 18,
+      "at": "2026-11-17T22:08:56.494752+00:00",
+      "action": "render_completed",
+      "stage": "A4",
+      "render_attempt": 1,
+      "payload_sha256": "c2de9fb3c02ea1069940618c7e42d64cb2f5ee50221a833b026259b8a1d395fb",
+      "renderer_sha256": "7a435d47d621210b617fc2bd27b063f2234e098f69e524a754399ee5e66a9f3b",
+      "files": {
+        "stages/A4/attempt-2/render-1/render_manifest.json": "92e80e0e541e64dcd15fb86675cd6b99288433c03e8fc2985962738810f714c0",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page1.png": "010ac4bcda5c81333e7db1a8803bf9400ea9faab6c30e01ae5e411f0170eed64",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page3.png": "e56bad4868b069f4cd825204f522dc9d7c5a2c9d5ff35be324e702dc3bcc600d",
+        "stages/A4/attempt-2/render-1/qa.json": "c0ca1f7e8b0e866246ac4077a9dfffb8bc94cda75dc3d735c4e7881b728330d2",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.html": "e3bb7f924ca12a9aec4fa309e6a38bb56cfc9f16bce746ec6a8db8bf7cfa3470",
+        "stages/A4/attempt-2/render-1/renderer.log": "fff3815bb9da32fe1b26ea86a42e1e95fb160f1882fa4f133daea192f369d7cc",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page2.png": "01d4ae4497033c907cd05dca8b23981efa6035d1d98ae49f91143a2325bf94bd",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e"
+      }
+    },
+    {
+      "sequence": 19,
+      "at": "2026-11-17T22:10:47.680505+00:00",
+      "action": "stage_completed",
+      "stage": "A4",
+      "attempt": 2,
+      "output_pins": {
+        "stages/A4/attempt-2/result.json": "0e65c7c6ff8f2a3b3900c5d5328e301309a9b9d56788e7f53a8c03cc7b7b70fe",
+        "stages/A4/attempt-2/01-evidence.md": "c94b489c36150c025f6f6e9d2518fe0fa9daaf492a1078ec7b580a01def16f37",
+        "stages/A4/attempt-2/02-counter-perspective.md": "f2d217b75278eb775f1cdc74eddde6ce4c6ed4cff8dfc075176a919c974b0f5e",
+        "stages/A4/attempt-2/03-decision.md": "e96b9cd0d05b3e4a403c397824085ca3d654f6db3c04cbfb2eeb494ff8cb597d",
+        "stages/A4/attempt-2/render-1/render_manifest.json": "92e80e0e541e64dcd15fb86675cd6b99288433c03e8fc2985962738810f714c0",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page1.png": "010ac4bcda5c81333e7db1a8803bf9400ea9faab6c30e01ae5e411f0170eed64",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page3.png": "e56bad4868b069f4cd825204f522dc9d7c5a2c9d5ff35be324e702dc3bcc600d",
+        "stages/A4/attempt-2/render-1/qa.json": "c0ca1f7e8b0e866246ac4077a9dfffb8bc94cda75dc3d735c4e7881b728330d2",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.html": "e3bb7f924ca12a9aec4fa309e6a38bb56cfc9f16bce746ec6a8db8bf7cfa3470",
+        "stages/A4/attempt-2/render-1/renderer.log": "fff3815bb9da32fe1b26ea86a42e1e95fb160f1882fa4f133daea192f369d7cc",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page2.png": "01d4ae4497033c907cd05dca8b23981efa6035d1d98ae49f91143a2325bf94bd",
+        "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e"
+      },
+      "check": "structural_and_reference_integrity",
+      "semantic_truth_verified": false
+    }
+  ],
+  "runtime": {
+    "python": "3.12.16",
+    "packages": {
+      "jsonschema": "4.26.0",
+      "pypdf": "6.21.4"
+    }
+  },
+  "business_approval": false,
+  "intake_sha256": "5d234e66636e8d2add7fa6765150f898dd8c3dbee73ebf6ee1858b1dfcb2573e",
+  "graph_ref": "stages/A1/attempt-1/result.json"
+}

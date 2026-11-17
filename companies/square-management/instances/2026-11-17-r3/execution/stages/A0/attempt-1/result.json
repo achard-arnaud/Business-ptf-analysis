@@ -1,0 +1,69 @@
+{
+  "case_id": "square-management-20261117-r3",
+  "kind": "evidence",
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://www.square-management.com/identite/",
+      "locator": "Identité, valeurs, chiffres et secteurs, lignes 218–301",
+      "fetched_at": "2026-11-17T22:05:27.004848+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S01.txt"
+    },
+    {
+      "id": "S02",
+      "url": "https://www.square-management.com/wp-content/uploads/2026/07/Rapport_RSE_Square_Management_2025.pdf",
+      "locator": "RSE 2025 : pages imprimées 4–5 (PDF p.3) et 32–33 (PDF p.17)",
+      "fetched_at": "2026-11-17T22:05:27.005231+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S02.txt"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.square-management.com/centre-ia/",
+      "locator": "Full Value, Centre agentique et cycle de transformation, lignes 219–259",
+      "fetched_at": "2026-11-17T22:05:27.005332+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S03.txt"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.square-management.com/cas-client/detection-des-comportements-atypiques-application-a-la-lutte-contre-la-fraude-aux-prelevements-sepa/",
+      "locator": "Contexte et solution, lignes 220–249",
+      "fetched_at": "2026-11-17T22:05:27.005437+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S04.txt"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.square-management.com/cas-client/optimisation-de-lefficacite-operationnelle-et-de-la-satisfaction-client-grace-a-lintelligence-artificielle/",
+      "locator": "Solutions, lignes 214–245",
+      "fetched_at": "2026-11-17T22:05:27.005623+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S05.txt"
+    },
+    {
+      "id": "S06",
+      "url": "https://www.abenex.com/fr/portefeuille/square-management",
+      "locator": "Portefeuille et infos clés, lignes 17–45",
+      "fetched_at": "2026-11-17T22:05:27.005847+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S06.txt"
+    },
+    {
+      "id": "S07",
+      "url": "https://www.square-management.com/square-research-center/",
+      "locator": "Présentation, lignes 209–217",
+      "fetched_at": "2026-11-17T22:05:27.005981+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S07.txt"
+    }
+  ],
+  "unknowns": [
+    "CA réalisé consolidé récent, prix et récurrence des revenus",
+    "Marge par mission, taux d’activité, conversion et concentration par client",
+    "Adoption IA interne, coûts complets, gouvernance des données et exploitation ; la formation obligatoire est documentée",
+    "Résultats clients comparables chiffrés et garanties de sécurité/conformité démontrées",
+    "Dates, périmètres et populations des chiffres 670/800/900 non rapprochés ; aucune variation comparable calculée"
+  ]
+}

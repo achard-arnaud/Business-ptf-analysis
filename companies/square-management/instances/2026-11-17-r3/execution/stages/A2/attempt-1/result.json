@@ -1,0 +1,67 @@
+{
+  "case_id": "square-management-20261117-r3",
+  "kind": "scaffold",
+  "decision": "Documenter la valeur sur deux missions ; tester le réemploi commercial et les données de compétences dans un périmètre borné.",
+  "strongest_objection": "La formation et les dispositifs existent déjà ; une nouvelle plateforme peut dupliquer un outil performant.",
+  "falsifier": "Si l’existant satisfait déjà valeur nette, adoption, droits et contrôles, le renforcer ; arrêter les pilotes sans gain net ou sans droits suffisants.",
+  "sections": [
+    {
+      "id": "P1",
+      "action_title": "Relier modèle économique, expertise et valeur client",
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C10",
+        "C12",
+        "C17",
+        "C19",
+        "C20",
+        "C21",
+        "C22"
+      ]
+    },
+    {
+      "id": "P2",
+      "action_title": "Lire Porter comme un mécanisme de création et de transfert de valeur",
+      "claim_ids": [
+        "C02",
+        "C05",
+        "C06",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C18",
+        "C20"
+      ]
+    },
+    {
+      "id": "P3",
+      "action_title": "Définir trois chantiers conditionnels sur les acquis et inconnues",
+      "claim_ids": [
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20"
+      ]
+    }
+  ]
+}

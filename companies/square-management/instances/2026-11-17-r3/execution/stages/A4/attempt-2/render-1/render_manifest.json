@@ -1,0 +1,42 @@
+{
+  "template": "THREE_PAGER_PORTFOLIO_AI",
+  "template_version": "0.3.0-exec",
+  "render_profile": "exec",
+  "entity": "SQUARE MANAGEMENT",
+  "cutoff": "2026-11-17",
+  "payload_sha256": "c2de9fb3c02ea1069940618c7e42d64cb2f5ee50221a833b026259b8a1d395fb",
+  "lineage": {
+    "repo": "achard-arnaud/Business-ptf-analysis",
+    "repo_commit": "d6bd265a907380938056a6a5b8d7b2c29b7f5960",
+    "bundle": "data/cases/square-management-20261117-r3",
+    "evidence_delta": [
+      "data/cases/square-management-20261117-r3/stages/A0/attempt-1/result.json",
+      "data/cases/square-management-20261117-r3/stages/A1/attempt-1/result.json"
+    ],
+    "status_in_repo": "Brouillon public · contrôles et revues requis",
+    "bundle_sha256": "7039d54d0970baab540f48fc9b2819f1cd0e51478c43b1fd4c8a6081ef7f2c53"
+  },
+  "evidence_status": "UNVERIFIED_DEMO",
+  "bundle_sha256": null,
+  "visual_qa": "LAYOUT_PASS_MANUAL_PENDING",
+  "coherence_checks_passed": [
+    "G-S6",
+    "G-S9",
+    "G-C1",
+    "G-C2",
+    "G-C3",
+    "G-C4",
+    "G-C5",
+    "G-C6",
+    "G-C7",
+    "G-P1",
+    "G-P2..P5"
+  ],
+  "pdf_sha256": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e",
+  "qa_sha256": "c0ca1f7e8b0e866246ac4077a9dfffb8bc94cda75dc3d735c4e7881b728330d2",
+  "png_sha256": [
+    "010ac4bcda5c81333e7db1a8803bf9400ea9faab6c30e01ae5e411f0170eed64",
+    "01d4ae4497033c907cd05dca8b23981efa6035d1d98ae49f91143a2325bf94bd",
+    "e56bad4868b069f4cd825204f522dc9d7c5a2c9d5ff35be324e702dc3bcc600d"
+  ]
+}

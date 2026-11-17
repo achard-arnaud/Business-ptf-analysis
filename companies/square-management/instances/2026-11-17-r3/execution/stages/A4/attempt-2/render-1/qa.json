@@ -1,0 +1,34 @@
+{
+  "page_count": 3,
+  "pages": [
+    {
+      "overlaps": [],
+      "overflows": [],
+      "out_of_bounds": [],
+      "small_fonts": [],
+      "low_padding": []
+    },
+    {
+      "overlaps": [],
+      "overflows": [],
+      "out_of_bounds": [],
+      "small_fonts": [],
+      "low_padding": []
+    },
+    {
+      "overlaps": [],
+      "overflows": [],
+      "out_of_bounds": [],
+      "small_fonts": [],
+      "low_padding": []
+    }
+  ],
+  "summary": {
+    "overlaps": 0,
+    "overflows": 0,
+    "out_of_bounds": 0,
+    "small_fonts": 0,
+    "low_padding": 0
+  },
+  "pass": true
+}

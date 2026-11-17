@@ -57,6 +57,32 @@
       "C20"
     ]
   },
-  "status": "prepared; actual render and review required",
-  "business_approval": false
+  "status": "A0–A4 passed; reviewed public-source draft",
+  "business_approval": false,
+  "execution_ref": "execution/state.json",
+  "graph_export_ref": "execution/stages/A1/attempt-1/result.json",
+  "payload_export_ref": "execution/stages/A3/attempt-2/square-exec-payload.json",
+  "pdf_ref": "Square_Management_3pager.pdf",
+  "pdf_sha256": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e",
+  "render_receipt": {
+    "qa_status": "pass",
+    "page_count": 3,
+    "files": {
+      "stages/A4/attempt-2/render-1/render_manifest.json": "92e80e0e541e64dcd15fb86675cd6b99288433c03e8fc2985962738810f714c0",
+      "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page1.png": "010ac4bcda5c81333e7db1a8803bf9400ea9faab6c30e01ae5e411f0170eed64",
+      "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page3.png": "e56bad4868b069f4cd825204f522dc9d7c5a2c9d5ff35be324e702dc3bcc600d",
+      "stages/A4/attempt-2/render-1/qa.json": "c0ca1f7e8b0e866246ac4077a9dfffb8bc94cda75dc3d735c4e7881b728330d2",
+      "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.html": "e3bb7f924ca12a9aec4fa309e6a38bb56cfc9f16bce746ec6a8db8bf7cfa3470",
+      "stages/A4/attempt-2/render-1/renderer.log": "fff3815bb9da32fe1b26ea86a42e1e95fb160f1882fa4f133daea192f369d7cc",
+      "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec_page2.png": "01d4ae4497033c907cd05dca8b23981efa6035d1d98ae49f91143a2325bf94bd",
+      "stages/A4/attempt-2/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf": "b6ab9096ab355ef64a9330757dd139a6b8f0831b1677ab6934f399764d3b8d5e"
+    },
+    "reviewer": "render_adapter"
+  },
+  "review_refs": [
+    "reviews/01-evidence.md",
+    "reviews/02-counter-perspective.md",
+    "reviews/03-decision.md"
+  ],
+  "execution_run": "https://github.com/achard-arnaud/Business-ptf-analysis/actions/runs/44187367399"
 }

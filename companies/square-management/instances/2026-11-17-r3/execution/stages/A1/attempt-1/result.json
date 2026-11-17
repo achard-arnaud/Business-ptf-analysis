@@ -1,0 +1,466 @@
+{
+  "case_id": "square-management-20261117-r3",
+  "kind": "graph",
+  "nodes": [
+    {
+      "id": "NS01",
+      "type": "source",
+      "source_id": "S01"
+    },
+    {
+      "id": "NS02",
+      "type": "source",
+      "source_id": "S02"
+    },
+    {
+      "id": "NS03",
+      "type": "source",
+      "source_id": "S03"
+    },
+    {
+      "id": "NS04",
+      "type": "source",
+      "source_id": "S04"
+    },
+    {
+      "id": "NS05",
+      "type": "source",
+      "source_id": "S05"
+    },
+    {
+      "id": "NS06",
+      "type": "source",
+      "source_id": "S06"
+    },
+    {
+      "id": "NS07",
+      "type": "source",
+      "source_id": "S07"
+    },
+    {
+      "id": "F01",
+      "type": "fragment",
+      "locator": "lignes 218–249",
+      "text": "Cabinet européen, fondé en 2008 ; dix domaines et adaptation des démarches.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F02",
+      "type": "fragment",
+      "locator": "pp.4–5",
+      "text": "800 collaborateurs, trois pays et dix domaines, déclarés pour 2025.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F03",
+      "type": "fragment",
+      "locator": "lignes 251–299",
+      "text": "140 M€ prévisionnels sans exercice ; site avec ancien mix 61/12/15/7/5.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F04",
+      "type": "fragment",
+      "locator": "pp.4–5",
+      "text": "Mix du CA 2025 : banque55 %, assurance13 %, distribution/luxe/consommation18 %, industrie/énergie13 %, autres1 %.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F05",
+      "type": "fragment",
+      "locator": "pp.4–5",
+      "text": "25 programmes de recherche ; 2,5 % du CA à la formation, 1,2 % à la R&D.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F06",
+      "type": "fragment",
+      "locator": "lignes 219–225",
+      "text": "Full Value : gains/coûts directs et indirects, adoption, scalabilité et risques.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F07",
+      "type": "fragment",
+      "locator": "lignes 226–259",
+      "text": "Petits modèles, hébergement client et garanties de protection/conformité annoncés ; cycle de transformation bout en bout.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F08",
+      "type": "fragment",
+      "locator": "lignes 220–249",
+      "text": "Anomalies SEPA, indicateurs, seuils réglables et explication aux analystes ; pas de KPIs comparables publiés ici.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F09",
+      "type": "fragment",
+      "locator": "lignes 214–245",
+      "text": "Process mining, NLP, fraude et retours des gestionnaires ; pas de résultats chiffrés audités dans le corpus.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F10",
+      "type": "fragment",
+      "locator": "pp.32–33",
+      "text": "Parcours IA obligatoire pour les consultants en 2025, intégré à l’onboarding en janvier2026, formation aux outils GenAI.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F11",
+      "type": "fragment",
+      "locator": "lignes 17–45",
+      "text": "Deux offres, présence en portefeuille Abenex ; 670 collaborateurs et 100+ M€ sans millésime.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "F12",
+      "type": "fragment",
+      "locator": "lignes 209–217",
+      "text": "Recherche appliquée, modèles et outils destinés aux missions ; chercheurs et consultants mobilisés.",
+      "evidence_status": "attributed"
+    },
+    {
+      "id": "C01",
+      "type": "claim",
+      "statement": "Cabinet de conseil européen fondé en 2008, organisé en dix domaines.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C02",
+      "type": "claim",
+      "statement": "Le rapport 2025 déclare 800 collaborateurs et trois pays.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C03",
+      "type": "claim",
+      "statement": "Le site affiche 140 M€ prévisionnels sans exercice ; pas un CA réalisé récent vérifié.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C04",
+      "type": "claim",
+      "statement": "Mix du CA 2025 : banque55 %, assurance13 %, distribution/luxe/consommation18 %, industrie/énergie13 %, autres1 %.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C05",
+      "type": "claim",
+      "statement": "Le rapport 2025 déclare 25 programmes, formation 2,5 % du CA et R&D 1,2 %.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C06",
+      "type": "claim",
+      "statement": "Full Value articule gains/coûts, adoption, scalabilité et risques.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C07",
+      "type": "claim",
+      "statement": "Petits modèles, hébergement client et cycle de transformation IA sont annoncés.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C08",
+      "type": "claim",
+      "statement": "Le cas SEPA décrit anomalies, explication et réglage des seuils par les analystes.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C09",
+      "type": "claim",
+      "statement": "Le cas assurance décrit NLP, process mining et boucle de retour des gestionnaires.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C10",
+      "type": "claim",
+      "statement": "Marge, adoption IA interne, qualité des données, coûts et ROI sont inconnus dans ce corpus.",
+      "status": "unknown"
+    },
+    {
+      "id": "C11",
+      "type": "claim",
+      "statement": "La chaîne de valeur analytique du conseil relie qualification, delivery, transfert, vente et adoption.",
+      "status": "inference"
+    },
+    {
+      "id": "C12",
+      "type": "claim",
+      "statement": "L’articulation expertise sectorielle/recherche peut différencier les missions ; prime tarifaire non démontrée.",
+      "status": "inference"
+    },
+    {
+      "id": "C13",
+      "type": "claim",
+      "statement": "P0 : Centre IA proposé comme sponsor ; deux missions autorisées, baseline, adoption et coûts complets ; poursuite si gain net et maîtrise des risques.",
+      "status": "recommendation"
+    },
+    {
+      "id": "C14",
+      "type": "claim",
+      "statement": "P1 : commercial, vingt références autorisées ; cible proposée de délai −20 %, zéro fuite ; comparer à la recherche existante.",
+      "status": "recommendation"
+    },
+    {
+      "id": "C15",
+      "type": "claim",
+      "statement": "P2 : staffing, une practice ; compétences et disponibilités fiables ; cibles proposées couverture >95 %, délai −15 %, arbitrage humain.",
+      "status": "recommendation"
+    },
+    {
+      "id": "C16",
+      "type": "claim",
+      "statement": "Standardiser preuves et contrôles tout en adaptant la démarche au client.",
+      "status": "recommendation"
+    },
+    {
+      "id": "C17",
+      "type": "claim",
+      "statement": "Les dispositifs internes peuvent déjà exister et être performants ; comparer avant tout nouveau build.",
+      "status": "hypothesis"
+    },
+    {
+      "id": "C18",
+      "type": "claim",
+      "statement": "Les garanties commerciales de sécurité et conformité nécessitent une preuve adaptée au déploiement.",
+      "status": "inference"
+    },
+    {
+      "id": "C19",
+      "type": "claim",
+      "statement": "L’adaptation des démarches est revendiquée par Square ; réemploi et personnalisation doivent être conciliés.",
+      "status": "inference"
+    },
+    {
+      "id": "C20",
+      "type": "claim",
+      "statement": "Le rapport documente un parcours IA obligatoire en 2025 et intégré à l’onboarding dès janvier2026.",
+      "status": "attributed_claim"
+    },
+    {
+      "id": "C21",
+      "type": "claim",
+      "statement": "Les populations, dates et périmètres des chiffres d’effectif/site/investisseur non rapprochés empêchent une variation comparable.",
+      "status": "inference"
+    },
+    {
+      "id": "C22",
+      "type": "claim",
+      "statement": "Abenex présente deux offres : Circle Strategy et organisation/management Square.",
+      "status": "attributed_claim"
+    }
+  ],
+  "edges": [
+    {
+      "from": "F01",
+      "to": "NS01",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F02",
+      "to": "NS02",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F03",
+      "to": "NS01",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F04",
+      "to": "NS02",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F05",
+      "to": "NS02",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F06",
+      "to": "NS03",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F07",
+      "to": "NS03",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F08",
+      "to": "NS04",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F09",
+      "to": "NS05",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F10",
+      "to": "NS02",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F11",
+      "to": "NS06",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F12",
+      "to": "NS07",
+      "type": "extracted_from"
+    },
+    {
+      "from": "F01",
+      "to": "C01",
+      "type": "supports"
+    },
+    {
+      "from": "F02",
+      "to": "C02",
+      "type": "supports"
+    },
+    {
+      "from": "F03",
+      "to": "C03",
+      "type": "supports"
+    },
+    {
+      "from": "F04",
+      "to": "C04",
+      "type": "supports"
+    },
+    {
+      "from": "F05",
+      "to": "C05",
+      "type": "supports"
+    },
+    {
+      "from": "F06",
+      "to": "C06",
+      "type": "supports"
+    },
+    {
+      "from": "F07",
+      "to": "C07",
+      "type": "supports"
+    },
+    {
+      "from": "F08",
+      "to": "C08",
+      "type": "supports"
+    },
+    {
+      "from": "F09",
+      "to": "C09",
+      "type": "supports"
+    },
+    {
+      "from": "F02",
+      "to": "C11",
+      "type": "supports"
+    },
+    {
+      "from": "F07",
+      "to": "C11",
+      "type": "supports"
+    },
+    {
+      "from": "F08",
+      "to": "C11",
+      "type": "supports"
+    },
+    {
+      "from": "F09",
+      "to": "C11",
+      "type": "supports"
+    },
+    {
+      "from": "F01",
+      "to": "C12",
+      "type": "supports"
+    },
+    {
+      "from": "F12",
+      "to": "C12",
+      "type": "supports"
+    },
+    {
+      "from": "F08",
+      "to": "C12",
+      "type": "supports"
+    },
+    {
+      "from": "F07",
+      "to": "C18",
+      "type": "supports"
+    },
+    {
+      "from": "F01",
+      "to": "C19",
+      "type": "supports"
+    },
+    {
+      "from": "F10",
+      "to": "C20",
+      "type": "supports"
+    },
+    {
+      "from": "F02",
+      "to": "C21",
+      "type": "supports"
+    },
+    {
+      "from": "F03",
+      "to": "C21",
+      "type": "supports"
+    },
+    {
+      "from": "F11",
+      "to": "C21",
+      "type": "supports"
+    },
+    {
+      "from": "F11",
+      "to": "C22",
+      "type": "supports"
+    },
+    {
+      "from": "C13",
+      "to": "C06",
+      "type": "depends_on"
+    },
+    {
+      "from": "C14",
+      "to": "C12",
+      "type": "depends_on"
+    },
+    {
+      "from": "C15",
+      "to": "C20",
+      "type": "depends_on"
+    },
+    {
+      "from": "C16",
+      "to": "C19",
+      "type": "depends_on"
+    },
+    {
+      "from": "C13",
+      "to": "C10",
+      "type": "depends_on"
+    }
+  ],
+  "unknowns": [
+    "CA réalisé consolidé récent, prix et récurrence des revenus",
+    "Marge par mission, taux d’activité, conversion et concentration par client",
+    "Adoption IA interne, coûts complets, gouvernance des données et exploitation ; la formation obligatoire est documentée",
+    "Résultats clients comparables chiffrés et garanties de sécurité/conformité démontrées",
+    "Dates, périmètres et populations des chiffres 670/800/900 non rapprochés ; aucune variation comparable calculée"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "case_id": "square-management-20261117-r3",
+  "stage": "A3",
+  "attempt": 1,
+  "actor": "manual_agent",
+  "build_pins": {
+    "AGENTS.md": "b94f05d199349703dd5b7cddcee6896684375fc98bdfcc1f1e5631f9b7432a60",
+    "config/technical-decisions.json": "8a52350da42748d87bc02546898f01f494263ed7dbdf34880be96d46fa325d2c",
+    "contracts/case-artifacts.schema.json": "bd140608b5588e5983f810afdea783d5dbfdca9e6c48ff2b294e24943d5bdd18",
+    "contracts/case-process.schema.json": "a960e2efe6d7892d2a1c228bde2206e4963862b6e67b3d89c1629d2d37285099",
+    "contracts/technical-decision.schema.json": "68a9fbbd2a75ea302142566b5827c27537a0cd0b7da1ef65f7431313001ae74f",
+    "contracts/three-pager-exec.schema.json": "9ddc83546ced60d632b28f12c859547c4a40e918d1d4c4406a9dca08b5923d05",
+    "renderers/three_pager_exec/browser.py": "859420c3fa3308440a73e1e792cd7fba8d47c42d24fac9b02ec1a086a7d831a6",
+    "renderers/three_pager_exec/exec_theme.css": "302bba8fd45c25ef30ba1b741c3b618ca7bfef85e7d194c166dfb9d6258bdab2",
+    "renderers/three_pager_exec/qa.py": "62428a5d9f3a4c04a867d39710512268e2ea0c7ad01762cd9954daaa617d7594",
+    "renderers/three_pager_exec/render2.py": "e1e9e79b32c637da339a895f2f1f6ebfa79fc350682cfd791cbc74ab395834eb",
+    "renderers/three_pager_exec/render_exec.py": "7a435d47d621210b617fc2bd27b063f2234e098f69e524a754399ee5e66a9f3b",
+    "scripts/case_runtime.py": "78e290eeb0dbd9ad9b4efcc52e2340a7ef5aba168104922173627bdb0899c028",
+    "scripts/technical_decision.py": "8a01014dcbab5e31f14da4c2bf5dec22d0a1b0ecd7fc149eedbaef35bb7bbab3",
+    "skills/standalone-company-analysis/SKILL.md": "075ea425f2678acdff8aaadf0c7318a94bc72cbf78b110bc21f3c37f103aef3a",
+    "templates/THREE_PAGER_EXEC_v0.3.md": "5b9cd8a6d4572280fbaa75d5d503d1af5aed5c7cedcc86f97550ed1e2c3159af",
+    "templates/registry.json": "fad370d6b3a4fe0a4b820d91ac93c7e50315523fedd97b58c3c1d8165798a3a1",
+    "workflow/case-process.json": "d0d22a84fe79f73e1aaebd3958163e19d0b75b63588ec23f19f52715d47087be"
+  },
+  "input_pins": {
+    "stages/A1/attempt-1/result.json": "7039d54d0970baab540f48fc9b2819f1cd0e51478c43b1fd4c8a6081ef7f2c53",
+    "stages/A2/attempt-1/result.json": "1e25cfc09385a0edb56619a092fc316774bb2d2fde45383ac789a4ce8492c7ba",
+    "intake.json": "5d234e66636e8d2add7fa6765150f898dd8c3dbee73ebf6ee1858b1dfcb2573e"
+  },
+  "output_schema": "contracts/case-artifacts.schema.json#/$defs/composition",
+  "output_ref": "stages/A3/attempt-1/result.json",
+  "instructions": "Write only the scaffold sections and preserve their claim mapping.",
+  "template_profile": {
+    "refs": [
+      "templates/registry.json",
+      "templates/THREE_PAGER_EXEC_v0.3.md",
+      "contracts/three-pager-exec.schema.json",
+      "renderers/three_pager_exec/render_exec.py",
+      "renderers/three_pager_exec/exec_theme.css",
+      "renderers/three_pager_exec/render2.py",
+      "renderers/three_pager_exec/qa.py",
+      "renderers/three_pager_exec/browser.py"
+    ],
+    "pages": 3,
+    "payload_schema": "contracts/three-pager-exec.schema.json",
+    "renderer": {
+      "entrypoint": "renderers/three_pager_exec/render_exec.py",
+      "args": [
+        "--pdf"
+      ]
+    }
+  },
+  "usage": {
+    "provider_tokens": null
+  }
+}
