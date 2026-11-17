@@ -14,3 +14,16 @@ For every new company or use case outside Hivest:
 6. Update graph and manifest. Distinguish draft, structural check, human review and render. Never claim PDF/HITL/approval unless performed.
 
 The repository graph script computes dependencies; it does not collect web research or initialize a graph. See `references/three-page-contract.md`.
+
+
+## Binding, render et revue du PDF
+
+Pour un pitch en trois pages d’une entreprise indépendante :
+1. Après création du graphe et qualification des sources, créer un payload distinct au format `THREE_PAGER_PORTFOLIO_AI`, profil `exec`, rattaché à cette instance. Le payload est la source de vérité des libellés, des chiffres, des conclusions et des références.
+2. Créer un manifeste de binding qui relie l’instance, le graphe, le payload, la version du contrat, le renderer, les sources par page et les livrables. Le binding doit être écrit avant le rendu.
+3. Rendre avec `renderers/three_pager_exec/render_fallback.py` ou le renderer HTML canonique. Aucun nom d’entreprise, programme, conclusion ou exemple métier ne doit être injecté en dur dans le renderer ; toute variante de page est portée par le payload.
+4. Vérifier le contrat JSON, la cohérence du récit entre pages, les renvois graphe→sources→claims→pages, le nombre de pages et les débordements. Lire visuellement chaque page exportée en image et consigner les constats.
+5. Faire trois revues consignées : conformité au contrat et aux preuves ; hypothèse alternative la plus forte ; utilité décisionnelle et limites. Corriger puis relancer les contrôles si une revue échoue.
+6. Marquer explicitement le statut comme brouillon public relu, sans approbation métier. Une revue de rendu ne vaut ni validation de la direction ni preuve de maturité interne. Garder les inconnues explicites.
+
+Les profils de présentation plus génériques peuvent être utilisés seulement si leur contrat prend en charge le modèle d’activité. Ne pas employer un profil synthétique de démonstration pour publier l’analyse d’une entreprise réelle.
