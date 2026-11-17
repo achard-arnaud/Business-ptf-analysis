@@ -18,6 +18,29 @@
     "visual review",
     "editorial repetition review"
   ],
-  "status": "prepared",
-  "business_approval": false
+  "status": "rendered_and_reviewed_public_draft",
+  "business_approval": false,
+  "outputs": "outputs/",
+  "pdf_ref": "outputs/Square_Management_Business_2pager.pdf",
+  "html_ref": "outputs/Square_Management_Business_2pager.html",
+  "qa_ref": "outputs/Square_Management_Business_2pager_qa.json",
+  "receipt_ref": "outputs/receipt.json",
+  "review_ref": "editorial-review.md",
+  "pdf_sha256": "12260765fd101d547ea465cc8f07e6a74da546422006d742c5426a889977bf5f",
+  "content_sha256": "15e0968a49410b4f5a113852fd5fae27982df7fde4290feaced4c95811a10968",
+  "graph_sha256": "5dc7a39872d21e373e97c2616614d1e61099452a6222cbfb7ad7e0c0ed465358",
+  "visual_review": {
+    "pages": [
+      1,
+      2
+    ],
+    "scales": [
+      "100%",
+      "150%"
+    ],
+    "verdict": "pass",
+    "reviewer": "manual_agent"
+  },
+  "editorial_closeout": "pass",
+  "execution_run": "https://github.com/achard-arnaud/Business-ptf-analysis/actions/runs/44116509401"
 }

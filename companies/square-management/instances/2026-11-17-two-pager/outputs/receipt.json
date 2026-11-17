@@ -1,0 +1,14 @@
+{
+  "content_sha256": "15e0968a49410b4f5a113852fd5fae27982df7fde4290feaced4c95811a10968",
+  "pdf_sha256": "12260765fd101d547ea465cc8f07e6a74da546422006d742c5426a889977bf5f",
+  "pages": 2,
+  "qa_pass": true,
+  "renderer": "executive-one-two-pager 2.0.0 canonical package",
+  "files": {
+    "Square_Management_Business_2pager_page1.png": "5e849ef22305f4b6725087115f11712dffac4d90adf155f9078274047b700814",
+    "Square_Management_Business_2pager.html": "ca6f14ff95b0b8acd5d11c80e27da6f6d66ddc38b208dc4f138ff7582bec830a",
+    "Square_Management_Business_2pager.pdf": "12260765fd101d547ea465cc8f07e6a74da546422006d742c5426a889977bf5f",
+    "Square_Management_Business_2pager_qa.json": "9bfe8b4b2f1d5d83488636fd96d2380a3288a296864ba9de98e1d9c4e7a9f999",
+    "Square_Management_Business_2pager_page2.png": "4ac9e41e293351005a2f0932760bf9a2cbe7fc74a8c30b61d4326d28e5c4d58d"
+  }
+}

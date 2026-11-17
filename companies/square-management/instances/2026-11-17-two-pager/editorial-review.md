@@ -21,3 +21,9 @@ Chiffres regroupés page 1 ; cas clients page 2. Le retour sur la finance en con
 ## Limites de recherche
 
 Vingt questions complémentaires couvertes, détail dans research-coverage.json. Les sitemaps et robots.txt sont inaccessibles dans le service utilisé ; dénominateur inconnu et seuil de 50 % non vérifiable. L’aperçu de presse défavorable de 2026 est conservé comme signal à instruire, sans allégation de rentabilité reprise comme fait.
+
+## Rendu et lecture visuelle clôturés
+
+Deux pages physiques du PDF vérifiées ; contrôles DOM sans débordement, chevauchement, sortie de cadre, police sous 9 pt ou padding insuffisant. Pages lues à 100 % et 150 %. En-têtes, bandeaux, cartes et sources lisibles ; le texte concurrentiel a été raccourci après un premier rejet QA. PDF relu : SHA-256 `12260765fd101d547ea465cc8f07e6a74da546422006d742c5426a889977bf5f`.
+
+Rendu de référence : [GitHub Actions 44116509401](https://github.com/achard-arnaud/Business-ptf-analysis/actions/runs/44116509401), succès. Le package copié est identique aux fichiers de la skill 2.0.0 référencés dans provenance.json ; /usr/bin/chromium pointe vers le Chromium installé par Playwright sur le runner. Aucune validation métier n’est revendiquée.

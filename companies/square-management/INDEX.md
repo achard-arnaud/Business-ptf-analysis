@@ -1,16 +1,14 @@
-# Square Management — instance d’analyse indépendante
+# Square Management — analyses business
 
-**Périmètre :** pitch public en trois pages, chaîne de valeur de Porter, maturité IA/Data et chantiers proposés.  
-**Cutoff :** 2026-11-17.  
-**Statut :** PDF de travail relu sur sources publiques ; pas d’approbation métier ni d’évaluation interne de maturité.
+## Restitution la plus récente
 
-## Carte du run
+[Executive Business Two-Pager — 17 novembre 2026](instances/2026-11-17-two-pager/README.md) : modèle économique, marchés et exécution. [PDF deux pages](instances/2026-11-17-two-pager/outputs/Square_Management_Business_2pager.pdf).
 
-- Sources, fragments, claims et contexte : `package.json`, `strategic_context.json`, `evidence/`
-- Graphe propre à Square : `research_graph.json`
-- Analyse et narration : `analysis/`
-- Payload, binding et manifeste de rendu : `outputs/`
-- PDF trois pages : `outputs/Square_Management_3pager.pdf`
-- Revue des preuves, de l’hypothèse alternative et de l’utilité décisionnelle : `outputs/reviews/`
+Cette version intègre le rapport RSE 2025 : 800 collaborateurs et 55 % de mix banque déclarés, ainsi que la formation IA interne documentée. Les anciens chiffres et les différences de périmètre sont conservés dans les sources.
 
-Le graphe a été créé pour cette instance et précède la collecte. Le PDF suit le profil exec du contrat `THREE_PAGER_PORTFOLIO_AI`. La maturité IA interne reste « inconnue » faute de preuves internes. Les conclusions et chantiers sont des hypothèses à valider, pas des faits publiés.
+## Snapshots précédents
+
+- [Trois-pager, run isolé A0–A4](instances/2026-11-17-r2/README.md) : profil, Porter et backlog, fondé sur le corpus 2024/site retenu lors de ce run.
+- Instance historique : package.json, strategic_context.json, research_graph.json, analysis/, evidence/ et outputs/.
+
+Chaque dossier conserve ses propres sources, graphes, payloads, bindings et revues. Les snapshots antérieurs ne sont pas réécrits à partir des données plus récentes. Restitutions publiques relues ; aucune approbation métier ni évaluation interne globale de maturité.
