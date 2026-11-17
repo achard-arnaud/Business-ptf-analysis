@@ -1,0 +1,47 @@
+{
+  "entity_id": "square-management",
+  "instance_kind": "independent_company_analysis",
+  "program_ref": null,
+  "profile": "THREE_PAGER_PORTFOLIO_AI / exec",
+  "template_version": "0.3.0-exec",
+  "contract": "contracts/three-pager-exec.schema.json",
+  "graph": "companies/square-management/research_graph.json",
+  "payload": "companies/square-management/outputs/square-management-exec-payload.json",
+  "renderer": "renderers/three_pager_exec/render_fallback.py",
+  "renderer_commit": "de4b4ba3047f0ac2befd14ab3970f1e187b6821c",
+  "page_sources": {
+    "page1": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08"
+    ],
+    "page2": [
+      "S02",
+      "S03",
+      "S04",
+      "S05"
+    ],
+    "page3": [
+      "S01",
+      "S03",
+      "S04",
+      "S05"
+    ]
+  },
+  "deliverables": [
+    "companies/square-management/outputs/Square_Management_3pager.pdf",
+    "companies/square-management/outputs/render_manifest.json"
+  ],
+  "status": "draft_public_sources_reviewed",
+  "business_approval": "not_requested_or_claimed",
+  "reviews": [
+    "companies/square-management/outputs/reviews/01-contract-and-evidence.md",
+    "companies/square-management/outputs/reviews/02-alternative-hypothesis.md",
+    "companies/square-management/outputs/reviews/03-decision-usefulness.md"
+  ]
+}

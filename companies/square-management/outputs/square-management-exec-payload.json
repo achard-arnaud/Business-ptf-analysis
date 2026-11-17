@@ -1,0 +1,479 @@
+{
+  "template": "THREE_PAGER_PORTFOLIO_AI",
+  "template_version": "0.3.0-exec",
+  "render_profile": "exec",
+  "program": "Independent Company Analysis",
+  "entity": "SQUARE MANAGEMENT",
+  "entity_id": "square-management",
+  "language": "fr",
+  "cutoff": "2026-11-17",
+  "lineage": {
+    "repo": "achard-arnaud/Business-ptf-analysis",
+    "repo_commit": "de4b4ba3047f0ac2befd14ab3970f1e187b6821c",
+    "bundle": "companies/square-management/package.json + strategic_context.json",
+    "evidence_delta": [
+      "companies/square-management/research_graph.json",
+      "companies/square-management/package.json (8 sources, 8 fragments, 8 claims)"
+    ],
+    "status_in_repo": "COMPOSITION — public-source draft; reviews complete; no human business approval"
+  },
+  "figures": {
+    "consultants": {
+      "value": "900",
+      "src": "S02",
+      "kind": "fact"
+    },
+    "domains": {
+      "value": "10",
+      "src": "S02",
+      "kind": "fact"
+    },
+    "countries": {
+      "value": "3",
+      "src": "S02",
+      "kind": "fact"
+    },
+    "rd_programs": {
+      "value": "25",
+      "src": "S02",
+      "kind": "fact"
+    },
+    "revenue_forecast": {
+      "value": "140 M€",
+      "src": "S01",
+      "kind": "fact"
+    },
+    "bank_mix": {
+      "value": "61 %",
+      "src": "S01",
+      "kind": "fact"
+    },
+    "insurance_mix": {
+      "value": "12 %",
+      "src": "S01",
+      "kind": "fact"
+    },
+    "training_share": {
+      "value": "2,5 %",
+      "src": "S02",
+      "kind": "fact"
+    },
+    "research_share": {
+      "value": "1,2 %",
+      "src": "S02",
+      "kind": "fact"
+    }
+  },
+  "drivers": [
+    {
+      "id": "D1",
+      "label": "Conversion",
+      "text": "Gagner des missions à partir des références du cabinet."
+    },
+    {
+      "id": "D2",
+      "label": "Staffing",
+      "text": "Relier compétences, disponibilités et demande de mission."
+    },
+    {
+      "id": "D3",
+      "label": "Réemploi",
+      "text": "Rendre les méthodes accessibles dans le respect des droits."
+    },
+    {
+      "id": "D4",
+      "label": "Valeur client",
+      "text": "Suivre adoption et résultats des missions IA/Data."
+    },
+    {
+      "id": "D5",
+      "label": "Confiance",
+      "text": "Documenter sécurité, conformité et contrôle humain."
+    }
+  ],
+  "themes": [
+    {
+      "n": 1,
+      "name": "Origination par les références",
+      "stars": 3,
+      "drivers": [
+        "D1",
+        "D3"
+      ],
+      "activity": "Marketing et ventes",
+      "strategy": "différenciation",
+      "strategy_family": "differentiation",
+      "horizon": "0–12 mois",
+      "change": "Rechercher les références autorisées et préparer des propositions avec sources citées.",
+      "benefit": "Temps, réemploi et conversion mesurés.",
+      "advantage": "Relier les dix domaines et la recherche.",
+      "feature": "Recherche et génération assistées"
+    },
+    {
+      "n": 2,
+      "name": "Staffing par compétences",
+      "stars": 3,
+      "drivers": [
+        "D2"
+      ],
+      "activity": "Ressources humaines",
+      "strategy": "utilisation",
+      "strategy_family": "cost",
+      "horizon": "0–12 mois",
+      "change": "Montrer compétences/disponibilités, puis laisser l’arbitrage au responsable.",
+      "benefit": "Délai, activité et intercontrat suivis.",
+      "advantage": "Mobiliser les expertises disponibles.",
+      "feature": "Recherche explicable et règles"
+    },
+    {
+      "n": 3,
+      "name": "Valeur des missions IA",
+      "stars": 3,
+      "drivers": [
+        "D4"
+      ],
+      "activity": "Services",
+      "strategy": "qualité et récurrence",
+      "strategy_family": "resilience",
+      "horizon": "0–12 mois",
+      "change": "Suivre baseline, adoption, coûts et résultats jusqu’à la mise à l’échelle.",
+      "benefit": "Résultats client documentés.",
+      "advantage": "Étayer l’approche Full Value.",
+      "feature": "Registre des missions et KPI"
+    }
+  ],
+  "transformation": {
+    "covers": [
+      "D5"
+    ],
+    "mt": "Relier les preuves de mission, les actifs réutilisables et les décisions de staffing dans un processus contrôlé.",
+    "lt": "Installer un pilotage intégré de l’origination, de la capacité et des résultats client, sous droits d’accès par client.",
+    "take": "Structurer une boucle de valeur mesurable et réutilisable."
+  },
+  "posture": {
+    "current": "S-O",
+    "label": "offensive",
+    "option": "S-O"
+  },
+  "page1": {
+    "subtitle": "Un cabinet de conseil multi-expertises : transformer la recherche et l’offre IA en valeur client démontrée",
+    "signaletique": {
+      "rows": [
+        [
+          "Activité",
+          "Conseil en stratégie et transformation ; offre IA/Data avec Centre IA (S01, S03)"
+        ],
+        [
+          "Fondation",
+          "2008 (S02)"
+        ],
+        [
+          "Échelle",
+          "{consultants} consultants · {domains} domaines · {countries} pays (rapport 2024, S02)"
+        ],
+        [
+          "Recherche",
+          "{rd_programs} programmes de R&D déclarés (S02)"
+        ],
+        [
+          "Chiffre d’affaires",
+          "{revenue_forecast} prévisionnels ; exercice non précisé sur le site (S01)"
+        ],
+        [
+          "Mix sectoriel",
+          "Banque {bank_mix} · assurance {insurance_mix} ; le site détaille aussi trois autres secteurs (S01)"
+        ]
+      ],
+      "take": "La taille et le mix publiés ne renseignent ni marge, utilisation ni chiffre d’affaires réalisé consolidé."
+    },
+    "thesis": {
+      "paras": [
+        "Square Management articule stratégie, transformation organisationnelle et expertise IA/Data, avec un Centre IA et un Square Research Center.",
+        "La valeur durable se jouera dans le passage de l’expertise et des cas clients à des méthodes réutilisées, des équipes mobilisées à temps et des résultats suivis."
+      ],
+      "take": "Offre visible ; résultats économiques et maturité interne à vérifier."
+    },
+    "drivers_take": "Les cinq leviers sont à mesurer sur les données de gestion internes.",
+    "breakdown": {
+      "title": "Exposition sectorielle publiée",
+      "series_title": "Répartition affichée",
+      "series": [
+        [
+          "Banque",
+          61
+        ],
+        [
+          "Distribution / luxe / consommation",
+          15
+        ],
+        [
+          "Assurance",
+          12
+        ],
+        [
+          "Industrie / énergie",
+          7
+        ],
+        [
+          "Autres",
+          5
+        ]
+      ],
+      "stack_title": "Part relative du mix déclaré",
+      "stack": [
+        [
+          "Banque",
+          61
+        ],
+        [
+          "Distribution / luxe / consommation",
+          15
+        ],
+        [
+          "Assurance",
+          12
+        ],
+        [
+          "Industrie / énergie",
+          7
+        ],
+        [
+          "Autres",
+          5
+        ]
+      ],
+      "footnote": "Pourcentage corporate ; date et dénominateur détaillé à confirmer.",
+      "take": "La banque pèse 61 % du mix affiché ; ce chiffre ne mesure pas la concentration par client."
+    },
+    "board": {
+      "intro": "Ownership des leviers internes à confirmer avec la direction.",
+      "rows": [
+        {
+          "who": "Direction du cabinet",
+          "what": "sponsor de la performance et des priorités",
+          "role": "mandat et owner à confirmer"
+        },
+        {
+          "who": "Centre IA",
+          "what": "offre IA client publiée",
+          "role": "portefeuille interne à distinguer"
+        },
+        {
+          "who": "Square Research Center",
+          "what": "25 programmes annoncés",
+          "role": "articulation recherche → delivery à documenter"
+        },
+        {
+          "who": "Responsables staffing / Data",
+          "what": "périmètre et responsables non établis dans le corpus",
+          "role": null,
+          "gap": true
+        }
+      ],
+      "take": "La gouvernance de l’offre client est visible ; l’ownership IA/Data interne reste à documenter."
+    },
+    "swot": {
+      "s": [
+        "10 domaines d’excellence annoncés",
+        "25 programmes de recherche déclarés",
+        "Méthode Full Value et cas clients publiés"
+      ],
+      "w": [
+        "Marge et taux d’activité par practice absents du corpus",
+        "KPI détaillés des cas IA non fournis dans les sources retenues"
+      ],
+      "o": [
+        "Réutiliser les références entre practices avec droits maîtrisés",
+        "Documenter la valeur et l’adoption des missions IA"
+      ],
+      "t": [
+        "Exigences de confidentialité et d’audit propres aux clients",
+        "Pression concurrentielle sur les offres de conseil : à valider"
+      ],
+      "take": "Posture offensive (S-O) proposée : s’appuyer sur la recherche et les domaines pour démontrer la valeur, sous réserve de mesures clients."
+    },
+    "footer": {
+      "label": "Lecture des activités",
+      "body": "Lecture de modèle : origination, cadrage, delivery et adoption créent la valeur ; recherche et staffing l’étendent."
+    },
+    "sources": "Sources : identité et mix (S01) · rapport RSE 2024 (S02) · Centre IA (S03) · cas clients (S04–S05)."
+  },
+  "page2": {
+    "subtitle": "La chaîne de valeur du conseil relie la connaissance client à la livraison et à l’adoption",
+    "support": [
+      {
+        "name": "Approvisionnement",
+        "stars": 1,
+        "desc": "Partenaires, plateformes, expertises externes et achats de mission ; périmètre opérationnel à qualifier.",
+        "benefit": "capacité complémentaire, coût maîtrisé"
+      },
+      {
+        "name": "Développement technologique",
+        "stars": 3,
+        "desc": "Square Research Center et 25 programmes annoncés ; transfert vers offres et missions à documenter.",
+        "benefit": "méthodes et actifs différenciants",
+        "themes": [
+          1
+        ]
+      },
+      {
+        "name": "Infrastructure",
+        "stars": 2,
+        "desc": "Gouvernance multi-entités, pilotage financier, risque et coordination des domaines.",
+        "benefit": "cohérence et qualité de delivery"
+      },
+      {
+        "name": "Ressources humaines",
+        "stars": 3,
+        "desc": "900 consultants et dépenses de formation publiés ; compétences, disponibilités et utilisation internes inconnues.",
+        "benefit": "staffing, développement et adoption",
+        "themes": [
+          2
+        ]
+      }
+    ],
+    "primary": [
+      {
+        "name": "Logistique amont",
+        "stars": 2,
+        "desc": "Collecter et qualifier enjeux métier, contraintes, données et droits du client avant cadrage.",
+        "benefit": "mandat mieux défini"
+      },
+      {
+        "name": "Production",
+        "stars": 3,
+        "desc": "Concevoir et délivrer conseil, transformation et missions IA/Data avec contrôle adapté.",
+        "benefit": "qualité et résultats client",
+        "themes": [
+          3
+        ]
+      },
+      {
+        "name": "Logistique aval",
+        "stars": 1,
+        "desc": "Transférer livrables, méthodes et responsabilités au client selon le mandat.",
+        "benefit": "continuité d’exécution"
+      },
+      {
+        "name": "Marketing et ventes",
+        "stars": 3,
+        "desc": "Origination, propositions, références sectorielles et développement des comptes.",
+        "benefit": "conversion et extension",
+        "themes": [
+          1
+        ]
+      },
+      {
+        "name": "Services",
+        "stars": 3,
+        "desc": "Accompagner adoption, mesurer les résultats et capter les retours de mission.",
+        "benefit": "valeur prouvée et récurrence",
+        "themes": [
+          3
+        ]
+      }
+    ],
+    "margin_sub": "la valeur et l’économie des missions restent à mesurer",
+    "metrics": {
+      "items": [
+        [
+          "{consultants}",
+          "consultants annoncés dans le rapport RSE 2024"
+        ],
+        [
+          "{domains}",
+          "domaines d’excellence déclarés"
+        ],
+        [
+          "{rd_programs}",
+          "programmes de recherche déclarés"
+        ]
+      ],
+      "take": "Échelle publiée ; ni marge ni impact mesuré."
+    },
+    "lecture": {
+      "text": "La valeur se joue dans la boucle expertise → proposition → staffing → delivery → adoption ; les niveaux de performance de cette boucle ne sont pas publics.",
+      "take": "Commencer par mesurer la continuité entre la promesse commerciale et le résultat client."
+    },
+    "footer": {
+      "label": "Impact sur la valeur",
+      "body": "Core crée la valeur de mission ; recherche et staffing étendent la réutilisation ; support sécurise l’exécution."
+    },
+    "sources": "Sources : rapport RSE 2024 (S02) · Centre IA (S03) · cas clients SEPA/assurance (S04–S05). ★ = importance stratégique proposée, à tester.",
+    "top_count": 5
+  },
+  "page3": {
+    "subtitle": "Maturité interne non mesurable publiquement : trois chantiers pour bâtir des preuves de valeur",
+    "quadrant": {
+      "cells": [
+        {
+          "row": "Core",
+          "col": "Differentiating",
+          "label": "Références réutilisables",
+          "theme": 1
+        },
+        {
+          "row": "Enabler",
+          "col": "Parity",
+          "label": "Staffing et compétences",
+          "theme": 2
+        },
+        {
+          "row": "Core",
+          "col": "Parity",
+          "label": "Delivery et adoption mesurés",
+          "theme": 3
+        },
+        {
+          "row": "Support",
+          "col": "Commodity",
+          "label": "Fonctions de support"
+        },
+        {
+          "row": "Enabler",
+          "col": "Differentiating",
+          "label": "Recherche appliquée",
+          "theme": 1
+        },
+        {
+          "row": "Core",
+          "col": "Commodity",
+          "label": "Transfert de livrables"
+        }
+      ],
+      "take": "Positionnements analytiques à valider avec des données internes et des retours clients."
+    },
+    "themes_title": "Chantiers proposés · mesure et conditions",
+    "themes_take": "Trois chantiers conditionnels ; établir leur baseline et droits d’usage avant tout pilote.",
+    "ai_diag": {
+      "level": "Inconnue",
+      "facts": [
+        "Centre IA : méthode Full Value en cinq dimensions (S03).",
+        "Cas IA clients publiés ; KPI et usages internes inconnus (S04–S05)."
+      ],
+      "take": "Évaluer les huit dimensions avec owners, inventaire, métriques d’usage, valeur et contrôles."
+    },
+    "dominant": {
+      "rows": [
+        [
+          "Réemploi et conversion",
+          "differentiation"
+        ],
+        [
+          "Activité et staffing",
+          "cost"
+        ],
+        [
+          "Récurrence et valeur client",
+          "resilience"
+        ]
+      ],
+      "take": "Mesurer la boucle commerciale et delivery avant toute décision d’industrialisation."
+    },
+    "footer": {
+      "label": "Conclusion",
+      "body": "Posture offensive (S-O), proposée et révisable. Décider après baseline, owner, droits et comparaison à la pratique sans IA."
+    },
+    "sources": "Sources : S01–S05 ; limites et périmètres détaillés dans le registre des sources."
+  }
+}
