@@ -1,20 +1,5 @@
-# GreenYellow — exemple externe de diagnostic et 3-pager
+# External-case examples and independent instances
 
-**Statut : exemple analytique / sources publiques / non validé en production.** Le contenu est indépendant du portefeuille suivi par le programme. Ne jamais ajouter cette entité à `program/state.json`, à un manifest de participation ni aux rollups.
+This directory contains static examples only. For an executed, traceable new company analysis, route to `companies/<entity-id>/` and use `skills/standalone-company-analysis/SKILL.md`. Initialize an independent graph before research; do not add the entity to Hivest state unless explicitly mandated.
 
-## Usage
-- `analysis.md` : analyse business model, drivers, chaîne de valeur, stratégies de valeur, sept opportunités IA/Data, baselines sans IA, contradictions et sources.
-- `three-pager.md` : restitution éditoriale **en trois parties/pagination cible**, à adapter au renderer sans prétendre à une validation de schéma ou de PDF.
-- La restitution attendue du format three-pager suit **trois pages** : (1) économie et drivers, (2) activités, frictions et transferts de valeur, (3) sept initiatives candidates et leurs gates.
-- Comparer le contenu à `templates/THREE_PAGER_EXEC_v0.3.md` et à `contracts/three-pager-exec.schema.json` comme **référence de lecture**, pas comme un payload v0.3 validé.
-- Les faits sont des déclarations publiques et sources datées ; les options IA sont des hypothèses, sans ROI local établi.
-- Les validations de l'entreprise, archives brutes, comité et décisions humaines ne sont **pas disponibles** ; aucune validation de schéma, aucun HITL et aucun droit de diffusion comme diagnostic interne ne sont revendiqués.
-
-## Tests d'usage de l'exemple
-1. Ne jamais convertir un financement en chiffre d'affaires ou du cash libéré en EBITDA.
-2. Ne pas déduire une absence de supervision d'actifs alors que des solutions existent publiquement.
-3. Chaque opportunité comporte un mécanisme économique, une baseline sans IA et un gate de preuve.
-4. Une faible maturité IA publique non démontrée reste **inconnue**, pas égale à zéro.
-5. Aucun classement chiffré de ROI sans dénominateur ni données internes.
-
-**Décision d'architecture :** cas de référence hors pipeline opérationnel, intentionnellement séparé des dossiers `companies/`.
+Three-page contract: page 1 company profile and pitch; page 2 Porter value chain; page 3 AI/Data maturity and backlog. Example content is not a live graph, validated bundle, approved recommendation or rendered deliverable.
