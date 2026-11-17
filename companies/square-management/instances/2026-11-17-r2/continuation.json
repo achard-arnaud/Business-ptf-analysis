@@ -1,6 +1,5 @@
 {
-  "run_id": 44104670203,
+  "run_id": 44104989209,
   "artifact_name": "company-case-execution",
-  "action": "revise",
-  "reason": "QA still detects 6px vertical overflow in MT/LT; allocate 4mm more to bottom cards without reducing fonts."
+  "action": "review"
 }

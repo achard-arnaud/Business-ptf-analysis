@@ -1,0 +1,24 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "kind": "review",
+  "reviews": [
+    {
+      "lens": "evidence",
+      "verdict": "pass",
+      "evidence_ref": "stages/A4/attempt-3/01-evidence.md",
+      "reviewer": "manual_agent"
+    },
+    {
+      "lens": "counter-perspective",
+      "verdict": "pass",
+      "evidence_ref": "stages/A4/attempt-3/02-counter-perspective.md",
+      "reviewer": "manual_agent"
+    },
+    {
+      "lens": "decision",
+      "verdict": "pass",
+      "evidence_ref": "stages/A4/attempt-3/03-decision.md",
+      "reviewer": "manual_agent"
+    }
+  ]
+}

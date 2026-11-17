@@ -1,0 +1,21 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "pdf_ref": "stages/A4/attempt-3/render-1/SQUARE_MANAGEMENT_Analyse_business_indépendante_·_17_novembre_2026_Portfolio_AI_Diagnostic_0.3.0-exec.pdf",
+  "pdf_sha256": "a67a0f42c1aa6838d4fb64f57376d3e77aad70738b1ac5fd6d20055ccc455255",
+  "page_count": 3,
+  "visual_review": {
+    "reviewer": "manual_agent",
+    "pages": [
+      1,
+      2,
+      3
+    ],
+    "result": "pass",
+    "observations": [
+      "P1 : chiffres et réserves lisibles ; thèse et alternative présentes.",
+      "P2 : chaîne 4+5 complète ; renvois 1/2/3 alignés au backlog.",
+      "P3 : blocs lisibles, MT/LT sans coupure ; ordre P0/P1/P2, owners et critères de poursuite explicites."
+    ]
+  },
+  "business_approval": false
+}
