@@ -17,7 +17,7 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 .subtitle{font-size:12pt;line-height:1.15;color:#dbe4ee;max-width:215mm}
 .pageno{position:absolute;right:10mm;top:4mm;color:#9fdde6;font-size:9pt;font-weight:700;letter-spacing:.08em}
 
-.main{position:absolute;left:10mm;right:10mm;top:25.8mm;bottom:19mm;display:grid;gap:var(--gap);min-height:0}
+.main{position:absolute;left:10mm;right:10mm;top:25.8mm;bottom:15.4mm;display:grid;gap:var(--gap);min-height:0}
 .grid{display:grid;gap:var(--gap);min-height:0}
 
 .card{min-width:0;min-height:0;overflow:hidden;padding:var(--pad);border:.3mm solid var(--border);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column}
@@ -131,11 +131,11 @@ body{font-family:Carlito,"Liberation Sans",Arial,sans-serif;color:var(--text);fo
 .strat .sb.s{background:var(--blue3);color:var(--navy)}
 .mt{margin-top:1.4mm}
 
-.footer-strip{position:absolute;left:10mm;right:10mm;bottom:6.5mm;min-height:8.5mm;display:grid;grid-template-columns:38mm 1fr;gap:3mm;align-items:center;padding:1.6mm 3.5mm;border-radius:2.6mm;background:var(--teal);color:#fff}
+.footer-strip{position:absolute;left:10mm;right:10mm;bottom:3.5mm;min-height:8.5mm;display:grid;grid-template-columns:38mm 1fr;gap:3mm;align-items:center;padding:1.6mm 3.5mm;border-radius:2.6mm;background:var(--teal);color:#fff}
 .footer-title{font-size:9.6pt;font-weight:700;text-transform:uppercase;line-height:1.1}
 .footer-body{font-size:9.8pt;line-height:1.17}
-.source-line{position:absolute;left:10mm;right:22mm;bottom:1.6mm;color:var(--muted);font-size:9pt;white-space:nowrap;overflow:hidden}
-.page-number{position:absolute;right:10mm;bottom:1.6mm;color:var(--muted);font-size:9pt}
+.source-line{position:absolute;left:10mm;right:22mm;bottom:.2mm;color:var(--muted);font-size:9pt;white-space:nowrap;overflow:hidden}
+.page-number{position:absolute;right:10mm;bottom:.2mm;color:var(--muted);font-size:9pt}
 [data-no-overflow]{overflow:hidden}
 
 .porterwrap{display:grid;grid-template-columns:1fr 17mm;gap:2mm;min-height:0}
