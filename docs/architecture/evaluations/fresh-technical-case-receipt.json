@@ -1,0 +1,58 @@
+{
+  "scenario": "Synthetic local-search PoC: vendor spec, unknown outcome metrics, Trial/reversible, text only",
+  "release_sha256": "d556dfae61d422347abd6fd7eec9dda8268ae95665021851f3248ef2667831a7",
+  "state_sha256": "254ae0b9f2b841b1c4329c2b6801cc99551998857ece73be5c4ed2bf041f7856",
+  "stages": {
+    "A0": {
+      "status": "passed",
+      "attempt": 1
+    },
+    "A1": {
+      "status": "passed",
+      "attempt": 1
+    },
+    "A2": {
+      "status": "passed",
+      "attempt": 1
+    },
+    "A3": {
+      "status": "passed",
+      "attempt": 1
+    },
+    "A4": {
+      "status": "passed",
+      "attempt": 1
+    }
+  },
+  "revision": 11,
+  "selected_decision_type": "poc-verdict",
+  "business_approval": false,
+  "measured_latency": null,
+  "measured_cost": null,
+  "render_requested": false,
+  "runtime": {
+    "python": "3.12.14",
+    "packages": {
+      "jsonschema": "4.26.0",
+      "pypdf": "6.21.4"
+    }
+  },
+  "build_pins": {
+    "SKILL.md": "b80b8c3ea23bb2673f7e925608bac80fae64238f20dfb3550f341e98cab8d23d",
+    "config/reasoning-effort.json": "f818db45ef017a813cb0cbc35aeefb0a1497285186903192744503fdb619ba94",
+    "config/retrieval.json": "263b2827c9322be6891f1ff4c0c9ea899fdc5967c10770dd80c73e7ca5143e12",
+    "config/technical-decisions.json": "8a52350da42748d87bc02546898f01f494263ed7dbdf34880be96d46fa325d2c",
+    "contracts/case-artifacts.schema.json": "bd140608b5588e5983f810afdea783d5dbfdca9e6c48ff2b294e24943d5bdd18",
+    "contracts/run-bundle.schema.json": "47e866f23fecd90cfdf5f2c200206310bf58f5847b9eb49f9bc67e8c0d6b17a3",
+    "contracts/technical-decision.schema.json": "68a9fbbd2a75ea302142566b5827c27537a0cd0b7da1ef65f7431313001ae74f",
+    "scripts/case_runtime.py": "5aff2d7fce757379e7225c5d1748a03daf8ed001cf0f18b5560fb44e0a427294",
+    "scripts/note_runtime.py": "b25dd572038ed950ec43383dc620c0836568858d4b102801f05bc116790f5b0c",
+    "scripts/technical_decision.py": "8a01014dcbab5e31f14da4c2bf5dec22d0a1b0ecd7fc149eedbaef35bb7bbab3",
+    "src/runtime.py": "82fc7ee4e676223470c5e88b926849800d17551500f64ec1d15e79d222ec8359",
+    "templates/manifest.json": "6ed046a6e48bd88f87ccdc48eb03feb90927818a52bc825693c34db97d0cc4fd",
+    "templates/one-pager.md": "bbdff96c6c6a851d01a46c311d219002a8204db13334fb2e2d3dc2be7c16a8ad",
+    "templates/profiles.json": "a3c1c15b52126969b3f50e5232c709f343d4500ec45a5a67cd675f6828b17965",
+    "workflow/case-process.json": "686645486e084d5d3343719f855b2d88d5e638095b0f7adf784afa533aa27630"
+  },
+  "review_scope": "Synthetic reviews by evaluator; contract/lineage checks, no technical truth or human approval. A helper FileNotFoundError was corrected before A0 completion; no engine boundary rejection."
+}

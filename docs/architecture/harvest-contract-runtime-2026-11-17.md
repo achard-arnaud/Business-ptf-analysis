@@ -64,3 +64,8 @@ L’évaluation indépendante du processus est consignée dans [le reçu](evalua
 Le dev storytelling observé au SHA d490ddf97f76e0c4d94af8ea72b3dbfc70494ab8 est 25 commits devant main ; il contient une extension réglementaire et un handoff business-brief. Ces changements ne sont pas imputés à cette livraison. Ils restent conservés dans la validation d’intégration. Les I/O du moteur et leurs cinq hashes sont identiques entre les deux dépôts et la skill installée ; chaque surface garde ses wrappers et bindings de templates.
 
 Le nouveau chemin entreprise possède un appel render réel : payload A3 validé et épinglé → adapter canonique invoqué → logs et reçu → contrôle A4. Les profils de notes sans adapter déclaré refusent le rendu au lieu de prétendre l’exécuter. Les renderers externes et la migration des anciens cas demeurent hors de cette livraison.
+
+
+## Vérification de la dernière frontière technique
+
+Le [cas technique indépendant](evaluations/fresh-technical-case-receipt.json) sélectionne poc-verdict à l’entrée : A2 consomme et valide le mémo correspondant, A0–A4 passent à la première tentative et le verdict reste Trial, coût/latence inconnus. La release commune exacte est indiquée dans le reçu. Le reçu précédent reste une trace historique de la phase de renforcement, avant liaison de l’appel du renderer et du mémo A2. Les régressions du moteur exécutent aussi un vrai sous-processus de renderer synthétique et refusent un reçu déclaré sans cet appel. Le vrai renderer Chromium et ses profils existants restent contrôlés par la CI du dépôt Business. Aucun benchmark produit ou gain en coût n’a été mesuré.
