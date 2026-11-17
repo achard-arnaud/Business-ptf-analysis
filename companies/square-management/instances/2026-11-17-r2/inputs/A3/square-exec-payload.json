@@ -461,5 +461,8 @@
       "body": "Posture offensive (S-O) proposée : mesurer deux missions, puis décider. Brouillon public relu ; validation et baselines internes requises."
     },
     "sources": "S03 méthode et promesses · S04–S05 usages déclarés. Gouvernance et métriques internes inconnues. J0–J90 = séquence proposée après lancement."
+  },
+  "layout": {
+    "p3_rows": "1fr 44mm"
   }
 }

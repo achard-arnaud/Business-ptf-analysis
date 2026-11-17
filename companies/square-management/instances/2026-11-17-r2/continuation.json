@@ -1,6 +1,6 @@
 {
-  "run_id": 44104058026,
-  "artifact_name": "isolated-company-cases",
+  "run_id": 44104670203,
+  "artifact_name": "company-case-execution",
   "action": "revise",
-  "reason": "Browser QA rejected transformation card overflow; shorten prose and align theme numbering to P0/P1/P2."
+  "reason": "QA still detects 6px vertical overflow in MT/LT; allocate 4mm more to bottom cards without reducing fonts."
 }
