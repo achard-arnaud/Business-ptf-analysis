@@ -6,7 +6,7 @@
   "status": "DRAFT_PUBLIC_SOURCES_REVIEWED",
   "page_count": 3,
   "pdf_sha256": "c7ccceadb220101a14a16de0a6c21241f4856cc4778eab227e57e819e01aec5b",
-  "payload_sha256": "d5ab3e8604d884769219a898e219824ec6f8e0ee07a2e0472d25cfb2dadd91a3",
+  "payload_sha256": "217bc3f6340207d29e7d7faa159dd2aea13053654bebc67fddc8c0f4f51672c9",
   "renderer_commit": "de4b4ba3047f0ac2befd14ab3970f1e187b6821c",
   "schema_validation": "PASS",
   "layout_render": "PASS",
@@ -15,7 +15,7 @@
   "business_approval": "NOT_CLAIMED",
   "file_sha256": {
     "Square_Management_3pager.pdf": "c7ccceadb220101a14a16de0a6c21241f4856cc4778eab227e57e819e01aec5b",
-    "square-management-exec-payload.json": "d5ab3e8604d884769219a898e219824ec6f8e0ee07a2e0472d25cfb2dadd91a3",
+    "square-management-exec-payload.json": "217bc3f6340207d29e7d7faa159dd2aea13053654bebc67fddc8c0f4f51672c9",
     "Square_Management_3pager_page-1.png": "c54e6e6674cd156456d921eb696cc63db5e694d85e882dbfb507728436ac06f4",
     "Square_Management_3pager_page-2.png": "8de2cdf49b14732e79e008c2c608d19b274a009a082c092eb2fe2b29f24fd18e",
     "Square_Management_3pager_page-3.png": "7d5e9f9022c1486f7edaa775773c2251a5fdbda031a921426ee82eb464205cee",

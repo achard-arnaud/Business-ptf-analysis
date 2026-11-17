@@ -265,9 +265,8 @@
           "role": "articulation recherche → delivery à documenter"
         },
         {
-          "who": "Responsables staffing / Data",
-          "what": "Owners staffing/Data non précisés.",
-          "role": null,
+          "who": "Staffing / Data",
+          "what": "Owners à confirmer.",
           "gap": true
         }
       ],
@@ -450,7 +449,7 @@
       "level": "Inconnue",
       "facts": [
         "Centre IA : méthode Full Value (S03).",
-        "Cas IA publiés ; usages internes inconnus."
+        "Usages internes : non documentés."
       ],
       "take": "Évaluer les huit dimensions avec owners, inventaire, métriques d’usage, valeur et contrôles."
     },
