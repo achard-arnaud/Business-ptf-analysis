@@ -4,7 +4,7 @@
   "stage": "COMPOSITION",
   "instance_kind": "independent_company_analysis",
   "program_ref": null,
-  "diagnostic_status": "three_page_markdown_draft_completed_public_evidence_only",
+  "diagnostic_status": "three_page_pdf_draft_reviewed_public_evidence_only",
   "package_ref": "companies/square-management/package.json",
   "strategic_context_ref": "companies/square-management/strategic_context.json",
   "graph_ref": "companies/square-management/research_graph.json",
@@ -26,5 +26,14 @@
     "Maturité interne sur preuves et owners"
   ],
   "capture_status": "short_excerpt_hashes_in_package_originals_at_source_urls",
-  "render_status": "markdown_only_not_rendered"
+  "render_status": "three_page_pdf_rendered_and_visual_reviewed",
+  "pdf_ref": "companies/square-management/outputs/Square_Management_3pager.pdf",
+  "payload_ref": "companies/square-management/outputs/square-management-exec-payload.json",
+  "binding_ref": "companies/square-management/outputs/binding.json",
+  "render_manifest_ref": "companies/square-management/outputs/render_manifest.json",
+  "review_refs": [
+    "companies/square-management/reviews/01_contract-and-evidence.md",
+    "companies/square-management/reviews/02-alternative-hypothesis.md",
+    "companies/square-management/reviews/03-decision-usefulness.md"
+  ]
 }
