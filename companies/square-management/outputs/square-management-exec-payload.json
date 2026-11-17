@@ -147,7 +147,7 @@
     "covers": [
       "D5"
     ],
-    "mt": "Relier résultats, actifs réutilisables et staffing.",
+    "mt": "Relier résultats, références et staffing.",
     "lt": "Piloter origination, capacité et valeur client.",
     "take": "Structurer une boucle de valeur mesurable et réutilisable."
   },
@@ -266,7 +266,7 @@
         },
         {
           "who": "Responsables staffing / Data",
-          "what": "Périmètre et owners non précisés.",
+          "what": "Owners staffing/Data non précisés.",
           "role": null,
           "gap": true
         }
@@ -449,23 +449,23 @@
     "ai_diag": {
       "level": "Inconnue",
       "facts": [
-        "Offre Centre IA : méthode Full Value (S03).",
-        "Cas IA clients publiés ; usage interne inconnu."
+        "Centre IA : méthode Full Value (S03).",
+        "Cas IA publiés ; usages internes inconnus."
       ],
       "take": "Évaluer les huit dimensions avec owners, inventaire, métriques d’usage, valeur et contrôles."
     },
     "dominant": {
       "rows": [
         [
-          "Réemploi / conversion",
+          "Réemploi",
           "differentiation"
         ],
         [
-          "Activité / staffing",
+          "Staffing",
           "cost"
         ],
         [
-          "Valeur / récurrence",
+          "Valeur client",
           "resilience"
         ]
       ],
