@@ -247,26 +247,25 @@
       "take": "La banque pèse 61 % du mix affiché ; ce chiffre ne mesure pas la concentration par client."
     },
     "board": {
-      "intro": "Ownership des leviers internes à confirmer avec la direction.",
+      "intro": "Ownership interne à confirmer.",
       "rows": [
         {
-          "who": "Direction du cabinet",
-          "what": "sponsor de la performance et des priorités",
-          "role": "mandat et owner à confirmer"
+          "who": "Direction",
+          "what": "priorités",
+          "role": "owner à confirmer"
         },
         {
           "who": "Centre IA",
-          "what": "offre IA client publiée",
-          "role": "portefeuille interne à distinguer"
+          "what": "offre client"
         },
         {
-          "who": "Square Research Center",
-          "what": "25 programmes annoncés",
-          "role": "articulation recherche → delivery à documenter"
+          "who": "Research Center",
+          "what": "25 programmes",
+          "role": "transfert à documenter"
         },
         {
           "who": "Staffing / Data",
-          "what": "Owners à confirmer.",
+          "what": "owners à confirmer",
           "gap": true
         }
       ],
@@ -449,7 +448,7 @@
       "level": "Inconnue",
       "facts": [
         "Centre IA : méthode Full Value (S03).",
-        "Usages internes : non documentés."
+        "Usage interne : inconnu."
       ],
       "take": "Évaluer les huit dimensions avec owners, inventaire, métriques d’usage, valeur et contrôles."
     },
