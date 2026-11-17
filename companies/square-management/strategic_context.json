@@ -1,0 +1,74 @@
+{
+  "version": "0.2.0",
+  "entity_id": "square-management",
+  "cutoff": "2026-11-17",
+  "ml_strategy": {
+    "observed_status": "unknown",
+    "observed_claim_refs": [
+      "C-offer",
+      "C-delivery",
+      "C-internal-maturity"
+    ],
+    "proposed": "Mesurer puis améliorer la réutilisation des connaissances, le staffing et la preuve de valeur des missions IA/Data.",
+    "team_status": "unknown",
+    "search_ref": "analysis/04_ai_data_maturity.md"
+  },
+  "leaders": [
+    {
+      "role": "Direction générale",
+      "person": null,
+      "exact_title": null,
+      "scope": "group",
+      "status": "unknown",
+      "source_refs": [],
+      "next_question": "Confirmer titulaire, mandat, périmètre et date."
+    },
+    {
+      "role": "Direction IA/Data",
+      "person": null,
+      "exact_title": null,
+      "scope": "group",
+      "status": "unknown",
+      "source_refs": [],
+      "next_question": "Confirmer sponsor, équipe, budget et portefeuille."
+    }
+  ],
+  "segments": [],
+  "frameworks": {
+    "porter": "analysis/03_porter_value_chain.md",
+    "ai_data_maturity": "analysis/04_ai_data_maturity.md"
+  },
+  "driver_ids": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+  ],
+  "opportunity_links": [],
+  "prerequisites": [
+    "Confirmer périmètre économique",
+    "Obtenir baseline et owners",
+    "Qualifier les droits d’usage des données"
+  ],
+  "shortlist_ids": [
+    "B1",
+    "B2",
+    "B3"
+  ],
+  "reviews": [],
+  "coverage": {
+    "evidence": "public_sources_only",
+    "internal_data": "unknown",
+    "financials": "unverified",
+    "delivery": "client_case_without_KPI",
+    "maturity": "not_scored"
+  },
+  "critical_questions": [
+    "Quel CA réalisé et quel périmètre consolidé ?",
+    "Quels taux d’activité, d’intercontrat et marges par practice ?",
+    "Quels cas IA en production avec KPI ?"
+  ],
+  "render_status": "markdown_draft_not_rendered",
+  "artifact_hashes": {}
+}
