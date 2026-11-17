@@ -41,9 +41,9 @@ def card(x,y,w,h,title,lines,take=None,dark=False,fs=10):
   if hh>27:raise RuntimeError(f'overflow take {title}: {hh}')
 def header(n,subtitle):
  c.setFillColor(navy);c.rect(0,H-70,W,70,fill=1,stroke=0)
- para('HIVEST — PORTFOLIO AI DIAGNOSTIC',28,H-10,500,10,HexColor('#8AE0EA'),True)
- para('SPHERE',28,H-27,190,25,HexColor('#FFFFFF'),True)
- para(subtitle,180,H-32,W-235,11,HexColor('#FFFFFF'))
+ para(P["program"].upper(),28,H-10,500,10,HexColor('#8AE0EA'),True)
+ para(P["entity"],28,H-28,275,20,HexColor('#FFFFFF'),True)
+ para(subtitle,310,H-32,W-365,11,HexColor('#FFFFFF'))
  para(f'{n} / 3',W-55,H-12,35,9,HexColor('#8AE0EA'),True)
 def footer(n,body,sources):
  rect(28,18,W-56,25,teal,teal,6)
