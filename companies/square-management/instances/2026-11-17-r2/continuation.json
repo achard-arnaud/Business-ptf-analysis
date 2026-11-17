@@ -1,5 +1,6 @@
 {
   "run_id": 44104989209,
   "artifact_name": "company-case-execution",
-  "action": "review"
+  "action": "review",
+  "reason": "Three final pages visually inspected; complete A4 with the exact existing PDF receipt, without rerendering."
 }
