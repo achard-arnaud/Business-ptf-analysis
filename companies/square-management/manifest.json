@@ -32,8 +32,8 @@
   "binding_ref": "companies/square-management/outputs/binding.json",
   "render_manifest_ref": "companies/square-management/outputs/render_manifest.json",
   "review_refs": [
-    "companies/square-management/reviews/01_contract-and-evidence.md",
-    "companies/square-management/reviews/02-alternative-hypothesis.md",
-    "companies/square-management/reviews/03-decision-usefulness.md"
+    "companies/square-management/outputs/reviews/01-contract-and-evidence.md",
+    "companies/square-management/outputs/reviews/02-alternative-hypothesis.md",
+    "companies/square-management/outputs/reviews/03-decision-usefulness.md"
   ]
 }
