@@ -1,0 +1,58 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "entity_id": "square-management",
+  "program_ref": null,
+  "case_root": "data/cases/square-management-20261117-r2",
+  "graph": "stages/A1/attempt-1/result.json",
+  "payload": "stages/A3/attempt-1/square-exec-payload.json",
+  "template_id": "three-pager-exec",
+  "renderer": "renderers/three_pager_exec/render_exec.py",
+  "build_commit": "6542b5f55ebf5f249c4c0e5afbd351629f99bcbd",
+  "graph_sha256": "9a66a9bf61c5a262db79395869c6db2cabaf63b045be330a1ae7457840b57204",
+  "payload_sha256": "4868aefd1ed9a34128edddbf8906ea105009eec9f0e6b9a1324ff7e8bb557365",
+  "pages": {
+    "P1": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C10",
+      "C12",
+      "C17",
+      "C19"
+    ],
+    "P2": [
+      "C02",
+      "C05",
+      "C06",
+      "C08",
+      "C09",
+      "C10",
+      "C11",
+      "C12",
+      "C13",
+      "C14",
+      "C15",
+      "C18"
+    ],
+    "P3": [
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C13",
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18",
+      "C19"
+    ]
+  },
+  "status": "prepared; actual render receipt required",
+  "business_approval": false
+}

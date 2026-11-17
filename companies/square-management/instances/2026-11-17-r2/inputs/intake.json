@@ -1,0 +1,12 @@
+{
+  "entity_id": "square-management",
+  "objective": "Pitch business indépendant en trois pages : profil et thèse, chaîne de valeur de Porter, maturité IA/Data et backlog priorisé.",
+  "constraints": [
+    "Nouvelle instance et graphe isolé avant collecte",
+    "Sources publiques datées ; aucune maturité interne inventée",
+    "Trois pages ; binding et trois revues ; sans contexte recrutement"
+  ],
+  "cutoff": "2026-11-17",
+  "template_id": "three-pager-exec",
+  "render_requested": true
+}

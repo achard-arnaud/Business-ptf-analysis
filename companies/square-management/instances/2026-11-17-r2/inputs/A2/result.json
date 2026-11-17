@@ -1,0 +1,62 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "kind": "scaffold",
+  "decision": "Prioriser la preuve de valeur sur deux missions, puis le réemploi commercial et le staffing si les données le permettent.",
+  "strongest_objection": "Les dispositifs existent peut-être déjà ; le corpus public ne mesure pas leur performance.",
+  "falsifier": "Si un dispositif existant démontre déjà valeur nette, adoption et contrôles, renforcer celui-ci ; arrêter tout pilote sans gain net ou droits suffisants.",
+  "sections": [
+    {
+      "id": "P1",
+      "action_title": "Convertir la spécialisation et la recherche en valeur démontrée",
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C10",
+        "C12",
+        "C17",
+        "C19"
+      ]
+    },
+    {
+      "id": "P2",
+      "action_title": "Relier la promesse commerciale à l’adoption client",
+      "claim_ids": [
+        "C02",
+        "C05",
+        "C06",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C18"
+      ]
+    },
+    {
+      "id": "P3",
+      "action_title": "Mesurer avant de généraliser trois chantiers conditionnels",
+      "claim_ids": [
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19"
+      ]
+    }
+  ]
+}

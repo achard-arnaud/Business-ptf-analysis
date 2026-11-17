@@ -1,0 +1,99 @@
+name: Independent company case render
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'companies/**/instances/**/inputs/**'
+      - 'companies/**/instances/**/review-ready.json'
+      - '.github/workflows/company-case-render.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt playwright jsonschema==4.26.0 pypdf==6.21.4
+      - run: python -m playwright install --with-deps chromium
+      - name: Execute isolated cases through their actual stage contracts
+        run: |
+          python - <<'PY'
+          import json, pathlib, shutil, subprocess, sys, zipfile
+          root=pathlib.Path.cwd()
+          def call(*args):
+            subprocess.run([sys.executable,'scripts/case_runtime.py',*args],check=True)
+          for source in sorted(root.glob('companies/*/instances/*/inputs/intake.json')):
+            dossier=source.parent.parent
+            binding=json.loads((dossier/'binding.json').read_text())
+            case_id=binding['case_id']; case=root/'data/cases'/case_id
+            review=dossier/'review-ready.json'
+            if review.exists():
+              # Continue the exact rendered state; never mint another render receipt.
+              with zipfile.ZipFile(dossier/'rendered-case.zip') as z:z.extractall(case)
+              for item in json.loads(review.read_text())['reviews']:
+                shutil.copy(dossier/item['file'],case/item['evidence_ref'])
+              result={'case_id':case_id,'kind':'review','reviews':[{k:v for k,v in item.items() if k!='file'} for item in json.loads(review.read_text())['reviews']], 'render':json.loads((case/'state.json').read_text())['stages']['A4']['render_receipt']}
+              (case/'stages/A4/attempt-1/result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+              call('complete','--case',case_id,'--stage','A4')
+            else:
+              call('init','--case',case_id,'--input',str(source))
+              for stage in ['A0','A1','A2','A3']:
+                call('begin','--case',case_id,'--stage',stage,'--actor','manual_agent')
+                for f in (source.parent/stage).iterdir():shutil.copy(f,case/f'stages/{stage}/attempt-1'/f.name)
+                call('complete','--case',case_id,'--stage',stage)
+              call('begin','--case',case_id,'--stage','A4','--actor','manual_agent')
+              call('render','--case',case_id)
+            call('status','--case',case_id)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-company-cases
+          path: data/cases/
+      - run: python -m pip install 'jsonschema==4.26.0' 'pypdf==6.21.4' 'Markdown==3.11.3' playwright
+      - run: python -m playwright install --with-deps chromium
+      - name: Execute isolated cases or complete reviewed snapshots
+        run: |
+          python - <<'PY'
+          import sys, json, shutil, pathlib, zipfile, hashlib
+          sys.path.insert(0, 'scripts')
+          import case_runtime as rt
+          for bundle in pathlib.Path('companies').glob('*/instances/*'):
+              if not (bundle/'inputs/intake.json').is_file():
+                  continue
+              binding=json.loads((bundle/'binding.json').read_text())
+              cid=binding['case_id']
+              case=pathlib.Path('data/cases')/cid
+              if (bundle/'review-ready.json').is_file():
+                  with zipfile.ZipFile(bundle/'render-snapshot.zip') as z:
+                      assert all(not p.startswith('/') and '..' not in pathlib.PurePosixPath(p).parts for p in z.namelist())
+                      z.extractall(case)
+                  ready=json.loads((bundle/'review-ready.json').read_text())
+                  assert hashlib.sha256((case/ready['pdf_ref']).read_bytes()).hexdigest()==ready['pdf_sha256']
+                  a4=case/'stages/A4/attempt-1'
+                  for f in (bundle/'reviews').iterdir(): shutil.copy(f, a4/f.name)
+                  result=json.loads((bundle/'review-result.json').read_text())
+                  result['render']=json.loads((case/'state.json').read_text())['stages']['A4']['render_receipt']
+                  (a4/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+                  rt.complete(cid,'A4')
+              else:
+                  rt.init(cid,json.loads((bundle/'inputs/intake.json').read_text()))
+                  for stage in ['A0','A1','A2','A3']:
+                      packet=rt.begin(cid,stage,'manual_agent')
+                      dest=case/pathlib.Path(packet['output_ref']).parent
+                      for f in (bundle/'inputs'/stage).iterdir(): shutil.copy(f,dest/f.name)
+                      rt.complete(cid,stage)
+                  rt.begin(cid,'A4','manual_agent')
+                  rt.render(cid)
+              print(json.dumps(rt.status(cid),ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: company-case-execution
+          path: data/cases/
+          include-hidden-files: false

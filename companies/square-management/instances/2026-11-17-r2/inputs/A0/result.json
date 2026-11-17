@@ -1,0 +1,52 @@
+{
+  "case_id": "square-management-20261117-r2",
+  "kind": "evidence",
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://www.square-management.com/identite/",
+      "locator": "Identité, valeurs, chiffres et secteurs, lignes 218–301",
+      "fetched_at": "2026-11-17T14:29:28.591270+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S01.txt"
+    },
+    {
+      "id": "S02",
+      "url": "https://www.square-management.com/wp-content/uploads/2025/06/Rapport-RSE-2024-Square-Management.pdf",
+      "locator": "Rapport RSE 2024, page physique 4 (présentation)",
+      "fetched_at": "2026-11-17T14:29:28.591355+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S02.txt"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.square-management.com/centre-ia/",
+      "locator": "Notre philosophie et Centre agentique, lignes 219–241",
+      "fetched_at": "2026-11-17T14:29:28.591421+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S03.txt"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.square-management.com/cas-client/detection-des-comportements-atypiques-application-a-la-lutte-contre-la-fraude-aux-prelevements-sepa/",
+      "locator": "Contexte et solution, lignes 220–249",
+      "fetched_at": "2026-11-17T14:29:28.591496+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S04.txt"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.square-management.com/cas-client/optimisation-de-lefficacite-operationnelle-et-de-la-satisfaction-client-grace-a-lintelligence-artificielle/",
+      "locator": "Solutions analytiques et fraude, lignes 222–245",
+      "fetched_at": "2026-11-17T14:29:28.591567+00:00",
+      "coverage": "read",
+      "capture_ref": "stages/A0/attempt-1/capture-S05.txt"
+    }
+  ],
+  "unknowns": [
+    "Chiffre d’affaires réalisé consolidé et date du mix sectoriel",
+    "Effectif actuel, marge par mission, taux d’activité, concentration par client",
+    "Architecture et adoption IA internes, qualité des données, owners, coûts complets",
+    "Résultats clients chiffrés, sécurité et conformité effectivement démontrées"
+  ]
+}
