@@ -11,6 +11,9 @@ from urllib.parse import unquote
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = (
     "AGENTS.md",
+    "skills/standalone-company-analysis/SKILL.md",
+    "docs/agent/case-process.md",
+    "docs/agent/technical-decisions.md",
     "README.md",
     "docs/architecture/end-to-end-etl.md",
     "skills/hivest-portfolio-ai/SKILL.md",
@@ -63,9 +66,10 @@ def check(root=ROOT):
             errors.append(f"missing required route document: {relative}")
         else:
             errors.extend(check_document(path, root))
-    skill = root / "skills/hivest-portfolio-ai/SKILL.md"
-    if skill.is_file():
-        errors.extend(check_frontmatter(skill))
+    for name in ("hivest-portfolio-ai", "standalone-company-analysis"):
+        skill = root / "skills" / name / "SKILL.md"
+        if skill.is_file():
+            errors.extend(check_frontmatter(skill))
     workflow = root / "skills/hivest-portfolio-ai/references/workflow.md"
     etl = root / "docs/architecture/end-to-end-etl.md"
     if etl.is_file():

@@ -1,0 +1,49 @@
+{
+  "page_count": 3,
+  "pages": [
+    {
+      "overlaps": [],
+      "overflows": [],
+      "out_of_bounds": [],
+      "small_fonts": [],
+      "low_padding": []
+    },
+    {
+      "overlaps": [],
+      "overflows": [],
+      "out_of_bounds": [],
+      "small_fonts": [],
+      "low_padding": []
+    },
+    {
+      "overlaps": [],
+      "overflows": [
+        {
+          "tag": "DIV",
+          "cls": "body",
+          "card": "Diagnostic public \u00b7 IA, data, ML",
+          "client_height": 49,
+          "scroll_height": 56,
+          "client_width": 299,
+          "scroll_width": 299
+        }
+      ],
+      "out_of_bounds": [],
+      "small_fonts": [],
+      "low_padding": []
+    }
+  ],
+  "summary": {
+    "overlaps": 0,
+    "overflows": 1,
+    "out_of_bounds": 0,
+    "small_fonts": 0,
+    "low_padding": 0
+  },
+  "pass": false,
+  "provenance": {
+    "workflow_run": 43994358552,
+    "commit": "9ebea2774ab037a626478bbf320055d3cb14e76d",
+    "scope": "Square public-source browser render, retained QA report only"
+  }
+}

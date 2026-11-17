@@ -138,3 +138,8 @@ For behavior changes, add a failing contract or regression test before implement
 For a contribution, keep the change scoped to its owning layer, add or update the relevant contract and negative tests when behaviour changes, and run the documented checks. For layout changes, verify the affected rendered pages. Preserve company boundaries, recorded decisions and historical versions; keep restricted source captures outside this public repository.
 
 Most underlying case material and operating instructions are currently in French. This English entry point explains the system and its limits without implying that all content has been translated.
+
+
+## Reproducible case execution
+
+New runs use the [versioned A0–A4 I/O process](docs/agent/case-process.md). BUILD contracts/methods stay separate from ignored RUN folders under `data/cases/`. `case_runtime.py` enforces dependency/context pins and records attempts/rejections. CI checks the engine release, positive paths and adversarial regressions. Loopback links real incidents to ADRs, measured experiments and BUILD issues; passing checks do not grant business approval.

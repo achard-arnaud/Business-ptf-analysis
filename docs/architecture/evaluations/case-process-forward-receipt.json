@@ -1,0 +1,84 @@
+{
+  "release_sha256": "8613215d6500351a85efc77edc039bdc3d7b872fa4e665b15956d3179b1f8d0d",
+  "release": {
+    "version": "1.0.0",
+    "source": "skills-notes-and-storytelling; source and installed package share these exact files",
+    "files": {
+      "scripts/case_runtime.py": "65345235626779c4fbaa4ed9d8e0090970920fcae8b8d6d1609d6ab0fa970940",
+      "scripts/technical_decision.py": "8a01014dcbab5e31f14da4c2bf5dec22d0a1b0ecd7fc149eedbaef35bb7bbab3",
+      "contracts/case-artifacts.schema.json": "5dd8b8836b612ab60a38688afd21f6e4c560a49ba6f1a4b719804239e977147b",
+      "contracts/technical-decision.schema.json": "68a9fbbd2a75ea302142566b5827c27537a0cd0b7da1ef65f7431313001ae74f",
+      "config/technical-decisions.json": "8a52350da42748d87bc02546898f01f494263ed7dbdf34880be96d46fa325d2c"
+    }
+  },
+  "exact_negative_inputs": [
+    {
+      "file": "probe-original-A3-mismatch.json",
+      "sha256": "8c803798dd7b412a2f76c42954cb141dafc6a4cf76f18e4ba4eaae6d0770abdd",
+      "copy_sha256": "8c803798dd7b412a2f76c42954cb141dafc6a4cf76f18e4ba4eaae6d0770abdd",
+      "outcome": {
+        "status": "blocked",
+        "error": "Prose cites a claim outside its section mapping"
+      }
+    },
+    {
+      "file": "probe-scoped-unread-region.json",
+      "sha256": "6eb420173b5ad1c62c2f6c764fae1ec432762d150187a0933e1d974b33eacded",
+      "copy_sha256": "6eb420173b5ad1c62c2f6c764fae1ec432762d150187a0933e1d974b33eacded",
+      "outcome": {
+        "pass": false,
+        "errors": [
+          "F1: locator outside explicitly read scoped regions",
+          "F2: locator outside explicitly read scoped regions",
+          "F3: locator outside explicitly read scoped regions",
+          "F4: locator outside explicitly read scoped regions"
+        ]
+      }
+    }
+  ],
+  "happy_path": {
+    "A0": {
+      "status": "passed",
+      "attempt": 1
+    },
+    "A1": {
+      "status": "passed",
+      "attempt": 1
+    },
+    "A2": {
+      "status": "passed",
+      "attempt": 1
+    },
+    "A3": {
+      "status": "passed",
+      "attempt": 2
+    },
+    "A4": {
+      "status": "passed",
+      "attempt": 1
+    }
+  },
+  "trial_memo": {
+    "status": "decision_contract_valid",
+    "profile": "poc-verdict",
+    "guardrails_pass": false,
+    "technical_truth_verified": false,
+    "decision_approved": false
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "packages": {
+      "jsonschema": "4.26.0",
+      "pypdf": "6.21.4"
+    }
+  },
+  "render_requested": false,
+  "implementation_modified": false,
+  "release_file_hashes_match": {
+    "scripts/case_runtime.py": true,
+    "scripts/technical_decision.py": true,
+    "contracts/case-artifacts.schema.json": true,
+    "contracts/technical-decision.schema.json": true,
+    "config/technical-decisions.json": true
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "status": "proposal_validated_not_applied",
+  "case_id": "square-layout-diagnosis-2026-11-17",
+  "proposal_sha256": "f2121ae9c488d579f515b309b29523f8e24e1b4fcf1429f80355ee28f6d35ac0",
+  "state_sha256": "c3bce5e044a0fdb81dde3530aaf24b47984f262806873249a25d7daadf0de44a",
+  "stale_refs": [],
+  "investigation": {
+    "question": "Why did selection, oracle or artifact verification miss this failure?",
+    "checks": [
+      "changed-path dispatch",
+      "adversarial fixture",
+      "exact commit check"
+    ]
+  },
+  "github_writes": false,
+  "run_mutated": false,
+  "semantic_cause_verified": false,
+  "business_approval": false,
+  "runtime": {
+    "python": "3.12.14",
+    "packages": {
+      "jsonschema": "4.26.0",
+      "pypdf": "6.21.4"
+    }
+  },
+  "input_proposal_sha256": "f2121ae9c488d579f515b309b29523f8e24e1b4fcf1429f80355ee28f6d35ac0",
+  "observed_metrics": [
+    {
+      "name": "Square DOM overflows",
+      "unit": "findings",
+      "status": "observed",
+      "before": 1,
+      "after": 0,
+      "evidence_refs": [
+        "loopback/before.json",
+        "loopback/after.json"
+      ],
+      "before_reading": {
+        "ref": "loopback/before.json",
+        "pointer": "/summary/overflows"
+      },
+      "after_reading": {
+        "ref": "loopback/after.json",
+        "pointer": "/summary/overflows"
+      }
+    }
+  ],
+  "source_reports": [
+    {
+      "ref": "tests/fixtures/loopback/square-before.json",
+      "sha256": "559946ca40dadb7734c30c46e25cf9bab6f55262efd9a09c8e5d1a502c3dc991",
+      "provenance": {
+        "workflow_run": 43994358552,
+        "commit": "9ebea2774ab037a626478bbf320055d3cb14e76d",
+        "scope": "Square public-source browser render, retained QA report only"
+      }
+    },
+    {
+      "ref": "tests/fixtures/loopback/square-after.json",
+      "sha256": "b4082de1519df6c71943c51db2f0b1942f86c8ba083c3c31a0fd8da8cbb17085",
+      "provenance": {
+        "workflow_run": 43995792082,
+        "commit": "76b713ce0dc0922a013cf3e00b8d5d2cddfbf80a",
+        "scope": "Square public-source browser render, retained QA report only"
+      }
+    }
+  ],
+  "scope": "Executed diagnostic over newly initialized case; no replay or migration of historical Square stages. The original CI renderer fix predates this diagnostic."
+}

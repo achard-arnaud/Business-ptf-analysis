@@ -35,3 +35,6 @@ The search of tracked files and accessible Git history found **no pre-existing n
 | A historical run reports a passing count or archive check. | This is evidence about that run and its inputs. Current validation scope is in [tests/README.md](../../tests/README.md). |
 
 For new decisions, assign a stable ADR ID, state the scope/status and approval evidence, explain the options and consequences, and specify a review trigger. Record a successor when changing a substantive decision. Keep executable contract details at their owning schema/script and link to them.
+
+- [ADR-0002 — Executable cases](ADR-0002-case-process.md): RUN/BUILD, stage I/O and pins.
+- [ADR-0003 — Loopback](ADR-0003-loopback.md): trace-based diagnostics and BUILD experiments.

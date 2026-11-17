@@ -1,0 +1,80 @@
+{
+  "version": "1.0.0",
+  "profiles": {
+    "rupture-adr": {
+      "pillar": "design-risk",
+      "question": "Engager ou réviser une décision structurelle difficile à inverser",
+      "required_sections": [
+        "decision_boundary",
+        "rejected_alternatives",
+        "assumption_falsifiers",
+        "exit_plan"
+      ]
+    },
+    "debt-risk": {
+      "pillar": "design-risk",
+      "question": "Prioriser une dette et ses risques systémiques",
+      "required_sections": [
+        "debt_inventory",
+        "spof",
+        "remediation_estimates",
+        "risk_acceptance"
+      ]
+    },
+    "migration-tco": {
+      "pillar": "economics-migration",
+      "question": "Comparer maintien, migration et coût de bascule",
+      "required_sections": [
+        "inaction_cost",
+        "migration_cost",
+        "tco_horizon",
+        "payback_and_sensitivity"
+      ]
+    },
+    "ecosystem-impact": {
+      "pillar": "economics-migration",
+      "question": "Arbitrer une brique commune à plusieurs produits",
+      "required_sections": [
+        "bounded_contexts",
+        "product_dependencies",
+        "duplication",
+        "failure_propagation"
+      ]
+    },
+    "bootstrap-dx": {
+      "pillar": "operations-guardrails",
+      "question": "Définir les conditions exécutables de démarrage du dépôt",
+      "required_sections": [
+        "blocking_ci_gates",
+        "contract_ownership",
+        "secrets_and_data_policy",
+        "dependency_limits"
+      ]
+    },
+    "run-readiness": {
+      "pillar": "operations-guardrails",
+      "question": "Décider si le service est exploitable et récupérable",
+      "required_sections": [
+        "service_objectives",
+        "observability",
+        "degradation",
+        "recovery_rehearsal"
+      ]
+    },
+    "poc-verdict": {
+      "pillar": "research-radar",
+      "question": "Adopt, Trial, Hold ou Kill sur preuves mesurées",
+      "required_sections": [
+        "experiment_protocol",
+        "performance_and_dx",
+        "limitations",
+        "verdict_rationale"
+      ]
+    }
+  },
+  "excluded": [
+    "project_status",
+    "meeting_minutes",
+    "planning"
+  ]
+}

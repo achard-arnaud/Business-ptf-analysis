@@ -1,0 +1,120 @@
+{
+  "version": "1.0.0",
+  "executor": "manual_agent",
+  "stable_refs": [
+    "AGENTS.md",
+    "skills/standalone-company-analysis/SKILL.md",
+    "config/technical-decisions.json",
+    "contracts/technical-decision.schema.json",
+    "scripts/technical_decision.py"
+  ],
+  "templates": {
+    "three-pager-exec": {
+      "refs": [
+        "templates/registry.json",
+        "templates/THREE_PAGER_EXEC_v0.3.md",
+        "contracts/three-pager-exec.schema.json",
+        "renderers/three_pager_exec/render_exec.py",
+        "renderers/three_pager_exec/exec_theme.css",
+        "renderers/three_pager_exec/render2.py",
+        "renderers/three_pager_exec/qa.py",
+        "renderers/three_pager_exec/browser.py"
+      ],
+      "pages": 3,
+      "payload_schema": "contracts/three-pager-exec.schema.json",
+      "renderer": {
+        "entrypoint": "renderers/three_pager_exec/render_exec.py",
+        "args": [
+          "--pdf"
+        ]
+      }
+    }
+  },
+  "stages": [
+    {
+      "id": "A0",
+      "kind": "evidence",
+      "depends_on": [],
+      "instructions": "Collect dated sources, retain captures and reading coverage. No claims or prose."
+    },
+    {
+      "id": "A1",
+      "kind": "graph",
+      "depends_on": [
+        "A0"
+      ],
+      "instructions": "Atomize fragments and model typed claims/edges. Distinguish fact, attribution and unknown."
+    },
+    {
+      "id": "A2",
+      "kind": "scaffold",
+      "depends_on": [
+        "A0",
+        "A1"
+      ],
+      "instructions": "Rerank and structure a decision, strongest objection and falsifier from claim IDs."
+    },
+    {
+      "id": "A3",
+      "kind": "composition",
+      "depends_on": [
+        "A1",
+        "A2"
+      ],
+      "instructions": "Write only the scaffold sections and preserve their claim mapping."
+    },
+    {
+      "id": "A4",
+      "kind": "review",
+      "depends_on": [
+        "A0",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "instructions": "Review evidence, strongest alternative and decision usefulness; bind actual render when requested."
+    }
+  ],
+  "loopback_axes": {
+    "architecture": {
+      "question": "Which ADR assumption or boundary failed?",
+      "checks": [
+        "decision/constraint trace",
+        "coupling and ownership",
+        "falsifier and rollback"
+      ]
+    },
+    "bugfix": {
+      "question": "What reproducible input causes the observed failure?",
+      "checks": [
+        "minimal reproduction",
+        "first faulty layer",
+        "negative regression"
+      ]
+    },
+    "ci": {
+      "question": "Why did selection, oracle or artifact verification miss this failure?",
+      "checks": [
+        "changed-path dispatch",
+        "adversarial fixture",
+        "exact commit check"
+      ]
+    },
+    "runtime": {
+      "question": "Which pinned dependency, capability or resource failed?",
+      "checks": [
+        "environment/dependency hashes",
+        "degradation and recovery",
+        "usage unknown when unmeasured"
+      ]
+    },
+    "skill": {
+      "question": "Which loaded instruction, I/O contract or template profile caused drift?",
+      "checks": [
+        "actual context packet",
+        "source/installed parity",
+        "transfer evaluation"
+      ]
+    }
+  }
+}
