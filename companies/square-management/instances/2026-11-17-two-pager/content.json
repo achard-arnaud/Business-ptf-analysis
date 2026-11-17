@@ -2,7 +2,7 @@
   "document": {
     "title": "SQUARE MANAGEMENT",
     "language": "fr",
-    "theme": "renderers/executive_two_pager/themes/executive-corporate.json"
+    "theme": "themes/executive-corporate.json"
   },
   "pages": [
     {
