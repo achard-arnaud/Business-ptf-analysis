@@ -89,28 +89,28 @@
       "id": "F-S01",
       "source_id": "S01",
       "locator": "Site officiel, consulté le 17-11-2026",
-      "excerpt": "Square Management annonce 10 domaines, 3 pays, 25 programmes R&D et 140 M€ de chiffre d’affaires prévisionnel sans exercice précisé.",
+      "excerpt": "Square Management indique 10 domaines d’expertise, 3 pays, 25 programmes R&D et un chiffre d’affaires prévisionnel de 140 M€, sans préciser l’exercice dans cette mention.",
       "sha256": "bb528716f9f2306fc8310629f13da88ec270fd13db197dd50ef2a31d1e20dd03"
     },
     {
       "id": "F-S02",
       "source_id": "S02",
       "locator": "Rapport RSE 2024",
-      "excerpt": "Le rapport 2024 présente 900 consultants, 10 domaines, 3 pays, 25 programmes R&D, 2,5 % du CA en formation et 1,2 % en R&D.",
+      "excerpt": "Le rapport 2024 présente 900 consultants, 10 domaines, 3 pays, 25 programmes R&D, 2,5 % du chiffre d’affaires en formation et 1,2 % en R&D.",
       "sha256": "552c9fbcea64ebb9d580f7c2daf1263c39bc6fdb970e0461db49bbfd7bb7e2b0"
     },
     {
       "id": "F-S03",
       "source_id": "S03",
       "locator": "Centre IA, consulté le 17-11-2026",
-      "excerpt": "Le Centre IA décrit une approche Full Value et cinq phases couvrant stratégie, technologie, organisation, adoption et gouvernance.",
+      "excerpt": "Le Centre IA décrit une approche Full Value, des cas d’usage priorisés et cinq phases couvrant stratégie, technologie, organisation, adoption et gouvernance.",
       "sha256": "cea81431cfef252ccdb9a4374a7ee194c40da922bb61ce3b69b9258f5895df24"
     },
     {
       "id": "F-S04",
       "source_id": "S04",
       "locator": "Cas SEPA, 09-07-2024",
-      "excerpt": "Le cas décrit une détection d’anomalies SEPA avec validation et retour d’analystes ; aucun KPI chiffré n’est publié.",
+      "excerpt": "Le cas décrit une détection de comportements atypiques pour la fraude SEPA, avec validation et retour d’analystes ; aucun KPI chiffré n’est publié.",
       "sha256": "7e9da67f05a354efc6c829630766b4fad8844378d563662b258a1b73b0423529"
     }
   ],
