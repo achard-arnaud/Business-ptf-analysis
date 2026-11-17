@@ -172,7 +172,7 @@ class R:
               f'<p class="lead" style="font-size:10pt"><b>LT, 24–48 mois</b> : {self.t(T["lt"])}</p>')
         D = P3['ai_diag']
         gauge = ''.join(('<span class="on">' if lvl == D['level'] else '<span>') + lvl + '</span>' for lvl in ['Inconnue', 'Faible', 'Partiel', 'Établi'])
-        diag = f'<div class="gauge">{gauge}</div><ul class="ul">{"".join(f"<li>{self.t(x)}</li>" for x in D["facts"])}</ul>'
+        diag = f'<div class="diag-content"><div class="gauge">{gauge}</div><ul class="ul">{"".join(f"<li>{self.t(x)}</li>" for x in D["facts"])}</ul></div>'
         # stratégie dominante : dérivée du tableau des thèmes (pas saisie à la main)
         fam = {}
         for th in p['themes']:
