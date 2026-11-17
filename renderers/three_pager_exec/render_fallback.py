@@ -70,7 +70,7 @@ for i,a in enumerate(P['page2']['support']):
 y=130;h=197;w=(W-56-4*gap)/5
 for i,a in enumerate(P['page2']['primary']):
  card(28+i*(w+gap),y,w,h,a['name'],[a['desc'],'Bénéfice recherché : '+a['benefit']],None,fs=9.2)
-card(28,55,W-56,65,'Lecture économique',[P['page2']['metrics']['take']+' '+P['page2']['lecture']['text']],None,fs=10)
+card(28,55,W-56,65,'Lecture économique',[P['page2']['metrics']['take']],None,fs=10)
 footer(2,P['page2']['footer']['body'],P['page2']['sources']);c.showPage()
 # PAGE 3
 header(3,'Diagnostic public — pilotes, prérequis et questions d’investissement')
