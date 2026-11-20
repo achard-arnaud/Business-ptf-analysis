@@ -3,6 +3,7 @@ from pathlib import Path
 from unittest.mock import patch
 from pypdf import PdfWriter
 from pypdf.annotations import Link
+from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'renderers/pedagogical'))
 import landscape as renderer
@@ -78,12 +79,21 @@ class LandscapeTests(unittest.TestCase):
             (out / 'fiche.md').write_text(expected_markdown)
             for n in range(1, 7):
                 (out / f'page-{n:02d}.png').write_bytes(b'screenshot placeholder')
-            def write_pdf(link_pages):
+            def write_pdf(link_pages, label_pages=(0, 2)):
                 pdf = PdfWriter()
                 for _ in range(6):
                     pdf.add_blank_page(width=842, height=595)
                 for index in link_pages:
                     pdf.add_annotation(page_number=index, annotation=Link(rect=(10, 10, 80, 30), url=url))
+                for index in label_pages:
+                    page = pdf.pages[index]
+                    names = NameObject
+                    page[names('/Resources')] = DictionaryObject({names('/Font'): DictionaryObject({
+                        names('/F1'): DictionaryObject({names('/Type'): names('/Font'),
+                            names('/Subtype'): names('/Type1'), names('/BaseFont'): names('/Helvetica')})})})
+                    stream = DecodedStreamObject()
+                    stream.set_data(b'BT /F1 12 Tf 30 35 Td (S2 Corpus) Tj 0 -14 Td (fourni) Tj ET')
+                    page.replace_contents(stream)
                 pdf.write(out / 'fiche.pdf')
 
             def write_receipt():
@@ -106,11 +116,14 @@ class LandscapeTests(unittest.TestCase):
                 elif missing_from == 'pdf':
                     write_pdf((2,))  # Same destination on page 3 cannot satisfy page 1.
                     message = 'PDF page 1 is missing source link S1'
-                else:
+                elif missing_from == 'markdown':
                     citation_line = next(line for line in expected_markdown.splitlines(keepends=True)
                                          if line.startswith('- **S1** '))
                     (out / 'fiche.md').write_text(expected_markdown.replace(citation_line, '', 1))
                     message = 'Markdown does not match canonical sheet'
+                else:
+                    write_pdf((0, 2), label_pages=(2,))
+                    message = 'PDF page 1 is missing source label S2'
                 write_receipt()
                 with self.assertRaisesRegex(ValueError, message):
                     renderer.verify(source, out)
@@ -123,6 +136,9 @@ class LandscapeTests(unittest.TestCase):
 
     def test_verify_rejects_missing_markdown_source_even_with_matching_hash(self):
         self._verify_citation_fixture('markdown')
+
+    def test_verify_rejects_missing_unlinked_pdf_source_even_with_matching_hash(self):
+        self._verify_citation_fixture('pdf-text')
 
     @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
     def test_landscape_overflow_is_rejected(self):
