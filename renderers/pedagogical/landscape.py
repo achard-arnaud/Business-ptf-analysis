@@ -155,14 +155,18 @@ def as_markdown(data):
     for s in data['sources']:out+=['- **'+s['id']+'** '+s['title']+' — '+s['locator']+'. '+s['status']+'. '+s['url']]
     return '\n'.join(out)+'\n'
 
+def styled_document(base):
+    css = (HERE / 'landscape.css').read_text()
+    return base.replace('</head>', '<style>' + css + '</style></head>')
+
 async def render(source,out):
     from playwright.async_api import async_playwright
     from pypdf import PdfReader
     legacy.verify_upstream();data=load_sheet(source);out.mkdir(parents=True,exist_ok=True)
-    base=scaffold(data);css=(HERE/'landscape.css').read_text()
+    base=scaffold(data)
     (out/'binding.json').write_text(json.dumps(data,ensure_ascii=False,indent=2))
     (out/'scaffold.html').write_text(base)
-    (out/'fiche.html').write_text(base.replace('</head>','<style>'+css+'</style></head>'))
+    (out/'fiche.html').write_text(styled_document(base))
     (out/'fiche.md').write_text(as_markdown(data))
     os.environ.setdefault('NICE_CHROMIUM_PATH',shutil.which('google-chrome') or shutil.which('chromium') or '')
     async with async_playwright() as pw:
@@ -196,7 +200,9 @@ def verify(source,out):
         if Path(name).name!=name or sha(out/name)!=digest:raise ValueError('Modified output: '+name)
     for name,digest in qa['runtime_hashes'].items():
         if sha(HERE/name)!=digest:raise ValueError('Modified renderer')
-    if json.loads((out/'binding.json').read_text())!=data or (out/'scaffold.html').read_text()!=scaffold(data):raise ValueError('Binding/scaffold mismatch')
+    base=scaffold(data)
+    if json.loads((out/'binding.json').read_text())!=data or (out/'scaffold.html').read_text()!=base:raise ValueError('Binding/scaffold mismatch')
+    if (out/'fiche.html').read_text()!=styled_document(base):raise ValueError('HTML does not match scaffold and theme')
     pdf=PdfReader(out/'fiche.pdf')
     if len(pdf.pages)!=6 or any(float(p.mediabox.width)<=float(p.mediabox.height) for p in pdf.pages):raise ValueError('Not six landscape pages')
     return {'pass':True,'physical_pages':6,'landscape':True,'build_revision':qa.get('build_revision'),'summary':qa['summary']}
@@ -206,7 +212,7 @@ def main():
     if a.export_markdown:a.export_markdown.write_text(as_markdown(load_sheet(a.source)));return
     if a.verify:print(json.dumps(verify(a.source,a.out),indent=2));return
     if a.html_only:
-        data=load_sheet(a.source);a.out.mkdir(parents=True,exist_ok=True);base=scaffold(data);(a.out/'scaffold.html').write_text(base);(a.out/'fiche.html').write_text(base.replace('</head>','<style>'+(HERE/'landscape.css').read_text()+'</style></head>'));return
+        data=load_sheet(a.source);a.out.mkdir(parents=True,exist_ok=True);base=scaffold(data);(a.out/'scaffold.html').write_text(base);(a.out/'fiche.html').write_text(styled_document(base));return
     q=asyncio.run(render(a.source,a.out));print(json.dumps({k:q[k] for k in ('pass','physical_pages','landscape','summary','page_metrics')},indent=2))
     if not q['pass']:raise SystemExit(2)
     print(json.dumps(verify(a.source,a.out),indent=2))
