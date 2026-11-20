@@ -13,6 +13,34 @@ ISSUE_KEYS=("overlaps","overflows","out_of_bounds","small_fonts","low_padding")
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
+def check_page_png(path):
+    raw = path.read_bytes()
+    if len(raw) < 33 or raw[:8] != b"\x89PNG\r\n\x1a\n":
+        raise ValueError(f"{path.name}: invalid page PNG signature or header")
+    if struct.unpack_from(">I", raw, 8)[0] != 13 or raw[12:16] != b"IHDR":
+        raise ValueError(f"{path.name}: invalid PNG image header")
+    width, height = struct.unpack_from(">II", raw, 16)
+    if width < 800 or height < 500:
+        raise ValueError(f"{path.name}: page PNG dimensions too small")
+
+    offset = 8
+    has_image_data = False
+    while offset < len(raw):
+        if len(raw) - offset < 12:
+            raise ValueError(f"{path.name}: truncated PNG chunk")
+        size, kind = struct.unpack_from(">I4s", raw, offset)
+        end = offset + 12 + size  # Length, type, data and CRC field.
+        if end > len(raw):
+            raise ValueError(f"{path.name}: truncated PNG chunk")
+        if kind == b"IDAT" and size:
+            has_image_data = True
+        elif kind == b"IEND":
+            if size or end != len(raw) or not has_image_data:
+                raise ValueError(f"{path.name}: invalid PNG termination or missing image data")
+            return
+        offset = end
+    raise ValueError(f"{path.name}: missing PNG termination (IEND)")
+
 def verify(folder, *, profile):
     folder=Path(folder)
     manifest=json.loads((folder/"render_manifest.json").read_text(encoding="utf-8"))
@@ -33,16 +61,11 @@ def verify(folder, *, profile):
         raise ValueError("PDF physical page count != 3")
     if manifest.get("pdf_sha256")!=sha(pdf):
         raise ValueError("PDF changed since manifest")
-    pngs=sorted(folder.glob("*_page[1-3].png"))
-    if len(pngs)!=3:
-        raise ValueError("missing page PNG screenshots")
+    pngs=[folder / f"{pdf.stem}_page{page}.png" for page in range(1, 4)]
+    if set(folder.glob("*_page[1-3].png")) != set(pngs):
+        raise ValueError("expected screenshots for pages 1–3 of the same PDF")
     for png in pngs:
-        raw=png.read_bytes()
-        if len(raw)<40 or raw[:8]!=b"\x89PNG\r\n\x1a\n":
-            raise ValueError("invalid page PNG signature")
-        width,height=struct.unpack(">II",raw[16:24])
-        if width<800 or height<500:
-            raise ValueError("page PNG dimensions too small")
+        check_page_png(png)
     observed=[sha(p) for p in pngs]
     if manifest.get("png_sha256")!=observed:
         raise ValueError("PNG changed since render manifest")
