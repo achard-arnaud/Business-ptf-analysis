@@ -228,6 +228,7 @@ def verify(source,out):
     base=scaffold(data)
     if json.loads((out/'binding.json').read_text())!=data or (out/'scaffold.html').read_text()!=base:raise ValueError('Binding/scaffold mismatch')
     if (out/'fiche.html').read_text()!=styled_document(base):raise ValueError('HTML does not match scaffold and theme')
+    if (out/'fiche.md').read_text()!=as_markdown(data):raise ValueError('Markdown does not match canonical sheet')
     pdf=PdfReader(out/'fiche.pdf')
     if len(pdf.pages)!=6 or any(float(p.mediabox.width)<=float(p.mediabox.height) for p in pdf.pages):raise ValueError('Not six landscape pages')
     verify_pdf_source_links(pdf, data)

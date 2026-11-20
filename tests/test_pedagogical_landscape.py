@@ -46,14 +46,20 @@ class LandscapeTests(unittest.TestCase):
         self.assertEqual(renderer.as_markdown(sheet),(SOURCE.parent/'perception.md').read_text())
         self.assertEqual(renderer.as_markdown(sheet).count('## Page '),6)
 
-    def _verify_citation_fixture(self, lose_html):
+    def _verify_citation_fixture(self, missing_from):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             url = 'https://example.org/source'
             sheet = {
                 'catalog_ref': 'catalog.json',
-                'sources': [{'id': 'S1', 'url': url}, {'id': 'S2', 'url': ''}],
-                'pages': [{'source_ids': ['S1', 'S2'] if index in (0, 2) else []}
+                'title': 'Synthetic fixture', 'subtitle': 'Six pages',
+                'sources': [{'id': 'S1', 'url': url, 'title': 'Synthetic source',
+                             'locator': 'Section 1', 'status': 'source'},
+                            {'id': 'S2', 'url': '', 'title': 'Provided corpus',
+                             'locator': 'Section 2', 'status': 'source'}],
+                'pages': [{'title': f'Section {index+1}', 'lead': 'Synthetic lead',
+                           'content': {}, 'kind': 'understand', 'takeaway': 'Synthetic takeaway',
+                           'source_ids': ['S1', 'S2'] if index in (0, 2) else []}
                           for index in range(6)],
             }
             source = root / 'sheet.json'
@@ -68,7 +74,8 @@ class LandscapeTests(unittest.TestCase):
             expected_html = scaffold.replace('</head>', f'<style>{theme}</style></head>')
             (out / 'binding.json').write_text(json.dumps(sheet))
             (out / 'scaffold.html').write_text(scaffold)
-            (out / 'fiche.md').write_text('Synthetic content')
+            expected_markdown = renderer.as_markdown(sheet)
+            (out / 'fiche.md').write_text(expected_markdown)
             for n in range(1, 7):
                 (out / f'page-{n:02d}.png').write_bytes(b'screenshot placeholder')
             def write_pdf(link_pages):
@@ -79,8 +86,7 @@ class LandscapeTests(unittest.TestCase):
                     pdf.add_annotation(page_number=index, annotation=Link(rect=(10, 10, 80, 30), url=url))
                 pdf.write(out / 'fiche.pdf')
 
-            def write_html_and_receipt(html):
-                (out / 'fiche.html').write_text(html)
+            def write_receipt():
                 outputs = {p.name: renderer.sha(p) for p in out.iterdir() if p.name != 'qa.json'}
                 qa = {'pass': True, 'source_sha256': renderer.sha(source),
                       'catalog_sha256': renderer.sha(catalog), 'outputs': outputs,
@@ -91,23 +97,32 @@ class LandscapeTests(unittest.TestCase):
             with patch.object(renderer, 'load_sheet', return_value=sheet), \
                  patch.object(renderer, 'scaffold', return_value=scaffold):
                 write_pdf((0, 2))
-                write_html_and_receipt(expected_html)
+                (out / 'fiche.html').write_text(expected_html)
+                write_receipt()
                 self.assertTrue(renderer.verify(source, out)['pass'])
-                if lose_html:
-                    write_html_and_receipt(expected_html.replace(citation, ''))
+                if missing_from == 'html':
+                    (out / 'fiche.html').write_text(expected_html.replace(citation, ''))
                     message = 'HTML does not match scaffold and theme'
-                else:
+                elif missing_from == 'pdf':
                     write_pdf((2,))  # Same destination on page 3 cannot satisfy page 1.
-                    write_html_and_receipt(expected_html)
                     message = 'PDF page 1 is missing source link S1'
+                else:
+                    citation_line = next(line for line in expected_markdown.splitlines(keepends=True)
+                                         if line.startswith('- **S1** '))
+                    (out / 'fiche.md').write_text(expected_markdown.replace(citation_line, '', 1))
+                    message = 'Markdown does not match canonical sheet'
+                write_receipt()
                 with self.assertRaisesRegex(ValueError, message):
                     renderer.verify(source, out)
 
     def test_verify_rejects_missing_html_citation_even_with_matching_hash(self):
-        self._verify_citation_fixture(lose_html=True)
+        self._verify_citation_fixture('html')
 
     def test_verify_rejects_pdf_link_missing_from_required_page_even_with_matching_hash(self):
-        self._verify_citation_fixture(lose_html=False)
+        self._verify_citation_fixture('pdf')
+
+    def test_verify_rejects_missing_markdown_source_even_with_matching_hash(self):
+        self._verify_citation_fixture('markdown')
 
     @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
     def test_landscape_overflow_is_rejected(self):
