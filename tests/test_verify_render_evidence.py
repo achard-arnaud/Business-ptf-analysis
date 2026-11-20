@@ -74,6 +74,26 @@ class RenderEvidenceTests(unittest.TestCase):
     def test_missing_png_refused(self):
         self.fails()
 
+    def test_bad_chunk_crc_refused_even_with_matching_hash(self):
+        names = [f"report_page{i}.png" for i in (1, 2, 3)]
+        for chunk in (b"IHDR", b"IDAT", b"IEND"):
+            with self.subTest(chunk=chunk):
+                self.write_png_evidence(names)
+                page = self.folder / names[1]
+                data = bytearray(page.read_bytes())
+                offset = 8
+                while True:
+                    length, kind = struct.unpack_from(">I4s", data, offset)
+                    if kind == chunk:
+                        data[offset + 8 + length] ^= 1
+                        break
+                    offset += 12 + length
+                page.write_bytes(data)
+                self.manifest["png_sha256"][1] = m.sha(page)
+                (self.folder / "render_manifest.json").write_text(json.dumps(self.manifest))
+                with self.assertRaisesRegex(ValueError, rf"report_page2\.png: .*{chunk.decode()}.*CRC"):
+                    m.verify(self.folder, profile="exec")
+
     def test_manipulated_pdf_refused(self):
         self.manifest["pdf_sha256"]="a"*64
         (self.folder/"render_manifest.json").write_text(json.dumps(self.manifest))

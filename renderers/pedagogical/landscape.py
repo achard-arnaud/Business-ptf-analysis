@@ -125,10 +125,13 @@ def page_act(c):
 
 BUILDERS=[page_understand,page_transmit,page_diagnose,page_integrate,page_value,page_act]
 
+def supplied_source_label(source_id):
+    return f'{source_id} Corpus fourni'
+
 def scaffold(data):
     sources={x['id']:x for x in data['sources']};pages=[]
     for i,(page,builder) in enumerate(zip(data['pages'],BUILDERS),1):
-        src=' · '.join('<a href="'+h(sources[k]['url'])+'">'+h(k+' '+sources[k]['title'].split(' — ')[0])+'</a>' if sources[k]['url'] else h(k+' Corpus fourni') for k in page['source_ids'])
+        src=' · '.join('<a href="'+h(sources[k]['url'])+'">'+h(k+' '+sources[k]['title'].split(' — ')[0])+'</a>' if sources[k]['url'] else h(supplied_source_label(k)) for k in page['source_ids'])
         pages.append('<section class="page p'+str(i)+'" data-no-overflow aria-label="'+h(f'Page {i} : {page["title"]}')+'"><header><div class="eyebrow">POUR ALLER PLUS LOIN <span>IA EN ENTREPRISE · '+h(data['title'].upper())+' · '+str(i)+' / 6</span></div><h1>'+h(page['title'])+'</h1><p class="page-lead">'+h(page['lead'])+'</p></header><main data-no-overflow>'+builder(page['content'])+'</main><aside class="takeaway">'+md('**À retenir →** '+page['takeaway'])+'</aside><footer><div>'+src+'</div><b>'+h(data['title'].upper())+' · '+str(i)+' / 6</b></footer></section>')
     template=(HERE/'landscape.html').read_text();return template.replace('{{TITLE}}',h(data['title'])).replace('{{PAGES}}',''.join(pages))
 
@@ -190,6 +193,38 @@ async def render(source,out):
     qa['outputs']={p.name:sha(p) for p in sorted(out.iterdir()) if p.is_file() and (p.name.startswith('page-') or p.name in ('binding.json','scaffold.html','fiche.html','fiche.pdf','fiche.md'))}
     (out/'qa.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2));return qa
 
+def verify_pdf_sources(pdf, sheet):
+    from pypdf.generic import ArrayObject, DictionaryObject
+
+    source_urls = {source['id']: source['url'] for source in sheet['sources']}
+    for number, (page, spec) in enumerate(zip(pdf.pages, sheet['pages']), 1):
+        unlinked = [key for key in spec['source_ids'] if not source_urls[key]]
+        if unlinked:
+            text = ' '.join((page.extract_text() or '').split())
+            for key in unlinked:
+                label = re.escape(supplied_source_label(key))
+                if not re.search(r'(?<!\w)' + label + r'(?!\w)', text):
+                    raise ValueError(f'PDF page {number} is missing source label {key}')
+        required = {key: source_urls[key] for key in spec['source_ids'] if source_urls[key]}
+        if not required:
+            continue
+        targets = set()
+        annotations = page.get('/Annots')
+        if annotations is not None and isinstance(annotations.get_object(), ArrayObject):
+            for reference in annotations.get_object():
+                link = reference.get_object()
+                if not isinstance(link, DictionaryObject) or link.get('/Subtype') != '/Link':
+                    continue
+                action = link.get('/A')
+                action = action.get_object() if action is not None else None
+                if isinstance(action, DictionaryObject) and action.get('/S') == '/URI':
+                    uri = action.get('/URI')
+                    if isinstance(uri, str):
+                        targets.add(uri)
+        for key, url in required.items():
+            if url not in targets:
+                raise ValueError(f'PDF page {number} is missing source link {key}')
+
 def verify(source,out):
     from pypdf import PdfReader
     data=load_sheet(source);qa=json.loads((out/'qa.json').read_text())
@@ -203,8 +238,10 @@ def verify(source,out):
     base=scaffold(data)
     if json.loads((out/'binding.json').read_text())!=data or (out/'scaffold.html').read_text()!=base:raise ValueError('Binding/scaffold mismatch')
     if (out/'fiche.html').read_text()!=styled_document(base):raise ValueError('HTML does not match scaffold and theme')
+    if (out/'fiche.md').read_text()!=as_markdown(data):raise ValueError('Markdown does not match canonical sheet')
     pdf=PdfReader(out/'fiche.pdf')
     if len(pdf.pages)!=6 or any(float(p.mediabox.width)<=float(p.mediabox.height) for p in pdf.pages):raise ValueError('Not six landscape pages')
+    verify_pdf_sources(pdf, data)
     return {'pass':True,'physical_pages':6,'landscape':True,'build_revision':qa.get('build_revision'),'summary':qa['summary']}
 
 def main():
