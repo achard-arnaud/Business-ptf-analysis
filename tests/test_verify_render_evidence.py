@@ -59,6 +59,18 @@ class RenderEvidenceTests(unittest.TestCase):
         self.assertEqual(result["status"], "AUTOMATED_LAYOUT_PASS_READER_PENDING")
         self.assertFalse(result["committee_authorized"])
 
+    def test_incomplete_capture_refused_even_with_matching_hash(self):
+        names = ["report_page1.png", "report_page2.png", "report_page3.png"]
+        for removed_bytes in (12, 14):
+            with self.subTest(removed_bytes=removed_bytes):
+                self.write_png_evidence(names)
+                page = self.folder / names[1]
+                page.write_bytes(page.read_bytes()[:-removed_bytes])
+                self.manifest["png_sha256"][1] = m.sha(page)
+                (self.folder / "render_manifest.json").write_text(json.dumps(self.manifest))
+                with self.assertRaisesRegex(ValueError, r"report_page2\.png: .*PNG"):
+                    m.verify(self.folder, profile="exec")
+
     def test_missing_png_refused(self):
         self.fails()
 
