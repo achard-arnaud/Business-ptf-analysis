@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import struct
+import zlib
 from pathlib import Path
 from pypdf import PdfReader
 
@@ -24,6 +25,7 @@ def check_page_png(path):
         raise ValueError(f"{path.name}: page PNG dimensions too small")
 
     offset = 8
+    view = memoryview(raw)
     has_image_data = False
     while offset < len(raw):
         if len(raw) - offset < 12:
@@ -32,6 +34,10 @@ def check_page_png(path):
         end = offset + 12 + size  # Length, type, data and CRC field.
         if end > len(raw):
             raise ValueError(f"{path.name}: truncated PNG chunk")
+        expected_crc = struct.unpack_from(">I", raw, end - 4)[0]
+        if zlib.crc32(view[offset + 4:end - 4]) != expected_crc:
+            label = kind.decode("ascii", errors="replace")
+            raise ValueError(f"{path.name}: invalid PNG {label} chunk CRC")
         if kind == b"IDAT" and size:
             has_image_data = True
         elif kind == b"IEND":
