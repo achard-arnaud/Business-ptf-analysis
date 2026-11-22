@@ -4,11 +4,76 @@ from pathlib import Path
 from unittest.mock import patch
 from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import Link
-from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
+from pypdf.generic import ArrayObject, DecodedStreamObject, DictionaryObject, NameObject, TextStringObject
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'renderers/pedagogical'))
 import landscape as renderer
 SOURCE=ROOT/'learning/enterprise-ai/perception.sheet.json'
+
+
+def tagged_fixture_links(pdf_bytes):
+    """Read explicit link ownership for this one-page Chromium fixture only."""
+    pdf = PdfReader(BytesIO(pdf_bytes))
+    if len(pdf.pages) != 1 or '/StructTreeRoot' not in pdf.root_object:
+        raise ValueError('expected a one-page tagged PDF')
+    annotations = {
+        ref: str(ref.get_object()['/A']['/URI'])
+        for ref in pdf.pages[0].get('/Annots', [])
+        if ref.get_object().get('/Subtype') == '/Link'
+        and ref.get_object().get('/A', {}).get('/S') == '/URI'
+    }
+
+    def nodes(value):
+        obj = value.get_object()
+        if isinstance(obj, ArrayObject):
+            for child in obj:
+                yield from nodes(child)
+        else:
+            yield obj
+            if isinstance(obj, DictionaryObject) and '/K' in obj:
+                yield from nodes(obj['/K'])
+
+    def marked_text(mcids):
+        page = PdfWriter(clone_from=BytesIO(pdf_bytes)).pages[0]
+        content = page.get_contents()
+        stack = []
+        selected = []
+        for operands, operator in content.operations:
+            if operator in (b'BDC', b'BMC'):
+                props = operands[1].get_object() if operator == b'BDC' else None
+                stack.append(props.get('/MCID') if isinstance(props, DictionaryObject) else None)
+            elif operator == b'EMC':
+                stack.pop()
+            if operator not in (b'Tj', b'TJ', b"'", b'"') or any(key in mcids for key in stack):
+                selected.append((operands, operator))
+        content.operations = selected
+        page.replace_contents(content)
+        return ' '.join(page.extract_text().split())
+
+    links = {}
+    seen_refs, seen_mcids = set(), set()
+    for node in nodes(pdf.root_object['/StructTreeRoot']['/K']):
+        if not isinstance(node, DictionaryObject) or node.get('/S') != '/Link':
+            continue
+        kids = list(nodes(node['/K']))
+        refs = [kid.raw_get('/Obj') for kid in kids
+                if isinstance(kid, DictionaryObject) and kid.get('/Type') == '/OBJR']
+        mcids = {int(kid) for kid in kids if isinstance(kid, int)}
+        mcids.update(int(kid['/MCID']) for kid in kids
+                     if isinstance(kid, DictionaryObject) and kid.get('/Type') == '/MCR')
+        if (not refs or not mcids or len(set(refs)) != len(refs) or seen_refs.intersection(refs)
+                or seen_mcids.intersection(mcids) or not set(refs).issubset(annotations)):
+            raise ValueError('missing or ambiguous link ownership')
+        text = marked_text(mcids)
+        if not text or text in links:
+            raise ValueError('missing or ambiguous marked link text')
+        links[text] = {annotations[ref] for ref in refs}
+        seen_refs.update(refs)
+        seen_mcids.update(mcids)
+    if not annotations or seen_refs != annotations.keys():
+        raise ValueError('missing or ambiguous link ownership')
+    return links
+
 
 class LandscapeTests(unittest.TestCase):
     def test_content_separation_and_source_links(self):
@@ -216,6 +281,48 @@ class LandscapeTests(unittest.TestCase):
                     await browser.close()
 
         asyncio.run(check())
+
+    @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
+    def test_chromium_tagged_pdf_links_identify_text_without_html_coordinates(self):
+        from playwright.async_api import async_playwright
+
+        first, second = ('https://example.invalid/first', 'https://example.invalid/second')
+        multiline, other = 'Alpha reference continued', 'Beta reference'
+
+        async def render_sample():
+            async with async_playwright() as playwright:
+                browser = await renderer.legacy.launch(playwright)
+                try:
+                    page = await browser.new_page()
+                    await page.set_content(f'''<!DOCTYPE html><html lang="en"><title>Links fixture</title>
+                        <style>body {{ font: 20px/32px sans-serif; }}</style>
+                        <p><a href="{first}">Alpha reference<br>continued</a></p>
+                        <p><a href="{second}">Beta reference</a></p></html>''')
+                    return await page.pdf(tagged=True)
+                finally:
+                    await browser.close()
+
+        original = asyncio.run(render_sample())
+        self.assertEqual(tagged_fixture_links(original), {multiline: {first}, other: {second}})
+
+        def rewrite(swap_destinations=False, remove_reference=False):
+            writer = PdfWriter(clone_from=BytesIO(original))
+            page = writer.pages[0]
+            refs = list(reversed(page['/Annots']))
+            if swap_destinations:
+                for ref in refs:
+                    action = ref.get_object()['/A']
+                    action[NameObject('/URI')] = TextStringObject({first: second, second: first}[action['/URI']])
+            page[NameObject('/Annots')] = ArrayObject(refs[1:] if remove_reference else refs)
+            buffer = BytesIO()
+            writer.write(buffer)
+            return buffer.getvalue()
+
+        self.assertEqual(tagged_fixture_links(rewrite()), {multiline: {first}, other: {second}})
+        self.assertEqual(tagged_fixture_links(rewrite(swap_destinations=True)),
+                         {multiline: {second}, other: {first}})
+        with self.assertRaisesRegex(ValueError, 'missing or ambiguous link ownership'):
+            tagged_fixture_links(rewrite(remove_reference=True))
 
     @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
     def test_landscape_overflow_is_rejected(self):
