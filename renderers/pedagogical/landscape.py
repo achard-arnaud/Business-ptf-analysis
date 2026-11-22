@@ -182,7 +182,7 @@ async def render(source,out):
         qa=await page.evaluate(legacy.layout_qa.JS)
         qa['page_metrics']=await page.locator('.page').evaluate_all('(pages)=>pages.map(p=>({width:p.clientWidth,height:p.clientHeight,main:p.querySelector("main").clientHeight,main_scroll:p.querySelector("main").scrollHeight,words:p.innerText.split(/\\s+/).length}))')
         for i in range(6):await page.locator('.page').nth(i).screenshot(path=str(out/f'page-{i+1:02d}.png'))
-        await page.pdf(path=str(out/'fiche.pdf'),format='A4',landscape=True,print_background=True,prefer_css_page_size=True)
+        await page.pdf(path=str(out/'fiche.pdf'),format='A4',landscape=True,print_background=True,prefer_css_page_size=True,tagged=True)
         await browser.close()
     pdf=PdfReader(out/'fiche.pdf');keys=('overlaps','overflows','out_of_bounds','small_fonts','low_padding')
     qa['summary']={k:sum(len(p[k]) for p in qa['pages']) for k in keys}
@@ -195,6 +195,93 @@ async def render(source,out):
     qa['runtime_hashes']={name:sha(HERE/name) for name in ('landscape.py','landscape.css','landscape.html','upstream-lock.json')}
     qa['outputs']={p.name:sha(p) for p in sorted(out.iterdir()) if p.is_file() and (p.name.startswith('page-') or p.name in ('binding.json','scaffold.html','fiche.html','fiche.pdf','fiche.md'))}
     (out/'qa.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2));return qa
+
+def tagged_pdf_links(pdf, page_index):
+    """Read explicit text-to-URI associations in a PDF from this Chromium renderer."""
+    from pypdf import PdfWriter
+    from pypdf.generic import ArrayObject, ContentStream, DictionaryObject
+
+    root = pdf.root_object.get('/StructTreeRoot')
+    root = root.get_object() if root is not None else None
+    if not isinstance(root, DictionaryObject) or '/K' not in root:
+        raise ValueError('expected a tagged PDF; rebuild with the current renderer')
+    source_page = pdf.pages[page_index]
+    entries = source_page.get('/Annots', ArrayObject()).get_object()
+    annotations = {}
+    for ref in entries:
+        annotation = ref.get_object()
+        action = annotation.get('/A')
+        action = action.get_object() if action is not None else None
+        if annotation.get('/Subtype') == '/Link' and isinstance(action, DictionaryObject) and action.get('/S') == '/URI':
+            if not isinstance(action.get('/URI'), str):
+                raise ValueError('missing URI for a link annotation')
+            annotations[ref] = str(action['/URI'])
+
+    def nodes(value, ancestors=frozenset()):
+        obj = value.get_object()
+        if isinstance(obj, (ArrayObject, DictionaryObject)):
+            if id(obj) in ancestors:
+                raise ValueError('cycle in PDF link structure')
+            ancestors = ancestors | {id(obj)}
+        if isinstance(obj, ArrayObject):
+            for child in obj:
+                yield from nodes(child, ancestors)
+        else:
+            yield obj
+            if isinstance(obj, DictionaryObject) and '/K' in obj:
+                yield from nodes(obj.raw_get('/K'), ancestors)
+
+    def marked_text(mcids):
+        writer = PdfWriter()
+        page = writer.add_page(source_page, excluded_keys=('/Annots', '/StructParents'))
+        content = ContentStream(page.get_contents(), writer, 'bytes')
+        stack, selected, found = [], [], set()
+        for operands, operator in content.operations:
+            if operator in (b'BDC', b'BMC'):
+                props = operands[1].get_object() if operator == b'BDC' else None
+                stack.append(props.get('/MCID') if isinstance(props, DictionaryObject) else None)
+            elif operator == b'EMC':
+                if not stack:
+                    raise ValueError('unbalanced marked PDF text')
+                stack.pop()
+            if operator in (b'Tj', b'TJ', b"'", b'"'):
+                inside = mcids.intersection(stack)
+                if not inside:
+                    continue
+                found.update(inside)
+            selected.append((operands, operator))
+        if stack or found != mcids:
+            raise ValueError('missing or ambiguous marked link text')
+        # Preserve the bytes used by Chromium's embedded fonts when filtering.
+        content.operations = selected
+        page.replace_contents(content)
+        return ' '.join(page.extract_text().split())
+
+    links, seen_refs, seen_mcids = {}, set(), set()
+    for node in nodes(root.raw_get('/K')):
+        if not isinstance(node, DictionaryObject) or node.get('/S') != '/Link' or '/K' not in node:
+            continue
+        kids = list(nodes(node.raw_get('/K')))
+        refs = [kid.raw_get('/Obj') for kid in kids if isinstance(kid, DictionaryObject)
+                and kid.get('/Type') == '/OBJR' and '/Obj' in kid]
+        if not set(refs).intersection(annotations):
+            continue  # Other physical pages can use the same MCIDs.
+        mcids = {int(kid) for kid in kids if isinstance(kid, int)}
+        mcids.update(int(kid['/MCID']) for kid in kids if isinstance(kid, DictionaryObject)
+                     and kid.get('/Type') == '/MCR' and isinstance(kid.get('/MCID'), int))
+        if (not mcids or len(refs) != len(set(refs)) or seen_refs.intersection(refs)
+                or seen_mcids.intersection(mcids) or not set(refs).issubset(annotations)):
+            raise ValueError('missing or ambiguous link ownership')
+        label = marked_text(mcids)
+        if not label or label in links:
+            raise ValueError('missing or ambiguous marked link text')
+        links[label] = {annotations[ref] for ref in refs}
+        seen_refs.update(refs)
+        seen_mcids.update(mcids)
+    if not annotations or seen_refs != annotations.keys():
+        raise ValueError('missing or ambiguous link ownership')
+    return links
+
 
 def verify_pdf_sources(pdf, sheet):
     from pypdf.generic import ArrayObject, DictionaryObject
@@ -226,6 +313,15 @@ def verify_pdf_sources(pdf, sheet):
             pattern = re.escape(' '.join(label.split()))
             if not re.search(r'(?<!\w)' + pattern + r'(?!\w)', text):
                 raise ValueError(f'PDF page {number} is missing source label {key}')
+        if required:
+            try:
+                links = tagged_pdf_links(pdf, number - 1)
+            except ValueError as exc:
+                raise ValueError(f'PDF page {number}: {exc}') from exc
+            for key, url in required.items():
+                label = ' '.join(linked_source_label(sources[key]).split())
+                if links.get(label) != {url}:
+                    raise ValueError(f'PDF page {number} has wrong destination for source link {key}')
 
 def verify(source,out):
     from pypdf import PdfReader

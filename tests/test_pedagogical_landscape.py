@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import Link
-from pypdf.generic import ArrayObject, ContentStream, DecodedStreamObject, DictionaryObject, NameObject, TextStringObject
+from pypdf.generic import ArrayObject, DecodedStreamObject, DictionaryObject, NameObject, NumberObject, TextStringObject
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'renderers/pedagogical'))
 import landscape as renderer
@@ -12,74 +12,7 @@ SOURCE=ROOT/'learning/enterprise-ai/perception.sheet.json'
 
 
 def tagged_fixture_links(pdf_bytes, page_index=0):
-    """Read explicit link ownership on the selected page of a Chromium fixture."""
-    pdf = PdfReader(BytesIO(pdf_bytes))
-    if '/StructTreeRoot' not in pdf.root_object:
-        raise ValueError('expected a tagged PDF')
-    annotations = {
-        ref: str(ref.get_object()['/A']['/URI'])
-        for ref in pdf.pages[page_index].get('/Annots', [])
-        if ref.get_object().get('/Subtype') == '/Link'
-        and ref.get_object().get('/A', {}).get('/S') == '/URI'
-    }
-
-    def nodes(value):
-        obj = value.get_object()
-        if isinstance(obj, ArrayObject):
-            for child in obj:
-                yield from nodes(child)
-        else:
-            yield obj
-            if isinstance(obj, DictionaryObject) and '/K' in obj:
-                yield from nodes(obj['/K'])
-
-    def marked_text(mcids):
-        writer = PdfWriter(clone_from=BytesIO(pdf_bytes))
-        page = writer.pages[page_index]
-        # Keep font-encoded bytes intact while filtering text-show operators.
-        content = ContentStream(page.get_contents(), writer, 'bytes')
-        stack = []
-        selected = []
-        for operands, operator in content.operations:
-            if operator in (b'BDC', b'BMC'):
-                props = operands[1].get_object() if operator == b'BDC' else None
-                stack.append(props.get('/MCID') if isinstance(props, DictionaryObject) else None)
-            elif operator == b'EMC':
-                stack.pop()
-            if operator not in (b'Tj', b'TJ', b"'", b'"') or any(key in mcids for key in stack):
-                selected.append((operands, operator))
-        content.operations = selected
-        page.replace_contents(content)
-        return ' '.join(page.extract_text().split())
-
-    links = {}
-    seen_refs, seen_mcids = set(), set()
-    for node in nodes(pdf.root_object['/StructTreeRoot']['/K']):
-        if not isinstance(node, DictionaryObject) or node.get('/S') != '/Link':
-            continue
-        kids = list(nodes(node['/K']))
-        refs = [kid.raw_get('/Obj') for kid in kids
-                if isinstance(kid, DictionaryObject) and kid.get('/Type') == '/OBJR']
-        # MCIDs can repeat across physical pages. Select the link by the actual
-        # annotation refs on this page before reading its marked text.
-        if len(pdf.pages) > 1 and not annotations.keys() & set(refs):
-            continue
-        mcids = {int(kid) for kid in kids if isinstance(kid, int)}
-        mcids.update(int(kid['/MCID']) for kid in kids
-                     if isinstance(kid, DictionaryObject) and kid.get('/Type') == '/MCR')
-        if (not refs or not mcids or len(set(refs)) != len(refs) or seen_refs.intersection(refs)
-                or seen_mcids.intersection(mcids) or not set(refs).issubset(annotations)):
-            raise ValueError('missing or ambiguous link ownership')
-        text = marked_text(mcids)
-        if not text or text in links:
-            raise ValueError('missing or ambiguous marked link text')
-        links[text] = {annotations[ref] for ref in refs}
-        seen_refs.update(refs)
-        seen_mcids.update(mcids)
-    if not annotations or seen_refs != annotations.keys():
-        raise ValueError('missing or ambiguous link ownership')
-    return links
-
+    return renderer.tagged_pdf_links(PdfReader(BytesIO(pdf_bytes)), page_index)
 
 class LandscapeTests(unittest.TestCase):
     def test_content_separation_and_source_links(self):
@@ -153,12 +86,11 @@ class LandscapeTests(unittest.TestCase):
             (out / 'fiche.md').write_text(expected_markdown)
             for n in range(1, 7):
                 (out / f'page-{n:02d}.png').write_bytes(b'screenshot placeholder')
-            def write_pdf(link_pages, label_pages=(0, 2), second_citation_pages=(0, 2)):
+            def write_pdf(link_pages, label_pages=(0, 2), second_citation_pages=(0, 2), *, tagged=True):
                 pdf = PdfWriter()
+                tags = []
                 for _ in range(6):
                     pdf.add_blank_page(width=842, height=595)
-                for index in link_pages:
-                    pdf.add_annotation(page_number=index, annotation=Link(rect=(10, 10, 80, 30), url=url))
                 for index in set(label_pages) | set(link_pages):
                     page = pdf.pages[index]
                     names = NameObject
@@ -166,23 +98,34 @@ class LandscapeTests(unittest.TestCase):
                         names('/F1'): DictionaryObject({names('/Type'): names('/Font'),
                             names('/Subtype'): names('/Type1'), names('/BaseFont'): names('/Helvetica')})})})
                     stream = DecodedStreamObject()
-                    text_rows = []
+                    operations = []
+
+                    def citation(mcid, text, rect):
+                        annotation = pdf.add_annotation(page_number=index, annotation=Link(rect=rect, url=url))
+                        tags.append(DictionaryObject({names('/S'): names('/Link'), names('/K'): ArrayObject([
+                            NumberObject(mcid), DictionaryObject({names('/Type'): names('/OBJR'),
+                                                                 names('/Obj'): annotation.indirect_reference})])}))
+                        lines = b') Tj 0 -14 Td ('.join(text)
+                        operations.append(b'/Link <</MCID %d>> BDC (%s) Tj EMC 0 -14 Td' % (mcid, lines))
+
                     if index in link_pages:
-                        text_rows.append(b'S1 Synthetic source')
+                        citation(0, (b'S1 Synthetic source',), (10, 10, 80, 30))
                         if index in second_citation_pages:
-                            text_rows.extend([b'S3 Same', b'report'])
-                            pdf.add_annotation(page_number=index, annotation=Link(rect=(90, 10, 180, 30), url=url))
+                            citation(1, (b'S3 Same', b'report'), (90, 10, 180, 30))
                     if index in label_pages:
-                        text_rows.extend([b'S2 Corpus', b'fourni'])
-                    stream.set_data(b'BT /F1 12 Tf 30 135 Td (' + b') Tj 0 -14 Td ('.join(text_rows) + b') Tj ET')
+                        operations.append(b'(S2 Corpus) Tj 0 -14 Td (fourni) Tj')
+                    stream.set_data(b'BT /F1 12 Tf 30 135 Td ' + b' '.join(operations) + b' ET')
                     page.replace_contents(stream)
+                if tagged:
+                    pdf.root_object[NameObject('/StructTreeRoot')] = DictionaryObject({NameObject('/K'): ArrayObject(tags)})
                 pdf.write(out / 'fiche.pdf')
 
-            def write_receipt():
+            def write_receipt(runtime_hashes=None):
                 outputs = {p.name: renderer.sha(p) for p in out.iterdir() if p.name != 'qa.json'}
                 qa = {'pass': True, 'source_sha256': renderer.sha(source),
                       'catalog_sha256': renderer.sha(catalog), 'outputs': outputs,
-                      'runtime_hashes': {}, 'summary': {}}
+                      'runtime_hashes': runtime_hashes if runtime_hashes is not None else
+                      {'landscape.py': renderer.sha(renderer.HERE / 'landscape.py')}, 'summary': {}}
                 (out / 'qa.json').write_text(json.dumps(qa))
 
             # Isolate projection checks using actual six-page PDF annotations.
@@ -192,6 +135,7 @@ class LandscapeTests(unittest.TestCase):
                 (out / 'fiche.html').write_text(expected_html)
                 write_receipt()
                 self.assertTrue(renderer.verify(source, out)['pass'])
+                old_runtime = None
                 if missing_from == 'html':
                     (out / 'fiche.html').write_text(expected_html.replace(citation, ''))
                     message = 'HTML does not match scaffold and theme'
@@ -206,10 +150,17 @@ class LandscapeTests(unittest.TestCase):
                 elif missing_from == 'pdf-linked-label':
                     write_pdf((0, 2), second_citation_pages=(2,))
                     message = 'PDF page 1 is missing source label S3'
+                elif missing_from == 'legacy-runtime':
+                    write_pdf((0, 2), tagged=False)
+                    old_runtime = {'landscape.py': '0' * 64}
+                    message = 'Modified renderer'
+                elif missing_from == 'untagged':
+                    write_pdf((0, 2), tagged=False)
+                    message = 'expected a tagged PDF'
                 else:
                     write_pdf((0, 2), label_pages=(2,))
                     message = 'PDF page 1 is missing source label S2'
-                write_receipt()
+                write_receipt(old_runtime)
                 with self.assertRaisesRegex(ValueError, message):
                     renderer.verify(source, out)
 
@@ -227,6 +178,11 @@ class LandscapeTests(unittest.TestCase):
 
     def test_verify_rejects_missing_pdf_citation_when_its_url_is_used_by_another(self):
         self._verify_citation_fixture('pdf-linked-label')
+
+    def test_verify_does_not_upgrade_an_old_untagged_receipt(self):
+        for mode in ('legacy-runtime', 'untagged'):
+            with self.subTest(mode=mode):
+                self._verify_citation_fixture(mode)
 
     @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
     def test_chromium_pdf_links_preserve_destination_per_text_line(self):
@@ -381,7 +337,10 @@ class LandscapeTests(unittest.TestCase):
         crossed = BytesIO()
         writer.write(crossed)
         mutated = crossed.getvalue()
-        self.assertEqual(PdfReader(BytesIO(mutated)).pages[0].extract_text(), structured.pages[0].extract_text())
+        crossed_pdf = PdfReader(BytesIO(mutated))
+        self.assertEqual(crossed_pdf.pages[0].extract_text(), structured.pages[0].extract_text())
+        with self.assertRaisesRegex(ValueError, 'PDF page 1 has wrong destination for source link S1'):
+            renderer.verify_pdf_sources(crossed_pdf, sheet)
         for index, original in enumerate(expected):
             got = tagged_fixture_links(mutated, index)
             self.assertEqual(set(got), set(original))
