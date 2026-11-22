@@ -11,14 +11,14 @@ import landscape as renderer
 SOURCE=ROOT/'learning/enterprise-ai/perception.sheet.json'
 
 
-def tagged_fixture_links(pdf_bytes):
-    """Read explicit link ownership for this one-page Chromium fixture only."""
+def tagged_fixture_links(pdf_bytes, page_index=0):
+    """Read explicit link ownership on the selected page of a Chromium fixture."""
     pdf = PdfReader(BytesIO(pdf_bytes))
-    if len(pdf.pages) != 1 or '/StructTreeRoot' not in pdf.root_object:
-        raise ValueError('expected a one-page tagged PDF')
+    if '/StructTreeRoot' not in pdf.root_object:
+        raise ValueError('expected a tagged PDF')
     annotations = {
         ref: str(ref.get_object()['/A']['/URI'])
-        for ref in pdf.pages[0].get('/Annots', [])
+        for ref in pdf.pages[page_index].get('/Annots', [])
         if ref.get_object().get('/Subtype') == '/Link'
         and ref.get_object().get('/A', {}).get('/S') == '/URI'
     }
@@ -35,7 +35,7 @@ def tagged_fixture_links(pdf_bytes):
 
     def marked_text(mcids):
         writer = PdfWriter(clone_from=BytesIO(pdf_bytes))
-        page = writer.pages[0]
+        page = writer.pages[page_index]
         # Keep font-encoded bytes intact while filtering text-show operators.
         content = ContentStream(page.get_contents(), writer, 'bytes')
         stack = []
@@ -60,6 +60,10 @@ def tagged_fixture_links(pdf_bytes):
         kids = list(nodes(node['/K']))
         refs = [kid.raw_get('/Obj') for kid in kids
                 if isinstance(kid, DictionaryObject) and kid.get('/Type') == '/OBJR']
+        # MCIDs can repeat across physical pages. Select the link by the actual
+        # annotation refs on this page before reading its marked text.
+        if len(pdf.pages) > 1 and not annotations.keys() & set(refs):
+            continue
         mcids = {int(kid) for kid in kids if isinstance(kid, int)}
         mcids.update(int(kid['/MCID']) for kid in kids
                      if isinstance(kid, DictionaryObject) and kid.get('/Type') == '/MCR')
@@ -325,6 +329,65 @@ class LandscapeTests(unittest.TestCase):
                          {multiline: {second}, other: {first}})
         with self.assertRaisesRegex(ValueError, 'missing or ambiguous link ownership'):
             tagged_fixture_links(rewrite(remove_reference=True))
+
+    @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
+    def test_perception_tagged_pdf_preserves_page_scoped_source_links(self):
+        from playwright.async_api import async_playwright
+
+        sheet = renderer.load_sheet(SOURCE)
+        sources = {source['id']: source for source in sheet['sources']}
+        expected = [{renderer.linked_source_label(sources[k]): {sources[k]['url']}
+                     for k in spec['source_ids'] if sources[k]['url']}
+                    for spec in sheet['pages']]
+        self.assertEqual([len(links) for links in expected], [5, 2, 1, 1, 1, 1])
+
+        async def render_pair():
+            async with async_playwright() as playwright:
+                browser = await renderer.legacy.launch(playwright)
+                try:
+                    page = await browser.new_page(viewport={'width': 1250, 'height': 900}, device_scale_factor=1.5)
+                    await page.route('**/*', lambda route: route.abort())
+                    await page.set_content(renderer.styled_document(renderer.scaffold(sheet)))
+                    await page.evaluate('document.fonts.ready')
+                    opts = dict(format='A4', landscape=True, print_background=True, prefer_css_page_size=True)
+                    return await page.pdf(tagged=False, **opts), await page.pdf(tagged=True, **opts)
+                finally:
+                    await browser.close()
+
+        plain, tagged = asyncio.run(render_pair())
+        ordinary, structured = (PdfReader(BytesIO(raw)) for raw in (plain, tagged))
+        self.assertEqual(len(ordinary.pages), 6)
+        self.assertEqual(len(structured.pages), 6)
+        for index, (before, after) in enumerate(zip(ordinary.pages, structured.pages)):
+            with self.subTest(page=index+1):
+                self.assertEqual(tuple(before.mediabox), tuple(after.mediabox))
+                self.assertEqual(before.extract_text(), after.extract_text())
+                self.assertEqual(tagged_fixture_links(tagged, index), expected[index])
+        renderer.verify_pdf_sources(structured, sheet)
+
+        # Keep the PDF text and annotations on pages 2–6 intact. Only exchange
+        # the URI of two existing annotations on page 1, even though S1 repeats.
+        writer = PdfWriter(clone_from=BytesIO(tagged))
+        labels = [renderer.linked_source_label(sources[k]) for k in ('S1', 'S3')]
+        first, second = (sources[k]['url'] for k in ('S1', 'S3'))
+        count = 0
+        for ref in writer.pages[0]['/Annots']:
+            action = ref.get_object()['/A']
+            url = action.get('/URI')
+            if url in (first, second):
+                action[NameObject('/URI')] = TextStringObject(second if url == first else first)
+                count += 1
+        self.assertEqual(count, 2)
+        crossed = BytesIO()
+        writer.write(crossed)
+        mutated = crossed.getvalue()
+        self.assertEqual(PdfReader(BytesIO(mutated)).pages[0].extract_text(), structured.pages[0].extract_text())
+        for index, original in enumerate(expected):
+            got = tagged_fixture_links(mutated, index)
+            self.assertEqual(set(got), set(original))
+            with self.subTest(crossed=True, page=index+1):
+                self.assertEqual({label for label in original if original[label] != got[label]},
+                                 set(labels) if index == 0 else set())
 
     @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
     def test_landscape_overflow_is_rejected(self):
