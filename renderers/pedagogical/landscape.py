@@ -207,6 +207,7 @@ def tagged_pdf_links(pdf, page_index):
         raise ValueError('expected a tagged PDF; rebuild with the current renderer')
     source_page = pdf.pages[page_index]
     entries = source_page.get('/Annots', ArrayObject()).get_object()
+    physical_refs = {ref for page in pdf.pages for ref in page.get('/Annots', ArrayObject()).get_object()}
     annotations = {}
     for ref in entries:
         annotation = ref.get_object()
@@ -264,6 +265,8 @@ def tagged_pdf_links(pdf, page_index):
         kids = list(nodes(node.raw_get('/K')))
         refs = [kid.raw_get('/Obj') for kid in kids if isinstance(kid, DictionaryObject)
                 and kid.get('/Type') == '/OBJR' and '/Obj' in kid]
+        if not set(refs).issubset(physical_refs):
+            raise ValueError('missing or ambiguous link ownership')
         if not set(refs).intersection(annotations):
             continue  # Other physical pages can use the same MCIDs.
         mcids = {int(kid) for kid in kids if isinstance(kid, int)}
