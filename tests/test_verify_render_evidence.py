@@ -59,6 +59,26 @@ class RenderEvidenceTests(unittest.TestCase):
         self.assertEqual(result["status"], "AUTOMATED_LAYOUT_PASS_READER_PENDING")
         self.assertFalse(result["committee_authorized"])
 
+    def test_additional_numbered_capture_does_not_match_pdf(self):
+        names = [f"report_page{i}.png" for i in (1, 2, 3)]
+        self.write_png_evidence(names)
+        receipt = {"sha256": self.manifest["pdf_sha256"],
+                   "publication_state": "prepared_not_published",
+                   "authorization_state": "UNREVIEWED", "qa_state": "PASS"}
+        (self.folder / "artifact_receipt.json").write_text(json.dumps(receipt))
+        capture = (self.folder / names[-1]).read_bytes()
+        (self.folder / "illustration.png").write_bytes(capture)
+        for profile in ("exec", "value-chain-preview"):
+            with self.subTest(profile=profile):
+                self.assertEqual(m.verify(self.folder, profile=profile)["physical_pages"], 3)
+                extra = self.folder / "report_page4.png"
+                extra.write_bytes(capture)
+                try:
+                    with self.assertRaisesRegex(ValueError, "screenshots"):
+                        m.verify(self.folder, profile=profile)
+                finally:
+                    extra.unlink()
+
     def test_incomplete_capture_refused_even_with_matching_hash(self):
         names = ["report_page1.png", "report_page2.png", "report_page3.png"]
         for removed_bytes in (12, 14):

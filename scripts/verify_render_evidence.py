@@ -5,6 +5,7 @@ Mechanical QA is not reader QA, business evidence or committee permission.
 import argparse
 import hashlib
 import json
+import re
 import struct
 import zlib
 from pathlib import Path
@@ -68,8 +69,10 @@ def verify(folder, *, profile):
     if manifest.get("pdf_sha256")!=sha(pdf):
         raise ValueError("PDF changed since manifest")
     pngs=[folder / f"{pdf.stem}_page{page}.png" for page in range(1, 4)]
-    if set(folder.glob("*_page[1-3].png")) != set(pngs):
-        raise ValueError("expected screenshots for pages 1–3 of the same PDF")
+    captures = {path for path in folder.glob("*_page*.png")
+                if re.fullmatch(r".*_page[0-9]+\.png", path.name)}
+    if captures != set(pngs):
+        raise ValueError("expected exactly three screenshots for pages 1–3 of the same PDF")
     for png in pngs:
         check_page_png(png)
     observed=[sha(p) for p in pngs]
