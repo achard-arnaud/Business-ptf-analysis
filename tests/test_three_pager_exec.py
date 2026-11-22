@@ -28,6 +28,27 @@ class ExecContract(unittest.TestCase):
         self.assertEqual(html.count('<section class="page">'), 3)
         self.assertIn('G-C1', checks)
 
+    def test_required_footer_body_must_contain_text(self):
+        for page in ('page1', 'page2', 'page3'):
+            for body in (None, '', ' \t '):
+                with self.subTest(page=page, body=body):
+                    data = copy.deepcopy(BASE)
+                    footer = data[page]['footer']
+                    if body is None:
+                        del footer['body']
+                        field = f"{page}/footer: 'body'"
+                    else:
+                        footer['body'] = body
+                        field = f'{page}/footer/body:'
+                    with self.assertRaisesRegex(CoherenceError, f'^SCHEMA: {field}'):
+                        R(data).build()
+
+    def test_nonblank_conclusion_still_requires_posture(self):
+        data = copy.deepcopy(BASE)
+        data['page3']['footer']['body'] = 'Une conclusion sans la posture attendue.'
+        with self.assertRaisesRegex(CoherenceError, '^G-C4: .*conclusion'):
+            R(data).build()
+
     def test_orphan_reference(self):
         self.mutate(lambda p: p['page2']['primary'][1].pop('themes'))
 

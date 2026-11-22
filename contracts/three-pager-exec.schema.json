@@ -59,7 +59,7 @@
         "footer": {"$ref": "#/$defs/footer"}}}
   },
   "$defs": {
-    "footer": {"type": "object", "required": ["label", "body"], "properties": {"label": {"type": "string", "maxLength": 40}, "body": {"type": "string", "maxLength": 330}}},
+    "footer": {"type": "object", "required": ["label", "body"], "properties": {"label": {"type": "string", "maxLength": 40}, "body": {"type": "string", "maxLength": 330, "pattern": "\\S"}}},
     "activity": {"type": "object", "required": ["name", "stars", "desc", "benefit"],
       "properties": {"name": {"type": "string"}, "stars": {"type": "integer", "minimum": 1, "maximum": 3}, "desc": {"type": "string", "maxLength": 130},
                      "benefit": {"type": "string", "maxLength": 45}, "themes": {"type": "array", "items": {"type": "integer"}}, "transformation": {"enum": ["MT", "LT"]}}}
