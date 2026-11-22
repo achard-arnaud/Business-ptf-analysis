@@ -1,7 +1,8 @@
 import asyncio,copy,importlib.util,json,os,sys,tempfile,unittest
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
-from pypdf import PdfWriter
+from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import Link
 from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
 ROOT=Path(__file__).resolve().parents[1]
@@ -155,6 +156,66 @@ class LandscapeTests(unittest.TestCase):
 
     def test_verify_rejects_missing_pdf_citation_when_its_url_is_used_by_another(self):
         self._verify_citation_fixture('pdf-linked-label')
+
+    @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
+    def test_chromium_pdf_links_preserve_destination_per_text_line(self):
+        from playwright.async_api import async_playwright
+
+        first = 'https://example.invalid/first'
+        second = 'https://example.invalid/second'
+        canonical = [(first,), (first,), (second,)]
+
+        async def check():
+            async with async_playwright() as playwright:
+                browser = await renderer.legacy.launch(playwright)
+                try:
+                    page = await browser.new_page(viewport={'width': 480, 'height': 320})
+                    await page.emulate_media(media='print')
+                    for swapped in (False, True):
+                        with self.subTest(swapped=swapped):
+                            s1, s2 = (second, first) if swapped else (first, second)
+                            await page.set_content(f'''<!DOCTYPE html><style>
+                                @page {{ size: 480px 320px; margin: 0; }}
+                                body {{ margin: 0; font: 20px/32px sans-serif; }}
+                                #s1, #s2 {{ position: absolute; }}
+                                #s1 {{ left: 36px; top: 30px; }}
+                                #s2 {{ left: 180px; top: 190px; }}
+                            </style>
+                            <div id="s1"><a href="{s1}"><span>S1 Long source</span><br>
+                                <span>second line</span></a></div>
+                            <div id="s2"><a href="{s2}"><span>S2 Short source</span></a></div>''')
+                            lines = await page.locator('a').evaluate_all('''anchors => anchors.map(a =>
+                                Array.from(a.querySelectorAll('span'), span =>
+                                    Array.from(span.getClientRects(), r =>
+                                        [r.x + r.width / 2, r.y + r.height / 2])))''')
+                            self.assertEqual([[len(rects) for rects in anchor] for anchor in lines],
+                                             [[1, 1], [1]])
+                            self.assertLess(lines[0][0][0][1], lines[0][1][0][1])
+                            pdf = PdfReader(BytesIO(await page.pdf(prefer_css_page_size=True, scale=1)))
+                            self.assertEqual(len(pdf.pages), 1)
+                            printed = pdf.pages[0]
+                            media = printed.mediabox
+                            sx, sy = float(media.width) / 480, float(media.height) / 320
+                            links = []
+                            for ref in printed.get('/Annots', []):
+                                annotation = ref.get_object()
+                                action = annotation.get('/A', {})
+                                if annotation.get('/Subtype') == '/Link' and action.get('/S') == '/URI':
+                                    links.append((tuple(map(float, annotation['/Rect'])), str(action['/URI'])))
+
+                            # DOM positions run down from the top; PDF points run up from the bottom.
+                            found = []
+                            for anchor in lines:
+                                for [(css_x, css_y)] in anchor:
+                                    x = float(media.left) + sx * css_x
+                                    y = float(media.top) - sy * css_y
+                                    found.append(tuple(uri for (left, bottom, right, top), uri in links
+                                                       if left < x < right and bottom < y < top))
+                            self.assertEqual(found, [(second,), (second,), (first,)] if swapped else canonical)
+                finally:
+                    await browser.close()
+
+        asyncio.run(check())
 
     @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
     def test_landscape_overflow_is_rejected(self):
