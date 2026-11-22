@@ -128,10 +128,13 @@ BUILDERS=[page_understand,page_transmit,page_diagnose,page_integrate,page_value,
 def supplied_source_label(source_id):
     return f'{source_id} Corpus fourni'
 
+def linked_source_label(source):
+    return source['id'] + ' ' + source['title'].split(' — ')[0]
+
 def scaffold(data):
     sources={x['id']:x for x in data['sources']};pages=[]
     for i,(page,builder) in enumerate(zip(data['pages'],BUILDERS),1):
-        src=' · '.join('<a href="'+h(sources[k]['url'])+'">'+h(k+' '+sources[k]['title'].split(' — ')[0])+'</a>' if sources[k]['url'] else h(supplied_source_label(k)) for k in page['source_ids'])
+        src=' · '.join('<a href="'+h(sources[k]['url'])+'">'+h(linked_source_label(sources[k]))+'</a>' if sources[k]['url'] else h(supplied_source_label(k)) for k in page['source_ids'])
         pages.append('<section class="page p'+str(i)+'" data-no-overflow aria-label="'+h(f'Page {i} : {page["title"]}')+'"><header><div class="eyebrow">POUR ALLER PLUS LOIN <span>IA EN ENTREPRISE · '+h(data['title'].upper())+' · '+str(i)+' / 6</span></div><h1>'+h(page['title'])+'</h1><p class="page-lead">'+h(page['lead'])+'</p></header><main data-no-overflow>'+builder(page['content'])+'</main><aside class="takeaway">'+md('**À retenir →** '+page['takeaway'])+'</aside><footer><div>'+src+'</div><b>'+h(data['title'].upper())+' · '+str(i)+' / 6</b></footer></section>')
     template=(HERE/'landscape.html').read_text();return template.replace('{{TITLE}}',h(data['title'])).replace('{{PAGES}}',''.join(pages))
 
@@ -196,21 +199,14 @@ async def render(source,out):
 def verify_pdf_sources(pdf, sheet):
     from pypdf.generic import ArrayObject, DictionaryObject
 
-    source_urls = {source['id']: source['url'] for source in sheet['sources']}
+    sources = {source['id']: source for source in sheet['sources']}
     for number, (page, spec) in enumerate(zip(pdf.pages, sheet['pages']), 1):
-        unlinked = [key for key in spec['source_ids'] if not source_urls[key]]
-        if unlinked:
-            text = ' '.join((page.extract_text() or '').split())
-            for key in unlinked:
-                label = re.escape(supplied_source_label(key))
-                if not re.search(r'(?<!\w)' + label + r'(?!\w)', text):
-                    raise ValueError(f'PDF page {number} is missing source label {key}')
-        required = {key: source_urls[key] for key in spec['source_ids'] if source_urls[key]}
-        if not required:
+        if not spec['source_ids']:
             continue
+        required = {key: sources[key]['url'] for key in spec['source_ids'] if sources[key]['url']}
         targets = set()
         annotations = page.get('/Annots')
-        if annotations is not None and isinstance(annotations.get_object(), ArrayObject):
+        if required and annotations is not None and isinstance(annotations.get_object(), ArrayObject):
             for reference in annotations.get_object():
                 link = reference.get_object()
                 if not isinstance(link, DictionaryObject) or link.get('/Subtype') != '/Link':
@@ -224,6 +220,12 @@ def verify_pdf_sources(pdf, sheet):
         for key, url in required.items():
             if url not in targets:
                 raise ValueError(f'PDF page {number} is missing source link {key}')
+        text = ' '.join((page.extract_text() or '').split())
+        for key in spec['source_ids']:
+            label = linked_source_label(sources[key]) if key in required else supplied_source_label(key)
+            pattern = re.escape(' '.join(label.split()))
+            if not re.search(r'(?<!\w)' + pattern + r'(?!\w)', text):
+                raise ValueError(f'PDF page {number} is missing source label {key}')
 
 def verify(source,out):
     from pypdf import PdfReader

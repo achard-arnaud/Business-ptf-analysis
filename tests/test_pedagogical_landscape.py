@@ -57,10 +57,12 @@ class LandscapeTests(unittest.TestCase):
                 'sources': [{'id': 'S1', 'url': url, 'title': 'Synthetic source',
                              'locator': 'Section 1', 'status': 'source'},
                             {'id': 'S2', 'url': '', 'title': 'Provided corpus',
-                             'locator': 'Section 2', 'status': 'source'}],
+                             'locator': 'Section 2', 'status': 'source'},
+                            {'id': 'S3', 'url': url, 'title': 'Same report — second section',
+                             'locator': 'Section 3', 'status': 'source'}],
                 'pages': [{'title': f'Section {index+1}', 'lead': 'Synthetic lead',
                            'content': {}, 'kind': 'understand', 'takeaway': 'Synthetic takeaway',
-                           'source_ids': ['S1', 'S2'] if index in (0, 2) else []}
+                           'source_ids': ['S1', 'S2', 'S3'] if index in (0, 2) else []}
                           for index in range(6)],
             }
             source = root / 'sheet.json'
@@ -79,20 +81,28 @@ class LandscapeTests(unittest.TestCase):
             (out / 'fiche.md').write_text(expected_markdown)
             for n in range(1, 7):
                 (out / f'page-{n:02d}.png').write_bytes(b'screenshot placeholder')
-            def write_pdf(link_pages, label_pages=(0, 2)):
+            def write_pdf(link_pages, label_pages=(0, 2), second_citation_pages=(0, 2)):
                 pdf = PdfWriter()
                 for _ in range(6):
                     pdf.add_blank_page(width=842, height=595)
                 for index in link_pages:
                     pdf.add_annotation(page_number=index, annotation=Link(rect=(10, 10, 80, 30), url=url))
-                for index in label_pages:
+                for index in set(label_pages) | set(link_pages):
                     page = pdf.pages[index]
                     names = NameObject
                     page[names('/Resources')] = DictionaryObject({names('/Font'): DictionaryObject({
                         names('/F1'): DictionaryObject({names('/Type'): names('/Font'),
                             names('/Subtype'): names('/Type1'), names('/BaseFont'): names('/Helvetica')})})})
                     stream = DecodedStreamObject()
-                    stream.set_data(b'BT /F1 12 Tf 30 35 Td (S2 Corpus) Tj 0 -14 Td (fourni) Tj ET')
+                    text_rows = []
+                    if index in link_pages:
+                        text_rows.append(b'S1 Synthetic source')
+                        if index in second_citation_pages:
+                            text_rows.extend([b'S3 Same', b'report'])
+                            pdf.add_annotation(page_number=index, annotation=Link(rect=(90, 10, 180, 30), url=url))
+                    if index in label_pages:
+                        text_rows.extend([b'S2 Corpus', b'fourni'])
+                    stream.set_data(b'BT /F1 12 Tf 30 135 Td (' + b') Tj 0 -14 Td ('.join(text_rows) + b') Tj ET')
                     page.replace_contents(stream)
                 pdf.write(out / 'fiche.pdf')
 
@@ -121,6 +131,9 @@ class LandscapeTests(unittest.TestCase):
                                          if line.startswith('- **S1** '))
                     (out / 'fiche.md').write_text(expected_markdown.replace(citation_line, '', 1))
                     message = 'Markdown does not match canonical sheet'
+                elif missing_from == 'pdf-linked-label':
+                    write_pdf((0, 2), second_citation_pages=(2,))
+                    message = 'PDF page 1 is missing source label S3'
                 else:
                     write_pdf((0, 2), label_pages=(2,))
                     message = 'PDF page 1 is missing source label S2'
@@ -139,6 +152,9 @@ class LandscapeTests(unittest.TestCase):
 
     def test_verify_rejects_missing_unlinked_pdf_source_even_with_matching_hash(self):
         self._verify_citation_fixture('pdf-text')
+
+    def test_verify_rejects_missing_pdf_citation_when_its_url_is_used_by_another(self):
+        self._verify_citation_fixture('pdf-linked-label')
 
     @unittest.skipUnless(os.environ.get('PEDAGOGICAL_BROWSER_TEST')=='1','real browser enabled by CI')
     def test_landscape_overflow_is_rejected(self):
