@@ -7,7 +7,9 @@ import hashlib
 import json
 import re
 import struct
+import unicodedata
 import zlib
+from html.parser import HTMLParser
 from pathlib import Path
 from pypdf import PdfReader
 
@@ -48,7 +50,76 @@ def check_page_png(path):
         offset = end
     raise ValueError(f"{path.name}: missing PNG termination (IEND)")
 
-def verify(folder, *, profile):
+class ExecSecondPageFooter(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.pages = 0
+        self.sections = []
+        self.divs = []
+        self.bodies = []
+
+    def handle_starttag(self, tag, attrs):
+        classes = (dict(attrs).get("class") or "").split()
+        if tag == "section":
+            is_page = "page" in classes
+            if is_page:
+                self.pages += 1
+            self.sections.append(self.pages if is_page else None)
+        elif tag == "div":
+            body = None
+            if (2 in self.sections and "footer-body" in classes
+                    and any("footer-strip" in ancestor for ancestor, _ in self.divs)):
+                body = []
+                self.bodies.append(body)
+            self.divs.append((classes, body))
+
+    def handle_endtag(self, tag):
+        if tag == "section" and self.sections:
+            self.sections.pop()
+        elif tag == "div" and self.divs:
+            self.divs.pop()
+
+    def handle_data(self, data):
+        if 2 in self.sections:
+            for _, body in reversed(self.divs):
+                if body is not None:
+                    body.append(data)
+                    break
+
+
+def plain_text(value):
+    return " ".join(unicodedata.normalize("NFKC", value).split())
+
+
+def verify_exec_second_page_footer(payload_path, manifest, pdf, page):
+    raw = Path(payload_path).read_bytes()
+    if manifest.get("payload_sha256") != hashlib.sha256(raw).hexdigest():
+        raise ValueError("exec payload does not match render manifest")
+    payload = json.loads(raw)
+    try:
+        body = payload["page2"]["footer"]["body"]
+        body = re.sub(r"\{([a-z0-9_]+)\}",
+                      lambda match: payload["figures"][match[1]]["value"], body)
+        expected = plain_text(re.sub(r"\*\*(.+?)\*\*", r"\1", body))
+    except (KeyError, TypeError) as err:
+        raise ValueError("exec payload is missing the page 2 footer or its figure") from err
+    if not expected:
+        raise ValueError("exec payload has a blank page 2 footer")
+    html = pdf.with_suffix(".html")
+    if not html.is_file():
+        raise ValueError("exec HTML page 2 evidence missing")
+    witness = ExecSecondPageFooter()
+    witness.feed(html.read_text(encoding="utf-8"))
+    witness.close()
+    if witness.pages != 3 or [plain_text("".join(body)) for body in witness.bodies] != [expected]:
+        raise ValueError("exec HTML page 2 footer differs from payload")
+    if expected not in plain_text(page.extract_text()):
+        raise ValueError("exec PDF page 2 footer differs from payload")
+
+
+def verify(folder, *, profile, exec_payload=None):
+    if exec_payload is not None and profile != "exec":
+        raise ValueError("exec payload comparison needs the exec profile")
     folder=Path(folder)
     manifest=json.loads((folder/"render_manifest.json").read_text(encoding="utf-8"))
     report_path=folder/"qa.json"
@@ -64,7 +135,8 @@ def verify(folder, *, profile):
     if len(pdfs)!=1:
         raise ValueError("expected exactly one PDF")
     pdf=pdfs[0]
-    if len(PdfReader(str(pdf)).pages)!=3:
+    pages = PdfReader(str(pdf)).pages
+    if len(pages)!=3:
         raise ValueError("PDF physical page count != 3")
     if manifest.get("pdf_sha256")!=sha(pdf):
         raise ValueError("PDF changed since manifest")
@@ -89,13 +161,18 @@ def verify(folder, *, profile):
             raise ValueError("exec not in manual-review-pending layout-pass state")
     else:
         raise ValueError("unknown rendering profile")
-    return {"status":"AUTOMATED_LAYOUT_PASS_READER_PENDING","profile":profile,
-            "physical_pages":3,"pngs":3,"pdf_sha256":sha(pdf),"committee_authorized":False}
+    result = {"status":"AUTOMATED_LAYOUT_PASS_READER_PENDING","profile":profile,
+              "physical_pages":3,"pngs":3,"pdf_sha256":sha(pdf),"committee_authorized":False}
+    if exec_payload is not None:
+        verify_exec_second_page_footer(exec_payload, manifest, pdf, pages[1])
+        result["exec_footer_page2"] = "PASS"
+    return result
 
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()
     p.add_argument("folder",type=Path)
     p.add_argument("--profile",choices=("exec","value-chain-preview"),required=True)
+    p.add_argument("--exec-payload", type=Path, help="Optional exec page 2 footer check against the exact rendered payload")
     a=p.parse_args()
-    print(json.dumps(verify(a.folder,profile=a.profile),ensure_ascii=False))
+    print(json.dumps(verify(a.folder,profile=a.profile,exec_payload=a.exec_payload),ensure_ascii=False))

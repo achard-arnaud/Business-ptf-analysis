@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from pypdf import PdfWriter
+from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
 
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location("rendercheck",ROOT/"scripts/verify_render_evidence.py")
@@ -139,6 +140,58 @@ class RenderEvidenceTests(unittest.TestCase):
         self.manifest["pdf_sha256"]=m.sha(self.folder/"report.pdf")
         (self.folder/"render_manifest.json").write_text(json.dumps(self.manifest))
         self.fails()
+
+    def write_exec_witness(self, *, html_footer=True, pdf_page=2):
+        self.write_png_evidence([f"report_page{i}.png" for i in range(1, 4)])
+        payload = self.folder / "payload.json"
+        payload.write_text(json.dumps({
+            "figures": {"value": {"value": "17"}},
+            "page2": {"footer": {"body": "Required **margin**: {value} & stable."}},
+        }), encoding="utf-8")
+        self.manifest["payload_sha256"] = m.sha(payload)
+        footer = "Required <b>margin</b>: 17 &amp; stable." if html_footer else ""
+        (self.folder / "report.html").write_text(
+            '<section class="page"></section><section class="page">'
+            '<div class="footer-strip"><div class="footer-body">'
+            + footer + '</div></div></section><section class="page"></section>',
+            encoding="utf-8")
+        pdf = PdfWriter()
+        for i in range(1, 4):
+            page = pdf.add_blank_page(width=842, height=595)
+            if i == pdf_page:
+                font = DictionaryObject({NameObject("/Type"): NameObject("/Font"),
+                                         NameObject("/Subtype"): NameObject("/Type1"),
+                                         NameObject("/BaseFont"): NameObject("/Helvetica")})
+                page[NameObject("/Resources")] = DictionaryObject({
+                    NameObject("/Font"): DictionaryObject({NameObject("/F1"): font})})
+                stream = DecodedStreamObject()
+                stream.set_data(b"BT /F1 12 Tf 50 50 Td (Required margin: 17 & stable.) Tj ET")
+                page[NameObject("/Contents")] = pdf._add_object(stream)
+        with (self.folder / "report.pdf").open("wb") as out:
+            pdf.write(out)
+        self.manifest["pdf_sha256"] = m.sha(self.folder / "report.pdf")
+        (self.folder / "render_manifest.json").write_text(json.dumps(self.manifest))
+        return payload
+
+    def test_exec_footer_checks_both_formats_on_page_two(self):
+        payload = self.write_exec_witness()
+        result = m.verify(self.folder, profile="exec", exec_payload=payload)
+        self.assertEqual(result["exec_footer_page2"], "PASS")
+        self.assertFalse(result["committee_authorized"])
+
+    def test_exec_footer_missing_or_on_wrong_pdf_page(self):
+        for html_footer, pdf_page, output in ((False, 2, "HTML"), (True, 1, "PDF"), (True, 0, "PDF")):
+            with self.subTest(output=output, pdf_page=pdf_page):
+                payload = self.write_exec_witness(html_footer=html_footer, pdf_page=pdf_page)
+                self.assertNotIn("exec_footer_page2", m.verify(self.folder, profile="exec"))
+                with self.assertRaisesRegex(ValueError, f"{output} page 2"):
+                    m.verify(self.folder, profile="exec", exec_payload=payload)
+
+    def test_exec_footer_refuses_unbound_payload(self):
+        payload = self.write_exec_witness()
+        payload.write_text(payload.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "payload.*manifest"):
+            m.verify(self.folder, profile="exec", exec_payload=payload)
 
 
 if __name__=="__main__":
