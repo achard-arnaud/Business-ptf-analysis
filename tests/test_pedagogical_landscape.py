@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import Link
-from pypdf.generic import ArrayObject, DecodedStreamObject, DictionaryObject, NameObject, TextStringObject
+from pypdf.generic import ArrayObject, ContentStream, DecodedStreamObject, DictionaryObject, NameObject, TextStringObject
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'renderers/pedagogical'))
 import landscape as renderer
@@ -34,8 +34,10 @@ def tagged_fixture_links(pdf_bytes):
                 yield from nodes(obj['/K'])
 
     def marked_text(mcids):
-        page = PdfWriter(clone_from=BytesIO(pdf_bytes)).pages[0]
-        content = page.get_contents()
+        writer = PdfWriter(clone_from=BytesIO(pdf_bytes))
+        page = writer.pages[0]
+        # Keep font-encoded bytes intact while filtering text-show operators.
+        content = ContentStream(page.get_contents(), writer, 'bytes')
         stack = []
         selected = []
         for operands, operator in content.operations:
