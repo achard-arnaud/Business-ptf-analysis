@@ -237,6 +237,34 @@ class RenderEvidenceTests(unittest.TestCase):
         self.assertEqual([result[f"exec_source_line_page{i}"] for i in range(1, 4)],
                          ["PASS", "PASS", "PASS"])
 
+    def test_exec_source_line_cannot_come_only_from_script_or_style(self):
+        payload = self.write_exec_witness(source_lines=True)
+        html = self.folder / "report.html"
+        original = html.read_text(encoding="utf-8")
+        body = "Sources: edition 2."
+        line = f'<div class="source-line">{body}</div>'
+        self.assertEqual(original.count(line), 1)
+        for opening, closing in (('<script type="text/plain">', "</script>"),
+                                 ("<style>", "</style>")):
+            with self.subTest(tag=opening):
+                hidden = line.replace(body, opening + body + closing)
+                html.write_text(original.replace(line, hidden), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "exec HTML page 2 source line differs from payload"):
+                    m.verify(self.folder, profile="exec", exec_payload=payload, exec_source_lines=True)
+
+    def test_exec_source_line_preserves_visible_text_when_raw_blocks_are_present(self):
+        payload = self.write_exec_witness(source_lines=True)
+        html = self.folder / "report.html"
+        original = html.read_text(encoding="utf-8")
+        line = '<div class="source-line">Sources: edition 2.</div>'
+        self.assertEqual(original.count(line), 1)
+        blocks = ('<script type="application/json">{"description":"Metadata."}</script>'
+                  '<style>.commentary{color:black}</style>')
+        html.write_text(original.replace(line, line.replace("edition", blocks + "edition")), encoding="utf-8")
+        result = m.verify(self.folder, profile="exec", exec_payload=payload, exec_source_lines=True)
+        self.assertEqual([result[f"exec_source_line_page{i}"] for i in range(1, 4)],
+                         ["PASS", "PASS", "PASS"])
+
     def test_exec_footer_checks_both_formats_on_page_two(self):
         payload = self.write_exec_witness()
         result = m.verify(self.folder, profile="exec", exec_payload=payload)
