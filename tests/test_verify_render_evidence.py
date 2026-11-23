@@ -141,31 +141,40 @@ class RenderEvidenceTests(unittest.TestCase):
         (self.folder/"render_manifest.json").write_text(json.dumps(self.manifest))
         self.fails()
 
-    def write_exec_witness(self, *, html_footer=True, pdf_page=2):
+    def write_exec_witness(self, *, html_footer=True, pdf_page=2, all_pages=False,
+                           missing_pdf_page=None):
         self.write_png_evidence([f"report_page{i}.png" for i in range(1, 4)])
         payload = self.folder / "payload.json"
-        payload.write_text(json.dumps({
+        data = {
             "figures": {"value": {"value": "17"}},
             "page2": {"footer": {"body": "Required **margin**: {value} & stable."}},
-        }), encoding="utf-8")
+        }
+        html_footers = {2: "Required <b>margin</b>: 17 &amp; stable." if html_footer else ""}
+        pdf_footers = {pdf_page: b"(Required margin: 17 & stable.) Tj"}
+        if all_pages:
+            data["page1"] = {"footer": {"body": "Opening footer."}}
+            data["page3"] = {"footer": {"body": "Closing footer."}}
+            html_footers.update({1: "Opening footer.", 3: "Closing footer."})
+            pdf_footers.update({1: b"(Opening footer.) Tj", 3: b"(Closing footer.) Tj"})
+        pdf_footers.pop(missing_pdf_page, None)
+        payload.write_text(json.dumps(data), encoding="utf-8")
         self.manifest["payload_sha256"] = m.sha(payload)
-        footer = "Required <b>margin</b>: 17 &amp; stable." if html_footer else ""
         (self.folder / "report.html").write_text(
-            '<section class="page"></section><section class="page">'
-            '<div class="footer-strip"><div class="footer-body">'
-            + footer + '</div></div></section><section class="page"></section>',
+            "".join('<section class="page"><div class="footer-strip">'
+                    f'<div class="footer-body">{html_footers.get(i, "")}</div>'
+                    '</div></section>' for i in range(1, 4)),
             encoding="utf-8")
         pdf = PdfWriter()
         for i in range(1, 4):
             page = pdf.add_blank_page(width=842, height=595)
-            if i == pdf_page:
+            if i in pdf_footers:
                 font = DictionaryObject({NameObject("/Type"): NameObject("/Font"),
                                          NameObject("/Subtype"): NameObject("/Type1"),
                                          NameObject("/BaseFont"): NameObject("/Helvetica")})
                 page[NameObject("/Resources")] = DictionaryObject({
                     NameObject("/Font"): DictionaryObject({NameObject("/F1"): font})})
                 stream = DecodedStreamObject()
-                stream.set_data(b"BT /F1 12 Tf 50 50 Td (Required margin: 17 & stable.) Tj ET")
+                stream.set_data(b"BT /F1 12 Tf 50 50 Td " + pdf_footers[i] + b" ET")
                 page[NameObject("/Contents")] = pdf._add_object(stream)
         with (self.folder / "report.pdf").open("wb") as out:
             pdf.write(out)
@@ -192,6 +201,28 @@ class RenderEvidenceTests(unittest.TestCase):
         payload.write_text(payload.read_text(encoding="utf-8") + "\n", encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "payload.*manifest"):
             m.verify(self.folder, profile="exec", exec_payload=payload)
+
+    def test_all_exec_footers_report_each_page(self):
+        payload = self.write_exec_witness(all_pages=True)
+        result = m.verify(self.folder, profile="exec", exec_payload=payload, all_exec_footers=True)
+        self.assertEqual([result[f"exec_footer_page{i}"] for i in range(1, 4)], ["PASS"] * 3)
+
+    def test_all_exec_footers_reject_missing_first_or_last_pdf_page_text(self):
+        for i in (1, 3):
+            with self.subTest(page=i):
+                payload = self.write_exec_witness(all_pages=True, missing_pdf_page=i)
+                self.assertEqual(m.verify(self.folder, profile="exec", exec_payload=payload)["exec_footer_page2"],
+                                 "PASS")
+                with self.assertRaisesRegex(ValueError, f"PDF page {i}"):
+                    m.verify(self.folder, profile="exec", exec_payload=payload, all_exec_footers=True)
+
+    def test_all_exec_footers_reject_duplicate_html_slot(self):
+        payload = self.write_exec_witness(all_pages=True)
+        html = self.folder / "report.html"
+        footer = '<div class="footer-body">Closing footer.</div>'
+        html.write_text(html.read_text(encoding="utf-8").replace(footer, 2 * footer), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "HTML page 3"):
+            m.verify(self.folder, profile="exec", exec_payload=payload, all_exec_footers=True)
 
 
 if __name__=="__main__":

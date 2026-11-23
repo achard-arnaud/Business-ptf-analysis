@@ -50,13 +50,16 @@ def check_page_png(path):
         offset = end
     raise ValueError(f"{path.name}: missing PNG termination (IEND)")
 
-class ExecSecondPageFooter(HTMLParser):
+class ExecFooters(HTMLParser):
     def __init__(self):
         super().__init__()
         self.pages = 0
         self.sections = []
         self.divs = []
-        self.bodies = []
+        self.bodies = {}
+
+    def current_page(self):
+        return next((page for page in reversed(self.sections) if page is not None), None)
 
     def handle_starttag(self, tag, attrs):
         classes = (dict(attrs).get("class") or "").split()
@@ -67,10 +70,11 @@ class ExecSecondPageFooter(HTMLParser):
             self.sections.append(self.pages if is_page else None)
         elif tag == "div":
             body = None
-            if (2 in self.sections and "footer-body" in classes
+            page = self.current_page()
+            if (page is not None and "footer-body" in classes
                     and any("footer-strip" in ancestor for ancestor, _ in self.divs)):
                 body = []
-                self.bodies.append(body)
+                self.bodies.setdefault(page, []).append(body)
             self.divs.append((classes, body))
 
     def handle_endtag(self, tag):
@@ -80,7 +84,7 @@ class ExecSecondPageFooter(HTMLParser):
             self.divs.pop()
 
     def handle_data(self, data):
-        if 2 in self.sections:
+        if self.current_page() is not None:
             for _, body in reversed(self.divs):
                 if body is not None:
                     body.append(data)
@@ -91,33 +95,51 @@ def plain_text(value):
     return " ".join(unicodedata.normalize("NFKC", value).split())
 
 
-def verify_exec_second_page_footer(payload_path, manifest, pdf, page):
+def expected_exec_footer(payload, number):
+    try:
+        body = payload[f"page{number}"]["footer"]["body"]
+        body = re.sub(r"\{([a-z0-9_]+)\}",
+                      lambda match: payload["figures"][match[1]]["value"], body)
+        text = plain_text(re.sub(r"\*\*(.+?)\*\*", r"\1", body))
+    except (KeyError, TypeError) as err:
+        raise ValueError(f"exec payload is missing the page {number} footer or its figure") from err
+    if not text:
+        raise ValueError(f"exec payload has a blank page {number} footer")
+    return text
+
+
+def verify_exec_footers(payload_path, manifest, pdf, pages, *, all_pages):
     raw = Path(payload_path).read_bytes()
     if manifest.get("payload_sha256") != hashlib.sha256(raw).hexdigest():
         raise ValueError("exec payload does not match render manifest")
     payload = json.loads(raw)
-    try:
-        body = payload["page2"]["footer"]["body"]
-        body = re.sub(r"\{([a-z0-9_]+)\}",
-                      lambda match: payload["figures"][match[1]]["value"], body)
-        expected = plain_text(re.sub(r"\*\*(.+?)\*\*", r"\1", body))
-    except (KeyError, TypeError) as err:
-        raise ValueError("exec payload is missing the page 2 footer or its figure") from err
-    if not expected:
-        raise ValueError("exec payload has a blank page 2 footer")
     html = pdf.with_suffix(".html")
     if not html.is_file():
-        raise ValueError("exec HTML page 2 evidence missing")
-    witness = ExecSecondPageFooter()
+        raise ValueError("exec HTML evidence missing")
+    witness = ExecFooters()
     witness.feed(html.read_text(encoding="utf-8"))
     witness.close()
-    if witness.pages != 3 or [plain_text("".join(body)) for body in witness.bodies] != [expected]:
-        raise ValueError("exec HTML page 2 footer differs from payload")
-    if expected not in plain_text(page.extract_text()):
-        raise ValueError("exec PDF page 2 footer differs from payload")
+    if witness.pages != 3:
+        raise ValueError("exec HTML evidence must contain exactly three pages")
+    result = {}
+    for number in (1, 2, 3) if all_pages else (2,):
+        expected = expected_exec_footer(payload, number)
+        html_bodies = [plain_text("".join(body)) for body in witness.bodies.get(number, [])]
+        if html_bodies != [expected]:
+            raise ValueError(f"exec HTML page {number} footer differs from payload")
+        page = pages[number - 1]
+        if expected not in plain_text(page.extract_text()):
+            # Positioned glyphs can lose an inter-word space in plain extraction.
+            # Keep the established page-2 check unchanged unless all pages were requested.
+            if not all_pages or expected not in plain_text(page.extract_text(extraction_mode="layout")):
+                raise ValueError(f"exec PDF page {number} footer differs from payload")
+        result[f"exec_footer_page{number}"] = "PASS"
+    return result
 
 
-def verify(folder, *, profile, exec_payload=None):
+def verify(folder, *, profile, exec_payload=None, all_exec_footers=False):
+    if all_exec_footers and exec_payload is None:
+        raise ValueError("all exec footers comparison needs an exec payload")
     if exec_payload is not None and profile != "exec":
         raise ValueError("exec payload comparison needs the exec profile")
     folder=Path(folder)
@@ -164,8 +186,7 @@ def verify(folder, *, profile, exec_payload=None):
     result = {"status":"AUTOMATED_LAYOUT_PASS_READER_PENDING","profile":profile,
               "physical_pages":3,"pngs":3,"pdf_sha256":sha(pdf),"committee_authorized":False}
     if exec_payload is not None:
-        verify_exec_second_page_footer(exec_payload, manifest, pdf, pages[1])
-        result["exec_footer_page2"] = "PASS"
+        result.update(verify_exec_footers(exec_payload, manifest, pdf, pages, all_pages=all_exec_footers))
     return result
 
 
@@ -174,5 +195,10 @@ if __name__=="__main__":
     p.add_argument("folder",type=Path)
     p.add_argument("--profile",choices=("exec","value-chain-preview"),required=True)
     p.add_argument("--exec-payload", type=Path, help="Optional exec page 2 footer check against the exact rendered payload")
+    p.add_argument("--all-exec-footers", action="store_true",
+                   help="With --exec-payload, check all three exec footer bodies")
     a=p.parse_args()
-    print(json.dumps(verify(a.folder,profile=a.profile,exec_payload=a.exec_payload),ensure_ascii=False))
+    if a.all_exec_footers and a.exec_payload is None:
+        p.error("--all-exec-footers requires --exec-payload")
+    print(json.dumps(verify(a.folder, profile=a.profile, exec_payload=a.exec_payload,
+                            all_exec_footers=a.all_exec_footers), ensure_ascii=False))
