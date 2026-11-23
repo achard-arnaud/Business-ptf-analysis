@@ -14,6 +14,13 @@ from pathlib import Path
 from pypdf import PdfReader
 
 ISSUE_KEYS=("overlaps","overflows","out_of_bounds","small_fonts","low_padding")
+PNG_DEPTHS_BY_COLOR_TYPE = {
+    0: (1, 2, 4, 8, 16),  # Greyscale
+    2: (8, 16),           # Truecolour
+    3: (1, 2, 4, 8),      # Indexed-colour
+    4: (8, 16),           # Greyscale with alpha
+    6: (8, 16),           # Truecolour with alpha
+}
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
@@ -44,7 +51,12 @@ def check_page_png(path):
         raise ValueError(f"{path.name}: invalid page PNG signature or header")
     if struct.unpack_from(">I", raw, 8)[0] != 13 or raw[12:16] != b"IHDR":
         raise ValueError(f"{path.name}: invalid PNG image header")
-    width, height = struct.unpack_from(">II", raw, 16)
+    width, height, depth, color_type, compression, filtering, interlace = struct.unpack_from(
+        ">IIBBBBB", raw, 16
+    )
+    if (depth not in PNG_DEPTHS_BY_COLOR_TYPE.get(color_type, ())
+            or compression != 0 or filtering != 0 or interlace not in (0, 1)):
+        raise ValueError(f"{path.name}: invalid PNG image header fields")
     if width < 800 or height < 500:
         raise ValueError(f"{path.name}: page PNG dimensions too small")
 

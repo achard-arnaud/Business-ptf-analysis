@@ -116,6 +116,32 @@ class RenderEvidenceTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, rf"report_page2\.png: .*{chunk.decode()}.*CRC"):
                     m.verify(self.folder, profile="exec")
 
+    def test_invalid_png_header_refused_even_with_matching_checksums(self):
+        names = [f"report_page{i}.png" for i in (1, 2, 3)]
+        self.write_png_evidence(names)
+        page = self.folder / names[1]
+        original = page.read_bytes()
+        self.assertEqual(m.verify(self.folder, profile="exec")["physical_pages"], 3)
+        for label, offset, value in (
+            ("unknown colour type", 25, 7),
+            ("illegal depth for greyscale", 24, 3),
+            ("illegal depth for truecolour", 24, 4),
+            ("unknown compression", 26, 1),
+            ("unknown filter", 27, 1),
+            ("unknown interlace", 28, 2),
+        ):
+            with self.subTest(label=label):
+                data = bytearray(original)
+                data[offset] = value
+                if label == "illegal depth for truecolour":
+                    data[25] = 2
+                struct.pack_into(">I", data, 29, zlib.crc32(data[12:29]))
+                page.write_bytes(data)
+                self.manifest["png_sha256"][1] = m.sha(page)
+                (self.folder / "render_manifest.json").write_text(json.dumps(self.manifest))
+                with self.assertRaisesRegex(ValueError, r"report_page2\.png: invalid PNG image header"):
+                    m.verify(self.folder, profile="exec")
+
     def test_manipulated_pdf_refused(self):
         self.manifest["pdf_sha256"]="a"*64
         (self.folder/"render_manifest.json").write_text(json.dumps(self.manifest))
