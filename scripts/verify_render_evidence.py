@@ -62,11 +62,16 @@ class ExecPageText(HTMLParser):
         self.page_one_cards = []
         self.card_part = None
         self.in_take_label = False
+        self.template_depth = 0
 
     def current_page(self):
         return next((page for page in reversed(self.sections) if page is not None), None)
 
     def handle_starttag(self, tag, attrs):
+        if tag == "template":
+            self.template_depth += 1
+        if self.template_depth:
+            return
         classes = (dict(attrs).get("class") or "").split()
         if tag == "section":
             is_page = "page" in classes
@@ -107,6 +112,10 @@ class ExecPageText(HTMLParser):
                 self.in_take_label = True
 
     def handle_endtag(self, tag):
+        if self.template_depth:
+            if tag == "template":
+                self.template_depth -= 1
+            return
         if tag == "b" and self.in_take_label:
             self.in_take_label = False
         if self.card_part and tag == self.card_part[0]:
@@ -120,6 +129,8 @@ class ExecPageText(HTMLParser):
             self.divs.pop()
 
     def handle_data(self, data):
+        if self.template_depth:
+            return
         if self.card_part and not self.in_take_label:
             self.card_part[1].append(data)
         if self.current_page() is not None:

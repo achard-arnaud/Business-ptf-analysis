@@ -217,6 +217,26 @@ class RenderEvidenceTests(unittest.TestCase):
         (self.folder / "render_manifest.json").write_text(json.dumps(self.manifest))
         return payload
 
+    def test_exec_source_line_must_be_outside_inert_template(self):
+        payload = self.write_exec_witness(source_lines=True)
+        html = self.folder / "report.html"
+        original = html.read_text(encoding="utf-8")
+        line = '<div class="source-line">Sources: edition 2.</div>'
+        self.assertEqual(original.count(line), 1)
+        for start, end in (("<template>", "</template>"),
+                           ("<template><template></template>", "</template>")):
+            with self.subTest(template=start):
+                html.write_text(original.replace(line, start + line + end), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "exec HTML page 2 source line differs from payload"):
+                    m.verify(self.folder, profile="exec", exec_payload=payload, exec_source_lines=True)
+
+        # An inert page must not change active page numbering or duplicate its sources.
+        inert_page = '<template><section class="page">' + line + '</section></template>'
+        html.write_text(inert_page + original, encoding="utf-8")
+        result = m.verify(self.folder, profile="exec", exec_payload=payload, exec_source_lines=True)
+        self.assertEqual([result[f"exec_source_line_page{i}"] for i in range(1, 4)],
+                         ["PASS", "PASS", "PASS"])
+
     def test_exec_footer_checks_both_formats_on_page_two(self):
         payload = self.write_exec_witness()
         result = m.verify(self.folder, profile="exec", exec_payload=payload)
