@@ -142,7 +142,7 @@ class RenderEvidenceTests(unittest.TestCase):
         self.fails()
 
     def write_exec_witness(self, *, html_footer=True, pdf_page=2, all_pages=False,
-                           missing_pdf_page=None):
+                           missing_pdf_page=None, source_lines=False, moved_pdf_source=None):
         self.write_png_evidence([f"report_page{i}.png" for i in range(1, 4)])
         payload = self.folder / "payload.json"
         data = {
@@ -157,12 +157,21 @@ class RenderEvidenceTests(unittest.TestCase):
             html_footers.update({1: "Opening footer.", 3: "Closing footer."})
             pdf_footers.update({1: b"(Opening footer.) Tj", 3: b"(Closing footer.) Tj"})
         pdf_footers.pop(missing_pdf_page, None)
+        sources = {}
+        if source_lines:
+            for i in range(1, 4):
+                sources[i] = f"Sources: edition {i}."
+                data.setdefault(f"page{i}", {})["sources"] = sources[i]
+                pdf_slot = 2 if i == moved_pdf_source else i
+                pdf_footers[pdf_slot] = (pdf_footers.get(pdf_slot, b"")
+                                         + f" 0 -20 Td ({sources[i]}) Tj".encode("ascii"))
         payload.write_text(json.dumps(data), encoding="utf-8")
         self.manifest["payload_sha256"] = m.sha(payload)
         (self.folder / "report.html").write_text(
             "".join('<section class="page"><div class="footer-strip">'
                     f'<div class="footer-body">{html_footers.get(i, "")}</div>'
-                    '</div></section>' for i in range(1, 4)),
+                    f'</div><div class="source-line">{sources.get(i, "")}</div></section>'
+                    for i in range(1, 4)),
             encoding="utf-8")
         pdf = PdfWriter()
         for i in range(1, 4):
@@ -223,6 +232,28 @@ class RenderEvidenceTests(unittest.TestCase):
         html.write_text(html.read_text(encoding="utf-8").replace(footer, 2 * footer), encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "HTML page 3"):
             m.verify(self.folder, profile="exec", exec_payload=payload, all_exec_footers=True)
+
+    def test_source_lines_verify_all_three_pages_alongside_footers(self):
+        payload = self.write_exec_witness(all_pages=True, source_lines=True)
+        result = m.verify(self.folder, profile="exec", exec_payload=payload,
+                          all_exec_footers=True, exec_source_lines=True)
+        self.assertEqual({result[f"exec_source_line_page{i}"] for i in range(1, 4)}, {"PASS"})
+        self.assertEqual(result["exec_footer_page3"], "PASS")
+
+    def test_source_lines_reject_missing_html_text_or_pdf_text_on_wrong_page(self):
+        for wrong_pdf_page in (False, True):
+            with self.subTest(wrong_pdf_page=wrong_pdf_page):
+                payload = self.write_exec_witness(source_lines=True,
+                                                  moved_pdf_source=3 if wrong_pdf_page else None)
+                html = self.folder / "report.html"
+                if not wrong_pdf_page:
+                    html.write_text(html.read_text(encoding="utf-8").replace("Sources: edition 3.", ""),
+                                    encoding="utf-8")
+                control = m.verify(self.folder, profile="exec", exec_payload=payload)
+                self.assertNotIn("exec_source_line_page3", control)
+                output = "PDF" if wrong_pdf_page else "HTML"
+                with self.assertRaisesRegex(ValueError, f"{output} page 3 source line"):
+                    m.verify(self.folder, profile="exec", exec_payload=payload, exec_source_lines=True)
 
 
 if __name__=="__main__":
