@@ -58,6 +58,15 @@ class ExecContract(unittest.TestCase):
                     with self.assertRaisesRegex(CoherenceError, f"^SCHEMA: page1/thesis/paras/{index}:"):
                         R(data).build()
 
+    def test_each_page_requires_a_nonblank_text_source_line(self):
+        for page in ("page1", "page2", "page3"):
+            for text in ("", " \t ", None, 17):
+                with self.subTest(page=page, text=text):
+                    data = copy.deepcopy(BASE)
+                    data[page]["sources"] = text
+                    with self.assertRaisesRegex(CoherenceError, f"^SCHEMA: {page}/sources:"):
+                        R(data).build()
+
     def test_orphan_reference(self):
         self.mutate(lambda p: p['page2']['primary'][1].pop('themes'))
 
