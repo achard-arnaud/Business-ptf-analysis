@@ -17,6 +17,27 @@ ISSUE_KEYS=("overlaps","overflows","out_of_bounds","small_fonts","low_padding")
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
+def check_qa_report(report):
+    if not isinstance(report, dict) or report.get("page_count") != 3 or report.get("pass") is not True:
+        raise ValueError("browser report does not pass exactly three pages")
+    details = report.get("pages")
+    if not isinstance(details, list) or len(details) != 3:
+        raise ValueError("browser report must contain exactly three page details")
+    counts = dict.fromkeys(ISSUE_KEYS, 0)
+    for number, page in enumerate(details, 1):
+        for key in ISSUE_KEYS:
+            issues = page.get(key) if isinstance(page, dict) else None
+            if not isinstance(issues, list):
+                raise ValueError(f"browser report page {number} lacks a {key} issue list")
+            counts[key] += len(issues)
+    summary = report.get("summary")
+    for key, count in counts.items():
+        total = summary.get(key) if isinstance(summary, dict) else None
+        if type(total) is not int or total != count:
+            raise ValueError(f"browser report summary differs from page details for {key}")
+    if any(counts.values()):
+        raise ValueError("browser report contains layout defects")
+
 def check_page_png(path):
     raw = path.read_bytes()
     if len(raw) < 33 or raw[:8] != b"\x89PNG\r\n\x1a\n":
@@ -248,11 +269,7 @@ def verify(folder, *, profile, exec_payload=None, all_exec_footers=False, exec_s
     manifest=json.loads((folder/"render_manifest.json").read_text(encoding="utf-8"))
     report_path=folder/"qa.json"
     report=json.loads(report_path.read_text(encoding="utf-8"))
-    if report.get("page_count")!=3 or report.get("pass") is not True:
-        raise ValueError("browser report does not pass exactly three pages")
-    summary=report.get("summary",{})
-    if any(summary.get(key,1)!=0 for key in ISSUE_KEYS):
-        raise ValueError("browser report contains layout defects or missing category")
+    check_qa_report(report)
     if manifest.get("qa_sha256") != sha(report_path):
         raise ValueError("QA report changed since manifest")
     pdfs=list(folder.glob("*.pdf"))

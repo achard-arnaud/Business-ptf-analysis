@@ -21,7 +21,8 @@ class RenderEvidenceTests(unittest.TestCase):
         pdf=PdfWriter()
         for _ in range(3):pdf.add_blank_page(width=842,height=595)
         with (self.folder/"report.pdf").open("wb") as out:pdf.write(out)
-        self.qa={"pass":True,"page_count":3,"summary":{key:0 for key in m.ISSUE_KEYS}}
+        self.qa={"pass":True,"page_count":3,"summary":{key:0 for key in m.ISSUE_KEYS},
+                 "pages":[{key:[] for key in m.ISSUE_KEYS} for _ in range(3)]}
         (self.folder/"qa.json").write_text(json.dumps(self.qa))
         self.manifest={"render_profile":"exec","visual_qa":"LAYOUT_PASS_MANUAL_PENDING",
                        "pdf_sha256":m.sha(self.folder/"report.pdf"),"qa_sha256":m.sha(self.folder/"qa.json"),
@@ -133,6 +134,26 @@ class RenderEvidenceTests(unittest.TestCase):
         self.manifest["qa_sha256"]=m.sha(self.folder/"qa.json")
         (self.folder/"render_manifest.json").write_text(json.dumps(self.manifest))
         self.fails()
+
+    def test_qa_summary_must_agree_with_page_details(self):
+        cases = (
+            ("hidden overflow", lambda qa: qa["pages"][1]["overflows"].append({"selector": ".card"}),
+             "summary.*overflows"),
+            ("missing detail", lambda qa: qa.pop("pages"), "exactly three page details"),
+            ("missing page", lambda qa: qa["pages"].pop(), "exactly three page details"),
+            ("missing category", lambda qa: qa["pages"][1].pop("overflows"), "page 2.*overflows"),
+            ("boolean counter", lambda qa: qa["summary"].update(overflows=False), "summary.*overflows"),
+        )
+        for name, mutate, diagnostic in cases:
+            with self.subTest(case=name):
+                qa = json.loads(json.dumps(self.qa))
+                mutate(qa)
+                report = self.folder / "qa.json"
+                report.write_text(json.dumps(qa))
+                self.manifest["qa_sha256"] = m.sha(report)
+                self.write_png_evidence([f"report_page{i}.png" for i in (1, 2, 3)])
+                with self.assertRaisesRegex(ValueError, diagnostic):
+                    m.verify(self.folder, profile="exec")
 
     def test_physical_page_count_rejected(self):
         pdf=PdfWriter();pdf.add_blank_page(width=842,height=595)
