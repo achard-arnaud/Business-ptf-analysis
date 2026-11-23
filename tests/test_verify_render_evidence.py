@@ -142,7 +142,8 @@ class RenderEvidenceTests(unittest.TestCase):
         self.fails()
 
     def write_exec_witness(self, *, html_footer=True, pdf_page=2, all_pages=False,
-                           missing_pdf_page=None, source_lines=False, moved_pdf_source=None):
+                           missing_pdf_page=None, source_lines=False, moved_pdf_source=None,
+                           thesis_placement=None, thesis_pdf_page=1):
         self.write_png_evidence([f"report_page{i}.png" for i in range(1, 4)])
         payload = self.folder / "payload.json"
         data = {
@@ -165,10 +166,23 @@ class RenderEvidenceTests(unittest.TestCase):
                 pdf_slot = 2 if i == moved_pdf_source else i
                 pdf_footers[pdf_slot] = (pdf_footers.get(pdf_slot, b"")
                                          + f" 0 -20 Td ({sources[i]}) Tj".encode("ascii"))
+        cards = ""
+        if thesis_placement is not None:
+            data.setdefault("page1", {})["thesis"] = {"take": "Integrate before **innovating**."}
+            takeaway = "Integrate before <b>innovating</b>."
+            cards = "".join(
+                '<div class="card"><h2>' + title + '</h2><div class="body">Body</div>'
+                '<p class="take"><b class="lbl">À retenir</b>'
+                + (takeaway if thesis_placement == position else "")
+                + '</p></div>'
+                for position, title in (("neighbor", "Signalétique"), ("thesis", "Thèse")))
+            if thesis_pdf_page is not None:
+                pdf_footers[thesis_pdf_page] = (pdf_footers.get(thesis_pdf_page, b"")
+                                              + b" 0 -20 Td (Integrate before innovating.) Tj")
         payload.write_text(json.dumps(data), encoding="utf-8")
         self.manifest["payload_sha256"] = m.sha(payload)
         (self.folder / "report.html").write_text(
-            "".join('<section class="page"><div class="footer-strip">'
+            "".join('<section class="page">' + (cards if i == 1 else "") + '<div class="footer-strip">'
                     f'<div class="footer-body">{html_footers.get(i, "")}</div>'
                     f'</div><div class="source-line">{sources.get(i, "")}</div></section>'
                     for i in range(1, 4)),
@@ -254,6 +268,29 @@ class RenderEvidenceTests(unittest.TestCase):
                 output = "PDF" if wrong_pdf_page else "HTML"
                 with self.assertRaisesRegex(ValueError, f"{output} page 3 source line"):
                     m.verify(self.folder, profile="exec", exec_payload=payload, exec_source_lines=True)
+
+    def test_thesis_takeaway_checks_its_card_and_page_alongside_existing_slots(self):
+        payload = self.write_exec_witness(all_pages=True, source_lines=True, thesis_placement="thesis")
+        result = m.verify(self.folder, profile="exec", exec_payload=payload, all_exec_footers=True,
+                          exec_source_lines=True, exec_thesis_takeaway=True)
+        self.assertEqual(result["exec_thesis_takeaway_page1"], "PASS")
+        self.assertEqual(result["exec_source_line_page1"], "PASS")
+
+    def test_thesis_takeaway_rejects_absent_or_neighboring_card_text(self):
+        for placement in ("missing", "neighbor"):
+            with self.subTest(placement=placement):
+                payload = self.write_exec_witness(thesis_placement=placement)
+                base = m.verify(self.folder, profile="exec", exec_payload=payload)
+                self.assertNotIn("exec_thesis_takeaway_page1", base)
+                with self.assertRaisesRegex(ValueError, "HTML page 1 thesis takeaway"):
+                    m.verify(self.folder, profile="exec", exec_payload=payload, exec_thesis_takeaway=True)
+
+    def test_thesis_takeaway_rejects_absent_or_misplaced_pdf_text(self):
+        for page in (None, 2):
+            with self.subTest(page=page):
+                payload = self.write_exec_witness(thesis_placement="thesis", thesis_pdf_page=page)
+                with self.assertRaisesRegex(ValueError, "PDF page 1 thesis takeaway"):
+                    m.verify(self.folder, profile="exec", exec_payload=payload, exec_thesis_takeaway=True)
 
 
 if __name__=="__main__":
