@@ -143,7 +143,8 @@ class RenderEvidenceTests(unittest.TestCase):
 
     def write_exec_witness(self, *, html_footer=True, pdf_page=2, all_pages=False,
                            missing_pdf_page=None, source_lines=False, moved_pdf_source=None,
-                           thesis_placement=None, thesis_pdf_page=1):
+                           thesis_placement=None, thesis_pdf_page=1, thesis_prose=None,
+                           prose_pdf_order=(0, 1), prose_pdf_page=1):
         self.write_png_evidence([f"report_page{i}.png" for i in range(1, 4)])
         payload = self.folder / "payload.json"
         data = {
@@ -170,8 +171,19 @@ class RenderEvidenceTests(unittest.TestCase):
         if thesis_placement is not None:
             data.setdefault("page1", {})["thesis"] = {"take": "Integrate before **innovating**."}
             takeaway = "Integrate before <b>innovating</b>."
+            prose_html = "Body"
+            if thesis_prose is not None:
+                paras = ("First **claim**.", "Second claim.")
+                data["page1"]["thesis"]["paras"] = list(paras)
+                prose_html = "".join('<p class="lead">' + paras[i].replace("**claim**", "<b>claim</b>")
+                                     + "</p>" for i in thesis_prose)
+                for i in prose_pdf_order:
+                    raw = paras[i].replace("**", "")
+                    pdf_footers[prose_pdf_page] = (pdf_footers.get(prose_pdf_page, b"")
+                                                  + f" 0 -20 Td ({raw}) Tj".encode("ascii"))
             cards = "".join(
-                '<div class="card"><h2>' + title + '</h2><div class="body">Body</div>'
+                '<div class="card"><h2>' + title + '</h2><div class="body">'
+                + (prose_html if position == "thesis" else "Other body") + '</div>'
                 '<p class="take"><b class="lbl">À retenir</b>'
                 + (takeaway if thesis_placement == position else "")
                 + '</p></div>'
@@ -291,6 +303,26 @@ class RenderEvidenceTests(unittest.TestCase):
                 payload = self.write_exec_witness(thesis_placement="thesis", thesis_pdf_page=page)
                 with self.assertRaisesRegex(ValueError, "PDF page 1 thesis takeaway"):
                     m.verify(self.folder, profile="exec", exec_payload=payload, exec_thesis_takeaway=True)
+
+    def test_thesis_paragraphs_preserve_both_claims_in_order(self):
+        payload = self.write_exec_witness(thesis_placement="thesis", thesis_prose=(0, 1))
+        result = m.verify(self.folder, profile="exec", exec_payload=payload, exec_thesis_takeaway=True,
+                          exec_thesis_paragraphs=True)
+        self.assertEqual(result["exec_thesis_paragraphs_page1"], "PASS")
+        self.assertEqual(result["exec_thesis_takeaway_page1"], "PASS")
+
+    def test_thesis_paragraphs_reject_loss_reordering_or_wrong_pdf_page(self):
+        cases = (([1], (0, 1), 1, "HTML"), ((1, 0), (0, 1), 1, "HTML"),
+                 ((0, 1), (1,), 1, "PDF"), ((0, 1), (1, 0), 1, "PDF"),
+                 ((0, 1), (0, 1), 2, "PDF"))
+        for html_order, pdf_order, page, format_name in cases:
+            with self.subTest(html=html_order, pdf=pdf_order, page=page):
+                payload = self.write_exec_witness(thesis_placement="thesis", thesis_prose=html_order,
+                                                  prose_pdf_order=pdf_order, prose_pdf_page=page)
+                control = m.verify(self.folder, profile="exec", exec_payload=payload, exec_thesis_takeaway=True)
+                self.assertNotIn("exec_thesis_paragraphs_page1", control)
+                with self.assertRaisesRegex(ValueError, f"{format_name} page 1 thesis paragraphs"):
+                    m.verify(self.folder, profile="exec", exec_payload=payload, exec_thesis_paragraphs=True)
 
 
 if __name__=="__main__":

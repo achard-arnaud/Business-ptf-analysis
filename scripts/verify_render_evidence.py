@@ -51,13 +51,13 @@ def check_page_png(path):
     raise ValueError(f"{path.name}: missing PNG termination (IEND)")
 
 class ExecPageText(HTMLParser):
-    def __init__(self, *, thesis_takeaway=False):
+    def __init__(self, *, check_thesis=False):
         super().__init__()
         self.pages = 0
         self.sections = []
         self.divs = []
         self.slots = {}
-        self.thesis_takeaway = thesis_takeaway
+        self.check_thesis = check_thesis
         self.active_cards = []
         self.page_one_cards = []
         self.card_part = None
@@ -86,8 +86,8 @@ class ExecPageText(HTMLParser):
                 body = []
                 self.slots.setdefault((page, slot), []).append(body)
             self.divs.append((classes, body))
-            if self.thesis_takeaway and page == 1 and "card" in classes:
-                card = {"heading": [], "takeaways": []}
+            if self.check_thesis and page == 1 and "card" in classes:
+                card = {"heading": [], "thesis_takeaway": [], "thesis_paragraphs": []}
                 self.active_cards.append((len(self.divs), card))
                 self.page_one_cards.append(card)
         elif self.active_cards:
@@ -96,8 +96,13 @@ class ExecPageText(HTMLParser):
                 self.card_part = ("h2", card["heading"])
             elif len(self.divs) == depth and tag == "p" and "take" in classes:
                 takeaway = []
-                card["takeaways"].append(takeaway)
+                card["thesis_takeaway"].append(takeaway)
                 self.card_part = ("p", takeaway)
+            elif (len(self.divs) == depth + 1 and "body" in self.divs[-1][0]
+                  and tag == "p" and "lead" in classes):
+                paragraph = []
+                card["thesis_paragraphs"].append(paragraph)
+                self.card_part = ("p", paragraph)
             elif tag == "b" and "lbl" in classes and self.card_part and self.card_part[0] == "p":
                 self.in_take_label = True
 
@@ -124,10 +129,10 @@ class ExecPageText(HTMLParser):
                     break
 
     def slot_text(self, page, slot):
-        if slot == "thesis_takeaway":
+        if slot in ("thesis_takeaway", "thesis_paragraphs"):
             cards = [card for card in self.page_one_cards
                      if plain_text("".join(card["heading"])) == "Thèse"]
-            fragments = cards[0]["takeaways"] if len(cards) == 1 else []
+            fragments = cards[0][slot] if len(cards) == 1 else []
         else:
             fragments = self.slots.get((page, slot), [])
         return [plain_text("".join(body)) for body in fragments]
@@ -139,25 +144,33 @@ def plain_text(value):
 
 def expected_exec_text(payload, number, slot):
     label = slot.replace("_", " ")
+    def rendered_text(body):
+        body = re.sub(r"\{([a-z0-9_]+)\}",
+                      lambda match: payload["figures"][match[1]]["value"], body)
+        return plain_text(re.sub(r"\*\*(.+?)\*\*", r"\1", body))
+
     try:
         page = payload[f"page{number}"]
         if slot == "footer":
-            body = page["footer"]["body"]
+            parts = [page["footer"]["body"]]
         elif slot == "thesis_takeaway":
-            body = page["thesis"]["take"]
+            parts = [page["thesis"]["take"]]
+        elif slot == "thesis_paragraphs":
+            parts = page["thesis"]["paras"]
+            if not isinstance(parts, list) or len(parts) != 2:
+                raise ValueError("exec payload must contain two page 1 thesis paragraphs")
         else:
-            body = page["sources"]
-        body = re.sub(r"\{([a-z0-9_]+)\}",
-                      lambda match: payload["figures"][match[1]]["value"], body)
-        text = plain_text(re.sub(r"\*\*(.+?)\*\*", r"\1", body))
+            parts = [page["sources"]]
+        texts = [rendered_text(part) for part in parts]
     except (KeyError, TypeError) as err:
         raise ValueError(f"exec payload is missing the page {number} {label} or its figure") from err
-    if not text:
+    if not all(texts):
         raise ValueError(f"exec payload has a blank page {number} {label}")
-    return text
+    return texts
 
 
-def verify_exec_page_text(payload_path, manifest, pdf, pages, *, all_pages, source_lines, thesis_takeaway):
+def verify_exec_page_text(payload_path, manifest, pdf, pages, *, all_pages, source_lines,
+                          thesis_takeaway, thesis_paragraphs):
     raw = Path(payload_path).read_bytes()
     if manifest.get("payload_sha256") != hashlib.sha256(raw).hexdigest():
         raise ValueError("exec payload does not match render manifest")
@@ -165,46 +178,52 @@ def verify_exec_page_text(payload_path, manifest, pdf, pages, *, all_pages, sour
     html = pdf.with_suffix(".html")
     if not html.is_file():
         raise ValueError("exec HTML evidence missing")
-    witness = ExecPageText(thesis_takeaway=thesis_takeaway)
+    check_thesis = thesis_takeaway or thesis_paragraphs
+    witness = ExecPageText(check_thesis=check_thesis)
     witness.feed(html.read_text(encoding="utf-8"))
     witness.close()
     if witness.pages != 3:
         raise ValueError("exec HTML evidence must contain exactly three pages")
     result = {}
-    page_numbers = (1, 2, 3) if all_pages or source_lines else (1, 2) if thesis_takeaway else (2,)
+    page_numbers = (1, 2, 3) if all_pages or source_lines else (1, 2) if check_thesis else (2,)
     for number in page_numbers:
         slots = ["footer"] if all_pages or number == 2 else []
         if source_lines:
             slots.append("source_line")
         if thesis_takeaway and number == 1:
             slots.append("thesis_takeaway")
+        if thesis_paragraphs and number == 1:
+            slots.append("thesis_paragraphs")
         page = pages[number - 1]
         pdf_text = plain_text(page.extract_text())
         layout_text = None
         for slot in slots:
             label = slot.replace("_", " ")
             expected = expected_exec_text(payload, number, slot)
-            if witness.slot_text(number, slot) != [expected]:
+            if witness.slot_text(number, slot) != expected:
                 raise ValueError(f"exec HTML page {number} {label} differs from payload")
-            if expected not in pdf_text:
+            pdf_expected = " ".join(expected)
+            if pdf_expected not in pdf_text:
                 # Positioned glyphs can lose spaces; try layout on this same page only.
                 allow_layout = all_pages or slot != "footer"
                 if layout_text is None and allow_layout:
                     layout_text = plain_text(page.extract_text(extraction_mode="layout"))
-                if not allow_layout or expected not in layout_text:
+                if not allow_layout or pdf_expected not in layout_text:
                     raise ValueError(f"exec PDF page {number} {label} differs from payload")
             result[f"exec_{slot}_page{number}"] = "PASS"
     return result
 
 
 def verify(folder, *, profile, exec_payload=None, all_exec_footers=False, exec_source_lines=False,
-           exec_thesis_takeaway=False):
+           exec_thesis_takeaway=False, exec_thesis_paragraphs=False):
     if all_exec_footers and exec_payload is None:
         raise ValueError("all exec footers comparison needs an exec payload")
     if exec_source_lines and exec_payload is None:
         raise ValueError("exec source line comparison needs an exec payload")
     if exec_thesis_takeaway and exec_payload is None:
         raise ValueError("exec thesis takeaway comparison needs an exec payload")
+    if exec_thesis_paragraphs and exec_payload is None:
+        raise ValueError("exec thesis paragraphs comparison needs an exec payload")
     if exec_payload is not None and profile != "exec":
         raise ValueError("exec payload comparison needs the exec profile")
     folder=Path(folder)
@@ -253,7 +272,8 @@ def verify(folder, *, profile, exec_payload=None, all_exec_footers=False, exec_s
     if exec_payload is not None:
         result.update(verify_exec_page_text(exec_payload, manifest, pdf, pages,
                                            all_pages=all_exec_footers, source_lines=exec_source_lines,
-                                           thesis_takeaway=exec_thesis_takeaway))
+                                           thesis_takeaway=exec_thesis_takeaway,
+                                           thesis_paragraphs=exec_thesis_paragraphs))
     return result
 
 
@@ -268,6 +288,8 @@ if __name__=="__main__":
                    help="With --exec-payload, also check the exec source line on each page")
     p.add_argument("--exec-thesis-takeaway", action="store_true",
                    help="With --exec-payload, also check the page 1 thesis takeaway")
+    p.add_argument("--exec-thesis-paragraphs", action="store_true",
+                   help="With --exec-payload, also check both page 1 thesis paragraphs in order")
     a=p.parse_args()
     if a.all_exec_footers and a.exec_payload is None:
         p.error("--all-exec-footers requires --exec-payload")
@@ -275,7 +297,10 @@ if __name__=="__main__":
         p.error("--exec-source-lines requires --exec-payload")
     if a.exec_thesis_takeaway and a.exec_payload is None:
         p.error("--exec-thesis-takeaway requires --exec-payload")
+    if a.exec_thesis_paragraphs and a.exec_payload is None:
+        p.error("--exec-thesis-paragraphs requires --exec-payload")
     print(json.dumps(verify(a.folder, profile=a.profile, exec_payload=a.exec_payload,
                             all_exec_footers=a.all_exec_footers,
                             exec_source_lines=a.exec_source_lines,
-                            exec_thesis_takeaway=a.exec_thesis_takeaway), ensure_ascii=False))
+                            exec_thesis_takeaway=a.exec_thesis_takeaway,
+                            exec_thesis_paragraphs=a.exec_thesis_paragraphs), ensure_ascii=False))
