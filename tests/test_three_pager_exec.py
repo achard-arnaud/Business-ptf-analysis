@@ -49,6 +49,15 @@ class ExecContract(unittest.TestCase):
         with self.assertRaisesRegex(CoherenceError, '^G-C4: .*conclusion'):
             R(data).build()
 
+    def test_thesis_requires_two_nonblank_text_paragraphs(self):
+        for index in (0, 1):
+            for body in ("", " \t ", None, 17):
+                with self.subTest(index=index, body=body):
+                    data = copy.deepcopy(BASE)
+                    data["page1"]["thesis"]["paras"][index] = body
+                    with self.assertRaisesRegex(CoherenceError, f"^SCHEMA: page1/thesis/paras/{index}:"):
+                        R(data).build()
+
     def test_orphan_reference(self):
         self.mutate(lambda p: p['page2']['primary'][1].pop('themes'))
 

@@ -41,7 +41,7 @@
       "properties": {
         "subtitle": {"type": "string", "maxLength": 130},
         "signaletique": {"type": "object", "required": ["rows", "take"], "properties": {"rows": {"type": "array", "minItems": 5, "maxItems": 6}, "take": {"type": "string", "minLength": 5}}},
-        "thesis": {"type": "object", "required": ["paras", "take"], "properties": {"paras": {"type": "array", "minItems": 2, "maxItems": 2}, "take": {"type": "string", "minLength": 5}}},
+        "thesis": {"type": "object", "required": ["paras", "take"], "properties": {"paras": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string", "pattern": "\\S"}}, "take": {"type": "string", "minLength": 5}}},
         "board": {"type": "object", "required": ["intro", "rows", "take"], "properties": {"rows": {"type": "array", "minItems": 2, "maxItems": 4,
           "items": {"type": "object", "required": ["who", "what"], "properties": {"who": {"type": "string"}, "what": {"type": "string"}, "role": {"type": ["string", "null"]}, "gap": {"type": "boolean"}}}}}},
         "swot": {"type": "object", "required": ["s", "w", "o", "t", "take"],
