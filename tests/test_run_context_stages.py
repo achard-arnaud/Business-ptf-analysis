@@ -5,6 +5,7 @@ This is a shape check, not a state-transition engine or human approval.
 """
 import copy
 import json
+import re
 import unittest
 from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker, ValidationError
@@ -48,6 +49,13 @@ class RunContextStages(unittest.TestCase):
         self.assertEqual(self.external["required"], self.embedded["required"])
         self.assertEqual(self.external["additionalProperties"], self.embedded["additionalProperties"])
         self.assertEqual(self.external["allOf"], self.embedded["allOf"])
+
+    def test_documented_company_stages_match_current_run_context(self):
+        guide = (ROOT / "docs/agent/gates.md").read_text(encoding="utf-8")
+        sequences = re.findall(r"^L'entreprise suit `([^`\n]+)`", guide, flags=re.MULTILINE)
+        self.assertEqual(len(sequences), 1, "Expected one company stage sequence in gates.md")
+        documented = [stage.strip() for stage in sequences[0].split("→")]
+        self.assertCountEqual(documented, self.external["properties"]["stage"]["enum"])
 
     def test_v01_snapshot_remains_readable(self):
         self.validate_both(sample("ANALYSIS", "0.1.0"))
