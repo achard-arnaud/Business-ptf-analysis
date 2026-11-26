@@ -7,7 +7,9 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from threading import Barrier
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('case_engine', ROOT / 'scripts/case_runtime.py')
@@ -79,6 +81,39 @@ class CaseRuntimeTests(unittest.TestCase):
     def test_stage_cannot_skip_dependencies(self):
         with self.assertRaisesRegex(ValueError, 'dependency'):
             engine.begin('alpha-run', 'A3', 'test', self.root)
+
+    def test_concurrent_stage_starts_create_one_attempt(self):
+        gate = Barrier(2, timeout=10)
+        command = [sys.executable, str(self.root / 'scripts/case_runtime.py'),
+                   'begin', '--root', str(self.root), '--case', 'alpha-run', '--stage', 'A0']
+
+        def start(actor):
+            gate.wait()
+            return subprocess.run([*command, '--actor', actor], capture_output=True,
+                                  text=True, timeout=30)
+
+        with ThreadPoolExecutor(max_workers=2) as workers:
+            results = list(workers.map(start, ('agent-one', 'agent-two')))
+        accepted = [r for r in results if r.returncode == 0]
+        rejected = [r for r in results if r.returncode != 0]
+        self.assertEqual(len(accepted), 1, 'expected exactly one accepted stage start')
+        self.assertEqual([r.returncode for r in rejected], [1])
+        rejection = json.loads(rejected[0].stdout)
+        self.assertEqual(rejection['status'], 'blocked')
+        self.assertIn('Stage already running/passed', rejection['error'])
+
+        packet = json.loads(accepted[0].stdout)
+        self.assertEqual(packet['attempt'], 1)
+        self.assertEqual(packet['output_ref'], 'stages/A0/attempt-1/result.json')
+        state = engine.load(self.case / 'state.json')
+        self.assertEqual(state['stages']['A0']['status'], 'running')
+        self.assertEqual(state['stages']['A0']['attempt'], 1)
+        self.assertEqual(state['stages']['A0']['actor'], packet['actor'])
+        starts = [event for event in state['events'] if event['action'] == 'stage_started']
+        self.assertEqual([(e['stage'], e['attempt'], e['actor']) for e in starts],
+                         [('A0', 1, packet['actor'])])
+        self.assertEqual(sorted(p.name for p in (self.case / 'stages/A0').iterdir()), ['attempt-1'])
+        self.assertIs(state['business_approval'], False)
 
     def configure_adapter(self, args):
         manifest = engine.load(self.root / 'workflow/case-process.json')
