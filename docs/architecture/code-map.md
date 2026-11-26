@@ -5,7 +5,8 @@ Use the [Hivest workflow](../../skills/hivest-portfolio-ai/references/workflow.m
 | Component | Capability | Boundary |
 |---|---|---|
 | Manifest and programme state | Scope, stage and next work | Independent runs use `program_ref=null`, outside Hivest roll-ups |
-| Company package | Source, fragment and claim lineage | Public research may remain a draft |
+| [Company package](../../contracts/company-package.schema.json) | Records source and fragment SHA-256 fingerprints, capture kind and hash scope, and the links to claims. [Package validation](../../scripts/validate.py) checks fragment fingerprints. | Metadata and fragment checks do not verify the captured source bytes. |
+| Source capture integrity | With an archive, the [bundle validator](../../scripts/validate_bundle.py) checks captured source bytes against their declared hashes. [Pre-HITL checks](../../scripts/check_prehitl.py) also require originals for material sources. | Without an archive, bundle validation reports `not_checked_external_archive_required`. An excerpt hash does not prove integrity of the original. |
 | `research_graph.py` | Dependency context and affected nodes | No web research, graph initialization or automatic rewrite |
 | Standalone analysis skill | Guides routing and composition of the three-page output | Procedure only; no `Agent.py` orchestrator exists |
 | [Case runtime](../../scripts/case_runtime.py) | Initializes an isolated case and its graph before collection; validates inputs, outputs and dependencies as the agent begins and completes A0–A4 | The agent gathers evidence and makes judgments. The runtime checks submitted artifacts and records attempts. |
