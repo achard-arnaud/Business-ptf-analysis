@@ -82,6 +82,32 @@ class CaseRuntimeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'dependency'):
             engine.begin('alpha-run', 'A3', 'test', self.root)
 
+    def test_missing_stage_result_blocks_next_stage_until_same_attempt_is_completed(self):
+        self.evidence()
+        packet = engine.begin('alpha-run', 'A1', 'test_agent', self.root)
+        result = self.case / packet['output_ref']
+        self.assertFalse(result.exists())
+
+        with self.assertRaisesRegex(ValueError, 'Missing or escaped reference: .*result.json'):
+            engine.complete('alpha-run', 'A1', self.root)
+        rejected = engine.load(self.case / 'state.json')
+        self.assertEqual(rejected['stages']['A1']['status'], 'running')
+        self.assertEqual(rejected['stages']['A1']['attempt'], packet['attempt'])
+        self.assertNotIn('output_pins', rejected['stages']['A1'])
+        self.assertEqual((rejected['events'][-1]['action'], rejected['events'][-1]['stage']),
+                         ('stage_rejected', 'A1'))
+        self.assertIs(rejected['business_approval'], False)
+        with self.assertRaisesRegex(ValueError, 'Unmet stage dependency'):
+            engine.begin('alpha-run', 'A2', 'test_agent', self.root)
+
+        engine.atomic(result, {'case_id': 'alpha-run', 'kind': 'graph', **self.graph()})
+        self.assertEqual(engine.complete('alpha-run', 'A1', self.root)['status'], 'passed')
+        completed = engine.load(self.case / 'state.json')
+        self.assertEqual(completed['stages']['A1']['attempt'], packet['attempt'])
+        self.assertEqual(completed['stages']['A1']['output_pins'][packet['output_ref']],
+                         engine.digest(result))
+        self.assertEqual(engine.begin('alpha-run', 'A2', 'test_agent', self.root)['attempt'], 1)
+
     def test_concurrent_stage_starts_create_one_attempt(self):
         gate = Barrier(2, timeout=10)
         command = [sys.executable, str(self.root / 'scripts/case_runtime.py'),
