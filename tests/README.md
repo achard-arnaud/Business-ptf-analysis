@@ -16,6 +16,7 @@ The [getting-started guide](../docs/getting-started.md) separates HTML/core chec
 | --- | --- | --- |
 | Package/evidence/maturity/gates/frozen content | `test_contracts.py`, `test_sphere_bundle.py` | Types, references, dates, source scope, non-compensable gates, known negative cases and accessible bundle integrity |
 | RunContext and handoff | `test_run_context_stages.py`, `test_research_handoff.py` | Versioned stage compatibility and handoff metadata |
+| Case runtime (synthetic) | [Runtime tests](test_case_runtime.py), `python scripts/case_runtime.py check` | Stage dependencies, pinned inputs and attempt records; two simultaneous starts yield one accepted attempt, and a missing stage result blocks the dependent stage until the same attempt completes |
 | Session resumption | `test_session_checkpoint.py`, `test_cold_resume_cli.py` | Pinned input bytes, conflicting revision, stale/missing file and bounded subprocess resume |
 | Skill discovery and registry | `test_skill_docs.py`, `test_template_registry.py` | Fixed navigation set/frontmatter, declared template paths and capabilities |
 | Executive / value-chain output | `test_three_pager_exec.py`, `test_value_chain_views.py`, `test_value_chain_preview.py` | Profile-specific composition, synthetic sector topologies and negative cases |
@@ -25,6 +26,8 @@ The [getting-started guide](../docs/getting-started.md) separates HTML/core chec
 | Learning pilot | `test_pedagogical_renderer.py`, `test_pedagogical_landscape.py` | Binding/content fidelity, locked imports and learning-specific rendering contracts |
 
 Some tests use synthetic fixtures; `test_sphere_bundle.py` also checks the committed Sphere dossier and targeted mutations. These have different evidence scopes. Neither creates new company facts or approves an investment decision.
+
+For the runtime, [PR #105](https://github.com/achard-arnaud/Business-ptf-analysis/pull/105) covers the concurrent start and [PR #106](https://github.com/achard-arnaud/Business-ptf-analysis/pull/106) covers the required stage result. On [revision `498c8ea3`](https://github.com/achard-arnaud/Business-ptf-analysis/commit/498c8ea35b63a3cdfd9efd51b0363071e4624e0a), [Contract CI on dev](https://github.com/achard-arnaud/Business-ptf-analysis/actions/runs/45806739470) passed `validate` and `select-render` on 26 November 2026; `render-qa` was skipped. These synthetic cases do not verify original archives, live browser output or human approval.
 
 ## Browser and archive acceptance
 
