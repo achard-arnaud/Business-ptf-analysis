@@ -4,6 +4,7 @@ import json
 import sys
 import unittest
 from unittest.mock import patch
+from tempfile import TemporaryDirectory
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -117,6 +118,40 @@ class ExecContract(unittest.TestCase):
 
     def test_layout_cannot_inject_markup(self):
         self.mutate(lambda p: p.update(layout={'p1_rows': '1fr; color:red'}))
+
+    def test_editorial_example_is_not_a_canonical_company_bundle(self):
+        entity = 'synthetic-company'
+        package = {'entity_id': entity, 'cutoff': '2026-01-01', 'sources': []}
+        contents = {'package.json': package, 'strategic_context.json': {}, 'research_graph.json': {}}
+        payload = {
+            'entity_id': entity, 'cutoff': package['cutoff'], 'figures': {},
+            'lineage': {'bundle_sha256': digest({'package': package, 'context': {}, 'graph': {}})},
+        }
+
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            archive = root / 'unused-mocked-archive.json'
+            canonical = root / 'companies' / entity
+            example = root / 'examples' / 'three-pagers' / entity
+            for folder in (canonical, example):
+                folder.mkdir(parents=True)
+                for name, data in contents.items():
+                    (folder / name).write_text(json.dumps(data), encoding='utf-8')
+
+            with (
+                patch('validate_exec.ROOT', root),
+                patch('validate_exec.validate_bundle', return_value={'snapshot_integrity': 'verified'}),
+                patch('validate_exec.R'),
+                patch('check_prehitl.check', return_value={'status': 'PASS', 'missing': []}) as capture,
+            ):
+                with self.assertRaisesRegex(ValueError, 'canonical company directory'):
+                    validate_exec_payload(payload, example, archive)
+                capture.assert_not_called()
+
+                result = validate_exec_payload(payload, canonical, archive)
+                capture.assert_called_once_with(entity, archive)
+                self.assertTrue(result['render_authorized_for_demo'])
+                self.assertFalse(result['committee_authorized'])
 
     def test_fixture_not_bound_to_current_bundle(self):
         with patch('validate_exec.validate_bundle', return_value={'snapshot_integrity': 'verified'}):
