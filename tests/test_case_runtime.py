@@ -1,5 +1,6 @@
 """Executable boundary tests, including a fresh-case CLI run and stale evidence."""
 import copy
+import hashlib
 import importlib.util
 import json
 import shutil
@@ -310,11 +311,12 @@ class CaseRuntimeTests(unittest.TestCase):
             process_ref = 'workflow/case-process.json'
             release_ref = 'workflow/engine-release.json'
             fixture = 'tests/fixtures/independent_case_intake.json'
+            pinned_instructions = ('AGENTS.md', 'skills/standalone-company-analysis/SKILL.md')
             manifest = engine.load(ROOT / process_ref)
             release = engine.load(ROOT / release_ref)
             profile = manifest['templates']['three-pager-exec']
             refs = {process_ref, release_ref, *release['files'],
-                    *manifest['stable_refs'], *profile['refs']}
+                    *manifest['stable_refs'], *profile['refs'], *pinned_instructions}
             for ref in sorted(refs):
                 target = root / ref
                 target.parent.mkdir(parents=True, exist_ok=True)
@@ -353,6 +355,31 @@ class CaseRuntimeTests(unittest.TestCase):
             self.assertEqual(rejected.returncode, 1, rejected.stdout + rejected.stderr)
             self.assertIn('program_ref', json.loads(rejected.stdout)['error'])
             self.assertFalse((root / 'data/cases/rejected-example').exists())
+
+            status_command = [sys.executable, 'scripts/case_runtime.py', 'status',
+                              '--case', 'independent-example']
+            state_ref = case / 'state.json'
+            state_bytes = state_ref.read_bytes()
+            for ref in pinned_instructions:
+                with self.subTest(instruction=ref):
+                    instruction = root / ref
+                    original = instruction.read_bytes()
+                    instruction.write_bytes(original + b'\nSynthetic instruction change.\n')
+                    try:
+                        stale = subprocess.run(status_command, cwd=root, capture_output=True,
+                                               text=True, timeout=30)
+                        self.assertEqual(stale.returncode, 1, stale.stdout + stale.stderr)
+                        self.assertEqual(json.loads(stale.stdout),
+                                         {'status': 'blocked', 'error': f'Stale context: {ref}'})
+                        self.assertEqual(state_ref.read_bytes(), state_bytes)
+                        self.assertEqual(state['build_pins'][ref], hashlib.sha256(original).hexdigest())
+                    finally:
+                        instruction.write_bytes(original)
+                    restored = subprocess.run(status_command, cwd=root, capture_output=True,
+                                              text=True, timeout=30)
+                    self.assertEqual(restored.returncode, 0, restored.stdout + restored.stderr)
+                    self.assertEqual(json.loads(restored.stdout)['revision'], state['revision'])
+                    self.assertEqual(state_ref.read_bytes(), state_bytes)
 
     def test_cli_is_an_executed_consumer(self):
         cli = self.root / 'scripts/case_runtime.py'
