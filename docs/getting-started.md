@@ -39,7 +39,7 @@ python scripts/verify_render_evidence.py /tmp/business-ptf-demo --profile exec
 
 Linux environments may also require Playwright system dependencies (`python -m playwright install --with-deps chromium`). Inspect all three PNGs; automatic layout success does not replace reader review. Use a writable local path instead of `/tmp/...` on Windows.
 
-### 3. Inspect or resume a real diagnostic
+### 3. Inspect or resume an existing Hivest diagnostic
 
 Read [AGENTS.md](../AGENTS.md), [programme state](../program/state.json), then **one** company’s manifest and index, followed by the active procedure in the [workflow](../skills/hivest-portfolio-ai/references/workflow.md). [Sphere](../companies/sphere/INDEX.md) is the most complete reference bundle; other companies may still be at intake.
 
@@ -82,7 +82,17 @@ Dependency files currently specify version ranges. The strategic-note guide cont
 
 ## Adapt to another company or client
 
-1. Define the decision, entity, cutoff and rights boundary. Follow the [diagnostic workflow](../skills/hivest-portfolio-ai/references/workflow.md) and its intake/evidence procedure for programme registration and company state.
+Choose the route from the mandate before opening or updating any programme files.
+
+| Mandate | Starting point |
+| --- | --- |
+| **New independent company or use case** | Follow the [standalone analysis skill](../skills/standalone-company-analysis/SKILL.md) and [case process](agent/case-process.md). Run `python scripts/case_runtime.py check`, then `python scripts/case_runtime.py init --case <case-id> --input intake.json` with an intake conforming to the case contract. This creates the case and its graph under `data/cases/<case-id>/` before collection. Keep `program_ref=null`; do not register it in Hivest. |
+| **Hivest portfolio mandate** | Use the [Hivest workflow](../skills/hivest-portfolio-ai/references/workflow.md), programme state and company gates. Programme registration belongs only to this route. |
+| **Resume an existing case** | For an isolated case, use `case_runtime.py status --case <case-id>` and its saved state. For an existing historical `companies/` bundle, use its manifest and index; do not re-initialise it or infer A0–A4 receipts from older artefacts. |
+
+On the selected route:
+
+1. Define the decision, entity, cutoff and rights boundary before collecting sources.
 2. Build evidence and analytical objects against the [data dictionary](data/DATA_DICTIONARY.md) and current schemas. Keep shared sector observations distinct from company facts.
 3. Select a [binding/profile](architecture/template-binding.md) whose model fits the business. The exec profile keeps its fixed Porter topology; the variable-activity profile remains a preview.
 4. Validate the accessible files and required external captures, then obtain the applicable human review. Company registration and capability promotion are deliberate state changes.
