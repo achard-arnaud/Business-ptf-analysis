@@ -21,6 +21,7 @@ DOCS = (
     "docs/agent/quickstart-map.md",
     "docs/agent/context-and-resume.md",
     "docs/architecture/code-map.md",
+    "docs/architecture/rules-and-validation.md",
 )
 ROUTE_PROCEDURES = ("evidence", "market-drivers", "diagnostic", "opportunities",
                     "review", "composition", "learning")
