@@ -304,6 +304,56 @@ class CaseRuntimeTests(unittest.TestCase):
         self.assertEqual({v['status'] for v in state['stages'].values()}, {'passed'})
         self.assertEqual(len(engine.load(self.case / 'state.json')['events']), 11)
 
+    def test_documented_independent_intake_through_cli(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            process_ref = 'workflow/case-process.json'
+            release_ref = 'workflow/engine-release.json'
+            fixture = 'tests/fixtures/independent_case_intake.json'
+            manifest = engine.load(ROOT / process_ref)
+            release = engine.load(ROOT / release_ref)
+            profile = manifest['templates']['three-pager-exec']
+            refs = {process_ref, release_ref, *release['files'],
+                    *manifest['stable_refs'], *profile['refs']}
+            for ref in sorted(refs):
+                target = root / ref
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / ref, target)
+
+            command = [sys.executable, 'scripts/case_runtime.py', 'init']
+            example = root / fixture
+            example.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / fixture, example)
+            intake = engine.load(example)
+            self.assertEqual(intake['template_id'], 'three-pager-exec')
+            self.assertIs(intake['render_requested'], False)
+
+            result = subprocess.run(
+                [*command, '--case', 'independent-example', '--input', fixture],
+                cwd=root, capture_output=True, text=True, timeout=30,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            case = root / 'data/cases/independent-example'
+            state = engine.load(case / 'state.json')
+            self.assertEqual(engine.load(case / 'intake.json'), intake)
+            self.assertEqual(state['intake_sha256'], engine.digest(case / 'intake.json'))
+            self.assertEqual(state['profile'], profile)
+            self.assertEqual(engine.load(case / state['graph_ref']),
+                             {'case_id': 'independent-example', 'nodes': [], 'edges': []})
+            self.assertNotIn('program_ref', state)
+            self.assertNotIn('program_ref', state['intake'])
+            self.assertEqual(list((root / 'data').iterdir()), [root / 'data/cases'])
+            self.assertIs(state['business_approval'], False)
+
+            engine.atomic(root / 'invalid.json', {**intake, 'program_ref': None})
+            rejected = subprocess.run(
+                [*command, '--case', 'rejected-example', '--input', 'invalid.json'],
+                cwd=root, capture_output=True, text=True, timeout=30,
+            )
+            self.assertEqual(rejected.returncode, 1, rejected.stdout + rejected.stderr)
+            self.assertIn('program_ref', json.loads(rejected.stdout)['error'])
+            self.assertFalse((root / 'data/cases/rejected-example').exists())
+
     def test_cli_is_an_executed_consumer(self):
         cli = self.root / 'scripts/case_runtime.py'
         result = subprocess.run([sys.executable, str(cli), 'status', '--case', 'alpha-run'], capture_output=True, text=True)

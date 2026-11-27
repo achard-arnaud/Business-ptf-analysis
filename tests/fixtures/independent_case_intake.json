@@ -1,0 +1,8 @@
+{
+  "entity_id": "synthetic-example",
+  "objective": "Demonstrate independent case initialization",
+  "constraints": ["Synthetic example; no collection or rendering"],
+  "cutoff": "2026-11-27",
+  "template_id": "three-pager-exec",
+  "render_requested": false
+}

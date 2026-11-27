@@ -86,9 +86,20 @@ Choose the route from the mandate before opening or updating any programme files
 
 | Mandate | Starting point |
 | --- | --- |
-| **New independent company or use case** | Follow the [standalone analysis skill](../skills/standalone-company-analysis/SKILL.md) and [case process](agent/case-process.md). Run `python scripts/case_runtime.py check`, then `python scripts/case_runtime.py init --case <case-id> --input intake.json` with an intake conforming to the [case intake schema](../contracts/case-artifacts.schema.json). This creates the case and its graph under `data/cases/<case-id>/` before collection. Omit `program_ref` from the intake JSON; the runtime rejects undeclared fields. Do not register the case in Hivest. |
+| **New independent company or use case** | Follow the [standalone analysis skill](../skills/standalone-company-analysis/SKILL.md) and [case process](agent/case-process.md). Try the example below, then prepare your own intake using the [case intake schema](../contracts/case-artifacts.schema.json). Omit `program_ref`; the runtime rejects it even when set to `null`. Do not register the case in Hivest. |
 | **Hivest portfolio mandate** | Use the [Hivest workflow](../skills/hivest-portfolio-ai/references/workflow.md), programme state and company gates. Programme registration belongs only to this route. |
 | **Resume an existing case** | For an isolated case, use `case_runtime.py status --case <case-id>` and its saved state. For an existing historical `companies/` bundle, use its manifest and index; do not re-initialise it or infer A0–A4 receipts from older artefacts. |
+
+From the repository root, try the [synthetic independent intake](../tests/fixtures/independent_case_intake.json):
+
+```bash
+python scripts/case_runtime.py check
+python scripts/case_runtime.py init --case independent-example --input tests/fixtures/independent_case_intake.json
+```
+
+This creates local state and an empty graph under `data/cases/independent-example/`.
+The example selects `three-pager-exec` with rendering disabled. It does not start
+collection or register a Hivest case. Use an unused case ID for another run.
 
 On the selected route:
 
