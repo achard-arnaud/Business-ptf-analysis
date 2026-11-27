@@ -20,6 +20,16 @@ The [decision rules](../../contracts/decision-rules.md) own business policy. Sch
 | Resume rejects stale inputs or conflicting HEAD | [Checkpoint CLI](../../scripts/session_checkpoint.py) | [Checkpoint](../../tests/test_session_checkpoint.py), [cold resume](../../tests/test_cold_resume_cli.py) | Real transfer between model sessions and accessible external archives |
 | Publication/readback remain distinct from approval | [Receipt validator](../../scripts/validate_artifact_receipt.py), [preflight](../../scripts/publication_preflight.py) | [Receipt](../../tests/test_artifact_receipts.py), [preflight](../../tests/test_publication_preflight.py) | Independent remote readback and authenticated human release |
 
+## Contract drift: documented stages, schemas and case runtime
+
+The [4 November audit](CROSS_REPO_AUDIT_AND_BOOTSTRAP_2026-11-04.md) records the original discrepancies. The [code map](code-map.md) identifies which component owns each value; this table records how the current contracts resolve or constrain those findings.
+
+| Finding and scope | Current contract and check | Limit |
+| --- | --- | --- |
+| The company workflow documented `MARKET_CONTEXT` and `OPPORTUNITIES` before RunContext could accept them. **Resolved for v0.2; v0.1 compatibility retained.** | The [gate guide](../agent/gates.md), [RunContext schema](../../contracts/run-context.schema.json) and [embedded three-pager schema](../../contracts/three-pager.schema.json) agree: v0.2 accepts both milestones, v0.1 rejects them. The [stage tests](../../tests/test_run_context_stages.py) check the documented sequence, schema parity and both versions. | A valid checkpoint does not advance a manifest or migrate a v0.1 snapshot. |
+| The programme milestones and isolated case steps describe different paths. **Separate execution scopes.** | The [case manifest](../../workflow/case-process.json) declares A0–A4 and their dependencies. [Case runtime](../../scripts/case_runtime.py) rejects unknown stages and blocks `begin` when dependencies have not passed. The [case guide](../agent/case-process.md) explains the commands and the case state. | RunContext milestones are not commands or completion receipts for an isolated case. |
+| The post-review RunContext shape and approval evidence are different. **Metadata required; approval remains external.** | In v0.2, the RunContext schemas require structured `GO_DRAFT` metadata from that stage onward. The stage tests reject missing metadata. The [publication preflight](../agent/publication-preflight.md) still requires authenticated human release. | Schema validity does not authenticate the decision, prove a frozen bundle or authorise publication. |
+
 ## CLI and library boundaries
 
 `python scripts/validate.py package <file>` validates a package. Its `content <content> <package>` CLI checks frozen content but does not accept a bundle hash argument; package v0.2 content needs the bundle-aware library path.
