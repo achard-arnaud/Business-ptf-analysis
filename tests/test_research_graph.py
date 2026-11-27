@@ -48,3 +48,15 @@ class ResearchGraphTests(unittest.TestCase):
                 self.data['nodes'][-1]['depends_on'] = [dependency]
                 with self.assertRaisesRegex(ValueError, error):
                     graph.context(self.data, 'output')
+
+    def test_affected_does_not_rescan_an_independent_branch(self):
+        unrelated = CountingDependencies([])
+        self.data['nodes'][-1]['depends_on'] = unrelated
+
+        self.assertEqual(graph.affected(self.data, 'source'),
+                         ['common', 'left', 'output', 'right', 'source'])
+        self.assertLessEqual(unrelated.traversals, 2)  # Validation and indexing.
+
+    def test_affected_still_rejects_an_unknown_starting_node(self):
+        with self.assertRaisesRegex(ValueError, 'unknown changed node'):
+            graph.affected(self.data, 'missing')

@@ -33,11 +33,17 @@ def context(g,target,budget=12):
 def affected(g,changed):
     nodes=index_graph(g)
     if changed not in nodes:raise ValueError('unknown changed node')
+    dependents={k:[] for k in nodes}
+    for k,node in nodes.items():
+        for dependency in node['depends_on']:
+            dependents[dependency].append(k)
     result={changed}
-    while True:
-        extra={k for k,n in nodes.items() if set(n['depends_on']) & result}
-        if extra<=result:break
-        result|=extra
+    pending=[changed]
+    while pending:
+        for dependent in dependents[pending.pop()]:
+            if dependent not in result:
+                result.add(dependent)
+                pending.append(dependent)
     return sorted(result)
 
 def tasks(g,stage):
