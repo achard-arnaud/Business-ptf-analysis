@@ -5,19 +5,27 @@ from pathlib import Path
 def index_graph(g):
     nodes={n['id']:n for n in g['nodes']}
     if len(nodes)!=len(g['nodes']): raise ValueError('duplicate graph node')
-    def visit(k,stack):
+    active=set()
+    validated=set()
+    def visit(k):
         if k not in nodes:raise ValueError('dangling graph dependency')
-        if k in stack:raise ValueError('graph cycle')
-        for dep in nodes[k]['depends_on']:visit(dep,stack|{k})
-    for k in nodes:visit(k,set())
+        if k in active:raise ValueError('graph cycle')
+        if k in validated:return
+        active.add(k)
+        for dep in nodes[k]['depends_on']:visit(dep)
+        active.remove(k)
+        validated.add(k)
+    for k in nodes:visit(k)
     return nodes
 
 def context(g,target,budget=12):
-    nodes=index_graph(g);order=[]
+    nodes=index_graph(g);order=[];visited=set()
     def walk(k):
         if k not in nodes:raise ValueError('unknown target')
+        if k in visited:return
         for dep in nodes[k]['depends_on']:walk(dep)
-        if k not in order:order.append(k)
+        visited.add(k)
+        order.append(k)
     walk(target)
     if len(order)>budget:raise ValueError('context budget exceeded: narrow question; no silent truncation')
     return [nodes[k] for k in order]
